@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    background-color: #fcfcfc;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.navbar-brand,
+.navbar-brand:focus {
+    color: #F7C33E;
+    font-weight: bold;
+}
+
+.navbar-brand:hover {
+    color: #e4af4d;
+    font-weight: bold;
+}
+
+.btn-navbar-custom {
+    background-color: #ffa4c5;
+    border: 0.05rem solid #e69ab6;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.btn-navbar-custom:hover {
+    background-color: #e38dad;
+    border: 0.05rem solid #faa3c3;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.btn-navbar-custom:active {
+    background-color: #ffd7e5 !important;
+    border: 0.05rem solid #ffcade !important;
+    border-radius: 20px;
+    color: #fff !important;
+    box-shadow: none;
+    outline: none;
+}
+
+.maintxt {
+    background-image: url(https://picsum.photos/1600/600);
+    background-size: cover;
+    position: relative;
+}
+
+.bg-body-tertiary{
+    background: #fcfcfc !important;
+}
+
+.text-reset{
+    text-decoration: none;
+}
