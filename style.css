@@ -60,3 +60,8 @@ body {
 .fw-bold{
     color: #F7C33E;
 }
+
+li::marker {
+    color: #F7C33E;
+    height: 10px;
+  }
