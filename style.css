@@ -17,38 +17,46 @@ body {
 }
 
 .btn-navbar-custom {
-    background-color: #ffa4c5;
-    border: 0.05rem solid #e69ab6;
+    background-color: #FB6B9B;
+    border: 0.04rem solid #f75189;
     border-radius: 20px;
     color: #fff;
 }
 
 .btn-navbar-custom:hover {
-    background-color: #e38dad;
-    border: 0.05rem solid #faa3c3;
+    background-color: #E32B68;
+    border: 0.04rem solid  #C51D54;
     border-radius: 20px;
     color: #fff;
 }
 
 .btn-navbar-custom:active {
-    background-color: #ffd7e5 !important;
-    border: 0.05rem solid #ffcade !important;
+    background-color: #FDA5c2 !important;
+    border: 0.04rem solid #ff9abb !important;
     border-radius: 20px;
     color: #fff !important;
     box-shadow: none;
     outline: none;
 }
 
-.maintxt {
-    background-image: url(https://picsum.photos/1600/600);
-    background-size: cover;
-    position: relative;
-}
-
 .bg-body-tertiary{
     background: #fcfcfc !important;
 }
 
+.bg-body-tertiary::before{
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #ebebeb;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .text-reset{
     text-decoration: none;
+}
+
+.fw-bold{
+    color: #F7C33E;
 }
