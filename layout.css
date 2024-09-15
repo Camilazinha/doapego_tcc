@@ -22,6 +22,16 @@ body {
   background: #fcfcfc !important;
 }
 
+header::after{
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #ebebeb;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 /* botoes */
 
 .btn-navbar-custom {
