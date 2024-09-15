@@ -108,3 +108,7 @@ li::marker {
     font-size: 1.2em;
     line-height: 57px;
 }
+
+#checkText{
+    text-align: left !important;
+}
