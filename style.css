@@ -80,14 +80,14 @@ li::marker {
 .input-box {
     position: relative;
     width: 320px;
-    margin: 30px 0;
+    margin: 40px auto;
     border-bottom: 2px solid #858585;
+
 }
 
 .input-box input:focus~label,
 .input-box input:valid~label {
-    top: 5px;
-
+    top: 0px;
 }
 
 .input-box input {
@@ -112,3 +112,35 @@ li::marker {
 #checkText{
     text-align: left !important;
 }
+
+.remember-forgot a {
+    color: #4e4e4e;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+    color: #976a7a;
+}
+
+.remember-forgot label input {
+    accent-color: #ffa4c5;
+    margin-right: 3px;
+}
+
+.register-link a:hover {
+    color: #976a7a;
+}
+
+.register-link p a {
+    color: #4e4e4e;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+    color: #d3ab45
+}
+
+
