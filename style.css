@@ -65,3 +65,7 @@ li::marker {
     color: #F7C33E;
     height: 10px;
   }
+
+#checkText{
+    text-align: left !important;
+}
