@@ -144,3 +144,15 @@ li::marker {
 }
 
 
+ #borda{
+    border: 1px solid #dfdfdf;
+    border-radius: 20px;
+}
+
+#imagem  {
+    background-image: radial-gradient(#ffe68d, #ff92b6); 
+    background-size: cover; 
+    background-position: center; 
+    height: 350px; 
+    align-content: center;
+}
