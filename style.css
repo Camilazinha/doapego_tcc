@@ -66,6 +66,7 @@ li::marker {
     height: 10px;
   }
 
+<<<<<<< HEAD
   .input-box label {
     position: absolute;
     top: 50%;
@@ -107,4 +108,8 @@ li::marker {
     color: #FFA4C5;
     font-size: 1.2em;
     line-height: 57px;
+=======
+#checkText{
+    text-align: left !important;
+>>>>>>> b35bb8b7a7d939104d7a0685864d82d48d3e8cb1
 }
