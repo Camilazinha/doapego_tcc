@@ -65,3 +65,46 @@ li::marker {
     color: #F7C33E;
     height: 10px;
   }
+
+  .input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    pointer-events: none;
+    color: #4e4e4e;
+    transition: .3s;
+}
+
+.input-box {
+    position: relative;
+    width: 320px;
+    margin: 30px 0;
+    border-bottom: 2px solid #858585;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: 5px;
+
+}
+
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #4e4e4e;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    color: #FFA4C5;
+    font-size: 1.2em;
+    line-height: 57px;
+}
