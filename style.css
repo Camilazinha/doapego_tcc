@@ -144,11 +144,11 @@ li::marker {
 }
 
 
- /* #borda{
-    border: 2px solid #cdcdcd;
-    box-shadow: 0 0 0 .25rem rgb(236, 236, 236);
+ #borda{
+    border: 2px solid #b2b2b2;
+    box-shadow: 0 0 0 .25rem rgb(237, 237, 237);
     border-radius: 20px;
-} */
+}
 
 #imagem  {
     background-image: radial-gradient(#ffe68d, #ff92b6); 
