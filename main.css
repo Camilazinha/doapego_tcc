@@ -1,57 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-body {
-    background-color: #fcfcfc;
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-}
 
-.navbar-brand,
-.navbar-brand:focus {
-    color: #F7C33E;
-    font-weight: bold;
-}
 
-.navbar-brand:hover {
-    color: #e4af4d;
-    font-weight: bold;
-}
 
-.btn-navbar-custom {
-    background-color: #FB6B9B;
-    border: 0.04rem solid #f75189;
-    border-radius: 16px;
-    color: #fff;
-}
 
-.btn-navbar-custom:hover {
-    background-color: #E32B68;
-    border: 0.04rem solid  #C51D54;
-    border-radius: 16px;
-    color: #fff;
-}
 
-.btn-navbar-custom:active {
-    background-color: #FDA5c2 !important;
-    border: 0.04rem solid #ff9abb !important;
-    border-radius: 16px;
-    color: #fff !important;
-    box-shadow: none;
-    outline: none;
-}
 
-.bg-body-tertiary{
-    background: #fcfcfc !important;
-}
 
-.bg-body-tertiary::before{
-    content: "";
-    position: absolute;
-    height: 2px;
-    width: 100%;
-    background-color: #ebebeb;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
 .text-reset{
     text-decoration: none;
