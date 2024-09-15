@@ -1,111 +1,3 @@
-
-
-
-
-
-
-
-
-
-.text-reset{
-    text-decoration: none;
-}
-
-.fw-bold{
-    color: #F7C33E;
-}
-
-li::marker {
-    color: #F7C33E;
-    height: 10px;
-  }
-
-  .input-box label {
-    position: absolute;
-    top: 85%;
-    left: 10px;
-    transform: translateY(-120%);
-    font-size: 1em;
-    pointer-events: none;
-    color: #4e4e4e;
-    transition: .3s;
-}
-
-.input-box {
-    position: relative;
-    width: 320px;
-    margin: 40px auto;
-    border-style: solid;
-    border-radius: 10px;
-    border-color: #cfcfcf;
-    border-width: 2px;
-}
-
-.input-box input:focus~label,
-.input-box input:valid~label {
-    top: 0px;
-}
-
-.input-box input {
-    width: 100%;
-    height: 50px;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #4e4e4e;
-    padding: 0 35px 0 5px;
-}
-
-.input-box .icon {
-    position: absolute;
-    right: 8px;
-    color: #FFA4C5;
-    font-size: 1.2em;
-    line-height: 57px;
-}
-
-#checkText{
-    text-align: left !important;
-}
-
-.remember-forgot a {
-    color: #4e4e4e;
-    text-decoration: none;
-}
-
-.remember-forgot a:hover {
-    text-decoration: underline;
-    color: #976a7a;
-}
-
-.remember-forgot label input {
-    accent-color: #ffa4c5;
-    margin-right: 3px;
-}
-
-.register-link a:hover {
-    color: #976a7a;
-}
-
-.register-link p a {
-    color: #4e4e4e;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.register-link p a:hover {
-    text-decoration: underline;
-    color: #d3ab45
-}
-
-
- #borda{
-    border: 2px solid #b2b2b2;
-    box-shadow: 0 0 0 .25rem rgb(237, 237, 237);
-    border-radius: 20px;
-}
-
 #imagem  {
     background-image: radial-gradient(#ffe68d, #ff92b6); 
     background-size: cover; 
@@ -114,48 +6,14 @@ li::marker {
     align-content: center;
 }
 
-form h1 {
-    color: #333;
+/* reset */
+.text-reset, a{
+    text-decoration: none;
 }
 
-.alt-button{
-    color: #f75189;
-    border: 0.04rem solid #f75189;
-    border-radius: 16px;
-}
+/* como-doar */
 
-.alt-button:hover{
-    color: #ffffff;
-    background-color: #FB6B9B;
-    border: 0.04rem solid #f75189;
-    border-radius: 16px;
-}
-
-.alt-button:active{
-    background-color: #E32B68 !important;
-    border: 0.04rem solid #C51D54 !important;
-    border-radius: 16px;
-    color: #fff !important;
-}
-
-.form-control:focus, .form-select,.form-select:focus{
-    border: 2px solid #cdcdcd;
-    box-shadow: 0 0 0 .25rem rgb(236, 236, 236);
-    background-color: white;
-}
-
-/* .form-check-input:checked{
-    background-color: #f75189;
-    border: #E32B68;
-} */
-
-.form-check-input:checked{
-    background-color: #909090;
-    border: #7b7b7b;
-}
-
-
-.form-check-input:focus{
-    box-shadow: 0 0 0 .25rem #ededed;
-    border: 2px solid #d6d6d6;
-}
+li::marker {
+    color: #F7C33E;
+    height: 10px;
+  }

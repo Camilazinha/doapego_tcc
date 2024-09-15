@@ -47,6 +47,26 @@ body {
   outline: none;
 }
 
+.alt-button{
+  color: #f75189;
+  border: 0.04rem solid #f75189;
+  border-radius: 16px;
+}
+
+.alt-button:hover{
+  color: #ffffff;
+  background-color: #FB6B9B;
+  border: 0.04rem solid #f75189;
+  border-radius: 16px;
+}
+
+.alt-button:active{
+  background-color: #E32B68 !important;
+  border: 0.04rem solid #C51D54 !important;
+  border-radius: 16px;
+  color: #fff !important;
+}
+
 /* footer */
 
 .bg-body-tertiary::before{
@@ -57,4 +77,8 @@ body {
   background-color: #ebebeb;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.fw-bold{
+  color: #F7C33E;
 }

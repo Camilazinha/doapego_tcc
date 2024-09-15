@@ -1,0 +1,24 @@
+#checkText{
+  text-align: left !important;
+}
+
+.form-check-input:checked{
+  background-color: #909090;
+  border: #7b7b7b;
+}
+
+
+.form-check-input:focus{
+  box-shadow: 0 0 0 .25rem #ededed;
+  border: 2px solid #d6d6d6;
+}
+
+.form-control:focus, .form-select,.form-select:focus{
+  border: 2px solid #cdcdcd;
+  box-shadow: 0 0 0 .25rem rgb(236, 236, 236);
+  background-color: white;
+}
+
+form h1 {
+  color: #333;
+}
