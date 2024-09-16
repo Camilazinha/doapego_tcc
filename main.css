@@ -19,7 +19,7 @@ li::marker {
   }
 
 
-.card, bg-primary {
+#bloco {
     max-width: 25rem;
     margin-left: 25px;
     background-color: #ffa4c5 !important;
