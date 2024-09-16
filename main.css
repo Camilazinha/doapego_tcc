@@ -18,6 +18,21 @@ li::marker {
     height: 10px;
   }
 
+
+.card, bg-primary {
+    max-width: 25rem;
+    margin-left: 25px;
+    background-color: #ffa4c5 !important;
+    border-radius: 20px;
+}
+
+.container .row .col-6 .p-3, bg-light {
+    width: 1300px; 
+    height: 450px; 
+    background-color: #ffa4c5 !important;
+    border-radius: 30px;
+}
+
   #list-circles {
     counter-reset: li;
     padding: 0;
@@ -49,3 +64,4 @@ li::marker {
     align-items: center;
     justify-content: center;
   }
+
