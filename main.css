@@ -18,6 +18,7 @@ li::marker {
     height: 10px;
   }
 
+
 .card, bg-primary {
     max-width: 25rem;
     margin-left: 25px;
@@ -31,3 +32,36 @@ li::marker {
     background-color: #ffa4c5 !important;
     border-radius: 30px;
 }
+
+  #list-circles {
+    counter-reset: li;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  #list-circles li {
+    list-style: none;
+    margin: 1em 0;
+    padding-left: 2.25em;
+    position: relative;
+  }
+  
+  #list-circles li::after {
+    counter-increment: li;
+    content: counter(li);
+    position: absolute;
+    font-size: 0.9em;
+    left: 0;
+    font-weight: 600;
+    top: -0.25em;
+    width: 2em;
+    height: 2em;
+    background-color: #ffe68d;
+    color: #4e4e4e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
