@@ -17,3 +17,17 @@ li::marker {
     color: #F7C33E;
     height: 10px;
   }
+
+.card, bg-primary {
+    max-width: 25rem;
+    margin-left: 25px;
+    background-color: #ffa4c5 !important;
+    border-radius: 20px;
+}
+
+.container .row .col-6 .p-3, bg-light {
+    width: 1300px; 
+    height: 450px; 
+    background-color: #ffa4c5 !important;
+    border-radius: 30px;
+}
