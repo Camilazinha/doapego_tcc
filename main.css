@@ -81,3 +81,6 @@ li::marker {
     border-radius: 30px;
   }
   
+.clearfix .img {
+  margin-left: 10rem;
+}
