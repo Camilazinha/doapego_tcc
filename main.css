@@ -66,21 +66,18 @@ li::marker {
     justify-content: center;
   }
 
-<<<<<<< HEAD
+  .container .d-grid .btn-b {
+    border-radius: 50rem;
+    width: 20rem;
+    height: 20rem;
+    margin: 50px;
+    margin-top: 10rem;
+  }
   
-=======
-.container .d-grid .btn-b {
-  border-radius: 50rem;
-  width: 20rem;
-  height: 20rem;
-  margin: 50px;
-  margin-top: 10rem;
-}
-
-.container .d-grid .btn-c {
-  width: 70rem; 
-  height: 25rem; 
-  background-color: #fcfcfc !important;
-  border-radius: 30px;
-}
->>>>>>> 49c65cf1a3e44f0f9adc5bbdaee6e1fd79f0335a
+  .container .d-grid .btn-c {
+    width: 70rem; 
+    height: 25rem; 
+    background-color: #fcfcfc !important;
+    border-radius: 30px;
+  }
+  
