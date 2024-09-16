@@ -26,12 +26,13 @@ li::marker {
     border-radius: 20px;
 }
 
-.container .row .col-6 .p-3, bg-light {
-    width: 1300px; 
-    height: 450px; 
+.container .d-grid .btn-a, bg-light {
+    width: 80rem; 
+    height: 30rem; 
     background-color: #ffa4c5 !important;
     border-radius: 30px;
-}
+    min-width: none;
+  }
 
   #list-circles {
     counter-reset: li;
@@ -65,3 +66,17 @@ li::marker {
     justify-content: center;
   }
 
+.container .d-grid .btn-b {
+  border-radius: 50rem;
+  width: 20rem;
+  height: 20rem;
+  margin: 50px;
+  margin-top: 10rem;
+}
+
+.container .d-grid .btn-c {
+  width: 70rem; 
+  height: 25rem; 
+  background-color: #fcfcfc !important;
+  border-radius: 30px;
+}
