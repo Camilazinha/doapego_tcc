@@ -37,10 +37,10 @@
               <a class="nav-link" href="proposito.html">Propósito</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Como doar</a>
+              <a class="nav-link" href="comodoar.html">Como doar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="cadastro.html">Minha ONG</a>
+              <a class="nav-link active" aria-current="page" href="register.html">Minha ONG</a>
             </li>
           </ul>
           <div class="d-flex ml-auto">
@@ -72,13 +72,12 @@
           </div>
 
           <div class=" col-lg-4 mb-4 my-lg-4">
-            <input type="email" class="form-control" placeholder="E-mail do representante"
-              aria-label="Email do representante" required>
+            <input type="email" class="form-control" placeholder="Seu e-mail" aria-label="Seu e-mail" required>
           </div>
 
           <div class="col-lg-4 mb-4 my-lg-4">
-            <input type="text" class="form-control" name="nome" placeholder="Nome do representante"
-              aria-label="Nome do representante" required>
+            <input type="text" class="form-control" placeholder="Seu número de telefone"
+              aria-label="Seu número de telefone" required>
           </div>
 
           <h1>Dados da organização não governamental</h1>
@@ -88,22 +87,17 @@
           </div>
 
           <div class="col-lg-4 mb-4 my-lg-4">
-            <input type="text" class="form-control" placeholder="Nome do representante" required
-              aria-label="Nome do representante">
+            <input id="date" class="form-control" type="date" />
+            <span id="dateSelected"></span>
           </div>
 
+
           <div class="col-lg-4 mb-4 my-lg-4">
-            <input type="email" class="form-control" id="emailRepresentante" placeholder="E-mail do representante"
-              aria-label="E-mail do representante" required>
+            <input type="text" class="form-control" required placeholder="Site ou página virtual do projeto">
           </div>
 
 
           <h1>Localização da ONG</h1>
-
-          <div class="col-lg-4 mb-4 my-lg-4">
-            <input type="text" class="form-control" id="siteOng" required
-              placeholder="Site ou página virtual do projeto">
-          </div>
 
           <div class="col-lg-2 mb-4 my-lg-4">
             <select class="form-select" id="validationDefault04" required>
@@ -113,7 +107,11 @@
           </div>
 
           <div class="col-lg-3 mb-4 my-lg-4">
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Cidade" required>
+            <input type="text" class="form-control" id="CidadeONG" placeholder="Cidade" required>
+          </div>
+
+          <div class="col-lg-3 mb-4 my-lg-4">
+            <input type="text" class="form-control" id="LogradouroONG" placeholder="Logradouro" required>
           </div>
 
           <div class="col-lg-2 mb-4 my-lg-4">
@@ -124,21 +122,23 @@
             <div class="form-check" id="checkText">
               <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
               <label class="form-check-label" for="invalidCheck2">
-                Eu li e concordo com os termos de uso
+                Eu li e concordo com os termos de uso <strong>(obrigatório)</strong>
               </label>
             </div>
             <div class="form-check" id="checkText">
               <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" required>
               <label class="form-check-label" for="invalidCheck1">
-                Eu li e concordo com a política de privacidade
+                Eu li e concordo com a política de privacidade <strong>(obrigatório)</strong>
               </label>
             </div>
           </div>
         </div>
 
-        <button type="submit" class="mt-3 py-2 btn ml-auto btn-navbar-custom">Solicitar cadastro</button>
-        <a href="#!"><button type="button" class="mt-3 py-2 btn ml-auto alt-button">Já tenho
-            cadastro</button></a>
+        <button type="submit" class="mt-3 me-2 py-2 btn ml-auto btn-navbar-custom">Solicitar cadastro</button>
+        <a href="#!">
+          <button type="button" class="mt-3 py-2 btn ml-auto alt-button">Já tenho
+            cadastro</button>
+        </a>
 
       </form>
     </div>
@@ -185,13 +185,13 @@
             Useful links
           </h6>
           <p>
-            <a href="#!" class="text-reset">sssss</a>
+            <a href="#!" class="text-reset">Política de privacidade</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
+            <a href="#!" class="text-reset">Termos de uso</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Orders</a>
+            <a href="#!" class="text-reset">Ajuda</a>
           </p>
           <p>
             <a href="#!" class="text-reset">Ajuda</a>
@@ -212,7 +212,7 @@
 
   <div class="text-center p-4 pt-3" style="background-color: #fcfcfc;">
     © 2024 Copyright:
-    <a class="fw-bold" href="#" style="color: #696969;">doapegoitb.com</a>
+    <a class="fw-bold" href="index.html" style="color: #696969;">doapegoitb.com</a>
   </div>
   </footer>
 
