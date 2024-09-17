@@ -1,4 +1,4 @@
-#imagem  {
+.imagem  {
     background-image: radial-gradient(#ffe68d, #ff92b6); 
     background-size: cover; 
     background-position: center; 
@@ -58,7 +58,7 @@ li::marker {
     top: -0.25em;
     width: 2em;
     height: 2em;
-    background-color: #ffe68d;
+    background-color: #FCE8B6;
     color: #4e4e4e;
     border-radius: 50%;
     display: flex;
