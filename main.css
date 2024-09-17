@@ -84,3 +84,22 @@ li::marker {
 .clearfix .img {
   margin-left: 10rem;
 }
+
+#bloco-block {
+  display: block;
+  background-color: #eeeeee;
+  height: 50rem;
+  width: 500rem;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.block #bloco-block .text {
+  color: black;
+  text-align: center;
+  padding: auto;
+}
+
+.container .row .col .card-img {
+  margin-top: 75rem;
+}
