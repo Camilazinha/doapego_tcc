@@ -23,10 +23,10 @@ li::marker {
 
 
 #bloco {
-    max-width: 25rem;
-    background-color: #ffa4c5c4 !important;
-    border-radius: 20px;
-    
+  width: 120rem;
+  height: 90rem;
+  background-color: #eee !important;
+  margin-top: 10rem;
 }
 
 .container .d-grid .btn-a, bg-light {
@@ -320,4 +320,25 @@ li::marker {
 #grad2 {
   height: 100%;
   background-image: linear-gradient(180deg,rgba(97, 97, 97, 0.1), rgb(54, 54, 54));
+}
+
+#slide1 {  
+  background-size: cover;
+  background-position: center;
+  height: 60rem;
+  align-content: center;
+}
+
+#slide2 {
+  background-size: cover;
+  background-position: center;
+  height: 60rem;
+  align-content: center;
+}
+
+#slide3 {
+  background-size: cover;
+  background-position: center;
+  height: 60rem;
+  align-content: center;
 }
