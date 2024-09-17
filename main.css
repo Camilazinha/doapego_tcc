@@ -22,7 +22,6 @@ li::marker {
 
 #bloco {
     max-width: 25rem;
-    margin-left: 25px;
     background-color: #ffa4c5 !important;
     border-radius: 20px;
 }
@@ -305,4 +304,13 @@ li::marker {
 #grad1 {
   height: 100%;
   background-image: linear-gradient(to left, rgba(97, 97, 97, 0.1), rgb(54, 54, 54));
+}
+
+  .block #bloco-block {
+  width: 500px;
+  height: 350px;
+  color: black;
+  align-items: center;
+  margin: 10rem;
+  display: block;
 }
