@@ -21,7 +21,6 @@ li::marker {
 
 #bloco {
     max-width: 25rem;
-    margin-left: 25px;
     background-color: #ffa4c5 !important;
     border-radius: 20px;
 }
@@ -178,4 +177,13 @@ li::marker {
   height: 120px;
   border-radius: 10px;
   
+}
+
+.block #bloco-block {
+  width: 500px;
+  height: 350px;
+  color: black;
+  align-items: center;
+  margin: 10rem;
+  display: block;
 }
