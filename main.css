@@ -22,8 +22,9 @@ li::marker {
 
 #bloco {
     max-width: 25rem;
-    background-color: #ffa4c5 !important;
+    background-color: #ffa4c5c4 !important;
     border-radius: 20px;
+    
 }
 
 .container .d-grid .btn-a, bg-light {
