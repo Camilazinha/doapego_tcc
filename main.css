@@ -26,7 +26,6 @@ li::marker {
   width: 120rem;
   height: 90rem;
   background-color: #eee !important;
-  margin-top: 10rem;
 }
 
 .container .d-grid .btn-a, bg-light {
@@ -323,22 +322,27 @@ li::marker {
 }
 
 #slide1 {  
-  background-size: cover;
-  background-position: center;
-  height: 60rem;
+  height: 70rem;
+  width: 80rem;
   align-content: center;
+  max-width: 100rem;
 }
 
 #slide2 {
-  background-size: cover;
-  background-position: center;
-  height: 60rem;
+  height: 70rem;
+  width: 80rem;
   align-content: center;
+  max-width: 100rem;
 }
 
 #slide3 {
-  background-size: cover;
-  background-position: center;
-  height: 60rem;
+  height: 70rem;
+  width: 80rem;
   align-content: center;
+  max-width: 100rem;
+}
+
+#slide-trabalho {
+  max-width: 500rem;
+  max-block-size: 40rem;
 }
