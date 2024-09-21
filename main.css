@@ -24,7 +24,7 @@ li::marker {
 
 #bloco {
   width: 120rem;
-  height: 90rem;
+  height: 100rem;
   background-color: #eee !important;
 }
 
@@ -322,27 +322,39 @@ li::marker {
 }
 
 #slide1 {  
-  height: 70rem;
-  width: 80rem;
-  align-content: center;
+  height: 90rem;
+  width: 117rem;
+  align-content: center !important;
   max-width: 100rem;
 }
 
 #slide2 {
-  height: 70rem;
-  width: 80rem;
-  align-content: center;
+  height: 90rem;
+  width: 117rem;
+  align-content: center !important;
   max-width: 100rem;
 }
 
 #slide3 {
-  height: 70rem;
-  width: 80rem;
-  align-content: center;
+  height: 90rem;
+  width: 117rem;
+  align-content: center !important;
   max-width: 100rem;
 }
 
 #slide-trabalho {
   max-width: 500rem;
   max-block-size: 40rem;
+}
+
+#bloco-card1 {
+  background-color: #ff92b6 !important; 
+  border: #d1547e;
+  text-align: center;
+}
+
+#bloco-card2 {
+  background-color: #ff92b6 !important; 
+  border: #d1547e;
+  text-align: center;
 }
