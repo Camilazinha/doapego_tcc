@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles/main.css';
+import '../styles/main.css';
+import '../styles/layout.css';
 
-const Home = () => {
+function Home () {
   return (
     <>
       <div className="position-relative text-white hero-text" id="imagem-index"

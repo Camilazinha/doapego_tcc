@@ -1,6 +1,8 @@
 import React from 'react';
+import '../styles/main.css';
+import '../styles/layout.css';
 
-const Parceiros = () => {
+function Parceiros () {
   return (
     <main>
       <div className="position-relative text-white">
