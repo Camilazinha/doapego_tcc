@@ -19,16 +19,16 @@ function Navbar() {
                 <Link className="nav-link" to="/">Início</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/parceiros">Parceiros</Link>
+                <Link className="nav-link" to="/parceiros">Parceiros</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">Propósito</Link>
+                <Link className="nav-link" to="/about">Propósito</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">Como doar</Link>
+                <Link className="nav-link" to="/tutorial">Como doar</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">Minha ONG</Link>
+                <Link className="nav-link" to="/register">Minha ONG</Link>
               </li>
             </ul>
             <div className="d-flex ms-auto">
