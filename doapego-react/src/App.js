@@ -7,6 +7,7 @@ import About from './components/About';
 import Tutorial from './components/Tutorial'
 import Register from './components/Register';
 import Parceiros from './components/Parceiros';
+import Usuarios from './components/Usuarios';
 import './styles/main.css';
 import './styles/layout.css';
 
@@ -20,7 +21,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
-
+        <Route path="/usuarios" element={<Usuarios />} />
       </Routes>
       <Footer />
     </Router>
