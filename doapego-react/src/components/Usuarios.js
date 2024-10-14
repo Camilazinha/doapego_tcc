@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Usuarios = () => {
-    const [usuarios, setUsuarios] = useState({ items: []});
+    const [usuarios, setUsuarios] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -11,13 +11,11 @@ const Usuarios = () => {
         const fetchUsuarios = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/usuarios');
-                  console.log('Dados recebidos:', response.data);
-                  setUsuarios(response.data.items); // Atualiza o estado com os dados
-                  setLoading(false);
-                
-                 // Atualiza o estado de carregamento
+                console.log('Dados recebidos:', response.data);
+                setUsuarios(response.data.items); // Atualiza o estado com os dados
+                setLoading(false);
             } catch (err) {
-              console.error('Erro ao buscar usuários:', err);
+                console.error('Erro ao buscar usuários:', err);
                 setError(err); // Armazena o erro, se houver
                 setLoading(false); // Atualiza o estado de carregamento
             }
@@ -31,17 +29,36 @@ const Usuarios = () => {
     if (error) return <p>Erro ao carregar os dados: {error.message}</p>; // Exibe mensagem de erro
 
     return (
-        <div>
+        <div className="container-fluid table-responsive">
             <h1>Lista de Usuários</h1>
-            <ul>
-              {Array.isArray(usuarios) && usuarios.length > 0 ? (
-                  usuarios.map(usuario => (
-                    <li key={usuario.id}>{usuario.nome}</li> 
-                ))
-              ) : (
-                <p> Nenhum usuário encontrado</p>
-              )}
-            </ul>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Ativo</th>
+                        <th scope="col">Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Array.isArray(usuarios) && usuarios.length > 0 ? (
+                        usuarios.map(usuario => (
+                            <tr key={usuario.id}>
+                                <td>{usuario.id}</td>
+                                <td>{usuario.nome}</td>
+                                <td>{usuario.email}</td>
+                                <td>{usuario.ativo ? 'Sim' : 'Não'}</td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4">Nenhum usuário encontrado</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
         </div>
     );
 };
