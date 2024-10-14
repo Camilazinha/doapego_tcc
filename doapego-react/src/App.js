@@ -10,6 +10,8 @@ import Parceiros from './components/Parceiros';
 import Usuarios from './components/Usuarios';
 import './styles/main.css';
 import './styles/layout.css';
+import './styles/forms.css';
+import './styles/login.css';
 
 const App = () => {
   return (
