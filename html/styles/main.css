@@ -358,3 +358,64 @@ li::marker {
   border: #d1547e;
   text-align: center;
 }
+
+/* index ong */
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+#donations-card, 
+#profile-card, 
+#reports-card, 
+#support-card {
+  border: none;
+  transition: transform 0.3s ease-in-out;
+  flex: 1 1 calc(25% - 20px); /* Faz com que cada card ocupe 25% da largura menos o gap */
+  max-width: 300px; /* Define o tamanho máximo dos cards */
+  box-sizing: border-box;
+}
+
+#donations-card:hover, 
+#profile-card:hover, 
+#reports-card:hover, 
+#support-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  #donations-card, 
+  #profile-card, 
+  #reports-card, 
+  #support-card {
+      flex: 1 1 100%; /* Cards ocupam 100% da largura em telas pequenas */
+      max-width: none;
+  }
+}
+
+
+#logout {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+#logout:hover {
+  color: #ce939c;
+  text-decoration: underline;
+}
+
+.btn-primary {
+  background-color: #FF6781;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #d35472;
+}
+
