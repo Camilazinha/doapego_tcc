@@ -9,7 +9,7 @@ function About () {
         <div
           className="position-relative text-white"
           style={{
-            backgroundImage: 'url("https://picsum.photos/1200/500")',
+            backgroundImage: 'url(./img/fundo.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             height: '350px',
