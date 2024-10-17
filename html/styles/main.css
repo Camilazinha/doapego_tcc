@@ -76,13 +76,6 @@ li::marker {
     margin-top: 10rem;
   }
   
-  .container .d-grid .btn-c {
-    width: 70rem; 
-    height: 25rem; 
-    background-color: #fcfcfc !important;
-    border-radius: 30px;
-  }
-  
 .clearfix .img {
   margin-left: 10rem;
 }
@@ -422,3 +415,9 @@ li::marker {
   background-color: #d35472;
 }
 
+#blockss {
+  width: 70rem; 
+  height: 25rem; 
+  background-color: #fcfcfc !important;
+  border-radius: 30px;
+}
