@@ -9,9 +9,9 @@ const Categorias = () => {
     useEffect(() => {
         const fetchCategorias = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/categorias-doacao'); // Altere para a URL correta da sua API
+                const response = await axios.get('http://localhost:8080/categorias-doacao');
                 console.log('Dados recebidos:', response.data);
-                setCategorias(response.data); // Atualiza o estado com os dados
+                setCategorias(response.data.items); // Atualiza o estado com os dados
                 setLoading(false);
             } catch (err) {
                 console.error('Erro ao buscar categorias:', err);
@@ -21,7 +21,7 @@ const Categorias = () => {
         };
 
         fetchCategorias(); // Chama a função para buscar dados
-    }, []); // O array vazio faz com que o useEffect execute apenas uma vez após o componente ser montado
+    }, []);
 
     // Renderiza a interface
     if (loading) return <p>Carregando...</p>; 
