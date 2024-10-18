@@ -422,3 +422,21 @@ li::marker {
   background-color: #d35472;
 }
 
+#progress-card {
+  width: 1000px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+}
+
+.progress {
+  height: 25px;
+  border-radius: 0.25rem;
+}
+
+.progress-bar {
+  background-color: #6ba378;
+  font-weight: bold;
+  text-align: center;
+}
+
