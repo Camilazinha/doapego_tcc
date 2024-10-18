@@ -7,7 +7,7 @@ import About from './components/About';
 import Tutorial from './components/Tutorial'
 import Register from './components/Register';
 import Parceiros from './components/Parceiros';
-import Usuarios from './components/Usuarios';
+import Categorias from './components/Categorias';
 import './styles/main.css';
 import './styles/layout.css';
 import './styles/forms.css';
@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
-        <Route path="/usuarios" element={<Usuarios />} />
+        <Route path="/categorias" element={<Categorias />} />
       </Routes>
       <Footer />
     </Router>
