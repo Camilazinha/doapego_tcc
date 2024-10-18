@@ -64,13 +64,12 @@
     </div> -->
 
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5 borda">
-      <form>
+      <form id="form">
         <h1>Dados de contato</h1>
         <div class="row gx-lg-5 align-items-center mb-3">
-
           <div class="col-lg-4 mb-4 my-lg-4">
-            <input type="text" class="form-control" placeholder="Seu nome completo" aria-label="Seu nome completo"
-              required>
+            <input type="text" class="inputs required form-control" placeholder="Seu nome completo" aria-label="Seu nome completo"
+            required oninput="nameValidate()">
           </div>
 
           <div class=" col-lg-4 mb-4 my-lg-4">
@@ -222,5 +221,20 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 </body>
+<script>
+  const form = document.getElementById('form');
+  const campos = document.querySelectorAll('.required');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  function nameValidate(){
+    if(campos[0].value.length < 3)
+  {
+    console.log('Seu nome deve ter no mínimo 3 caracteres.');
+  }
+
+  else {
+    console.log('Nome validado yepi');
+  }
+  }
+</script>
 </html>
