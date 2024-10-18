@@ -7,7 +7,8 @@ import About from './components/About';
 import Tutorial from './components/Tutorial'
 import Register from './components/Register';
 import Parceiros from './components/Parceiros';
-import Categorias from './components/Categorias';
+
+import Categorias from './components/CategoriasViews/Categorias';
 import './styles/main.css';
 import './styles/layout.css';
 import './styles/forms.css';
