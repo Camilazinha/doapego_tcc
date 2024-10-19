@@ -10,9 +10,10 @@ tr{
   border: 2px solid #e1e1e1;
   border-radius: 10px;
   display: grid;
-  width: 80vw;
+  width: 100%;
   justify-self: center;
-  margin: 0;
+  margin: 0 auto;
+  overflow: auto;
 }
 
 .table{
