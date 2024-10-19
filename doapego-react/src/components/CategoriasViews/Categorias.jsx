@@ -39,16 +39,32 @@ const Categorias = () => {
         }
     };
 
-    if (loading) return <p>Carregando...</p>;
-    if (error) return <p>Erro ao carregar os dados: {error.message}</p>;
+    if (loading) return (
+        <div className="table-responsive">
+        <div className="borda-view container-fluid my-5 p-4">
+        <p className='h2'>Carregando...</p>
+        <hr />
+        </div>
+        </div>
+            )
+    if (error) return (
+        <div className="table-responsive">
+        <div className="borda-view container-fluid my-5 p-4">
+        <p className='h2'>Erro ao carregar os dados:</p>
+        <p className='h4' style={{ color: '#4c4c4c' }}>{error.message}</p>
+        <hr />
+        </div>
+        </div>
+)
 
     return (
         <div className="table-responsive">
-        <div className="borda-view container-fluid mt-4 p-4">
+        <div className="borda-view container-fluid my-5 p-4">
             <p className='h2'>Categorias de Brinquedos</p>
-            <Link to="/categorias/criar">
-                <button className="btn btn-success">+ Nova Categoria</button>
+            <Link to={`/categorias/criar`} style={{ display: 'inline-block' }}>
+            <button className="btn btn-add">+ Nova Categoria</button>
             </Link>
+
             <hr />
 
             <table className="table table-bordered table-hover">
@@ -93,7 +109,7 @@ const Categorias = () => {
                 <div className="modal-dialog" role="document">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title">Confirmar Exclusão</h5>
+                    <h5 className="modal-title">Confirmar exclusão</h5>
                 </div>
                 <div className="modal-body">
                     <p>Você tem certeza que deseja excluir a categoria <strong>{categorias.find(c => c.id === categoriaId)?.nome}</strong>?</p></div>
