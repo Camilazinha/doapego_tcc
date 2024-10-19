@@ -5,7 +5,7 @@ import '../styles/layout.css';
 
 function Footer() {
   return (
-    <footer className="bg-body-tertiary mt-4 pt-3">
+    <footer className="bg-body-tertiary pt-3">
       <div className="container text-center text-md-start mt-5">
         <div className="row mt-3">
           <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">

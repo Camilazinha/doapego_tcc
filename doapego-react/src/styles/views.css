@@ -7,7 +7,7 @@ tr{
 }
 
 .borda-view.container-fluid{
-  border: 2px solid #e2e2e2;
+  border: 2px solid #e1e1e1;
   border-radius: 10px;
   display: grid;
   width: 80vw;
@@ -22,4 +22,54 @@ tr{
 .h2{
   font-weight: bold;
   display: inline;
+  color: #4c4c4c;
+}
+
+.btn-add{
+  margin-right: 0.5rem;
+  background-color: #FB6B9B;
+  color: white;
+}
+
+.btn-add:hover{
+  margin-right: 0.5rem;
+  background-color: #E32B68;
+  color: white;
+}
+
+.btn-add:active{
+  background-color: #FDA5c2 !important;
+  border-width: 0 !important;
+  color: white !important;
+}
+
+.btn-add:focus-visible {
+  background-color: #FDA5c2 !important;
+  border: 0.04rem solid #ff9abb !important;
+  color: #fff !important;
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-voltar{
+  background-color:#d0d0d0;
+}
+
+.btn-voltar:hover{
+  background-color:#a9a9a9;
+  
+}
+
+.btn-voltar:active {
+  background-color: #d6d6d6 !important;
+  border: 0 !important;
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-voltar:focus-visible {
+  background-color: #d6d6d6 !important;
+  border: 0 !important;
+  box-shadow: none;
+  outline: none;
 }
