@@ -580,9 +580,10 @@ li::marker {
   color: #6c757d;
 }
 
+
 .arrow-link {
   font-size: 2rem;
-  color: #4e4e4e;
+  color: #6c757d;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
   display: flex;
