@@ -578,6 +578,8 @@ li::marker {
 #section-title {
   font-size: 1.5rem;
   color: #6c757d;
+  margin-bottom: 0 !important;
+    text-align: right !important;
 }
 
 
@@ -587,11 +589,14 @@ li::marker {
   text-decoration: none;
   transition: color 0.2s ease-in-out;
   display: flex;
-  align-items: center;
+}
+
+.arrow-link-container {
+  margin-left: auto; /* Empurra a seta para a direita */
 }
 
 .arrow-link:hover {
-  color: #357ABD;
+  color: #3f3f3f;
 }
 
 #profile-section > div i {
@@ -601,12 +606,22 @@ li::marker {
 /* Responsividade */
 @media (min-width: 768px) {
   #profile-section > div {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+    flex-direction: row;
+    align-items: center;
   }
 
   #section-title {
-      margin-left: 20px;
-  }
+    margin-left: 20px;
 }
+}
+
+#icon-gerenc{
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  font-size: 2rem;
+  color: #ffa4c5;
+}
+
+
+
