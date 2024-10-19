@@ -28,16 +28,19 @@ const CreateCategoria = () => {
       <hr />
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group col-6 mb-2">
+        
+        <div className="form-group col-10 col-md-11 mb-2">
           <label>Nome:</label>
           <input 
             type="text" className="form-control" value={nome} onChange={(e) => setNome(e.target.value)} required />
         </div>
-        <div className="form-group col-6 mb-2">
+
+        <div className="form-group col-10 col-md-11 mb-2">
           <label>Foto (URL):</label>
           <input type="text" className="form-control" value={foto} onChange={(e) => setFoto(e.target.value)} 
           />
         </div>
+
         <div className="form-group">
         <button type="submit" className="btn btn-add mt-3">Criar</button>
         <button className="btn btn-voltar mt-3" onClick={() => navigate('/categorias')}>Voltar</button>
