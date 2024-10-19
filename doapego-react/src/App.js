@@ -11,7 +11,6 @@ import Parceiros from './components/Parceiros';
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
 import EditCategoria from './components/CategoriasViews/EditCategoria';
-import DeleteCategoria from './components/CategoriasViews/DeleteCategoria';
 import DetailsCategoria from './components/CategoriasViews/DetailsCategoria';
 
 import './styles/main.css';
@@ -33,7 +32,6 @@ const App = () => {
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/categorias/criar" element={<CreateCategoria />} />
                 <Route path="/categorias/editar/:id" element={<EditCategoria />} />
-                <Route path="/categorias/excluir/:id" element={<DeleteCategoria />} />
                 <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
 
       </Routes>
