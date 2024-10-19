@@ -31,16 +31,16 @@ const Categorias = () => {
     if (error) return <p>Erro ao carregar os dados: {error.message}</p>;
 
     return (
-        <div className="borda-view container-fluid mt-4">
-            <p className="text-center h3 mb-4">Lista de Categorias de Brinquedos</p>
-            <div className>
+        <div className="borda-view container-fluid p-4 mt-4">
+            <p className='h2'>Lista de Categorias de Brinquedos</p>
+            <hr />
                 <table className="table table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th className="text-center" scope="col">#</th>
-                            <th className="text-center" scope="col">Foto</th>
-                            <th className="text-center" scope="col">Nome</th>
-                            <th className="text-center" scope="col">Ações</th>
+                        <tr className='text-center'>
+                            <th scope="col">#</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,7 +85,6 @@ const Categorias = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
     );
 };
 

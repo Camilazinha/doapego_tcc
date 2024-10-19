@@ -1,11 +1,22 @@
 .table{
   --bs-table-bg: transparent !important;
+  width: auto;
 }
 
 thead{
-  background-color: aqua;
+  background-color: #d5d5d5;
+}
+
+tr{
+  border-color: #b4b4b4;
 }
 
 .borda-view{
-  border: 20px solid red;
+  border: 2px solid #e2e2e2;
+  border-radius: 10px;
+}
+
+.h2{
+  font-weight: bold;
+  display: inline;
 }
