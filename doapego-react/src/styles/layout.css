@@ -98,17 +98,3 @@ header::after,
 .fw-bold{
   color: #F7C33E;
 }
-
-footer .container-fluid {
-  max-width: 100%;
-}
-
-footer * {
-  border: 10px solid red;
-}
-
-footer .col-md-3,
-footer .col-lg-2,
-footer .col-xl-2 {
-  padding: 0 10px;
-}
