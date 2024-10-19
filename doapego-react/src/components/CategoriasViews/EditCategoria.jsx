@@ -1,91 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import '../../styles/layout.css';
-import '../../styles/views.css';
-
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-const Categorias = () => {
-    const [categorias, setCategorias] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+const EditCategoria = () => {
+  const { id } = useParams();
+  const [nome, setNome] = useState('');
+  const [foto, setFoto] = useState('');
 
-    useEffect(() => {
-        const fetchCategorias = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/categorias-doacao');
-                console.log('Dados recebidos:', response.data);
-                setCategorias(response.data.items);
-                setLoading(false);
-            } catch (err) {
-                console.error('Erro ao buscar categorias:', err);
-                setError(err);
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchCategoria = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/categorias-doacao/${id}`);
+        setNome(response.data.nome);
+        setFoto(response.data.foto);
+      } catch (err) {
+        console.error('Erro ao buscar categoria:', err);
+      }
+    };
+    fetchCategoria();
+  }, [id]);
 
-        fetchCategorias();
-    }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:8080/categorias-doacao/${id}`, { nome, foto });
+      alert('Categoria atualizada com sucesso!');
+    } catch (err) {
+      console.error('Erro ao atualizar categoria:', err);
+    }
+  };
 
-    // Renderiza a interface
-    if (loading) return <p>Carregando...</p>;
-    if (error) return <p>Erro ao carregar os dados: {error.message}</p>;
-
-    return (
-        <div className="borda-view container-fluid mt-4 p-4">
-            <p className='h2'>Categorias de Brinquedos</p>
-            <hr />
-                <table className="table table-bordered table-hover">
-                    <thead>
-                        <tr className='text-center'>
-                            <th scope="col">#</th>
-                            <th scope="col">Foto</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {categorias.length > 0 ? (
-                            categorias.map((categoria, index) => (
-                                <tr key={categoria.id}>
-                                    <th className="align-middle text-center" scope="row">{index + 1}</th>
-                                    <td className="text-center align-middle">
-                                        {categoria.foto ? (
-                                            <img
-                                                src={categoria.foto}
-                                                alt={`Foto de ${categoria.nome}`}
-                                                width="70"
-                                                height="70"
-                                                style={{ objectFit: 'cover', borderRadius: '8px' }}
-                                            />
-                                        ) : (
-                                            'Sem foto'
-                                        )}
-                                    </td>
-                                    <td className="align-middle text-center">{categoria.nome}</td>
-                                    <td className="align-middle text-center">
-                                        <div className="d-flex justify-content-center">
-                                            <button className="btn btn-info btn-sm mx-1">
-                                                Ver
-                                            </button>
-                                            <button className="btn btn-warning btn-sm mx-1">
-                                                Editar
-                                            </button>
-                                            <button className="btn btn-danger btn-sm mx-1">
-                                                Excluir
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="4" className="text-center">Nenhuma categoria encontrada</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-    );
+  return (
+    <div className="container mt-4">
+      <h2>Editar Categoria</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Nome:</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            value={nome} 
+            onChange={(e) => setNome(e.target.value)} 
+            required 
+          />
+        </div>
+        <div className="form-group">
+          <label>Foto (URL):</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            value={foto} 
+            onChange={(e) => setFoto(e.target.value)} 
+          />
+        </div>
+        <button type="submit" className="btn btn-warning mt-3">Atualizar</button>
+      </form>
+    </div>
+  );
 };
 
-export default Categorias;
+export default EditCategoria;
