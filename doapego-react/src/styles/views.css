@@ -1,0 +1,11 @@
+.table{
+  --bs-table-bg: transparent !important;
+}
+
+thead{
+  background-color: aqua;
+}
+
+.borda-view{
+  border: 20px solid red;
+}

@@ -13,6 +13,7 @@ import './styles/main.css';
 import './styles/layout.css';
 import './styles/forms.css';
 import './styles/login.css';
+import './styles/views.css';
 
 const App = () => {
   return (

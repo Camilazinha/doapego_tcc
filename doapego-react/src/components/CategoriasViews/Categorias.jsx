@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import '../../styles/layout.css';
+import '../../styles/views.css';
+
 import axios from 'axios';
 
 const Categorias = () => {
@@ -28,11 +31,11 @@ const Categorias = () => {
     if (error) return <p>Erro ao carregar os dados: {error.message}</p>;
 
     return (
-        <div className="container mt-4">
+        <div className="borda-view container-fluid mt-4">
             <p className="text-center h3 mb-4">Lista de Categorias de Brinquedos</p>
             <div className>
-                <table className="table table-bordered table-striped table-hover">
-                    <thead className>
+                <table className="table table-bordered table-hover">
+                    <thead>
                         <tr>
                             <th className="text-center" scope="col">#</th>
                             <th className="text-center" scope="col">Foto</th>
@@ -52,7 +55,7 @@ const Categorias = () => {
                                                 alt={`Foto de ${categoria.nome}`}
                                                 width="70"
                                                 height="70"
-                                                style={{ objectFit: 'cover', borderRadius: '8px' }} // Mantém a imagem centrada e arredonda bordas
+                                                style={{ objectFit: 'cover', borderRadius: '8px' }}
                                             />
                                         ) : (
                                             'Sem foto'
