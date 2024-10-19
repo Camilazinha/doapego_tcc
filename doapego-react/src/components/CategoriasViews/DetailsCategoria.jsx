@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import '../../styles/views.css';
 
 const DetailsCategoria = () => {
   const { id } = useParams();
   const [categoria, setCategoria] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategoria = async () => {
@@ -20,26 +21,41 @@ const DetailsCategoria = () => {
   }, [id]);
 
   return (
-    <div className="container mt-4">
-      <h2>Detalhes da Categoria</h2>
-      {categoria ? (
-        <div>
-          <p><strong>Nome:</strong> {categoria.nome}</p>
-          <p><strong>Foto:</strong></p>
-          {categoria.foto ? (
-            <img 
-              src={categoria.foto} 
-              alt={`Foto de ${categoria.nome}`} 
-              width="150" 
-              height="150" 
-              style={{ objectFit: 'cover', borderRadius: '8px' }} 
-            />
-          ) : (
-            <p>Sem foto</p>
-          )}
+    <div className="borda-view container-fluid my-5 p-4">
+      <p className='h2'>Detalhes da categoria</p>
+      <hr />
+
+      {categoria ? ( // Verifica se a categoria existe
+        <div className="d-flex align-items-center">
+          <div className="me-4"> {/* Margem à direita para separar a imagem do texto */}
+            {categoria.foto ? (
+              <img 
+                src={categoria.foto} 
+                alt={`Foto de ${categoria.nome}`} 
+                width="300" 
+                height="300" 
+                className='img-details'
+                style={{ objectFit: 'cover', borderRadius: '8px' }} 
+              />
+            ) : (
+              <p>Sem foto</p>
+            )}
+          </div>
+          <div className="d-flex align-self-start fake-input col"> 
+              <strong>Nome: </strong>  {categoria.nome}
+          </div>
         </div>
       ) : (
         <p>Carregando detalhes...</p>
+      )}
+
+      {categoria && ( // Verifica se a categoria existe antes de renderizar os botões
+        <div className="mt-3 d-flex justify-content-start">
+          <Link to={`/categorias/editar/${categoria.id}`}>
+            <button className="btn btn-add">Editar</button>
+          </Link>
+          <button className="btn btn-voltar" onClick={() => navigate('/categorias')}>Voltar</button>
+        </div>
       )}
     </div>
   );
