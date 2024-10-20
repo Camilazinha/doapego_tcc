@@ -622,5 +622,81 @@ li::marker {
   color: #ffa4c5;
 }
 
+/*Editar perfil*/
+/* Container da página de edição de perfil */
+#edit-profile-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #d1d1d1;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+/* Estilo do input para escrever */
+#profile-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
 
+/* Estilo da imagem de perfil */
+#profile-photo-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #d1d1d1;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+#photo-label {
+  font-size: 1.2rem;
+  color: #6c757d;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Estilo dos placeholders */
+::placeholder {
+  color: #4e4e4e;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #profile-photo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+#cancel-button {
+  margin-right: 10px;
+}
+
+#titulo-edit {
+  font-size: 2rem;
+  color: #4e4e4e;
+  margin-bottom: 30px !important;
+    text-align: left !important;
+}
+
+#label-edit {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
