@@ -13,6 +13,11 @@ import CreateCategoria from './components/CategoriasViews/CreateCategoria';
 import EditCategoria from './components/CategoriasViews/EditCategoria';
 import DetailsCategoria from './components/CategoriasViews/DetailsCategoria';
 
+import Ongs from './components/OngsViews/Ongs';
+import CreateOngs from './components/OngsViews/CreateOngs';
+import EditOngs from './components/OngsViews/EditOngs';
+import DetailsOngs from './components/OngsViews/DetailsOngs';
+
 import './styles/main.css';
 import './styles/layout.css';
 import './styles/forms.css';
@@ -33,7 +38,12 @@ const App = () => {
         <Route path="/categorias/criar" element={<CreateCategoria />} />
                 <Route path="/categorias/editar/:id" element={<EditCategoria />} />
                 <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
+                <Route path="/categorias" element={<Categorias />} />
 
+        <Route path="/ongs" element={<Ongs />} />
+        <Route path="/ongs/criar" element={<CreateOngs />} />
+                <Route path="/ongs/editar/:id" element={<EditOngs />} />
+                <Route path="/ongs/detalhes/:id" element={<DetailsOngs />} />
       </Routes>
       <Footer />
     </Router>
