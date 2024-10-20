@@ -3,35 +3,35 @@ import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import '../../styles/views.css';
 
-const DetailsCategoria = () => {
+const DetailsOng = () => {
   const { id } = useParams();
-  const [categoria, setCategoria] = useState(null);
+  const [ong, setOng] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategoria = async () => {
+    const fetchOng = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/categorias-doacao/${id}`);
-        setCategoria(response.data);
+        const response = await axios.get(`http://localhost:8080/ongs/${id}`);
+        setOng(response.data);
       } catch (err) {
-        console.error('Erro ao buscar detalhes da categoria:', err);
+        console.error('Erro ao buscar detalhes da ONG:', err);
       }
     };
-    fetchCategoria();
+    fetchOng();
   }, [id]);
 
   return (
     <div className="borda-view container-fluid my-5 p-4">
-      <p className='h2'>Detalhes da categoria</p>
+      <p className='h2'>Detalhes da ONG</p>
       <hr />
 
-      {categoria ? ( // Verifica se a categoria existe
+      {ong ? ( // Verifica se a ONG existe
         <div className="d-flex align-items-center">
           <div className="me-4"> {/* Margem à direita para separar a imagem do texto */}
-            {categoria.foto ? (
+            {ong.foto ? (
               <img 
-                src={categoria.foto} 
-                alt={`Foto de ${categoria.nome}`} 
+                src={ong.foto} 
+                alt={`Foto de ${ong.nome}`} 
                 width="300" 
                 height="300" 
                 className='img-details'
@@ -41,24 +41,30 @@ const DetailsCategoria = () => {
               <p>Sem foto</p>
             )}
           </div>
-          <div className="d-flex align-self-start fake-input col"> 
-              <strong>Nome: </strong>  {categoria.nome}
+          <div className="d-flex flex-column">
+            <p><strong>Nome:</strong> {ong.nome}</p>
+            <p><strong>Email:</strong> {ong.email}</p>
+            <p><strong>Telefone:</strong> {ong.telefone}</p>
+            <p><strong>Fundação:</strong> {ong.fundacao ? new Date(ong.fundacao).toLocaleDateString() : 'Não informado'}</p>
+            <p><strong>Descrição:</strong> {ong.descricao || 'Sem descrição'}</p>
+            <p><strong>WhatsApp:</strong> {ong.whatsapp || 'Não informado'}</p>
+            <p><strong>Ativo:</strong> {ong.ativo ? 'Sim' : 'Não'}</p>
           </div>
         </div>
       ) : (
         <p>Carregando detalhes...</p>
       )}
 
-      {categoria && ( // Verifica se a categoria existe antes de renderizar os botões
+      {ong && ( // Verifica se a ONG existe antes de renderizar os botões
         <div className="mt-3 d-flex justify-content-start">
-          <Link to={`/categorias/editar/${categoria.id}`}>
+          <Link to={`/ongs/editar/${ong.id}`}>
             <button className="btn btn-add">Editar</button>
           </Link>
-          <button className="btn btn-voltar" onClick={() => navigate('/categorias')}>Voltar</button>
+          <button className="btn btn-voltar" onClick={() => navigate('/ongs')}>Voltar</button>
         </div>
       )}
     </div>
   );
 };
 
-export default DetailsCategoria;
+export default DetailsOng;
