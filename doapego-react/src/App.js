@@ -14,9 +14,25 @@ import EditCategoria from './components/CategoriasViews/EditCategoria';
 import DetailsCategoria from './components/CategoriasViews/DetailsCategoria';
 
 import Ongs from './components/OngsViews/Ongs';
-import CreateOngs from './components/OngsViews/CreateOngs';
-import EditOngs from './components/OngsViews/EditOngs';
-import DetailsOngs from './components/OngsViews/DetailsOngs';
+import CreateOng from './components/OngsViews/CreateOng';
+import EditOng from './components/OngsViews/EditOng';
+import DetailsOng from './components/OngsViews/DetailsOng';
+
+import Admin from './components/AdminViews/Admin';
+import CreateAdmin from './components/AdminViews/CreateAdmin';
+import EditAdmin from './components/AdminViews/EditAdmin';
+import DetailsAdmin from './components/AdminViews/DetailsAdmin';
+
+import Usuarios from './components/UsuariosViews/Usuarios';
+import CreateUsuario from './components/UsuariosViews/CreateUsuario';
+import EditUsuario from './components/UsuariosViews/EditUsuario';
+import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
+
+import Arquivos from './components/ArquivosViews/Arquivos';
+import CreateArquivo from './components/ArquivosViews/CreateArquivo';
+import EditArquivo from './components/ArquivosViews/EditArquivo';
+import DetailsArquivo from './components/ArquivosViews/DetailsArquivo';
+
 
 import './styles/main.css';
 import './styles/layout.css';
@@ -38,12 +54,37 @@ const App = () => {
         <Route path="/categorias/criar" element={<CreateCategoria />} />
                 <Route path="/categorias/editar/:id" element={<EditCategoria />} />
                 <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
-                <Route path="/categorias" element={<Categorias />} />
+
+        <Route path="/usuarios" element={<Usuarios />} />
+        <Route path="/usuarios/criar" element={<CreateUsuario />} />
+                <Route path="/usuarios/editar/:id" element={<EditUsuario />} />
+                <Route path="/usuarios/detalhes/:id" element={<DetailsUsuario />} />
 
         <Route path="/ongs" element={<Ongs />} />
-        <Route path="/ongs/criar" element={<CreateOngs />} />
-                <Route path="/ongs/editar/:id" element={<EditOngs />} />
-                <Route path="/ongs/detalhes/:id" element={<DetailsOngs />} />
+        <Route path="/ongs/criar" element={<CreateOng />} />
+                <Route path="/ongs/editar/:id" element={<EditOng />} />
+                <Route path="/ongs/detalhes/:id" element={<DetailsOng />} /> 
+
+        {/* <Route path="/endereco-ong" element={<EnderecosOng />} />
+        <Route path="/endereco-ong/criar" element={<CreateEndereco />} />
+                <Route path="/endereco-ong/editar/:id" element={<EditEndereco />} />
+                <Route path="/endereco-ong/detalhes/:id" element={<DetailsEndereco />} /> */}
+{/* 
+        <Route path="/doacoes" element={<Doacoes />} />
+        <Route path="/doacoes/criar" element={<CreateDoacao />} />
+                <Route path="/doacoes/editar/:id" element={<EditDoacao />} />
+                <Route path="/doacoes/detalhes/:id" element={<DetailsDoacao />} />                 */}
+                
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/criar" element={<CreateAdmin />} />
+                <Route path="/admin/editar/:id" element={<EditAdmin />} />
+                <Route path="/admin/detalhes/:id" element={<DetailsAdmin />} />      
+
+        <Route path="/arquivos" element={<Arquivos />} />
+        <Route path="/arquivos/criar" element={<CreateArquivo />} />
+                <Route path="/arquivos/editar/:id" element={<EditArquivo />} />
+                <Route path="/arquivos/detalhes/:id" element={<DetailsArquivo />} />      
+
       </Routes>
       <Footer />
     </Router>
