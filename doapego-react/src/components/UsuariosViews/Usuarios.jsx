@@ -14,8 +14,8 @@ const Usuarios = () => {
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/usuarios'); // Ajuste a URL conforme necessário
-                setUsuarios(response.data.items); // Ajuste conforme a estrutura de dados retornada
+                const response = await axios.get('http://localhost:8080/usuarios');
+                setUsuarios(response.data.items); 
                 setLoading(false);
             } catch (err) {
                 console.error('Erro ao buscar usuários:', err);
@@ -27,15 +27,18 @@ const Usuarios = () => {
         fetchUsuarios();
     }, []);
 
-    const handleDelete = async () => {
+    const handleSuspend = async () => {
         try {
-            await axios.delete(`http://localhost:8080/usuarios/${usuarioId}`);
-            setUsuarios(usuarios.filter(u => u.id !== usuarioId));
+            const usuario = usuarios.find(u => u.id === usuarioId);
+            const novoStatus = !usuario.ativo; // Alterna o status ativo/inativo
+            await axios.patch(`http://localhost:8080/usuarios/${usuarioId}`, { ativo: novoStatus });
+            
+            setUsuarios(usuarios.map(u => u.id === usuarioId ? { ...u, ativo: novoStatus } : u));
             setShowModal(false);
-            alert('Usuário excluído com sucesso!');
+            alert(`Usuário ${novoStatus ? 'reativado' : 'suspenso'} com sucesso!`);
         } catch (err) {
-            console.error('Erro ao excluir usuário:', err);
-            alert('Erro ao excluir usuário. Tente novamente!');
+            console.error('Erro ao suspender usuário:', err);
+            alert('Erro ao suspender usuário. Tente novamente!');
         }
     };
 
@@ -62,10 +65,6 @@ const Usuarios = () => {
         <div className="table-responsive">
             <div className="borda-view container-fluid my-5 p-4">
                 <p className='h2'>Gerenciar Usuários</p>
-                <Link to={`/usuarios/criar`} style={{ display: 'inline-block' }}>
-                    <button className="btn btn-add">+ Novo Usuário</button>
-                </Link>
-
                 <hr />
 
                 <table className="table table-bordered table-hover">
@@ -75,6 +74,7 @@ const Usuarios = () => {
                             <th scope="col">Nome</th>
                             <th scope="col">Email</th>
                             <th scope="col">Telefone</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -86,21 +86,23 @@ const Usuarios = () => {
                                 <td className="align-middle text-center">{usuario.email}</td>
                                 <td className="align-middle text-center">{usuario.telefone}</td>
                                 <td className="align-middle text-center">
+                                    {usuario.ativo ? 'Ativo' : 'Suspenso'}
+                                </td>
+                                <td className="align-middle text-center">
                                     <div className="d-flex justify-content-center">
                                         <Link to={`/usuarios/detalhes/${usuario.id}`}>
-                                            <button className="btn btn-info btn-sm mx-1">Ver</button>
+                                            <button className="btn btn-info btn-sm mx-1">Detalhes</button>
                                         </Link>
-                                        <Link to={`/usuarios/editar/${usuario.id}`}>
-                                            <button className="btn btn-warning btn-sm mx-1">Editar</button>
-                                        </Link>
-                                        <button className="btn btn-danger btn-sm mx-1" onClick={() => { setUsuarioId(usuario.id); setShowModal(true); }}>Excluir</button>
+                                        <button className="btn btn-danger btn-sm mx-1" onClick={() => { setUsuarioId(usuario.id); setShowModal(true); }}>
+                                            {usuario.ativo ? 'Suspender' : 'Reativar'}
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
                         ))
                         ) : (
                             <tr>
-                                <td colSpan="5" className="text-center">Nenhum usuário encontrado</td>
+                                <td colSpan="6" className="text-center">Nenhum usuário encontrado</td>
                             </tr>
                         )}
                     </tbody>
@@ -111,14 +113,16 @@ const Usuarios = () => {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Confirmar exclusão</h5>
+                                <h5 className="modal-title">Confirmar ação</h5>
                             </div>
                             <div className="modal-body">
-                                <p>Você tem certeza que deseja excluir o usuário <strong>{usuarios.find(u => u.id === usuarioId)?.nome}</strong>?</p>
+                                <p>Você tem certeza que deseja {usuarios.find(u => u.id === usuarioId)?.ativo ? 'suspender' : 'reativar'} o usuário <strong>{usuarios.find(u => u.id === usuarioId)?.nome}</strong>?</p>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancelar</button>
-                                <button type="button" className="btn btn-danger" onClick={handleDelete}>Excluir</button>
+                                <button type="button" className="btn btn-danger" onClick={handleSuspend}>
+                                    {usuarios.find(u => u.id === usuarioId)?.ativo ? 'Suspender' : 'Reativar'}
+                                </button>
                             </div>
                         </div>
                     </div>

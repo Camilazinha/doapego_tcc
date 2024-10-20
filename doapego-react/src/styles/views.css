@@ -90,3 +90,14 @@ tr{
 .link-button{
   display: inline-block;
 }
+
+.fake-img-details{
+  display: flex;
+  height: 295px;
+  width: 295px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #d5d5d5;
+  border-radius: 8px;
+}
