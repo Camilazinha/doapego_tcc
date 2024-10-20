@@ -685,9 +685,10 @@ input:focus::placeholder {
   }
 }
 
-#cancel-button {
+#cancel-button, #details-button {
   margin-right: 10px;
 }
+
 
 #titulo-edit {
   font-size: 2rem;
@@ -699,4 +700,87 @@ input:focus::placeholder {
 #label-edit {
   margin-left: 10px;
   margin-bottom: 5px;
+}
+
+/*Pendentes*/
+
+#donation-pending-container {
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+#donation-card {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+}
+
+#donation-image {
+  max-width: 150px;
+  border-radius: 10px;
+}
+
+#donation-info {
+  flex-grow: 1;
+}
+
+#donation-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+#donation-category, #donation-description {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+#button-container {
+  margin-left: auto;
+}
+
+/*#details-button {
+  margin-top: 10px;
+  margin-right: 30px;
+  align-self: flex-start;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}*/
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #donation-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #button-container {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+#pending-donation-container {
+  padding: 10px;
+  max-width: 800px; /* Limitar a largura da caixinha */
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#pending-donation-image {
+  width: 80px; /* Reduzir o tamanho da imagem */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#pending-donation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-grow: 1;
 }
