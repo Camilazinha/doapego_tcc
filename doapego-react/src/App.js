@@ -24,8 +24,6 @@ import EditAdmin from './components/AdminViews/EditAdmin';
 import DetailsAdmin from './components/AdminViews/DetailsAdmin';
 
 import Usuarios from './components/UsuariosViews/Usuarios';
-import CreateUsuario from './components/UsuariosViews/CreateUsuario';
-import EditUsuario from './components/UsuariosViews/EditUsuario';
 import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
 
 import Arquivos from './components/ArquivosViews/Arquivos';
@@ -56,8 +54,6 @@ const App = () => {
                 <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
 
         <Route path="/usuarios" element={<Usuarios />} />
-        <Route path="/usuarios/criar" element={<CreateUsuario />} />
-                <Route path="/usuarios/editar/:id" element={<EditUsuario />} />
                 <Route path="/usuarios/detalhes/:id" element={<DetailsUsuario />} />
 
         <Route path="/ongs" element={<Ongs />} />
