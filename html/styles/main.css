@@ -784,3 +784,45 @@ input:focus::placeholder {
   gap: 5px;
   flex-grow: 1;
 }
+
+#filter-container {
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #fff7e6; /* Amarelinho */
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+}
+
+.filter-btn {
+  background-color: #ffd1dc; /* Rosinha */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filter-btn.active {
+  background-color: #ffa4c5; /* Rosinha mais forte para o ativo */
+}
+
+.filter-btn:hover {
+  background-color: #ffccd5; /* Hover em rosinha */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #filter-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .filter-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
