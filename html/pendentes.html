@@ -44,11 +44,12 @@
 <body>
 
 
-    <div id="filter-container" class="d-flex justify-content-center">
-        <button id="filter-pending" class="filter-btn active">Pendentes</button>
-        <button id="filter-accepted" class="filter-btn">Aceitos</button>
-        <button id="filter-rejected" class="filter-btn">Recusados</button>
-      </div>
+  <div id="filter-container" class="d-flex justify-content-center mt-4">
+    <button id="btn-pendentes" class="filter-btn btn" onclick="setActiveFilter(this)">Pendentes</button>
+    <button id="btn-aceitos" class="filter-btn btn mx-2" onclick="setActiveFilter(this)">Aceitos</button>
+    <button id="btn-recusados" class="filter-btn btn" onclick="setActiveFilter(this)">Recusados</button>
+  </div>
+  
       
 
 
