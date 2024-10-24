@@ -784,3 +784,42 @@ input:focus::placeholder {
   gap: 5px;
   flex-grow: 1;
 }
+
+/* Estilos gerais do container */
+#filter-container {
+  padding: 20px; /* Adiciona mais padding ao container */
+  background-color: #fff1e6; /* Fundo amarelinho claro */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leve sombra para destacar */
+}
+
+/* Estilos gerais dos botões */
+#filter-container .btn {
+  background-color: #f8c8dc; /* Cor de fundo rosinha */
+  color: #fff; /* Texto branco nos botões */
+  border: 2px solid transparent; /* Remove borda padrão */
+  border-radius: 5px; /* Bordas arredondadas nos botões */
+  padding: 10px 20px; /* Tamanho dos botões */
+  font-size: 16px; /* Tamanho da fonte */
+  transition: all 0.3s ease; /* Animação suave nas mudanças */
+}
+
+/* Estilo dos botões ao passar o mouse */
+#filter-container .btn:hover {
+  background-color: #f4a4c0; /* Cor rosinha mais escura ao passar o mouse */
+  border-color: #f4a4c0; /* Bordas ao passar o mouse */
+  cursor: pointer; /* Mostra que o botão é clicável */
+}
+
+/* Botão ativo */
+#filter-container .btn.active {
+  background-color: #f4a4c0; /* Cor mais escura do botão ativo */
+  color: #fff !important; /* Texto branco mesmo quando ativo */
+  border-color: #f4a4c0; /* Borda correspondente ao fundo ativo */
+}
+
+/* Adiciona espaçamento entre os botões */
+#filter-container .btn.mx-2 {
+  margin-left: 10px;
+  margin-right: 10px;
+}

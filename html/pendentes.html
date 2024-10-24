@@ -43,7 +43,34 @@
 
 <body>
 
+
+  <div id="filter-container" class="d-flex justify-content-center mt-4">
+    <button id="btn-pendentes" class="filter-btn btn" onclick="setActiveFilter(this)">Pendentes</button>
+    <button id="btn-aceitos" class="filter-btn btn mx-2" onclick="setActiveFilter(this)">Aceitos</button>
+    <button id="btn-recusados" class="filter-btn btn" onclick="setActiveFilter(this)">Recusados</button>
+  </div>
+  
+      
+
+
 <div class="container">
+    <div id="donation-pending-container" class="row">
+      <!-- Exemplo de um card de doação -->
+      <div id="donation-card" class="col-12 d-flex flex-column flex-md-row align-items-center p-3 mb-3">
+        <img id="donation-image" src="../img/brinquedo.jpg" alt="Foto do brinquedo" class="img-fluid">
+        <div id="donation-info" class="ms-md-3 mt-2 mt-md-0">
+          <h5 id="donation-title">Nome do Brinquedo</h5>
+          <p id="donation-category">Categoria: Educativo</p>
+          <p id="donation-description">Descrição do brinquedo que inclui detalhes importantes.</p>
+            <div id="button-container" class="d-flex justify-content-end mt-3">
+          <button id="details-button" class="btn btn-primary">Ver detalhes</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
     <div id="donation-pending-container" class="row">
       <!-- Exemplo de um card de doação -->
       <div id="donation-card" class="col-12 d-flex flex-column flex-md-row align-items-center p-3 mb-3">
@@ -61,3 +88,13 @@
   </div>
   
 </body>
+
+<script>
+function setActiveFilter(button) {
+  document.querySelectorAll('#filter-container button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  button.classList.add('active');
+}
+
+</script>
