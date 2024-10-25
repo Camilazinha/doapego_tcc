@@ -706,6 +706,7 @@ input:focus::placeholder {
 
 #donation-pending-container {
   max-width: 700px;
+  width: 50%;
   margin: 30px auto;
 }
 
@@ -810,16 +811,16 @@ input:focus::placeholder {
 
 /* Estilo dos botões ao passar o mouse */
 #filter-container .btn:hover {
-  background-color: #f4a4c0; /* Cor rosinha mais escura ao passar o mouse */
-  border-color: #f4a4c0; /* Bordas ao passar o mouse */
+  background-color: #FF6781; /* Cor rosinha mais escura ao passar o mouse */
+  border-color: #FF6781; /* Bordas ao passar o mouse */
   cursor: pointer; /* Mostra que o botão é clicável */
 }
 
 /* Botão ativo */
 #filter-container .btn.active {
-  background-color: #f4a4c0; /* Cor mais escura do botão ativo */
+  background-color: #d35472; /* Cor mais escura do botão ativo */
   color: #fff !important; /* Texto branco mesmo quando ativo */
-  border-color: #f4a4c0; /* Borda correspondente ao fundo ativo */
+  border-color: #d35472; /* Borda correspondente ao fundo ativo */
 }
 
 /* Adiciona espaçamento entre os botões */
