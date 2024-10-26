@@ -707,7 +707,8 @@ input:focus::placeholder {
 #donation-pending-container {
   max-width: 700px;
   width: 50%;
-  margin: 30px auto;
+  margin: 20px auto;
+
 }
 
 #donation-card {
@@ -738,52 +739,6 @@ input:focus::placeholder {
 
 #button-container {
   margin-left: auto;
-}
-
-/*#details-button {
-  margin-top: 10px;
-  margin-right: 30px;
-  align-self: flex-start;
-  font-size: 0.9rem;
-  padding: 5px 10px;
-}*/
-
-/* Responsividade */
-@media (max-width: 768px) {
-  #donation-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  #button-container {
-    margin-top: 10px;
-    margin-left: 0;
-  }
-}
-
-#pending-donation-container {
-  padding: 10px;
-  max-width: 800px; /* Limitar a largura da caixinha */
-  margin: 0 auto;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-#pending-donation-image {
-  width: 80px; /* Reduzir o tamanho da imagem */
-  height: 80px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-#pending-donation-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  flex-grow: 1;
 }
 
 /* Estilos gerais do container */
@@ -823,17 +778,28 @@ input:focus::placeholder {
   border-color: #d35472; /* Borda correspondente ao fundo ativo */
 }
 
-/* Adiciona espaçamento entre os botões */
-#filter-container .btn.mx-2 {
-  margin-left: 10px;
-  margin-right: 10px;
+#button-container .btn-primary:active {
+  background-color: #d35472; /* Cor mais escura do botão ativo */
+  color: #fff !important; /* Texto branco mesmo quando ativo */
+  border-color: #d35472; /* Borda correspondente ao fundo ativo */
 }
 
 .titulo-principal {
    margin-top: 30px !important;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
+  #donation-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #button-container {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
   #filter-container {
     width: 80%; /* Aumenta a largura para 80% em telas menores */
   }
