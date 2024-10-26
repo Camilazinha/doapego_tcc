@@ -14,52 +14,58 @@ function Parceiros () {
   </h1>
 </div>
     </div> */}
-  <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5 borda">
+  <div className="container px-4 py-5 px-md-5 text-lg-start my-5 borda">
     <form id="form">
+
       <h1>Dados de contato</h1>
       <div className="row gx-lg-5 align-items-center mb-3">
-        <div className="col-lg-4 mb-4 my-lg-4">
+
+        <div className="col col-md-11 col-lg-3 mb-4 my-lg-4">
           <input type="text" className="inputs required form-control" placeholder="Seu nome completo" aria-label="Seu nome completo" required oninput="nameValidate()" />
         </div>
-        <div className=" col-lg-4 mb-4 my-lg-4">
+        <div className="col-md-11 col-lg-3 mb-4 my-lg-4">
           <input type="email" className="form-control" placeholder="Seu e-mail" aria-label="Seu e-mail" required />
         </div>
-        <div className="col-lg-4 mb-4 my-lg-4">
+        <div className="col col-md-11 col-lg-3 mb-4 my-lg-4">
           <input type="text" className="form-control" placeholder="Seu número de telefone" aria-label="Seu número de telefone" required />
         </div>
+
         <h1>Dados da organização não governamental</h1>
-        <div className="col-lg-4 mb-4 my-lg-4">
+        <div className="col col-md-11 col-lg-3 mb-4 my-lg-4">
           <input type="text" className="form-control" placeholder="Nome da ONG" aria-label="Nome da ONG" required />
         </div>
-        <div className=" col-lg-4 mb-4 my-lg-4">
+        <div className="col col-md-11 col-lg-3 mb-4 my-lg-4">
           <input type="email" className="form-control" placeholder="E-mail da ONG" aria-label="E-mail da ONG" required />
         </div>
-        <div className="col-lg-4 mb-4 my-lg-4">
+        <div className="col col-md-11 col-lg-3 mb-4 my-lg-4">
           <input type="text" className="form-control" required placeholder="Site ou página virtual do projeto" />
         </div>
+
+        
         <h1>Localização da ONG</h1>
-        <div className="col-lg-2 mb-4 my-lg-4">
+        <div className="col col-md-11 col-lg-1 mb-4 my-lg-4">
           <input type="text" className="form-control" id="validationDefault05" placeholder="CEP" required />
         </div>
-        <div className="col-lg-2 mb-4 my-lg-4">
-          <select className="form-select" id="validationDefault04" required>
-            <option selected disabled value>Estado</option>
-            <option>São Paulo</option>
-          </select>
+
+        <div className="col col-md-11 col-lg-2 mb-4 my-lg-4">
+          <input type="text" className="form-control" id="EstadoONG" placeholder="Estado" required />
         </div>
-        <div className="col-lg-3 mb-4 my-lg-4">
+
+        <div className="col col-md-11 col-lg-2 mb-4 my-lg-4">
           <input type="text" className="form-control" id="CidadeONG" placeholder="Cidade" required />
         </div>
-        <div className="col-lg-3 mb-4 my-lg-4">
+        <div className="col col-md-11 col-lg-4 mb-4 my-lg-4">
           <input type="text" className="form-control" id="LogradouroONG" placeholder="Logradouro" required />
         </div>
-        <div className="col-12">
+
+        <div className="col col-12">
           <div className="form-check" id="checkText">
             <input className="form-check-input" type="checkbox" defaultValue id="invalidCheck2" required />
             <label className="form-check-label" htmlFor="invalidCheck2">
               Eu li e concordo com os termos de uso <strong>(obrigatório)</strong>
             </label>
           </div>
+
           <div className="form-check" id="checkText">
             <input className="form-check-input" type="checkbox" defaultValue id="invalidCheck1" required />
             <label className="form-check-label" htmlFor="invalidCheck1">
