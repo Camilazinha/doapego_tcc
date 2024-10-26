@@ -23,9 +23,8 @@ li::marker {
 
 
 #bloco {
-width: 120rem;
-height: 100rem;
 background-color: #eee !important;
+max-width: 95rem;
 }
 
 .container .d-grid .btn-a, bg-light {
@@ -80,13 +79,11 @@ background-color: #eee !important;
 margin-left: 10rem;
 }
 
-.card {
-display: inline-flex;
-padding: 20px;
-margin-right: 20px !important;
-margin-top: 30px;
-margin-bottom: 30px;
-
+#proposito {
+  background-color: #ff92b6 !important;
+  border: #d1547e;
+  text-align: center;
+  margin: 5rem;
 }
 
 *,*::before,*::after {
@@ -104,6 +101,7 @@ display: grid;
 place-content: center;
   }
 
+  /*
   .cards {    
     display:inline-flex;
     width: 70rem;
@@ -154,7 +152,7 @@ place-content: center;
   &:nth-child(n) {
     transform: rotate(0deg);
   
-}
+}*/
 
 .cards:hover > .card:hover {
 transform: scale(1.15);
@@ -344,6 +342,7 @@ max-block-size: 40rem;
 background-color: #ff92b6 !important; 
 border: #d1547e;
 text-align: center;
+max-width: none;
 }
 
 #blococard2 {
