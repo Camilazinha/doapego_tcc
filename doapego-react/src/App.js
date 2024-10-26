@@ -37,6 +37,7 @@ import './styles/layout.css';
 import './styles/forms.css';
 import './styles/login.css';
 import './styles/views.css';
+import './script/script.js';
 
 const App = () => {
   return (
@@ -87,5 +88,4 @@ const App = () => {
   );
 };
 
-import './script/script.js';
 export default App;
