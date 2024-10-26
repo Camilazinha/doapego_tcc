@@ -29,10 +29,36 @@ const Usuarios = () => {
 
     const handleSuspend = async () => {
         try {
-            const usuario = usuarios.find(u => u.id === usuarioId);
-            const novoStatus = !usuario.ativo; // Alterna o status ativo/inativo
-            await axios.patch(`http://localhost:8080/usuarios/${usuarioId}`, { ativo: novoStatus });
-            
+            // Faz um GET para pegar os dados do usuário pelo ID
+            const response = await axios.get(`http://localhost:8080/usuarios/${usuarioId}`);
+            const usuario = response.data;
+    
+            // Alterna o status 'ativo'
+            const novoStatus = !usuario.ativo;
+    
+            // Cria o novo objeto com o status atualizado
+            const usuarioAtualizado = {
+                id: usuario.id,
+                nome: usuario.nome,
+                email: usuario.email,
+                senha: usuario.senha,  // Certifique-se que a senha não seja removida no PUT
+                telefone: usuario.telefone,
+                ativo: novoStatus,
+                cep: usuario.cep,
+                estado: usuario.estado,
+                cidade: usuario.cidade,
+                bairro: usuario.bairro,
+                numero: usuario.numero,
+                logradouro: usuario.logradouro,
+                complemento: usuario.complemento,
+                latitude: usuario.latitude,  // Manter latitude e longitude caso estejam sendo usadas
+                longitude: usuario.longitude
+            };
+    
+            // Faz um PUT enviando o objeto completo com o novo status
+            await axios.put(`http://localhost:8080/usuarios/${usuarioId}`, usuarioAtualizado);
+    
+            // Atualiza o estado do frontend para refletir a mudança
             setUsuarios(usuarios.map(u => u.id === usuarioId ? { ...u, ativo: novoStatus } : u));
             setShowModal(false);
             alert(`Usuário ${novoStatus ? 'reativado' : 'suspenso'} com sucesso!`);
@@ -41,7 +67,8 @@ const Usuarios = () => {
             alert('Erro ao suspender usuário. Tente novamente!');
         }
     };
-
+    
+    
     if (loading) return (
         <div className="table-responsive">
             <div className="borda-view container-fluid my-5 p-4">

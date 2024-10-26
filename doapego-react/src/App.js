@@ -87,4 +87,5 @@ const App = () => {
   );
 };
 
+import './script/script.js';
 export default App;

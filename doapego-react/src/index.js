@@ -7,6 +7,7 @@ import './styles/main.css';
 import './styles/forms.css';
 import './styles/login.css';
 import './styles/layout.css';
+import './script/script.js';
 
 import reportWebVitals from './reportWebVitals';
 
