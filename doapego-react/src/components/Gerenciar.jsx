@@ -1,96 +1,40 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import '../styles/main.css';
 import '../styles/layout.css';
+import '../styles/forms.css';
 
-function Gerenciar () {
+
+function Cadastro () {
   return (
-    <>
-  <div id="profile-container" className="container">
-  <h2 id="titulo-principal">Gerenciamento do Perfil da ONG</h2>
-  <div id="profile-section">
-    {/* Editar Perfil */}
-    <div id="edit-info" className="d-flex align-items-center">
-      <span className="icon" id="icon-gerenc">
-        <ion-icon name="pencil-outline" />
-      </span>
-      <h3 id="section-title">Edite seu Perfil</h3>
-      <span className="arrow-link-container ml-auto">
-        <a href="edit-profile.html" className="arrow-link">
-          <ion-icon name="chevron-forward" />
-        </a>
-      </span>
+
+<div className="container mt-5">
+  <h2 id="titulo-principal">Gerenciamento de Doações</h2>
+  <div id="cards-container" className="mt-4 row">
+    <div id="card-pendentes" className="card col-md-4 mb-4">
+      <div className="card-body text-center">
+        <h5 className="card-title">Doações Pendentes</h5>
+        <p className="card-text">Veja aqui solicitações de doações que ainda estão aguardando <strong>aprovação.</strong></p>
+        <a id="link-canceladas" href="#pendentes" className="btn btn-primary">Ver pendentes</a>
+      </div>
     </div>
-    {/* Segurança */}
-    <div id="security-settings" className="d-flex align-items-center">
-      <span className="icon" id="icon-gerenc">
-        <ion-icon name="shield-checkmark" />
-      </span>
-      <h3 id="section-title">
-        Segurança e Privacidade</h3>
-      <span className="arrow-link-container ml-auto">
-        <a href="seguranca.html" className="arrow-link">
-          <ion-icon name="chevron-forward" />
-        </a>
-      </span>
+    <div id="card-feitas" className="card col-md-4 mb-4">
+      <div className="card-body text-center">
+        <h5 className="card-title">Doações Feitas</h5>
+        <p className="card-text">Veja aqui todas as doações <strong>aceitas</strong> e já processadas.</p>
+        <a id="link-canceladas" href="#feitas" className="btn btn-success">Ver feitas</a>
+      </div>
     </div>
-    {/* Notificações */}
-    <div id="notifications-settings" className="d-flex align-items-center">
-      <span className="icon" id="icon-gerenc">
-        <ion-icon name="notifications" />
-      </span>
-      <h3 id="section-title">
-        Notificações</h3>
-      <span className="arrow-link-container ml-auto">
-        <a href="notif.html" className="arrow-link">
-          <ion-icon name="chevron-forward" />
-        </a>
-      </span>
-    </div>
-    {/* Equipe */}
-    <div id="team-settings" className="d-flex align-items-center">
-      <span className="icon" id="icon-gerenc">
-        <ion-icon name="people" />
-      </span>
-      <h3 id="section-title">
-        Equipe</h3>
-      <span className="arrow-link-container ml-auto">
-        <a href="equipe.html" className="arrow-link">
-          <ion-icon name="chevron-forward" />
-        </a>
-      </span>
-    </div>
-    {/* Histórico de Atividades */}
-    <div id="activity-history" className="d-flex align-items-center">
-      <span className="icon" id="icon-gerenc">
-        <ion-icon name="document-text" />
-      </span>
-      <h3 id="section-title">
-        Histórico de Atividades</h3>
-      <span className="arrow-link-container ml-auto">
-        <a href="historico.html" className="arrow-link">
-          <ion-icon name="chevron-forward" />
-        </a>
-      </span>
-    </div>
-    {/* Ajuda e FAQ */}
-    <div id="activity-history" className="d-flex align-items-center">
-      <span className="icon" id="icon-gerenc">
-        <ion-icon name="help-circle" />
-      </span>
-      <h3 id="section-title">
-        Ajuda e FAQ</h3>
-      <span className="arrow-link-container ml-auto">
-        <a href="faq.html" className="arrow-link">
-          <ion-icon name="chevron-forward" />
-        </a>
-      </span>
+    <div id="card-canceladas" className="card col-md-4 mb-4">
+      <div className="card-body text-center">
+        <h5 className="card-title">Doações Canceladas</h5>
+        <p className="card-text">Veja aqui as doações que foram <strong>canceladas</strong> ou <strong>recusadas.</strong></p>
+        <a id="link-canceladas" href="#canceladas" className="btn btn-danger">Ver canceladas</a>
+      </div>
     </div>
   </div>
 </div>
-    
-    </>
-  );
+
+);
 };
 
-export default Gerenciar;
+export default Cadastro;

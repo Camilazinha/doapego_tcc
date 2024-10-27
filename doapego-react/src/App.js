@@ -8,8 +8,9 @@ import Tutorial from './components/Tutorial'
 import Cadastro from './components/Cadastro';
 import Parceiros from './components/Parceiros';
 
-import Gerenciar from './components/Gerenciar.jsx';
 import Painel from './components/Painel';
+import Gerenciar from './components/Gerenciar';
+
 
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
