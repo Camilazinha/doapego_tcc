@@ -3,7 +3,7 @@ import React from 'react';
 import '../styles/main.css';
 import '../styles/layout.css';
 
-function Gerenciar () {
+function Painel () {
   return (
     <>
   <div id="profile-container" className="container">
@@ -93,4 +93,4 @@ function Gerenciar () {
   );
 };
 
-export default Gerenciar;
+export default Painel;

@@ -4,7 +4,7 @@ import '../styles/layout.css';
 import '../styles/forms.css';
 
 
-function Cadastro () {
+function Gerenciar () {
   return (
 
 <div className="container mt-5">
@@ -13,22 +13,22 @@ function Cadastro () {
     <div id="card-pendentes" className="card col-md-4 mb-4">
       <div className="card-body text-center">
         <h5 className="card-title">Doações Pendentes</h5>
-        <p className="card-text">Veja aqui solicitações de doações que ainda estão aguardando <strong>aprovação.</strong></p>
+        <p className="card-text">Veja aqui solicitações de doações que ainda estão aguardando <strong>aprovação</strong>.</p>
         <a id="link-canceladas" href="#pendentes" className="btn btn-primary">Ver pendentes</a>
       </div>
     </div>
     <div id="card-feitas" className="card col-md-4 mb-4">
       <div className="card-body text-center">
-        <h5 className="card-title">Doações Feitas</h5>
+        <h5 className="card-title">Doações Aceitas</h5>
         <p className="card-text">Veja aqui todas as doações <strong>aceitas</strong> e já processadas.</p>
-        <a id="link-canceladas" href="#feitas" className="btn btn-success">Ver feitas</a>
+        <a id="link-canceladas" href="#feitas" className="btn btn-success">Ver aceitas</a>
       </div>
     </div>
     <div id="card-canceladas" className="card col-md-4 mb-4">
       <div className="card-body text-center">
-        <h5 className="card-title">Doações Canceladas</h5>
-        <p className="card-text">Veja aqui as doações que foram <strong>canceladas</strong> ou <strong>recusadas.</strong></p>
-        <a id="link-canceladas" href="#canceladas" className="btn btn-danger">Ver canceladas</a>
+        <h5 className="card-title">Doações Recusadas</h5>
+        <p className="card-text">Veja aqui as doações que foram <strong>recusadas</strong>.</p>
+        <a id="link-canceladas" href="#canceladas" className="btn btn-danger">Ver recusadas</a>
       </div>
     </div>
   </div>
@@ -37,4 +37,4 @@ function Cadastro () {
 );
 };
 
-export default Cadastro;
+export default Gerenciar;
