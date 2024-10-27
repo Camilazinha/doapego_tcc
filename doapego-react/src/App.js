@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
 import Cadastro from './components/Cadastro';
+import Login from './components/Login';
 import Parceiros from './components/Parceiros';
 import Redefinicao from './components/Redefinicao';
 import Esquecimento from './components/Esquecimento';
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/redefinir-senha" element={<Redefinicao />} />

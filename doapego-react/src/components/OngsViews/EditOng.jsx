@@ -82,12 +82,6 @@ const EditOng = () => {
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
-          <label>Senha:</label>
-          <input 
-            type="password" className="form-control" value={senha} onChange={(e) => setSenha(e.target.value)} />
-        </div>
-
-        <div className="form-group col-10 col-md-11 mb-2">
           <label>Telefone:</label>
           <input 
             type="text" className="form-control" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
