@@ -68,8 +68,6 @@ const App = () => {
                 <Route path="/endereco-ong/detalhes/:id" element={<DetailsEndereco />} /> */}
 {/* 
         <Route path="/doacoes" element={<Doacoes />} />
-        <Route path="/doacoes/criar" element={<CreateDoacao />} />
-                <Route path="/doacoes/editar/:id" element={<EditDoacao />} />
                 <Route path="/doacoes/detalhes/:id" element={<DetailsDoacao />} />                 */}
                 
         <Route path="/admin" element={<Admin />} />
