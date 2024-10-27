@@ -7,10 +7,11 @@ import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
 import Cadastro from './components/Cadastro';
 import Parceiros from './components/Parceiros';
+import Redefinicao from './components/Redefinicao';
+import Esquecimento from './components/Esquecimento';
 
 import Painel from './components/Painel';
 import Gerenciar from './components/Gerenciar';
-
 
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
@@ -53,6 +54,8 @@ const App = () => {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
+        <Route path="/redefinir-senha" element={<Redefinicao />} />
+        <Route path="/esqueci-senha" element={<Esquecimento />} />
 
         <Route path="/gerenciar" element={<Gerenciar />} />
         <Route path="/painel" element={<Painel />} />
