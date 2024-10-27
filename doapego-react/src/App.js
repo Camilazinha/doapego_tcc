@@ -8,6 +8,9 @@ import Tutorial from './components/Tutorial'
 import Register from './components/Register';
 import Parceiros from './components/Parceiros';
 
+import Management from './components/Management';
+
+
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
 import EditCategoria from './components/CategoriasViews/EditCategoria';
@@ -49,6 +52,9 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
+
+        <Route path="/gerenciar" element={<Management />} />
+
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/categorias/criar" element={<CreateCategoria />} />
                 <Route path="/categorias/editar/:id" element={<EditCategoria />} />

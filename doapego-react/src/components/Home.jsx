@@ -6,7 +6,6 @@ import '../styles/layout.css';
 function Home () {
   return (
     <>
-      <div>
   <main className>
     <div className="position-relative text-white hero-text" alt="" id="imagem-index" style={{backgroundImage: 'url(indexpic.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center'}}>
       <div className="grad1" id="grad1">
@@ -95,8 +94,7 @@ function Home () {
       </div>
     </div>
   </section>
-</div>
-
+  
     </>
   );
 };
