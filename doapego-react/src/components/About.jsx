@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/main.css';
 import '../styles/layout.css';
 
-function About () {
+function Sobre () {
   return (
     <main>
       <div className="position-relative text-white">
@@ -31,4 +31,4 @@ function About () {
   );
 };
 
-export default About;
+export default Sobre;

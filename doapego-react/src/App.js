@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import About from './components/About';
+import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
 import Register from './components/Register';
 import Parceiros from './components/Parceiros';
 
 import Management from './components/Management';
-
+import Painel from './components/Painel';
 
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
@@ -48,12 +48,14 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/sobre" element={<Sobre />} />
         <Route path="/register" element={<Register />} />
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
 
         <Route path="/gerenciar" element={<Management />} />
+        <Route path="/painel" element={<Painel />} />
+        
 
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/categorias/criar" element={<CreateCategoria />} />
