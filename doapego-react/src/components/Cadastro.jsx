@@ -4,7 +4,7 @@ import '../styles/layout.css';
 import '../styles/forms.css';
 
 
-function Parceiros () {
+function Cadastro () {
   return (
 
 <main>
@@ -106,4 +106,4 @@ function Parceiros () {
 );
 };
 
-export default Parceiros;
+export default Cadastro;

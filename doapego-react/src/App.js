@@ -5,10 +5,10 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
-import Register from './components/Register';
+import Cadastro from './components/Cadastro';
 import Parceiros from './components/Parceiros';
 
-import Management from './components/Management';
+import Gerenciar from './components/Gerenciar.jsx';
 import Painel from './components/Painel';
 
 import Categorias from './components/CategoriasViews/Categorias';
@@ -49,11 +49,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
 
-        <Route path="/gerenciar" element={<Management />} />
+        <Route path="/gerenciar" element={<Gerenciar />} />
         <Route path="/painel" element={<Painel />} />
         
 
