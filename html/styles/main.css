@@ -512,8 +512,8 @@ li::marker {
 }
 
 #link-canceladas {
-  background-color: #a06ab3; /* Lilás claro */
-  border-color: #a06ab3;
+  background-color: #c595d6; /* Lilás claro */
+  border-color: #c595d6;
 }
 
 #link-pendentes:hover {
@@ -525,7 +525,7 @@ li::marker {
 }
 
 #link-canceladas:hover {
-  background-color: #905fa0;
+  background-color: #a06ab3;
 }
 
 #titulo-principal {
