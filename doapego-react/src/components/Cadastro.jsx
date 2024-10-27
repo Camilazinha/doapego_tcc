@@ -83,6 +83,11 @@ const Cadastro = () => {
       console.error('Erro ao realizar o cadastro:', err);
       alert('Erro ao realizar o cadastro. Tente novamente.');
     }
+    // No final do handleSubmit no componente Cadastro
+
+  localStorage.setItem('userEmail', email);
+  localStorage.setItem('userPassword', senha);
+
   };
 
   return (
