@@ -66,8 +66,8 @@ const DetailsUsuario = () => {
                 <td>{usuario.cep}</td>
               </tr>
               <tr>
-                <th>Ativo</th>
-                <td>{usuario.ativo ? 'Sim' : 'Não'}</td>
+                <th>Status</th>
+                <td>{usuario.ativo ? 'Ativo' : 'Suspenso'}</td>
               </tr>
             </tbody>
           </table>

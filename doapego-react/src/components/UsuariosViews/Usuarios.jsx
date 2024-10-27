@@ -41,7 +41,7 @@ const Usuarios = () => {
                 id: usuario.id,
                 nome: usuario.nome,
                 email: usuario.email,
-                senha: usuario.senha,  // Certifique-se que a senha não seja removida no PUT
+                senha: usuario.senha,  // 
                 telefone: usuario.telefone,
                 ativo: novoStatus,
                 cep: usuario.cep,
@@ -51,7 +51,7 @@ const Usuarios = () => {
                 numero: usuario.numero,
                 logradouro: usuario.logradouro,
                 complemento: usuario.complemento,
-                latitude: usuario.latitude,  // Manter latitude e longitude caso estejam sendo usadas
+                latitude: usuario.latitude, 
                 longitude: usuario.longitude
             };
     
@@ -100,7 +100,6 @@ const Usuarios = () => {
                             <th scope="col">#</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Telefone</th>
                             <th scope="col">Status</th>
                             <th scope="col">Ações</th>
                         </tr>
@@ -111,7 +110,6 @@ const Usuarios = () => {
                                 <th className="align-middle text-center" scope="row">{index + 1}</th>
                                 <td className="align-middle text-center">{usuario.nome}</td>
                                 <td className="align-middle text-center">{usuario.email}</td>
-                                <td className="align-middle text-center">{usuario.telefone}</td>
                                 <td className="align-middle text-center">
                                     {usuario.ativo ? 'Ativo' : 'Suspenso'}
                                 </td>
