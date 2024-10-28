@@ -8,14 +8,15 @@ import '../styles/layout.css';
 import '../styles/forms.css';
 
 const Cadastro = () => {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
+  const [nomeOng, setNomeOng] = useState('');
+  const [emailOng, setEmailOng] = useState('');
+  const [nomeAdmin, setNomeAdmin] = useState('');
+  const [emailAdmin, setEmailAdmin] = useState('');
   const [senha, setSenha] = useState('');
   const [telefone, setTelefone] = useState('');
   const [fundacao, setFundacao] = useState('');
   const [descricao, setDescricao] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
-  const [ativo, setAtivo] = useState(true);
 
   // Estados para o endereço da ONG
   const [cep, setCep] = useState('');
@@ -85,7 +86,7 @@ const Cadastro = () => {
     }
     // No final do handleSubmit no componente Cadastro
 
-    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userEmail', emailAdmin);
     localStorage.setItem('userPassword', senha);
 
   };
@@ -97,11 +98,11 @@ const Cadastro = () => {
         <h1>Dados de contato</h1>
         <div className="row gx-lg-5 align-items-center mb-3">
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
-            <input type="text" className="inputs required form-control" placeholder="Seu nome completo" value={nome} onChange={(e) => setNome(e.target.value)} required />
+            <input type="text" className="inputs required form-control" placeholder="Seu nome completo" value={nomeAdmin} onChange={(e) => setNomeAdmin(e.target.value)} required />
           </div>
 
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
-            <input type="email" className="form-control" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="email" className="form-control" placeholder="Seu e-mail" value={emailAdmin} onChange={(e) => setEmailAdmin(e.target.value)} required />
           </div>
 
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
@@ -126,7 +127,13 @@ const Cadastro = () => {
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
             <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
           </div>
+          <div className="col-11 col-lg-3 mb-4 my-lg-4">
+            <input type="text" className="inputs required form-control" placeholder="Seu nome completo" value={nomeAdmin} onChange={(e) => setNomeOng(e.target.value)} required />
+          </div>
 
+          <div className="col-11 col-lg-3 mb-4 my-lg-4">
+            <input type="email" className="form-control" placeholder="Seu e-mail" value={emailOng} onChange={(e) => setEmailOng(e.target.value)} required />
+          </div>
 
           <h1>Localização da ONG</h1>
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
