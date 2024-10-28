@@ -34,8 +34,8 @@ const Cadastro = () => {
     try {
       // 1. Primeiro, cria a ONG
       const ongResponse = await axios.post('http://localhost:8080/ongs', {
-        nome,
-        email,
+        nome: nomeOng,
+        email: emailOng,
         senha,
         telefone,
         fundacao,
@@ -52,8 +52,8 @@ const Cadastro = () => {
 
       // 2. Em seguida, cria o Admin vinculado a esta ONG
       await axios.post('http://localhost:8080/administradores', {
-        nome,           // Nome do Admin
-        email,          // Email do Admin
+        nome: nomeAdmin,           // Nome do Admin
+        email: emailAdmin,          // Email do Admin
         senha,          // Senha do Admin
         tipo: "ONG",    // Define o tipo como "ONG"
         ativo: true,    // Admin ativo
@@ -85,8 +85,8 @@ const Cadastro = () => {
     }
     // No final do handleSubmit no componente Cadastro
 
-  localStorage.setItem('userEmail', email);
-  localStorage.setItem('userPassword', senha);
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userPassword', senha);
 
   };
 
@@ -108,22 +108,25 @@ const Cadastro = () => {
             <input type="password" className="form-control" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
           </div>
 
-          <h1>Dados da organização não governamental</h1>
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
             <input type="text" className="form-control" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
           </div>
+
+          <h1>Dados da organização não governamental</h1>
+
 
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
             <input type="date" className="form-control" placeholder="Data de Fundação" value={fundacao} onChange={(e) => setFundacao(e.target.value)} />
           </div>
 
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
-            <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+            <input type="text" className="form-control" placeholder="Whatsapp" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
           </div>
 
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
-            <input type="text" className="form-control" placeholder="Whatsapp" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
+            <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
           </div>
+
 
           <h1>Localização da ONG</h1>
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
