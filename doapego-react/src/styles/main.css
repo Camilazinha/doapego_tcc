@@ -101,7 +101,6 @@ display: grid;
 place-content: center;
   }
 
-  /*
   .cards {    
     display:inline-flex;
     width: 70rem;
@@ -152,7 +151,7 @@ place-content: center;
   &:nth-child(n) {
     transform: rotate(0deg);
   
-}*/
+}
 
 .cards:hover > .card:hover {
 transform: scale(1.15);

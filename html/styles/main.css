@@ -478,7 +478,7 @@ li::marker {
   justify-content: space-between;
   height: 100%;
   height: 250px;
-  background-color: #f0f4f8; /* Cinza claro para os cards */
+  background-color: #f3f3f3; /* Cinza claro para os cards */
   border: 1px solid #ebebeb;
 }
 
@@ -509,7 +509,7 @@ li::marker {
   margin-top: 10px;
 }
 
-#link-pendentes, #link-feitas, #link-canceladas {
+#link-pendentes, #link-feitas, #link-recusadas {
   padding: 10px 30px;
   font-size: 1.1rem;
   border-radius: 50px;
@@ -517,30 +517,20 @@ li::marker {
   margin-top: 10px;
 }
 
-#link-pendentes {
-  background-color: #4a90e2; /* Azul claro */
-  border-color: #4a90e2;
-}
 
-#link-feitas {
-  background-color: #50b3a2; /* Verde água */
-  border-color: #50b3a2;
-}
-
-#link-canceladas {
+#link-recusadas, #link-feitas, #link-pendentes {
   background-color: #c595d6; /* Lilás claro */
-  border-color: #c595d6;
 }
 
 #link-pendentes:hover {
-  background-color: #357ABD;
+  background-color: #a06ab3;
 }
 
 #link-feitas:hover {
-  background-color: #3b8d7e;
+  background-color: #a06ab3;
 }
 
-#link-canceladas:hover {
+#link-recusadas:hover {
   background-color: #a06ab3;
 }
 
