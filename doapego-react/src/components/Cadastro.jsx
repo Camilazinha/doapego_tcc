@@ -161,7 +161,21 @@ const Cadastro = () => {
             <input type="text" className="form-control" placeholder="Complemento" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
           </div>
         </div>
+        <div className="col col-12">
+          <div className="form-check" id="checkText">
+            <input className="form-check-input" type="checkbox" defaultValue id="invalidCheck2" required />
+            <label className="form-check-label" htmlFor="invalidCheck2">
+              Eu li e concordo com os termos de uso <strong>(obrigatório)</strong>
+            </label>
+          </div>
 
+          <div className="form-check" id="checkText">
+            <input className="form-check-input" type="checkbox" defaultValue id="invalidCheck1" required />
+            <label className="form-check-label" htmlFor="invalidCheck1">
+              Eu li e concordo com a política de privacidade <strong>(obrigatório)</strong>
+            </label>
+            </div>
+            </div>
         <div className="form-group">
           <button type="submit" className="mt-3 me-2 py-2 btn ml-auto btn-navbar-custom">Solicitar cadastro</button>
           <button type="button" className="mt-3 py-2 btn ml-auto alt-button" onClick={() => navigate('/login')}>Já tenho cadastro</button>

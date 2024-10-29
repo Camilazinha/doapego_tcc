@@ -1,7 +1,7 @@
 // src/components/Login.js
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/main.css';
 import '../styles/layout.css';
 import '../styles/login.css';
@@ -29,7 +29,7 @@ function Login() {
   };
 
   return (
-    <div className="container px-4 py-5 bg-white justify-content-center" style={{borderStyle: 'solid', borderColor: '#bbbbbb', borderWidth: 2, borderRadius: 20, width: 400, height: 'auto', boxShadow: '0 0 20px #a0a0a0', marginTop: 30}}>
+    <div className="container px-1 py-5 px-md-4 text-lg-start my-5 borda" style={{ width: 400, height: 'auto'}}>
       <h2 style={{fontSize: '2em', fontWeight: 600, color: '#FFCF55', textAlign: 'center'}}>Login</h2>
       <form onSubmit={handleLogin}>
         <div className="input-box">
@@ -38,7 +38,7 @@ function Login() {
           </span>
           <input
             type="text"
-            placeholder="Email da ONG"
+            placeholder="E-mail"
             value={emailAdmin}
             onChange={(e) => setEmailAdmin(e.target.value)}
             required
@@ -56,17 +56,17 @@ function Login() {
             required
           />
         </div>
-        <div className="remember-forgot" style={{margin: '15px 0 15px', fontSize: '.9em', color: '#4e4e4e', display: 'flex', justifyContent: 'space-between', marginLeft: 15, marginRight: 15}}>
-          <label><input type="checkbox" /> Lembre-se de mim </label>
-          <a href="#">Esqueci minha senha</a>
+        <div className="remember-forgot mx-2 d-flex align-items-center" style={{justifyContent: 'space-between',fontSize: '.9em'}}>
+          <label><input className="form-check-input" type="checkbox" />Lembre-se de mim </label>
+
+          <Link to="/esqueci-senha">Esqueci minha senha</Link>
         </div>
         <div style={{display: 'flex', justifyContent: 'center'}} className="button-box">
-          <button type="submit" className="mt-3 py-2 btn alt-button" style={{width: '60%', height: 45, background: '#FFA4C5', border: 'none', outline: 'none', borderRadius: 40, cursor: 'pointer', fontSize: '1em', color: '#fff', fontWeight: 500}}>
-            Login
+            <button type="submit" className="mt-3 py-2 btn btn-navbar-custom w-75"> Login
           </button>
         </div>
-        <div className="register-link" style={{margin: '20px 0 -30px', fontSize: '.9em', color: '#4e4e4e', display: 'flex', justifyContent: 'center'}}>
-          <p>Novo por aqui? <a href="register.html">Cadastrar ONG</a></p>
+        <div className="register-link" style={{margin: '20px 0 -30px', fontSize: '.9em', display: 'flex', justifyContent: 'center'}}>
+          <p>Novo por aqui? <Link to="/cadastro">Cadastrar-se</Link></p>
         </div>
       </form>
     </div>
