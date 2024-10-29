@@ -889,17 +889,22 @@ input:focus::placeholder {
   margin: 5rem;
 }
 
+#blockparceiros {
+  display: flex;
+  justify-content: center;
+}
+
 #blocoparceiros {
-  background-color: #FFA4C5;
-  border-radius: 50px;
-  margin-top: 5rem;
-  padding: 2rem;
+  background-color: #e2e2e2;
+  border-radius: 20px;
+  margin-top: 2rem;
+  padding: 10px;
   max-width: fit-content;
   block-size: auto;
 }
 
 #botao {
-  border-radius: 50px;
+  border-radius: 20px;
   background-color: white;
   max-width: none;
   padding: 2rem;
@@ -909,6 +914,7 @@ input:focus::placeholder {
 #fontparceiros {
   font-size: 50px;
 }
+
 
 #agradecemos {
   text-align: center;
