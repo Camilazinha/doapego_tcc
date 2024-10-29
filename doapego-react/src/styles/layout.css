@@ -10,28 +10,28 @@ body {
 
 .navbar-brand,
 .navbar-brand:focus {
-    color: #F7C33E;
-    font-weight: bold;
+  color: #F7C33E;
+  font-weight: bold;
 }
 
 .navbar-brand:hover {
-    color: #e4af4d;
-    font-weight: bold;
+  color: #e4af4d;
+  font-weight: bold;
 }
 
-.bg-body-tertiary{
+.bg-body-tertiary {
   background: #fcfcfc !important;
 }
 
-header::after, 
-.bg-body-tertiary::before{
-    content: "";
-    position: absolute;
-    height: 1.5px;
-    width: 100%;
-    background-color: #ebebeb;
-    left: 50%;
-    transform: translateX(-50%);
+header::after,
+.bg-body-tertiary::before {
+  content: "";
+  position: absolute;
+  height: 1.5px;
+  width: 100%;
+  background-color: #ebebeb;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* botoes */
@@ -45,7 +45,7 @@ header::after,
 
 .btn-navbar-custom:hover {
   background-color: #E32B68;
-  border: 0.04rem solid  #C51D54;
+  border: 0.04rem solid #C51D54;
   border-radius: 10px;
   color: #fff;
 }
@@ -68,33 +68,33 @@ header::after,
   outline: none;
 }
 
-.alt-button{
+.alt-button {
   color: #f75189;
   border: 0.04rem solid #f75189;
   border-radius: 10px;
 }
 
-.alt-button:hover{
+.alt-button:hover {
   color: #ffffff;
   background-color: #FB6B9B;
   border: 0.04rem solid #f75189;
   border-radius: 10px;
 }
 
-.alt-button:active{
+.alt-button:active {
   background-color: #E32B68 !important;
   border: 0.04rem solid #C51D54 !important;
   border-radius: 10px;
   color: #fff !important;
 }
 
-.navbar-toggler:focus{
+.navbar-toggler:focus {
   box-shadow: 0 0 0 .25rem rgb(236, 236, 236);
   border: 2px solid #cdcdcd;
 }
 
 /* footer */
 
-.fw-bold{
+.fw-bold {
   color: #F7C33E;
 }
