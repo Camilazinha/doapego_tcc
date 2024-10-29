@@ -7,10 +7,10 @@ function Home () {
   return (
     <>
   <main className>
-    <div className="position-relative text-white hero-text" alt="" id="imagem-index" style={{backgroundImage: 'url(indexpic.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center'}}>
+    <div className="position-relative text-white hero-text" alt="" id="imagem-index" style={{backgroundImage: 'url(/indexpic.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center'}}>
       <div className="grad1" id="grad1">
         <div className="container-fluid" style={{maxWidth: '100%', width: 'auto', textAlign: 'left'}}>
-          <h1 className="ps-5" style={{fontSize: 'calc(1.5rem + 1vw)', paddingTop: '8%'}}>
+          <h1 className="ps-5" style={{fontSize: 'calc(1.5rem + 1vw)', paddingTop: '10vh'}}>
             Uma doação,<br />um impacto,<br />juntos fazemos um mundo melhor!
           </h1></div>
       </div>
