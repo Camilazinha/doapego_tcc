@@ -88,6 +88,9 @@ const Cadastro = () => {
 
     localStorage.setItem('userEmail', emailAdmin);
     localStorage.setItem('userPassword', senha);
+    console.log(localStorage.getItem('userEmail'));
+  console.log(localStorage.getItem('userPassword'));
+
 
   };
 
@@ -128,7 +131,7 @@ const Cadastro = () => {
             <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
           </div>
           <div className="col-11 col-lg-3 mb-4 my-lg-4">
-            <input type="text" className="inputs required form-control" placeholder="Seu nome completo" value={nomeAdmin} onChange={(e) => setNomeOng(e.target.value)} required />
+            <input type="text" className="inputs required form-control" placeholder="Seu nome completo" value={nomeOng} onChange={(e) => setNomeOng(e.target.value)} required />
           </div>
 
           <div className="col-11 col-lg-3 mb-4 my-lg-4">

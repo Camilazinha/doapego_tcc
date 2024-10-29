@@ -8,7 +8,7 @@ import '../styles/login.css';
 import '../styles/forms.css';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [emailAdmin, setEmailAdmin] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
 
@@ -20,9 +20,9 @@ function Login() {
     const storedPassword = localStorage.getItem('userPassword');
 
     // Verifica as credenciais
-    if (email === storedEmail && senha === storedPassword) {
+    if (emailAdmin === storedEmail && senha === storedPassword) {
       alert('Login realizado com sucesso!');
-      navigate('/bemvindo'); // Redireciona para uma página de boas-vindas ou outra de sua escolha
+      navigate('/parceiros'); // Redireciona para uma página de boas-vindas ou outra de sua escolha
     } else {
       alert('Email ou senha incorretos. Tente novamente!');
     }
@@ -39,8 +39,8 @@ function Login() {
           <input
             type="text"
             placeholder="Email da ONG"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={emailAdmin}
+            onChange={(e) => setEmailAdmin(e.target.value)}
             required
           /> 
         </div>
