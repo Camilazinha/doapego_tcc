@@ -893,19 +893,21 @@ input:focus::placeholder {
   background-color: #FFA4C5;
   border-radius: 50px;
   margin-top: 5rem;
-  padding: 1rem;
+  padding: 2rem;
   max-width: fit-content;
+  block-size: auto;
 }
 
 #botao {
   border-radius: 50px;
   background-color: white;
-  padding: 3rem;
-  margin: 3rem;
+  max-width: none;
+  padding: 2rem;
+  block-size: auto;
 }
 
 #fontparceiros {
-  font-size: 5rem;
+  font-size: 50px;
 }
 
 #agradecemos {
