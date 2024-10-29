@@ -29,7 +29,7 @@ function Navbar() {
                 <Link className="nav-link" to="/tutorial">Como doar</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/login">Minha ONG</Link>
+                <Link className="nav-link" to="/login">Entrar</Link>
               </li>
             </ul>
             <div className="d-flex ms-auto">
