@@ -85,7 +85,6 @@ bg-light {
   display: inline-flex;
   padding: 20px;
   margin-right: 20px !important;
-  margin-top: 30px;
   margin-bottom: 30px;
 
 }
@@ -506,7 +505,7 @@ bg-light {
   justify-content: center;
   align-items: center;
   height: 250px;
-  background-color: #f3f3f3;
+  background-color: #fdfdfd;
   /* Cinza claro para os cards */
   border: 1px solid #e0e0e0;
   max-width: 300px;
@@ -535,36 +534,6 @@ bg-light {
   margin-top: 10px;
 }
 
-#link-pendentes,
-#link-feitas,
-#link-recusadas {
-  padding: 10px 30px;
-  font-size: 1.1rem;
-  border-radius: 50px;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-
-#link-recusadas,
-#link-feitas,
-#link-pendentes {
-  background-color: #c595d6;
-  /* Lilás claro */
-}
-
-#link-pendentes:hover {
-  background-color: #a06ab3;
-}
-
-#link-feitas:hover {
-  background-color: #a06ab3;
-}
-
-#link-recusadas:hover {
-  background-color: #a06ab3;
-}
-
 #titulo-principal {
   font-size: 2.5rem;
   font-weight: bold;
@@ -582,13 +551,13 @@ bg-light {
 }
 
 /* Gerenciamento perfil */
-#profile-container {
+/* #profile-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px;
   border-radius: 10px;
   position: relative;
-}
+} */
 
 #profile-title {
   font-size: 2.5rem;
@@ -604,7 +573,7 @@ bg-light {
   gap: 20px;
 }
 
-#profile-section>div {
+#profile-section>.item-config {
   background-color: #ffffff;
   border: 1px solid #d1d1d1;
   padding: 20px;
@@ -900,9 +869,6 @@ bg-light {
   /* Borda correspondente ao fundo ativo */
 }
 
-.titulo-principal {
-  margin-top: 30px !important;
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
