@@ -20,7 +20,7 @@ function Parceiros() {
       <div className="clearfix">
         <div className="container mt-5">
           <p className="text fs-4 my-5" id="patrocinadores">Os patrocinadores são essenciais para o sucesso do projeto. Eles fornecem suporte
-            financeiro, recursos e alcance de público que são fundamentais para levar as doações adiante.Sem eles
+            financeiro, recursos e alcance de público que são fundamentais para levar as doações adiante. Sem eles
             seria difícil ou impossível alcançar nossos objetivos.</p>
           <p className="text fs-4 my-5" id="patrocinadores">Valorizamos imensamente o compromisso de
             nossos patrocinadores em apoiar nossa missão e visão. Sua contribuição nos permite manter nossos serviços
