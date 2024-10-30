@@ -633,57 +633,108 @@ li::marker {
 /*Editar perfil*/
 /* Container da página de edição de perfil */
 #edit-profile-container {
-  max-width: 600px;
+  max-width: 900px; /* Largura máxima */
   margin: 30px auto;
   padding: 40px;
   border-radius: 10px;
   background-color: #f9f9f9;
   border: 1px solid #d1d1d1;
-  position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo do input para escrever */
-#profile-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #d1d1d1;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-bottom: 20px;
+/* Container para foto e informações */
+#profile-info-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 /* Estilo da imagem de perfil */
-#profile-photo-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
 #profile-photo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 40vh;
+  height: 40vh;
+  border-radius: 8px;
   border: 2px solid #d1d1d1;
   object-fit: cover;
   margin-right: 20px;
 }
 
-#photo-label {
-  font-size: 1.2rem;
-  color: #6c757d;
-  cursor: pointer;
-  text-decoration: underline;
+/* Estilo do input para escrever */
+.profile-input {
+  width: 70vh;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  display:flex;
+  flex-direction:column;
+  color: #4e4e4e;
 }
+
+#desc-profile {
+  height: 10vh;
+}
+
+#textarea-profile {
+  resize: none;
+  color: #4e4e4e;
+  overflow: auto;
+}
+
+#cidade-prof, #uf-prof{
+  width: 34vh;
+  flex-direction:column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+#logradouro-prof {
+  width: 50vh;
+  flex-direction:column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+#num-prof {
+  width: 18vh;
+}
+
+.div-prof {
+  display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+/* SCROLLBAR DA DESCRIÇÃO DO GERENCIAMENTO-PERFIL */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c9c9c9; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1; 
+  border-radius: 10px;
+}
+
 
 /* Estilo dos placeholders */
 ::placeholder {
   color: #4e4e4e;
 }
 
-input:focus::placeholder {
-  color: transparent;
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -705,7 +756,7 @@ input:focus::placeholder {
     text-align: left !important;
 }
 
-#label-edit {
+.label-edit {
   margin-left: 10px;
   margin-bottom: 5px;
 }
