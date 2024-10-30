@@ -15,7 +15,7 @@ function Esquecimento() {
 
   return (
     <div>
-      <div className="container px-1 py-5 px-md-4 text-lg-start my-5 borda" style={{ width: 400, height: 'auto' }}>
+      <div className="container px-1 py-5 px-md-4 mt-5 text-lg-start borda" style={{ width: 400, height: 'auto' }}>
         <h2 className='text-center' style={{ fontSize: '2em', fontWeight: 600, color: '#FFCF55' }}>Recuperar senha</h2>
 
         <form onSubmit={handleSubmit}>

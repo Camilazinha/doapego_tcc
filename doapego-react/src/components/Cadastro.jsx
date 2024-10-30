@@ -89,13 +89,13 @@ const Cadastro = () => {
     localStorage.setItem('userEmail', emailAdmin);
     localStorage.setItem('userPassword', senha);
     console.log(localStorage.getItem('userEmail'));
-  console.log(localStorage.getItem('userPassword'));
+    console.log(localStorage.getItem('userPassword'));
 
 
   };
 
   return (
-    <div className="container px-4 py-5 px-md-5 text-lg-start my-5 borda">
+    <div className="container px-4 py-5 px-md-5 mt-5 text-lg-start borda">
       <form onSubmit={handleSubmit} id="form">
 
         <h1>Dados de contato</h1>
@@ -174,8 +174,8 @@ const Cadastro = () => {
             <label className="form-check-label" htmlFor="invalidCheck1">
               Eu li e concordo com a política de privacidade <strong>(obrigatório)</strong>
             </label>
-            </div>
-            </div>
+          </div>
+        </div>
         <div className="form-group">
           <button type="submit" className="mt-3 me-2 py-2 btn ml-auto btn-navbar-custom">Solicitar cadastro</button>
           <button type="button" className="mt-3 py-2 btn ml-auto alt-button" onClick={() => navigate('/login')}>Já tenho cadastro</button>

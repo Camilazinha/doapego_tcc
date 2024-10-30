@@ -22,8 +22,9 @@ h3.text-center li::marker {
 
 
 #bloco {
+  max-width: 200rem;
   background-color: #eee !important;
-  max-width: 95rem;
+  padding: 5rem;
 }
 
 .container .d-grid .btn-a,
@@ -79,11 +80,14 @@ bg-light {
   margin-left: 10rem;
 }
 
-#proposito {
-  background-color: #ff92b6 !important;
-  border: #d1547e;
-  text-align: center;
-  margin: 5rem;
+
+.card {
+  display: inline-flex;
+  padding: 20px;
+  margin-right: 20px !important;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
 }
 
 *,
@@ -333,35 +337,33 @@ bg-light {
   display: block;
 }
 
-#grad2 {
-  height: 100%;
-  background-image: linear-gradient(180deg, rgba(97, 97, 97, 0.1), rgb(54, 54, 54));
-}
-
 #slide1 {
-  height: 90rem;
-  width: 117rem;
+  margin-top: 5rem;
   align-content: center !important;
   max-width: 100rem;
+  box-sizing: border-box;
 }
 
 #slide2 {
-  height: 90rem;
-  width: 117rem;
+  margin-top: 5rem;
   align-content: center !important;
-  max-width: 100rem;
+  max-width: 120rem;
+  box-sizing: border-box;
 }
 
 #slide3 {
-  height: 90rem;
-  width: 117rem;
+  margin-top: 5rem;
   align-content: center !important;
   max-width: 100rem;
+  box-sizing: border-box;
 }
 
 #slide-trabalho {
-  max-width: 500rem;
-  max-block-size: 40rem;
+  margin-right: 400px;
+}
+
+#carouselExampleControls {
+  max-width: 95rem;
 }
 
 #bloco-card1 {
@@ -393,7 +395,6 @@ bg-light {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 10px;
 }
 
 #donations-card,
@@ -456,10 +457,14 @@ bg-light {
 }
 
 #progress-card {
-  width: 1000px;
   margin-bottom: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
+  text-align: center;
+  max-width: 1000px;
+  width: 100%;
+  margin: 2rem auto;
+  min-width: 300px;
 }
 
 .progress {
@@ -482,11 +487,12 @@ bg-light {
 }
 
 /* Gerenciamento doações */
-#cards-container {
+#cards-container2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 30px;
+  gap: 15px;
 }
 
 #card-pendentes,
@@ -499,14 +505,11 @@ bg-light {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
   height: 250px;
-  background-color: #f0f4f8;
+  background-color: #f3f3f3;
   /* Cinza claro para os cards */
-  border: 1px solid #ebebeb;
+  border: 1px solid #e0e0e0;
+  max-width: 300px;
 }
 
 #card-pendentes .card-body,
@@ -527,12 +530,6 @@ bg-light {
   margin-bottom: 20px;
 }
 
-.card-body p {
-  flex-grow: 1;
-  margin-top: 20px;
-
-}
-
 .card-body a {
   align-self: center;
   margin-top: 10px;
@@ -540,7 +537,7 @@ bg-light {
 
 #link-pendentes,
 #link-feitas,
-#link-canceladas {
+#link-recusadas {
   padding: 10px 30px;
   font-size: 1.1rem;
   border-radius: 50px;
@@ -548,33 +545,23 @@ bg-light {
   margin-top: 10px;
 }
 
+
+#link-recusadas,
+#link-feitas,
 #link-pendentes {
-  background-color: #4a90e2;
-  /* Azul claro */
-  border-color: #4a90e2;
-}
-
-#link-feitas {
-  background-color: #50b3a2;
-  /* Verde água */
-  border-color: #50b3a2;
-}
-
-#link-canceladas {
   background-color: #c595d6;
   /* Lilás claro */
-  border-color: #c595d6;
 }
 
 #link-pendentes:hover {
-  background-color: #357ABD;
+  background-color: #a06ab3;
 }
 
 #link-feitas:hover {
-  background-color: #3b8d7e;
+  background-color: #a06ab3;
 }
 
-#link-canceladas:hover {
+#link-recusadas:hover {
   background-color: #a06ab3;
 }
 
@@ -591,6 +578,7 @@ bg-light {
 .card-title {
   font-size: 20px;
   font-weight: bold;
+  color: #4e4e4e;
 }
 
 /* Gerenciamento perfil */
@@ -604,7 +592,7 @@ bg-light {
 
 #profile-title {
   font-size: 2.5rem;
-  color: #4a90e2;
+  color: #4e4e4e;
   margin-bottom: 30px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -677,57 +665,110 @@ bg-light {
 /*Editar perfil*/
 /* Container da página de edição de perfil */
 #edit-profile-container {
-  max-width: 600px;
+  max-width: 900px;
+  /* Largura máxima */
   margin: 30px auto;
   padding: 40px;
   border-radius: 10px;
   background-color: #f9f9f9;
   border: 1px solid #d1d1d1;
-  position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo do input para escrever */
-#profile-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #d1d1d1;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-bottom: 20px;
+/* Container para foto e informações */
+#profile-info-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 /* Estilo da imagem de perfil */
-#profile-photo-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
 #profile-photo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 40vh;
+  height: 40vh;
+  border-radius: 8px;
   border: 2px solid #d1d1d1;
   object-fit: cover;
   margin-right: 20px;
 }
 
-#photo-label {
-  font-size: 1.2rem;
-  color: #6c757d;
-  cursor: pointer;
-  text-decoration: underline;
+/* Estilo do input para escrever */
+.profile-input {
+  width: 70vh;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  color: #4e4e4e;
 }
+
+#desc-profile {
+  height: 10vh;
+}
+
+#textarea-profile {
+  resize: none;
+  color: #4e4e4e;
+  overflow: auto;
+}
+
+#cidade-prof,
+#uf-prof {
+  width: 34vh;
+  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+#logradouro-prof {
+  width: 50vh;
+  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+#num-prof {
+  width: 18vh;
+}
+
+.div-prof {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+
+/* SCROLLBAR DA DESCRIÇÃO DO GERENCIAMENTO-PERFIL */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c9c9c9;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+  border-radius: 10px;
+}
+
 
 /* Estilo dos placeholders */
 ::placeholder {
   color: #4e4e4e;
 }
 
-input:focus::placeholder {
-  color: transparent;
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -750,7 +791,7 @@ input:focus::placeholder {
   text-align: left !important;
 }
 
-#label-edit {
+.label-edit {
   margin-left: 10px;
   margin-bottom: 5px;
 }
@@ -881,6 +922,31 @@ input:focus::placeholder {
   }
 }
 
+#secao {
+  margin-top: 10rem;
+}
+
+#componentes {
+  margin-top: 10px;
+}
+
+#componen {
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+}
+
+#nomeprincipal {
+  color: #FB6B9B;
+  text-align: center;
+  margin: 10px;
+}
+
+#logo {
+  border-radius: 50rem;
+  max-width: 150px;
+  margin-left: 80px;
+}
+
 #capa {
   background-size: cover;
   background-position: center;
@@ -893,4 +959,73 @@ input:focus::placeholder {
   width: 90%;
   max-width: 1000px;
   height: auto;
+}
+
+#texto1 {
+  margin-top: 400px;
+}
+
+#textocor {
+  color: #FF5995;
+}
+
+#texto2 {
+  margin-top: 30px;
+}
+
+#texto3 {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+#textos {
+  padding: 5rem;
+}
+
+#parceiros {
+  max-width: 100%;
+  width: auto;
+  text-align: center;
+}
+
+#textparceiros {
+  font-size: calc(1.5rem + 1vw);
+}
+
+#patrocinadores {
+  text-align: center;
+  margin: 5rem;
+}
+
+#blockparceiros {
+  display: flex;
+  justify-content: center;
+}
+
+#blocoparceiros {
+  background-color: #e2e2e2;
+  border-radius: 20px;
+  margin-top: 2rem;
+  padding: 10px;
+  max-width: fit-content;
+  block-size: auto;
+}
+
+#botao {
+  border-radius: 20px;
+  background-color: white;
+  max-width: none;
+  padding: 2rem;
+  block-size: auto;
+}
+
+#fontparceiros {
+  font-size: 50px;
+}
+
+
+#agradecemos {
+  text-align: center;
+  margin-top: 5rem;
+  margin: 5rem;
 }

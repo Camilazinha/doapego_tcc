@@ -5,12 +5,13 @@ import '../styles/layout.css';
 function Tutorial() {
   return (
     <div>
-      <div className="position-relative text-white" style={{ backgroundImage: 'url(/index1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center' }}>
-        <div className="grad2" id="grad2">
-          <div className="container-fluid" style={{ maxWidth: '100%', width: 'auto', textAlign: 'center' }}>
-            <h1 className="pl-sm-3" style={{ fontSize: 'calc(1.5rem + 1vw)', paddingTop: '15vh' }}>
+      <div className="position-relative text-white">
+        <div className=" position-relative text-white" style={{ backgroundImage: 'url(/index1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center' }}>
+          <div className="container-fluid" style={{ maxWidth: '100%', width: 'auto', textAlign: 'center' }} >
+            <h1 className="ps-5" style={{ fontSize: 'calc(1.5rem + 1vw)' }}>
               Quer nos ajudar com uma doação?
-            </h1></div>
+            </h1>
+          </div>
         </div>
       </div>
       <div className="container-fluid px-2 mx-2">
