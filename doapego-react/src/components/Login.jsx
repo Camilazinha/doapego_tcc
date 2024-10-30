@@ -57,7 +57,7 @@ function Login() {
           />
         </div>
         <div className="remember-forgot mx-2 d-flex align-items-center" style={{justifyContent: 'space-between',fontSize: '.9em'}}>
-          <label><input className="form-check-input" type="checkbox" />Lembre-se de mim </label>
+          <label><input className="form-check-input me-1" type="checkbox" />Lembre-se de mim </label>
 
           <Link to="/esqueci-senha">Esqueci minha senha</Link>
         </div>

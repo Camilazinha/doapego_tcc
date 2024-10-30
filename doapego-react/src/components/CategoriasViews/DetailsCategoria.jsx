@@ -38,7 +38,7 @@ const DetailsCategoria = () => {
                 style={{ objectFit: 'cover', borderRadius: '8px' }} 
               />
             ) : (
-              <p>Sem foto</p>
+              <span className='fake-img-details'></span>
             )}
           </div>
           <div className="d-flex align-self-start fake-input col"> 
