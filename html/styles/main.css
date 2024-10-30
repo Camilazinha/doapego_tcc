@@ -22,10 +22,16 @@ li::marker {
   }
 
 
-#bloco {
-  max-width: 200rem;
-  background-color: #eee !important;
+.fundo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 5rem;
+  min-height: 100vh; 
+  background-color: #eee !important;
+  max-width: 120rem;
+  margin: 0 auto; 
 }
 
 .container .d-grid .btn-a, bg-light {
@@ -315,33 +321,28 @@ li::marker {
   background-image: linear-gradient(180deg,rgba(97, 97, 97, 0.1), rgb(54, 54, 54));
 }
 
-#slide1 {  
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 100rem;
-  box-sizing: border-box;
-}
-
-#slide2 {
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 120rem;
-  box-sizing: border-box;
-}
-
-#slide3 {
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 100rem;
-  box-sizing: border-box;
-}
-
 #slide-trabalho {
-  margin-right: 400px; 
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem; 
+  line-height: 1.2; 
 }
 
 #carouselExampleControls {
-  max-width: 95rem;
+  max-width: 50rem;
+  width: 100%;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  height: auto; 
 }
 
 #bloco-card1 {
@@ -864,7 +865,7 @@ li::marker {
   }
 }
 
-#secao {
+.secao {
   margin-top: 10rem;
 }
 
@@ -897,27 +898,17 @@ li::marker {
 }
 
 #futebolkids {
-  margin-top: 90px;
   width: 90%;
   max-width: 1000px;
-  height: auto;
+  top: 120%; /* Ajusta a posição vertical para aparecer entre os cards e o texto */
 }
 
-#texto1 {
-  margin-top: 400px;
+#texto1, #texto2, #texto3 {
+  margin-top: 30px;
 }
 
 #textocor {
   color: #FF5995;
-}
-
-#texto2 {
-  margin-top: 30px;
-}
-
-#texto3 {
-  margin-top: 30px;
-  margin-bottom: 40px;
 }
 
 #textos {
@@ -970,4 +961,24 @@ li::marker {
   text-align: center;
   margin-top: 5rem;
   margin: 5rem;
+}
+
+.layered-text {
+  text-align: center;
+  position: relative; /* Para posicionar os elementos dentro */
+}
+
+.main-text {
+  color: #ff1493; /* Rosa forte */
+  font-size: 3rem; /* Tamanho maior */
+  margin: 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
+}
+
+.sub-text {
+  color: #fff; /* Branco */
+  font-size: 2rem; /* Um pouco menor */
+  margin: 0.5rem 0;
+  position: relative;
+  top: -10px; /* Eleva um pouco o texto secundário */
 }
