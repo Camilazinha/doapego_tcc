@@ -27,10 +27,10 @@
                         <a class="nav-link" href="gerenciamento.html">Gerenciar doações</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="gerenciamento-adminong.html">Configurações</a>
+                        <a class="nav-link" href="gerenciamento-funcong.html">Relatórios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="perfilong.html">Perfil da ONG</a>
+                        <a class="nav-link active" href="gerenciamento-perfil.html">Perfil da ONG</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
@@ -41,72 +41,100 @@
     </nav>
 </header>
 
-<div id="edit-profile-container" class="container">
-    <h2 id="titulo-edit">Editar Perfil</h2>
+<div id="profile-container" class="container">
+    <h2 id="titulo-principal">Configurações da ONG</h2>
 
-    <!-- Foto e informações -->
-    <div id="profile-info-container">
-        <img id="profile-photo" src="../img/profilepic.png" alt="Foto de perfil">
-        <div id="profile-details">
-            <div>
-            <label class="label-edit"><strong>Nome da ONG:</strong></label>
-            <input type="text" class="profile-input col-sm" value="SorrisoEsperança"></div>
+    <div id="profile-section">
+
+        <!-- Editar Perfil -->
+        <div id="edit-info" class="d-flex align-items-center">
+                <span class="icon" id="icon-gerenc">
+                    <ion-icon name="pencil-outline"></ion-icon>
+                  </span>
+                  <h3 id="section-title">Edite seu Perfil</h3>
+                <span class="arrow-link-container ml-auto">
+                    <a href="edit-profile.html" class="arrow-link">
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+                  </span>
+        </div>
+
+        <!-- Segurança -->
+        <div id="security-settings" class="d-flex align-items-center">
+            <span class="icon" id="icon-gerenc">
+                <ion-icon name="shield-checkmark"></ion-icon>
+              </span>
+            <h3 id="section-title">
+              Segurança e Privacidade</h3>
+              <span class="arrow-link-container ml-auto">
+                <a href="seguranca.html" class="arrow-link">
+                <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+              </span>
+        </div>
+
+
+        <!-- Notificações -->
+        <div id="notifications-settings" class="d-flex align-items-center">
+            <span class="icon" id="icon-gerenc">
+                <ion-icon name="notifications"></ion-icon>
+              </span>
+            <h3 id="section-title">
             
-            <div>
-            <label class="label-edit"><strong>Email:</strong></label>
-            <input type="email" class="profile-input col-sm-4" value="sorrisoesperanca12@email.com"></div>
-
-            <div>
-            <label class="label-edit"><strong>Telefone:</strong></label>
-            <input type="tel" class="profile-input col-sm-4" value="(00) 99999-9999"></div>
-
-            <div>
-            <label class="label-edit"><strong>Endereço:</strong></label>
-
-            <div>
-                <label class="label-edit">CEP:</label>
-                <input type="text" class="profile-input col-sm-8" value="06735-340"></div>
-
-            <div class="div-prof">
-            <div>
-            <label class="label-edit">Cidade:</label>
-            <input type="text" id="cidade-prof" class="profile-input col-sm-4" value="Jardins"></div>
-            <div>
-            <label class="label-edit">Estado:</label>
-            <input type="text" id="uf-prof" class="profile-input" value="São Paulo"></div></div>
-
-            <div class="div-prof">
-            <div>
-                <label class="label-edit">Logradouro:</label>
-            <input type="text" id="logradouro-prof" class="profile-input" value="Rua das Flores"></div>
-            <div>
-                <label class="label-edit">Número:</label>
-            <input type="text" id="num-prof" class="profile-input" value="119"></div></div>
-
-            <label class="label-edit">Complemento:</label>
-            <input type="text" class="profile-input" value="Andar 2"></div>
-
-            <div>
-            <label class="label-edit"><strong>Descrição:</strong></label>
-            <textarea rows="6" id="textarea-profile" class="profile-input">A ONG Sorriso Esperança se dedica a transformar a vida de crianças e famílias em situação de vulnerabilidade, promovendo educação, saúde e alegria através de ações solidárias e doações. Com o apoio de voluntários e parceiros, espalhamos esperança e levamos sorrisos a quem mais precisa, criando um futuro mais acolhedor para todos.</textarea>
+              Notificações</h3>
+                <span class="arrow-link-container ml-auto">
+                    <a href="notif.html" class="arrow-link">
+                    <ion-icon name="chevron-forward"></ion-icon>
+                </a>
+                  </span>
         </div>
 
-            <div>
-            <label class="label-edit"><strong>Redes Sociais:</strong></label>
-            <input type="text" class="profile-input" value="https://twitter.com">
-            <input type="text" class="profile-input" value="https://instagram.com"></div>
-
+        <!-- Equipe -->
+        <div id="team-settings" class="d-flex align-items-center">
+            <span class="icon" id="icon-gerenc">
+                <ion-icon name="people"></ion-icon>
+              </span>
+            <h3 id="section-title">
             
+              Equipe</h3>
+              <span class="arrow-link-container ml-auto">
+                <a href="equipe.html" class="arrow-link">
+                <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+              </span>
+        </div>
 
-            <!-- Botões de salvar e cancelar -->
-            <div id="button-container" class="d-flex justify-content-end mt-3">
-                <button type="reset" id="cancel-button" class="btn btn-secondary">Cancelar</button>
-                <button type="submit" id="save-button" class="btn btn-primary">Salvar</button>
-            </div>
+        <!-- Histórico de Atividades -->
+        <div id="activity-history" class="d-flex align-items-center">
+            <span class="icon" id="icon-gerenc">
+                <ion-icon name="document-text"></ion-icon>
+              </span>
+            <h3 id="section-title">
+              Histórico de Atividades</h3>
+              <span class="arrow-link-container ml-auto">
+                <a href="historico.html" class="arrow-link">
+                <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+              </span>
         </div>
+
+        <!-- Ajuda e FAQ -->
+        <div id="activity-history" class="d-flex align-items-center">
+            <span class="icon" id="icon-gerenc">
+                <ion-icon name="help-circle"></ion-icon>
+                          </span>
+            <h3 id="section-title">
+              Ajuda e FAQ</h3>
+              <span class="arrow-link-container ml-auto">
+                <a href="faq.html" class="arrow-link">
+                <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+              </span>
         </div>
-    
+        
+    </div>
 </div>
+
 
 <section class="mt-4 pt-3 bg-body-tertiary">
     <div class="container text-center text-md-start mt-5">
