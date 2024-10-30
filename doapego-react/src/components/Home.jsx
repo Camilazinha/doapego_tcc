@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/main.css';
 import '../styles/layout.css';
 
@@ -21,7 +21,7 @@ function Home () {
         <div className="cta-text">
           <h2>Transforme vidas!</h2>
           <p>Doe um brinquedo e faça a diferença na vida de uma criança. Cada doação conta!</p>
-          <a href="comodoar.html" className="btn btn-primary">Doe agora</a>
+          <Link to='/tutorial' className="btn btn-primary">Doe agora</Link>
         </div>
       </div>
     </section>
