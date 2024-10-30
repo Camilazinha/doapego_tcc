@@ -1,81 +1,87 @@
-.imagem  {
-    background-image: radial-gradient(#ffe68d, #ff92b6); 
-    background-size: cover; 
-    background-position: center; 
-    height: 350px; 
-    align-content: center;
+.imagem {
+  background-image: radial-gradient(#ffe68d, #ff92b6);
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  align-content: center;
 }
 
 
 /* reset */
-.text-reset, a{
-    text-decoration: none;
+.text-reset,
+a {
+  text-decoration: none;
 }
 
 /* PÁGINA DE COMO DOAR */
 
-h3.text-center
-
-li::marker {
-    color: #F7C33E;
-    height: 10px;
-  }
-
-
-#bloco {
-  max-width: 200rem;
-  background-color: #eee !important;
-  padding: 5rem;
+h3.text-center li::marker {
+  color: #F7C33E;
+  height: 10px;
 }
 
-.container .d-grid .btn-a, bg-light {
-    width: 80rem; 
-    height: 30rem; 
-    background-color: #ffa4c5 !important;
-    border-radius: 30px;
-    min-width: none;
-  }
 
-  #list-circles {
-    counter-reset: li;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-  
-  #list-circles li {
-    list-style: none;
-    margin: 1em 0;
-    padding-left: 2.25em;
-    position: relative;
-  }
-  
-  #list-circles li::after {
-    counter-increment: li;
-    content: counter(li);
-    position: absolute;
-    font-size: 0.9em;
-    left: 0;
-    font-weight: 600;
-    top: -0.25em;
-    width: 2em;
-    height: 2em;
-    background-color: #FCE8B6;
-    color: #4e4e4e;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.fundo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  min-height: 100vh; 
+  background-color: #eee !important;
+  max-width: 120rem;
+  margin: 0 auto; 
+}
 
-  .container .d-grid .btn-b {
-    border-radius: 50rem;
-    width: 20rem;
-    height: 20rem;
-    margin: 50px;
-    margin-top: 10rem;
-  }
-  
+.container .d-grid .btn-a,
+bg-light {
+  width: 80rem;
+  height: 30rem;
+  background-color: #ffa4c5 !important;
+  border-radius: 30px;
+  min-width: none;
+}
+
+#list-circles {
+  counter-reset: li;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#list-circles li {
+  list-style: none;
+  margin: 1em 0;
+  padding-left: 2.25em;
+  position: relative;
+}
+
+#list-circles li::after {
+  counter-increment: li;
+  content: counter(li);
+  position: absolute;
+  font-size: 0.9em;
+  left: 0;
+  font-weight: 600;
+  top: -0.25em;
+  width: 2em;
+  height: 2em;
+  background-color: #FCE8B6;
+  color: #4e4e4e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .d-grid .btn-b {
+  border-radius: 50rem;
+  width: 20rem;
+  height: 20rem;
+  margin: 50px;
+  margin-top: 10rem;
+}
+
 .clearfix .img {
   margin-left: 10rem;
 }
@@ -172,7 +178,7 @@ li::marker {
   width: auto;
   height: 120px;
   border-radius: 10px;
-  
+
 }
 
 .testimonials-section {
@@ -180,17 +186,21 @@ li::marker {
   padding: 50px 0;
   text-align: center;
 }
+
 .testimonials-section h2 {
   margin-bottom: 30px;
 }
+
 .testimonial {
   margin: 20px 0;
 }
 
 /* Estilos da Seção CTA */
 .cta-section {
-  background: rgba(242, 242, 242, 0.8); /* Fundo cinza claro com opacidade para mistura suave com a imagem acima */
-  padding: 30px 0; /* Espaçamento compacto */
+  background: rgba(242, 242, 242, 0.8);
+  /* Fundo cinza claro com opacidade para mistura suave com a imagem acima */
+  padding: 30px 0;
+  /* Espaçamento compacto */
   text-align: center;
   position: relative;
 }
@@ -198,61 +208,79 @@ li::marker {
 .cta-content {
   display: inline-block;
   padding: 20px 30px;
-  background-color: #ffffff; /* Fundo branco para contraste */
-  border-radius: 15px; /* Bordas arredondadas */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidade */
+  background-color: #ffffff;
+  /* Fundo branco para contraste */
+  border-radius: 15px;
+  /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Sombra para profundidade */
   z-index: 1;
 }
 
 .cta-text h2 {
-  font-size: 2rem; /* Tamanho de fonte ajustado */
+  font-size: 2rem;
+  /* Tamanho de fonte ajustado */
   color: #333;
   margin-bottom: 10px;
 }
 
 .cta-text p {
-  font-size: 1rem; /* Tamanho de fonte ajustado */
+  font-size: 1rem;
+  /* Tamanho de fonte ajustado */
   color: #666;
   margin-bottom: 20px;
 }
 
 .cta-text .btn {
-  font-size: 1rem; /* Tamanho de fonte ajustado */
+  font-size: 1rem;
+  /* Tamanho de fonte ajustado */
   padding: 10px 20px;
-  background-color: #ffa4c5; /* Cor do botão */
+  background-color: #ffa4c5;
+  /* Cor do botão */
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cta-text .btn:hover {
-  background-color: #F7C33E; /* Cor do botão ao passar o mouse */
-  transform: scale(1.05); /* Efeito de zoom no botão */
+  background-color: #F7C33E;
+  /* Cor do botão ao passar o mouse */
+  transform: scale(1.05);
+  /* Efeito de zoom no botão */
 }
 
 
 /*Sobre nós*/
 .about-section {
-  padding: 80px 20px; /* Aumenta o padding para mais espaço ao redor */
+  padding: 80px 20px;
+  /* Aumenta o padding para mais espaço ao redor */
 }
 
 .about-text {
-  padding: 20px; /* Padding interno ao redor do texto */
-  max-width: 800px; /* Limita a largura máxima do texto para melhor leitura */
-  margin: 0 auto; /* Centraliza o bloco de texto */
+  padding: 20px;
+  /* Padding interno ao redor do texto */
+  max-width: 800px;
+  /* Limita a largura máxima do texto para melhor leitura */
+  margin: 0 auto;
+  /* Centraliza o bloco de texto */
 }
 
 .about-text h2 {
-  font-size: 2.8rem; /* Tamanho da fonte ajustado para mais destaque */
+  font-size: 2.8rem;
+  /* Tamanho da fonte ajustado para mais destaque */
   color: #333;
-  margin-bottom: 30px; /* Aumenta o espaço abaixo do título */
+  margin-bottom: 30px;
+  /* Aumenta o espaço abaixo do título */
 }
 
 .about-text p {
-  font-size: 1.2rem; /* Tamanho da fonte ajustado para melhor legibilidade */
+  font-size: 1.2rem;
+  /* Tamanho da fonte ajustado para melhor legibilidade */
   color: #555;
-  line-height: 1.8; /* Aumenta o espaçamento entre linhas */
-  margin-bottom: 25px; /* Aumenta o espaço abaixo de cada parágrafo */
+  line-height: 1.8;
+  /* Aumenta o espaçamento entre linhas */
+  margin-bottom: 25px;
+  /* Aumenta o espaço abaixo de cada parágrafo */
 }
 
 /*Depoimentos*/
@@ -301,7 +329,7 @@ li::marker {
   background-image: linear-gradient(to left, rgba(97, 97, 97, 0.1), rgb(54, 54, 54));
 }
 
-  .block #bloco-block {
+.block #bloco-block {
   width: 500px;
   height: 350px;
   color: black;
@@ -315,37 +343,32 @@ li::marker {
   background-image: linear-gradient(180deg,rgba(97, 97, 97, 0.1), rgb(54, 54, 54));
 }
 
-#slide1 {  
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 100rem;
-  box-sizing: border-box;
-}
-
-#slide2 {
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 120rem;
-  box-sizing: border-box;
-}
-
-#slide3 {
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 100rem;
-  box-sizing: border-box;
-}
-
 #slide-trabalho {
-  margin-right: 400px; 
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem; 
+  line-height: 1.2; 
 }
 
 #carouselExampleControls {
-  max-width: 95rem;
+  max-width: 50rem;
+  width: 100%;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  height: auto; 
 }
 
 #bloco-card1 {
-  background-color: #ff92b6 !important; 
+  background-color: #ff92b6 !important;
   border: #d1547e;
   text-align: center;
   padding: 10px;
@@ -357,7 +380,7 @@ li::marker {
 }
 
 #bloco-card2 {
-  background-color: #ff92b6 !important; 
+  background-color: #ff92b6 !important;
   border: #d1547e;
   text-align: center;
   padding: 10px;
@@ -375,20 +398,22 @@ li::marker {
   justify-content: space-between;
 }
 
-#donations-card, 
-#profile-card, 
-#reports-card, 
+#donations-card,
+#profile-card,
+#reports-card,
 #support-card {
   border: none;
   transition: transform 0.3s ease-in-out;
-  flex: 1 1 calc(25% - 20px); /* Faz com que cada card ocupe 25% da largura menos o gap */
-  max-width: 300px; /* Define o tamanho máximo dos cards */
+  flex: 1 1 calc(25% - 20px);
+  /* Faz com que cada card ocupe 25% da largura menos o gap */
+  max-width: 300px;
+  /* Define o tamanho máximo dos cards */
   box-sizing: border-box;
 }
 
-#donations-card:hover, 
-#profile-card:hover, 
-#reports-card:hover, 
+#donations-card:hover,
+#profile-card:hover,
+#reports-card:hover,
 #support-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -396,12 +421,14 @@ li::marker {
 
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
-  #donations-card, 
-  #profile-card, 
-  #reports-card, 
+
+  #donations-card,
+  #profile-card,
+  #reports-card,
   #support-card {
-      flex: 1 1 100%; /* Cards ocupam 100% da largura em telas pequenas */
-      max-width: none;
+    flex: 1 1 100%;
+    /* Cards ocupam 100% da largura em telas pequenas */
+    max-width: none;
   }
 }
 
@@ -454,8 +481,8 @@ li::marker {
 
 
 #blockss {
-  width: 70rem; 
-  height: 25rem; 
+  width: 70rem;
+  height: 25rem;
   background-color: #fcfcfc !important;
   border-radius: 30px;
 }
@@ -469,7 +496,9 @@ li::marker {
   gap: 15px;
 }
 
-#card-pendentes, #card-feitas, #card-canceladas {
+#card-pendentes,
+#card-feitas,
+#card-canceladas {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
@@ -478,12 +507,15 @@ li::marker {
   justify-content: center;
   align-items: center;
   height: 250px;
-  background-color: #f3f3f3; /* Cinza claro para os cards */
+  background-color: #f3f3f3;
+  /* Cinza claro para os cards */
   border: 1px solid #e0e0e0;
   max-width: 300px;
 }
 
-#card-pendentes .card-body, #card-feitas .card-body, #card-canceladas .card-body {
+#card-pendentes .card-body,
+#card-feitas .card-body,
+#card-canceladas .card-body {
   text-align: center;
 }
 
@@ -502,7 +534,7 @@ li::marker {
 .card-body p {
   flex-grow: 1;
   margin-top: 20px;
-  
+
 }
 
 .card-body a {
@@ -510,7 +542,9 @@ li::marker {
   margin-top: 10px;
 }
 
-#link-pendentes, #link-feitas, #link-recusadas {
+#link-pendentes,
+#link-feitas,
+#link-recusadas {
   padding: 10px 30px;
   font-size: 1.1rem;
   border-radius: 50px;
@@ -519,8 +553,11 @@ li::marker {
 }
 
 
-#link-recusadas, #link-feitas, #link-pendentes {
-  background-color: #c595d6; /* Lilás claro */
+#link-recusadas,
+#link-feitas,
+#link-pendentes {
+  background-color: #c595d6;
+  /* Lilás claro */
 }
 
 #link-pendentes:hover {
@@ -555,7 +592,7 @@ li::marker {
 #profile-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px; 
+  padding: 40px;
   border-radius: 10px;
   position: relative;
 }
@@ -574,7 +611,7 @@ li::marker {
   gap: 20px;
 }
 
-#profile-section > div {
+#profile-section>div {
   background-color: #ffffff;
   border: 1px solid #d1d1d1;
   padding: 20px;
@@ -587,7 +624,7 @@ li::marker {
   font-size: 1.5rem;
   color: #6c757d;
   margin-bottom: 0 !important;
-    text-align: right !important;
+  text-align: right !important;
 }
 
 
@@ -600,29 +637,31 @@ li::marker {
 }
 
 .arrow-link-container {
-  margin-left: auto; /* Empurra a seta para a direita */
+  margin-left: auto;
+  /* Empurra a seta para a direita */
 }
 
 .arrow-link:hover {
   color: #3f3f3f;
 }
 
-#profile-section > div i {
+#profile-section>div i {
   margin-right: 10px;
 }
 
 /* Responsividade */
 @media (min-width: 768px) {
-  #profile-section > div {
+  #profile-section>div {
     flex-direction: row;
     align-items: center;
   }
 
   #section-title {
     margin-left: 20px;
+  }
 }
-}
-#icon-gerenc{
+
+#icon-gerenc {
   display: flex;
   align-items: center;
   margin-left: 20px;
@@ -633,7 +672,8 @@ li::marker {
 /*Editar perfil*/
 /* Container da página de edição de perfil */
 #edit-profile-container {
-  max-width: 900px; /* Largura máxima */
+  max-width: 900px;
+  /* Largura máxima */
   margin: 30px auto;
   padding: 40px;
   border-radius: 10px;
@@ -666,8 +706,8 @@ li::marker {
   border-radius: 8px;
   font-size: 1rem;
   margin-bottom: 20px;
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   color: #4e4e4e;
 }
 
@@ -681,16 +721,17 @@ li::marker {
   overflow: auto;
 }
 
-#cidade-prof, #uf-prof{
+#cidade-prof,
+#uf-prof {
   width: 34vh;
-  flex-direction:column;
+  flex-direction: column;
   display: grid;
   grid-template-columns: auto 1fr;
 }
 
 #logradouro-prof {
   width: 50vh;
-  flex-direction:column;
+  flex-direction: column;
   display: grid;
   grid-template-columns: auto 1fr;
 }
@@ -701,8 +742,8 @@ li::marker {
 
 .div-prof {
   display: flex;
-    gap: 10px;
-    align-items: center;
+  gap: 10px;
+  align-items: center;
 }
 
 /* Layout padrão para a foto e as informações lado a lado */
@@ -745,18 +786,18 @@ li::marker {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #c9c9c9; 
+  background: #c9c9c9;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1; 
+  background: #a1a1a1;
   border-radius: 10px;
 }
 
@@ -767,7 +808,16 @@ li::marker {
 }
 
 
-#cancel-button, #details-button {
+/* Responsividade */
+@media (max-width: 768px) {
+  #profile-photo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+#cancel-button,
+#details-button {
   margin-right: 10px;
 }
 
@@ -776,7 +826,7 @@ li::marker {
   font-size: 2rem;
   color: #4e4e4e;
   margin-bottom: 30px !important;
-    text-align: left !important;
+  text-align: left !important;
 }
 
 .label-edit {
@@ -814,7 +864,8 @@ li::marker {
   color: #343a40;
 }
 
-#donation-category, #donation-description {
+#donation-category,
+#donation-description {
   font-size: 1rem;
   color: #6c757d;
 }
@@ -825,49 +876,71 @@ li::marker {
 
 /* Estilos gerais do container */
 #filter-container {
-  padding: 20px; /* Adiciona mais padding ao container */
-  background-color: #fff1e6; /* Fundo amarelinho claro */
-  border-radius: 10px; /* Bordas arredondadas */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leve sombra para destacar */
+  padding: 20px;
+  /* Adiciona mais padding ao container */
+  background-color: #fff1e6;
+  /* Fundo amarelinho claro */
+  border-radius: 10px;
+  /* Bordas arredondadas */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Leve sombra para destacar */
   width: 50%;
-  margin: 0 auto; /* Centraliza horizontalmente */
+  margin: 0 auto;
+  /* Centraliza horizontalmente */
   display: flex;
 }
 
 /* Estilos gerais dos botões */
 #filter-container .btn {
-  background-color: #f8c8dc; /* Cor de fundo rosinha */
-  color: #fff; /* Texto branco nos botões */
-  border: 2px solid transparent; /* Remove borda padrão */
-  border-radius: 5px; /* Bordas arredondadas nos botões */
-  padding: 10px 20px; /* Tamanho dos botões */
-  font-size: 16px; /* Tamanho da fonte */
-  transition: all 0.3s ease; /* Animação suave nas mudanças */
-  width: auto; /* Deixa o botão se ajustar automaticamente */
+  background-color: #f8c8dc;
+  /* Cor de fundo rosinha */
+  color: #fff;
+  /* Texto branco nos botões */
+  border: 2px solid transparent;
+  /* Remove borda padrão */
+  border-radius: 5px;
+  /* Bordas arredondadas nos botões */
+  padding: 10px 20px;
+  /* Tamanho dos botões */
+  font-size: 16px;
+  /* Tamanho da fonte */
+  transition: all 0.3s ease;
+  /* Animação suave nas mudanças */
+  width: auto;
+  /* Deixa o botão se ajustar automaticamente */
 }
 
 /* Estilo dos botões ao passar o mouse */
 #filter-container .btn:hover {
-  background-color: #FF6781; /* Cor rosinha mais escura ao passar o mouse */
-  border-color: #FF6781; /* Bordas ao passar o mouse */
-  cursor: pointer; /* Mostra que o botão é clicável */
+  background-color: #FF6781;
+  /* Cor rosinha mais escura ao passar o mouse */
+  border-color: #FF6781;
+  /* Bordas ao passar o mouse */
+  cursor: pointer;
+  /* Mostra que o botão é clicável */
 }
 
 /* Botão ativo */
 #filter-container .btn.active {
-  background-color: #d35472; /* Cor mais escura do botão ativo */
-  color: #fff !important; /* Texto branco mesmo quando ativo */
-  border-color: #d35472; /* Borda correspondente ao fundo ativo */
+  background-color: #d35472;
+  /* Cor mais escura do botão ativo */
+  color: #fff !important;
+  /* Texto branco mesmo quando ativo */
+  border-color: #d35472;
+  /* Borda correspondente ao fundo ativo */
 }
 
 #button-container .btn-primary:active {
-  background-color: #d35472; /* Cor mais escura do botão ativo */
-  color: #fff !important; /* Texto branco mesmo quando ativo */
-  border-color: #d35472; /* Borda correspondente ao fundo ativo */
+  background-color: #d35472;
+  /* Cor mais escura do botão ativo */
+  color: #fff !important;
+  /* Texto branco mesmo quando ativo */
+  border-color: #d35472;
+  /* Borda correspondente ao fundo ativo */
 }
 
 .titulo-principal {
-   margin-top: 30px !important;
+  margin-top: 30px !important;
 }
 
 /* Responsividade */
@@ -883,11 +956,12 @@ li::marker {
   }
 
   #filter-container {
-    width: 80%; /* Aumenta a largura para 80% em telas menores */
+    width: 80%;
+    /* Aumenta a largura para 80% em telas menores */
   }
 }
 
-#secao {
+.secao {
   margin-top: 10rem;
 }
 
@@ -920,27 +994,17 @@ li::marker {
 }
 
 #futebolkids {
-  margin-top: 90px;
   width: 90%;
   max-width: 1000px;
-  height: auto;
+  top: 120%; /* Ajusta a posição vertical para aparecer entre os cards e o texto */
 }
 
-#texto1 {
-  margin-top: 400px;
+#texto1, #texto2, #texto3 {
+  margin-top: 30px;
 }
 
 #textocor {
   color: #FF5995;
-}
-
-#texto2 {
-  margin-top: 30px;
-}
-
-#texto3 {
-  margin-top: 30px;
-  margin-bottom: 40px;
 }
 
 #textos {
@@ -993,4 +1057,24 @@ li::marker {
   text-align: center;
   margin-top: 5rem;
   margin: 5rem;
+}
+
+.layered-text {
+  text-align: center;
+  position: relative; /* Para posicionar os elementos dentro */
+}
+
+.main-text {
+  color: #ff1493; /* Rosa forte */
+  font-size: 3rem; /* Tamanho maior */
+  margin: 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
+}
+
+.sub-text {
+  color: #fff; /* Branco */
+  font-size: 2rem; /* Um pouco menor */
+  margin: 0.5rem 0;
+  position: relative;
+  top: -10px; /* Eleva um pouco o texto secundário */
 }

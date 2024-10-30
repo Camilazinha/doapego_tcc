@@ -2,39 +2,42 @@ import React from 'react';
 import '../styles/main.css';
 import '../styles/layout.css';
 import '../styles/forms.css';
+import { Link } from 'react-router-dom';
 
-
-function Gerenciar () {
+function Gerenciar() {
   return (
 
-<div className="container mt-5">
-  <h2 id="titulo-principal">Gerenciamento de Doações</h2>
-  <div id="cards-container" className="mt-4 row">
-    <div id="card-pendentes" className="card col-md-4 mb-4">
-      <div className="card-body text-center">
-        <h5 className="card-title">Doações Pendentes</h5>
-        <p className="card-text">Veja aqui solicitações de doações que ainda estão aguardando <strong>aprovação</strong>.</p>
-        <a id="link-canceladas" href="#pendentes" className="btn btn-primary">Ver pendentes</a>
-      </div>
-    </div>
-    <div id="card-feitas" className="card col-md-4 mb-4">
-      <div className="card-body text-center">
-        <h5 className="card-title">Doações Aceitas</h5>
-        <p className="card-text">Veja aqui todas as doações <strong>aceitas</strong> e já processadas.</p>
-        <a id="link-canceladas" href="#feitas" className="btn btn-success">Ver aceitas</a>
-      </div>
-    </div>
-    <div id="card-canceladas" className="card col-md-4 mb-4">
-      <div className="card-body text-center">
-        <h5 className="card-title">Doações Recusadas</h5>
-        <p className="card-text">Veja aqui as doações que foram <strong>recusadas</strong>.</p>
-        <a id="link-canceladas" href="#canceladas" className="btn btn-danger">Ver recusadas</a>
-      </div>
-    </div>
-  </div>
-</div>
+    <div className="container px-4 py-5 px-md-5 borda mt-5">
+      <h2 id="titulo-principal">Doações recebidas</h2>
 
-);
+      <div id="cards-container2" className="mt-4 row">
+        <div id="card-pendentes" className="card col-md-4 mb-4">
+          <div className="card-body text-center">
+            <h5 className="card-title">Doações Pendentes</h5>
+            <p className="card-text">Veja aqui solicitações de doações que <strong>aguardam aprovação</strong>.</p>
+            <Link to="/" className="btn btn-lg btn-navbar-custom w-75">Ver pendentes</Link>
+          </div>
+        </div>
+        <div id="card-feitas" className="card col-md-4 mb-4">
+          <div className="card-body text-center">
+            <h5 className="card-title">Doações Aceitas</h5>
+            <p className="card-text">Veja aqui o histórico de doações <strong>aceitas e já processadas</strong>.</p>
+            <Link to="/" className="btn btn-lg w-75 btn-navbar-custom">Ver histórico</Link>
+          </div>
+        </div>
+        <div id="card-canceladas" className="card col-md-4 mb-4">
+          <div className="card-body text-center">
+            <h5 className="card-title">Doações Recusadas</h5>
+            <p className="card-text">Veja aqui o histórico de doações que foram <strong>recusadas</strong>.</p>
+
+            <Link to='/' className="btn btn-lg w-75 btn-navbar-custom">Ver histórico</Link>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  );
 };
 
 export default Gerenciar;

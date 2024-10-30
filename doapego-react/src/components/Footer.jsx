@@ -5,7 +5,7 @@ import '../styles/layout.css';
 
 function Footer() {
   return (
-    <footer className="bg-body-tertiary pt-3">
+    <footer className="bg-body-tertiary pt-3 mt-5">
       <div className="container text-center text-md-start mt-5">
         <div className="row mt-3">
           <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
@@ -34,9 +34,9 @@ function Footer() {
         </div>
       </div>
 
-      <div className="text-center p-4" style={{backgroundColor: "#fcfcfc"}}>
+      <div className="text-center p-4" style={{ backgroundColor: "#fcfcfc" }}>
         © 2024 Copyright:
-        <Link className="fw-bold" to="/" style={{color: "#696969"}}>doapegoitb.com</Link>
+        <Link className="fw-bold" to="/" style={{ color: "#696969" }}>doapegoitb.com</Link>
       </div>
     </footer>
   );
