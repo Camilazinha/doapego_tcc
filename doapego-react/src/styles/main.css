@@ -530,12 +530,6 @@ bg-light {
   margin-bottom: 20px;
 }
 
-.card-body p {
-  flex-grow: 1;
-  margin-top: 20px;
-
-}
-
 .card-body a {
   align-self: center;
   margin-top: 10px;
