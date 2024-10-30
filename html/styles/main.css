@@ -1110,3 +1110,28 @@ h1 {
   position: relative;
   top: -10px; /* Eleva um pouco o texto secundário */
 }
+
+.title h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin-top: 60px;
+}
+.text p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  background-color: #fdfdfd;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.card:hover {
+  transform: scale(1.03);
+  background-color: #fff9e6;
+}
