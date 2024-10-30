@@ -705,6 +705,37 @@ li::marker {
     align-items: center;
 }
 
+/* Layout padrão para a foto e as informações lado a lado */
+#profile-info-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  #profile-info-container {
+    grid-template-columns: 1fr;
+  }
+
+  #profile-photo {
+    width: 40vh; /* Ajusta para ocupar a largura completa no layout mobile */
+    height: auto; /* Mantém a proporção */
+    margin: 0 auto 20px; /* Centraliza a foto e adiciona margem inferior */
+  }
+  
+  #edit-profile-container {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Ajusta a largura dos inputs para não ultrapassar os limites da div */
+  .profile-input {
+    width: 100%;
+  }
+}
+
 
 /* SCROLLBAR DA DESCRIÇÃO DO GERENCIAMENTO-PERFIL */
 /* width */
@@ -735,14 +766,6 @@ li::marker {
   color: #4e4e4e;
 }
 
-
-/* Responsividade */
-@media (max-width: 768px) {
-  #profile-photo {
-    width: 60px;
-    height: 60px;
-  }
-}
 
 #cancel-button, #details-button {
   margin-right: 10px;
