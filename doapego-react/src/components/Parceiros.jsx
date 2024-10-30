@@ -7,23 +7,14 @@ function Parceiros() {
     <div>
       <main>
         <div className="position-relative text-white">
-          <div className="position-relative text-white bg-black" id="capa" style={{ backgroundImage: `url("/capatoys.jpg")`, backgroundSize: 'cover', backgroundPosition: 'center', height: '350px', alignContent: 'center' }}>
+          <div className="position-relative text-white" id="capa" style={{ backgroundImage: 'url(/capatoys.png)', backgroundSize: 'cover', backgroundPosition: 'center', height: '350px', alignContent: 'center' }}>
             {/* "https://picsum.photos/1200/500")', */}
 
-            <div
-              className="container-fluid"
-              style={{ maxWidth: '100%', width: 'auto', textAlign: 'center' }}
-            >
-              <h1 className="ps-5" style={{ fontSize: 'calc(1.5rem + 1vw)' }}>
-                Parceiros
-              </h1>
+            <div className="container-fluid" style={{ maxWidth: '100%', width: 'auto', textAlign: 'center' }}>
+              <h1 className="ps-5" style={{ fontSize: 'calc(1.5rem + 1vw)' }}> Parceiros </h1>
             </div>
           </div>
-          <div className="container-fluid" id="parceiros">
-            <h1 className="ps-5" id="textparceiros">
-              Parceiros
-            </h1>
-          </div>
+
         </div>
       </main >
       <div className="clearfix">
