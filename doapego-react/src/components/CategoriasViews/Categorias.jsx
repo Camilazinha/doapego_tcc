@@ -86,10 +86,10 @@ const Categorias = () => {
                     <td className="align-middle text-center">
                     <div className="d-flex justify-content-center">
                     <Link to={`/categorias/detalhes/${categoria.id}`}>
-                        <button className="btn btn-info btn-sm mx-1">Ver</button>
+                        <button className="btn btn-details-views btn-sm mx-1">Ver</button>
                     </Link>
                     <Link to={`/categorias/editar/${categoria.id}`}>
-                        <button className="btn btn-warning btn-sm mx-1">Editar</button>
+                        <button className="btn btn-edit-views btn-sm mx-1">Editar</button>
                     </Link>
                         <button className="btn btn-danger btn-sm mx-1" onClick={() => { setCategoriaId(categoria.id); setShowModal(true); }}>Excluir </button>
                     </div>
