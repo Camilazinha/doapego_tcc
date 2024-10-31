@@ -66,8 +66,8 @@ bg-light {
   top: -0.25em;
   width: 2em;
   height: 2em;
-  background-color: #FCE8B6;
-  color: #4e4e4e;
+  background-color: #fca5c2;
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -91,7 +91,6 @@ bg-light {
   display: inline-flex;
   padding: 20px;
   margin-right: 20px !important;
-  margin-top: 30px;
   margin-bottom: 30px;
 
 }
@@ -531,7 +530,7 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 250px;
-  background-color: #f3f3f3;
+  background-color: #fdfdfd;
   /* Cinza claro para os cards */
   border: 1px solid #e0e0e0;
   max-width: 300px;
@@ -566,36 +565,6 @@ h1 {
   margin-top: 10px;
 }
 
-#link-pendentes,
-#link-feitas,
-#link-recusadas {
-  padding: 10px 30px;
-  font-size: 1.1rem;
-  border-radius: 50px;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-
-#link-recusadas,
-#link-feitas,
-#link-pendentes {
-  background-color: #c595d6;
-  /* Lilás claro */
-}
-
-#link-pendentes:hover {
-  background-color: #a06ab3;
-}
-
-#link-feitas:hover {
-  background-color: #a06ab3;
-}
-
-#link-recusadas:hover {
-  background-color: #a06ab3;
-}
-
 #titulo-principal {
   font-size: 2.5rem;
   font-weight: bold;
@@ -613,13 +582,13 @@ h1 {
 }
 
 /* Gerenciamento perfil */
-#profile-container {
+/* #profile-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px;
   border-radius: 10px;
   position: relative;
-}
+} */
 
 #profile-title {
   font-size: 2.5rem;
@@ -1097,9 +1066,8 @@ h1 {
 }
 
 .main-text {
-  color: #ff1493; /* Rosa forte */
+  color: #fff; /* Rosa forte */
   font-size: 3rem; /* Tamanho maior */
-  margin: 0.5rem 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
 }
 
@@ -1108,34 +1076,21 @@ h1 {
   font-size: 2rem; /* Um pouco menor */
   margin: 0.5rem 0;
   position: relative;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
   top: -10px; /* Eleva um pouco o texto secundário */
 }
 
-.title h1 {
+.title {
   font-size: 2.5rem;
   font-weight: bold;
   color: #444;
-  margin-bottom: 2rem;
   text-align: center;
-  margin-top: 60px;
 }
 .text p {
   color: #666;
   line-height: 1.6;
   font-size: 1.1rem;
 }
-
-.card-privacy {
-  border: none;
-  border-radius: 10px;
-  background-color: #fdfdfd;
-  transition: transform 0.3s, background-color 0.3s;
-}
-.card-privacy:hover {
-  transform: scale(1.03);
-  background-color: #fff9e6;
-}
-
 
 
 /*EDIT PROFILE ADMIN DA ONG*/
