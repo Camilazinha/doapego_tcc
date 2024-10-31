@@ -14,6 +14,8 @@ const EditEndereco = () => {
   const [numero, setNumero] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [complemento, setComplemento] = useState('');
+  const [latitude, setLatitude] = useState(''); // Novo campo
+  const [longitude, setLongitude] = useState(''); // Novo campo
   const [ativo, setAtivo] = useState(true);
   const [principal, setPrincipal] = useState(false);
   const navigate = useNavigate();
@@ -33,6 +35,8 @@ const EditEndereco = () => {
         setComplemento(endereco.complemento || '');
         setPrincipal(endereco.principal);
         setAtivo(endereco.ativo);
+        setLatitude(endereco.latitude || ''); // Define latitude
+        setLongitude(endereco.longitude || ''); // Define longitude
       } catch (err) {
         console.error('Erro ao buscar endereço:', err);
       }
@@ -52,6 +56,8 @@ const EditEndereco = () => {
         numero,
         logradouro,
         complemento,
+        latitude, // Inclui o campo latitude
+        longitude, // Inclui o campo longitude
         principal,
         ativo // Inclui o campo ativo
       });
@@ -107,6 +113,16 @@ const EditEndereco = () => {
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Complemento:</label>
           <input type="text" className="form-control" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+        </div>
+
+        <div className="form-group col-10 col-md-11 mb-2">
+          <label>Latitude:</label>
+          <input type="text" className="form-control" value={latitude} onChange={(e) => setLatitude(e.target.value)} required />
+        </div>
+
+        <div className="form-group col-10 col-md-11 mb-2">
+          <label>Longitude:</label>
+          <input type="text" className="form-control" value={longitude} onChange={(e) => setLongitude(e.target.value)} required />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
