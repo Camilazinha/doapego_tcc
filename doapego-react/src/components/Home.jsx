@@ -26,7 +26,7 @@ function Home () {
       </div>
     </section>
     {/* Sobre Nós */}
-    <section id="about" className="about-section">
+    <section id="about" className="about-section mt-4">
       <div className="container">
         <div className="row">
           <div className="col-lg-12 about-text">
@@ -38,44 +38,10 @@ function Home () {
         </div>
       </div>
     </section>
-    <h1 className="my-5 text-center">Conheça algumas de nossas ONG's parceiras!</h1>
-    {/*cards*/}
-    <div className="container" id="deck-container">
-      <div className="cards">
-        <div className="card card-one">
-          <a href="ong.html" style={{color: '#4e4e4e', textDecoration: 'none'}}>
-            <img src="cardong.jpg" id="img-deck" alt="imagem ong"/>
-            <h4 className="card-title" style={{color: '#464646', textAlign: 'center', marginTop: 10}}>Luz da Esperança</h4>
-            <p className="description" style={{textAlign: 'left'}}>Na nossa ONG arrecadamos brinquedos para crianças da Zona Leste de São Paulo que enfrentam dificuldades. Cada brinquedo doado traz um pouco de alegria e esperança para essas crianças. Junte-se a nós e ilumine o dia de alguém!</p>
-          </a>
-        </div>
-        <div className="card card-two">
-          <a href="ong.html" style={{color: '#4e4e4e', textDecoration: 'none'}}>
-            <img src="cardong2.jpg" id="img-deck" alt="imagem ong" />
-            <h4 className="card-title" style={{color: '#464646', textAlign: 'center', marginTop: 10}}>Coração Solidário</h4>
-            <p className="description" style={{textAlign: 'left'}}>Nós nos dedicamos a trazer felicidade para crianças PcD. Estamos buscando brinquedos adaptados para proporcionar momentos de diversão e inclusão. Sua doação pode fazer uma grande diferença para essas crianças.</p>
-          </a>
-        </div>
-        <div className="card card-three">
-          <a href="ong.html" style={{color: '#4e4e4e', textDecoration: 'none'}}>
-            <img src="cardong3.jpg" id="img-deck" alt="imagem ong" />
-            <h4 className="card-title" style={{color: '#464646', textAlign: 'center', marginTop: 10}}>Alegria na Ação</h4>
-            <p className="description" style={{textAlign: 'left'}}>Nossa ONG está arrecadando brinquedos para crianças em situação de risco nas comunidades periféricas. Cada doação contribui para momentos de diversão e aprendizado. Faça parte desta missão e ajude a transformar vidas!</p>
-          </a>
-        </div>
-        <div className="card card-four">
-          <a href="ong.html" style={{color: '#4e4e4e', textDecoration: 'none'}}>
-            <img src="cardong4.jpg" id="img-deck" alt="imagem ong" />
-            <h4 className="card-title" style={{color: '#464646', textAlign: 'center', marginTop: 10}}>Jovens Sorrisos</h4>
-            <p className="description" style={{textAlign: 'left'}}>Na ONG Jovens Sorrisos, arrecadamos brinquedos para crianças em comunidades indígenas do Brasil. Cada brinquedo doado ajuda a trazer momentos de diversão e conexão cultural para esses pequenos, contribua!</p>
-          </a>
-        </div>
-      </div>
-    </div>
   </main>
   {/* Seção de Depoimentos */}
   {/* Sobre Nós */}
-  <section id="testimonials" className="testimonials-section">
+  <section id="testimonials" className="testimonials-section mt-3">
     <div className="container">
       <h2>O que falam sobre nós</h2>
       <div className="testimonial-cards">

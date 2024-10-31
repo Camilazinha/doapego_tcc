@@ -186,19 +186,13 @@ bg-light {
   border-radius: 10px;
 
 }
-
 .testimonials-section {
   background-color: #e9ecef;
-  padding: 50px 0;
   text-align: center;
 }
 
 .testimonials-section h2 {
   margin-bottom: 30px;
-}
-
-.testimonial {
-  margin: 20px 0;
 }
 
 /* Estilos da Seção CTA */
@@ -253,13 +247,6 @@ bg-light {
   /* Cor do botão ao passar o mouse */
   transform: scale(1.05);
   /* Efeito de zoom no botão */
-}
-
-
-/*Sobre nós*/
-.about-section {
-  padding: 80px 20px;
-  /* Aumenta o padding para mais espaço ao redor */
 }
 
 .about-text {
@@ -473,7 +460,7 @@ h1 {
   text-decoration: underline;
 }
 
-.btn-primary {
+ .btn-primary {
   background-color: #FF6781;
   border: none;
   transition: background-color 0.3s ease;
@@ -485,7 +472,7 @@ h1 {
 
 .btn-primary:active {
   background-color: #d35472;
-}
+} 
 
 #progress-card {
   margin-bottom: 20px;
