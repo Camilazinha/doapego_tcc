@@ -5,7 +5,7 @@ import '../styles/layout.css';
 function Ajuda() {
   return (
     <section id="faq-section">
-      <h2 className="faq-titulo-principal">FAQ & Ajuda</h2>
+      <h2 className="faq-titulo-principal">Ajuda</h2>
 
       <div className="faq-faq">
         <div className="faq-questao">

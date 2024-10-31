@@ -21,7 +21,7 @@ function Footer() {
             <p><Link to="/politica-de-privacidade" className="text-reset">Política de privacidade</Link></p>
             <p><Link to="/termos-de-uso" className="text-reset">Termos de uso</Link></p>
             <p><Link to="/tutorial" className="text-reset">Como doar</Link></p>
-            <p><Link to="/" className="text-reset">Ajuda</Link></p>
+            <p><Link to="/ajuda" className="text-reset">Ajuda</Link></p>
           </div>
 
           <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
