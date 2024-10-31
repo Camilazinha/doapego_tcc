@@ -1368,10 +1368,33 @@ svg {
   padding: 0.6rem 1.2rem;
 }
 
-/*@media (max-width: 768px) {
+@media (max-width: 768px) {
   .doacao-card {
     border: none;
     background-color: transparent;
     box-shadow: none;
   }
-}*/
+}
+
+/* DOACAO RECUSADA/ACEITA */
+
+.textinfo-doacao {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.textinfo-doacao strong{
+  color: #ff0000;
+}
+
+.voltar-btn {
+  color: #fff;
+  background-color: #7a7a7a;
+  border-color: transparent;
+}
+
+.voltar-btn:hover {
+  background-color: #9b9a9a;
+  color: #fff;
+}
