@@ -18,6 +18,10 @@ import Ajuda from './components/Ajuda';
 import Faq from './components/Faq';
 import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
+import Pendentes from './components/Pendentes';
+import Aceitas from './components/Aceitas';
+import Recusadas from './components/Recusadas';
+
 
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
@@ -84,8 +88,14 @@ const App = () => {
         <Route path="/termos-de-uso" element={<Termos />} />
         <Route path="/ajuda" element={<Ajuda />}/>
 
+
+
         <Route path="/faq" element={<Faq />}/>
         <Route path="/gerenciar" element={<Gerenciar />} />
+        <Route path="/doacoes-pendentes" element={<Pendentes />} />
+        <Route path="/doacoes-recusadas" element={<Recusadas />} />
+        <Route path="/doacoes-aceitas" element={<Aceitas />} />
+
         <Route path="/configuracoes" element={<Configuracoes />} />
 
         <Route path="/categorias" element={<Categorias />} />
