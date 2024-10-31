@@ -1384,8 +1384,12 @@ svg {
   margin-bottom: 30px;
 }
 
-.textinfo-doacao strong{
+.recuso-strong{
   color: #ff0000;
+}
+
+.aceito-strong{
+  color: #00ff00;
 }
 
 .voltar-btn {
