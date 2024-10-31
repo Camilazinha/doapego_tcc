@@ -1067,9 +1067,8 @@ h1 {
 }
 
 .main-text {
-  color: #ff1493; /* Rosa forte */
+  color: #ffffff; /* Rosa forte */
   font-size: 3rem; /* Tamanho maior */
-  margin: 0.5rem 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
 }
 
@@ -1078,6 +1077,7 @@ h1 {
   font-size: 2rem; /* Um pouco menor */
   margin: 0.5rem 0;
   position: relative;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
   top: -10px; /* Eleva um pouco o texto secundário */
 }
 

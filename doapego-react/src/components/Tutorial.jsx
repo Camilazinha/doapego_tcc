@@ -6,7 +6,7 @@ function Tutorial() {
   return (
     <div>
       <div className="position-relative text-white">
-        <div className=" position-relative text-white" style={{ backgroundImage: 'url(/index1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center' }}>
+        <div className=" position-relative main-text" style={{ backgroundImage: 'url(/index1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center'}}>
           <div className="container-fluid" style={{ maxWidth: '100%', width: 'auto', textAlign: 'center' }} >
             <h1 className="ps-5" style={{ fontSize: 'calc(1.5rem + 1vw)' }}>
               Quer nos ajudar com uma doação?
