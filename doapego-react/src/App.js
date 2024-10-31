@@ -37,10 +37,10 @@ import DetailsAdmin from './components/AdminViews/DetailsAdmin';
 import Usuarios from './components/UsuariosViews/Usuarios';
 import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
 
-import Arquivos from './components/ArquivosViews/Arquivos';
-import CreateArquivo from './components/ArquivosViews/CreateArquivo';
-import EditArquivo from './components/ArquivosViews/EditArquivo';
-import DetailsArquivo from './components/ArquivosViews/DetailsArquivo';
+// import Arquivos from './components/ArquivosViews/Arquivos';
+// import CreateArquivo from './components/ArquivosViews/CreateArquivo';
+// import EditArquivo from './components/ArquivosViews/EditArquivo';
+// import DetailsArquivo from './components/ArquivosViews/DetailsArquivo';
 
 
 import './styles/main.css';
@@ -97,10 +97,10 @@ const App = () => {
                 <Route path="/admin/editar/:id" element={<EditAdmin />} />
                 <Route path="/admin/detalhes/:id" element={<DetailsAdmin />} />      
 
-        <Route path="/arquivos" element={<Arquivos />} />
+        {/* <Route path="/arquivos" element={<Arquivos />} />
         <Route path="/arquivos/criar" element={<CreateArquivo />} />
                 <Route path="/arquivos/editar/:id" element={<EditArquivo />} />
-                <Route path="/arquivos/detalhes/:id" element={<DetailsArquivo />} />      
+                <Route path="/arquivos/detalhes/:id" element={<DetailsArquivo />} />       */}
 
       </Routes>
       <Footer />
