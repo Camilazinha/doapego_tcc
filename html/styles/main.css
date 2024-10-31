@@ -933,66 +933,42 @@ h1 {
 /* Estilos gerais do container */
 #filter-container {
   padding: 20px;
-  /* Adiciona mais padding ao container */
-  background-color: #fff1e6;
-  /* Fundo amarelinho claro */
+  background-color: #f5f5f5;
   border-radius: 10px;
-  /* Bordas arredondadas */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Leve sombra para destacar */
   width: 50%;
   margin: 0 auto;
-  /* Centraliza horizontalmente */
   display: flex;
+  margin-bottom: 50px;
 }
 
 /* Estilos gerais dos botões */
 #filter-container .btn {
   background-color: #f8c8dc;
-  /* Cor de fundo rosinha */
   color: #fff;
-  /* Texto branco nos botões */
   border: 2px solid transparent;
-  /* Remove borda padrão */
   border-radius: 5px;
-  /* Bordas arredondadas nos botões */
   padding: 10px 20px;
-  /* Tamanho dos botões */
   font-size: 16px;
-  /* Tamanho da fonte */
   transition: all 0.3s ease;
-  /* Animação suave nas mudanças */
   width: auto;
-  /* Deixa o botão se ajustar automaticamente */
 }
 
-/* Estilo dos botões ao passar o mouse */
+/* Estilo dos botões*/
 #filter-container .btn:hover {
-  background-color: #FF6781;
-  /* Cor rosinha mais escura ao passar o mouse */
-  border-color: #FF6781;
-  /* Bordas ao passar o mouse */
+  background-color: #fab0cf;
   cursor: pointer;
-  /* Mostra que o botão é clicável */
 }
 
 /* Botão ativo */
 #filter-container .btn.active {
-  background-color: #d35472;
-  /* Cor mais escura do botão ativo */
+  background-color: #FF6781;
   color: #fff !important;
-  /* Texto branco mesmo quando ativo */
-  border-color: #d35472;
-  /* Borda correspondente ao fundo ativo */
 }
 
 #button-container .btn-primary:active {
-  background-color: #d35472;
-  /* Cor mais escura do botão ativo */
+  background-color: #FF6781;
   color: #fff !important;
-  /* Texto branco mesmo quando ativo */
-  border-color: #d35472;
-  /* Borda correspondente ao fundo ativo */
 }
 
 .titulo-principal {
