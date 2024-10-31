@@ -34,6 +34,11 @@ import CreateAdmin from './components/AdminViews/CreateAdmin';
 import EditAdmin from './components/AdminViews/EditAdmin';
 import DetailsAdmin from './components/AdminViews/DetailsAdmin';
 
+import Enderecos from './components/EnderecosViews/Enderecos';
+import CreateEndereco from './components/EnderecosViews/CreateEndereco';
+import EditEndereco from './components/EnderecosViews/EditEndereco';
+import DetailsEndereco from './components/EnderecosViews/DetailsEndereco';
+
 import Usuarios from './components/UsuariosViews/Usuarios';
 import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
 
@@ -84,18 +89,18 @@ const App = () => {
                 <Route path="/ongs/editar/:id" element={<EditOng />} />
                 <Route path="/ongs/detalhes/:id" element={<DetailsOng />} /> 
 
-        {/* <Route path="/endereco-ong" element={<EnderecosOng />} />
+        <Route path="/endereco-ong" element={<EnderecosOng />} />
         <Route path="/endereco-ong/criar" element={<CreateEndereco />} />
                 <Route path="/endereco-ong/editar/:id" element={<EditEndereco />} />
-                <Route path="/endereco-ong/detalhes/:id" element={<DetailsEndereco />} /> */}
+                <Route path="/endereco-ong/detalhes/:id" element={<DetailsEndereco />} />
 {/* 
         <Route path="/doacoes" element={<Doacoes />} />
                 <Route path="/doacoes/detalhes/:id" element={<DetailsDoacao />} />                 */}
                 
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/criar" element={<CreateAdmin />} />
-                <Route path="/admin/editar/:id" element={<EditAdmin />} />
-                <Route path="/admin/detalhes/:id" element={<DetailsAdmin />} />      
+        <Route path="/administradores" element={<Admin />} />
+        <Route path="/administradores/criar" element={<CreateAdmin />} />
+                <Route path="/administradores/editar/:id" element={<EditAdmin />} />
+                <Route path="/administradores/detalhes/:id" element={<DetailsAdmin />} />      
 
         {/* <Route path="/arquivos" element={<Arquivos />} />
         <Route path="/arquivos/criar" element={<CreateArquivo />} />
