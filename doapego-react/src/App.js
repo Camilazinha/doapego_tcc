@@ -13,8 +13,9 @@ import Redefinicao from './components/Redefinicao';
 import Esquecimento from './components/Esquecimento';
 import Termos from './components/Termos';
 import Privacidade from './components/Privacidade';
-
 import Ajuda from './components/Ajuda';
+
+import Faq from './components/Faq';
 import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
 
@@ -64,11 +65,11 @@ const App = () => {
         <Route path="/esqueci-senha" element={<Esquecimento />} />
         <Route path="/politica-de-privacidade" element={<Privacidade />} />
         <Route path="/termos-de-uso" element={<Termos />} />
+        <Route path="/ajuda" element={<Ajuda />}/>
 
-
+        <Route path="/faq" element={<Faq />}/>
         <Route path="/gerenciar" element={<Gerenciar />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
-        <Route path="/ajuda" element={<Ajuda />}/>
 
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/categorias/criar" element={<CreateCategoria />} />

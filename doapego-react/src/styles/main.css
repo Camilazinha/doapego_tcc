@@ -1090,8 +1090,9 @@ h1 {
 .title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #444;
+  color: #4e4e4e;
   text-align: center;
+  font-weight: 600;
 }
 .text p {
   color: #666;
@@ -1227,7 +1228,7 @@ h1 {
 .faq-body {
   background-color: #ffffff;
 }
-
+/* 
 #faq-section {
   min-height: 100vh;
   width: 80%;
@@ -1235,17 +1236,21 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
-.faq-titulo-principal {
+/* .faq-titulo-principal {
   font-size: 2.5rem;
   margin: 2rem 0rem;
   color: #4e4e4e;
   font-weight: 600;
+} */
+
+.testando-grid{
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .faq-faq {
-  max-width: 700px;
   margin-top: 1.5rem;
   padding-bottom: 1rem;
   cursor: pointer;
@@ -1269,7 +1274,7 @@ h1 {
 .faq-resposta {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease-in;
+  transition: max-height 1s ease;
 }
 
 .faq-resposta p {
@@ -1283,7 +1288,7 @@ h1 {
 
 .faq-faq.active .faq-resposta {
   max-height: 300px;
-  animation: 0.6 ease;
+  animation: 1s ease-in;
 }
 
 .faq-faq.active svg {
@@ -1311,6 +1316,7 @@ svg {
   margin-top: 30px;
   text-align: center;
 }
+
 
 /* DOACAO */
 

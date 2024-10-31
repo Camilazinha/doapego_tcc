@@ -3,7 +3,7 @@ import '../styles/main.css';
 import '../styles/layout.css';
 import '../script/script.js';
 
-function Ajuda() {
+function Faq() {
   return (
     <>
     <section id="faq-section" className="container px-4 py-5 px-md-5 mt-5 borda">
@@ -12,86 +12,85 @@ function Ajuda() {
     <div className='testando-grid'>
       <div className="faq-faq">
         <div className="faq-questao">
-          <h3>Há algum custo para usar a plataforma?</h3>
+          <h3>Como gerencio as doações recebidas?</h3>
           <svg width="15" height="10" viewBox="0 0 42 25">
             <path d="M3 3L21 21L39 3" fill="transparent" stroke="#FB6B9B" strokeWidth="7" strokeLinecap="round" />
           </svg>
         </div>
         <div className="faq-resposta">
-          <p>Não, a plataforma é totalmente gratuita para todos os usuários.
-          </p>
+          <p>Na página principal quando o login é realizado, aparece um menu. Ao clicar na opção de 'Gerenciar Doações', você será redirecionado para lá.</p>
         </div>
       </div>
 
       <div className="faq-faq">
         <div className="faq-questao">
-          <h3>É possível cancelar ou editar uma doação após a solicitação?</h3>
+          <h3>Posso entrar em contato com os doadores?</h3>
           <svg width="15" height="10" viewBox="0 0 42 25">
             <path d="M3 3L21 21L39 3" fill="transparent" stroke="#FB6B9B" strokeWidth="7" strokeLinecap="round" />
           </svg>
         </div>
         <div className="faq-resposta">
-          <p>Sim, o doador pode cancelar a doação caso a ONG ainda não tenha concluído a revisão. No entanto, se a ONG já revisou a doação, será necessário entrar em contato diretamente com ela para resolver a situação. No momento, a edição de doações ainda não está disponível em nosso aplicativo. Estamos trabalhando para implementar essa função em breve; até lá, será necessário cancelar a doação e reinserir as informações corretas, se houver necessidade de ajuste.</p>
+          <p>Sim, após aceitar uma doação, você terá acesso aos detalhes de contato dos doadores para combinar a entrega ou retirada dos itens.</p>
         </div>
       </div>
 
       <div className="faq-faq">
         <div className="faq-questao">
-          <h3>Preciso de uma conta para doar, ou posso doar como visitante?</h3>
+          <h3>O que acontece se recuso uma doação?</h3>
           <svg width="15" height="10" viewBox="0 0 42 25">
             <path d="M3 3L21 21L39 3" fill="transparent" stroke="#FB6B9B" strokeWidth="7" strokeLinecap="round" />
           </svg>
         </div>
         <div className="faq-resposta">
-          <p>Para realizar uma doação, é necessário ter uma conta com os dados cadastrais completos. Essa medida é importante para garantirmos a segurança da doação e evitarmos possíveis fraudes.</p>
+          <p>O doador é notificado sobre a recusa. A ONG pode adicionar um motivo, caso seja necessário, para ajudar o doador a entender a decisão. Após isso, a doação recusada ficará disponível para visualização na seção 'Canceladas' do gerenciamento de doações.</p>
         </div>
       </div>
 
       <div className="faq-faq">
         <div className="faq-questao">
-          <h3>Preciso embalar o brinquedo antes de doar?</h3>
+          <h3>Como faço para atualizar meu perfil e informações de contato?</h3>
           <svg width="15" height="10" viewBox="0 0 42 25">
             <path d="M3 3L21 21L39 3" fill="transparent" stroke="#FB6B9B" strokeWidth="7" strokeLinecap="round" />
           </svg>
         </div>
         <div className="faq-resposta">
-          <p>Embora não seja obrigatório, recomendamos embalar o brinquedo, especialmente se ele for frágil, para garantir que chegue em boas condições às crianças.</p>
+          <p>Acesse a seção "Perfil da ONG" no painel (ou no menu da página inicial) e clique em "Editar Perfil". Lá você poderá atualizar seus dados de contato, endereço e outras informações importantes.</p>
         </div>
       </div>
 
       <div className="faq-faq">
         <div className="faq-questao">
-          <h3>Posso doar brinquedos de grande porte?</h3>
+          <h3>Como garantir que as doações cheguem com segurança?</h3>
           <svg width="15" height="10" viewBox="0 0 42 25">
             <path d="M3 3L21 21L39 3" fill="transparent" stroke="#FB6B9B" strokeWidth="7" strokeLinecap="round" />
           </svg>
         </div>
         <div className="faq-resposta">
-          <p>Sim, é possível doar brinquedos como bicicletas, patinetes e patins. Contudo, esses itens precisam estar em boas condições e com todas as peças. Doações de brinquedos incompletos ou danificados podem representar risco às crianças.</p>
+          <p>Após aceitar uma doação, é importante combinar os detalhes de transporte com o doador. O ideal é definir pontos de coleta seguros ou combinar horários no espaço físico da ONG, para garantir a segurança do processo.</p>
         </div>
       </div>
 
       <div className="faq-faq">
         <div className="faq-questao">
-          <h3>O que acontece se a ONG rejeitar minha doação?</h3>
+          <h3>Como visualizar doações pendentes, aceitas e recusadas?</h3>
           <svg width="15" height="10" viewBox="0 0 42 25">
             <path d="M3 3L21 21L39 3" fill="transparent" stroke="#FB6B9B" strokeWidth="7" strokeLinecap="round" />
           </svg>
         </div>
         <div className="faq-resposta">
-          <p>Caso a ONG rejeite a sua doação, recomendamos verificar o motivo informado. Essa análise ajuda a garantir que futuras doações estejam adequadas e atendam aos requisitos da instituição.</p>
+          <p>Na seção de gerenciamento, selecione o filtro desejado (pendentes, aceitas ou recusadas) para ver as doações de acordo com o status atual. Cada doação exibida inclui os detalhes e permite ações adicionais.</p>
         </div>
       </div>
 
       <div className="faq-faq">
         <div className="faq-questao">
-          <h3>Há algum programa de recompensas para doadores frequentes?</h3>
+          <h3>Posso solicitar mais informações ao doador antes de aceitar uma doação?</h3>
           <svg width="15" height="10" viewBox="0 0 42 25">
             <path d="M3 3L21 21L39 3" fill="transparent" stroke="#FB6B9B" strokeWidth="7" strokeLinecap="round" />
           </svg>
         </div>
         <div className="faq-resposta">
-          <p>Ainda não temos um programa de recompensas, mas estamos avaliando essa possibilidade e pretendemos implementá-lo em breve.</p>
+          <p>Sim! Você pode solicitar informações adicionais ao entrar em contato com o cliente. Para encontrá-lo, clique em ver detalhes da doação pendente.</p>
         </div>
       </div>
       </div>
@@ -106,4 +105,4 @@ function Ajuda() {
   );
 }
 
-export default Ajuda;
+export default Faq;
