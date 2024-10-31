@@ -833,13 +833,7 @@ h1 {
 }
 
 
-/* Responsividade */
-@media (max-width: 768px) {
-  #profile-photo {
-    width: 60px;
-    height: 60px;
-  }
-}
+
 
 #cancel-button,
 #details-button {
@@ -1329,31 +1323,4 @@ svg {
     background-color: transparent;
     box-shadow: none;
   }
-}
-
-/* DOACAO RECUSADA/ACEITA */
-
-.textinfo-doacao {
-  font-size: 1.2rem;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.recuso-strong{
-  color: #ff0000;
-}
-
-.aceito-strong{
-  color: #00ff00;
-}
-
-.voltar-btn {
-  color: #fff;
-  background-color: #7a7a7a;
-  border-color: transparent;
-}
-
-.voltar-btn:hover {
-  background-color: #9b9a9a;
-  color: #fff;
 }
