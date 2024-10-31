@@ -28,8 +28,8 @@ function Footer() {
             <h6 className="text-uppercase fw-bold mb-4">Contato</h6>
             <p>Av. Grupo Bandeirantes 138, 06420-150</p>
             <p>doapegoitb@gmail.com</p>
-            <p>+55 11 94002-8922</p>
             <p>+55 11 92078-7810</p>
+            <p>+55 11 91234-5678</p>
           </div>
         </div>
       </div>
