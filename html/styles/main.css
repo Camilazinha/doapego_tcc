@@ -402,6 +402,15 @@ h1 {
 #profile-card,
 #reports-card,
 #support-card {
+  width: 250px; /* Tamanho máximo para telas menores */
+  max-width: 280px; /* Tamanho fixo para manter o layout uniforme */
+  min-height: 250px;
+}
+
+#donations-card,
+#profile-card,
+#reports-card,
+#support-card {
   border: none;
   transition: transform 0.3s ease-in-out;
   flex: 1 1 calc(25% - 20px);
@@ -429,6 +438,17 @@ h1 {
     flex: 1 1 100%;
     /* Cards ocupam 100% da largura em telas pequenas */
     max-width: none;
+  }
+}
+
+@media (max-width: 960px) {
+  #donations-card,
+  #profile-card,
+  #reports-card,
+  #support-card {
+      width: 100vh; /* Aumenta a largura para telas menores */
+      margin: 0 auto; /* Centraliza os cards */
+      justify-content: space-between;
   }
 }
 
@@ -1243,5 +1263,3 @@ h1 {
       justify-content: space-between;
   }
 }
-
-/* Responsividade para telas menores */
