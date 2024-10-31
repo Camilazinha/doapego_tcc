@@ -89,13 +89,10 @@ const App = () => {
                 <Route path="/ongs/editar/:id" element={<EditOng />} />
                 <Route path="/ongs/detalhes/:id" element={<DetailsOng />} /> 
 
-        <Route path="/endereco-ong" element={<EnderecosOng />} />
-        <Route path="/endereco-ong/criar" element={<CreateEndereco />} />
-                <Route path="/endereco-ong/editar/:id" element={<EditEndereco />} />
-                <Route path="/endereco-ong/detalhes/:id" element={<DetailsEndereco />} />
-{/* 
-        <Route path="/doacoes" element={<Doacoes />} />
-                <Route path="/doacoes/detalhes/:id" element={<DetailsDoacao />} />                 */}
+        <Route path="/enderecos" element={<Enderecos />} />
+        <Route path="/enderecos/criar" element={<CreateEndereco />} />
+                <Route path="/enderecos/editar/:id" element={<EditEndereco />} />
+                <Route path="/enderecos/detalhes/:id" element={<DetailsEndereco />} />
                 
         <Route path="/administradores" element={<Admin />} />
         <Route path="/administradores/criar" element={<CreateAdmin />} />
