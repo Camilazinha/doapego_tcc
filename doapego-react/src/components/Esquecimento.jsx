@@ -31,7 +31,7 @@ function Esquecimento() {
           </p>
 
           <div className="button-box dois-links">
-            <button type="submit" className="mt-3 py-2 btn-sm btn-navbar-custom w-75">
+            <button type="submit" className="mt-3 py-2 btn-sm btn-navbar-custom w-75" onClick={() => navigate('/redefinir-senha')}>
               Enviar link de recuperação
             </button>
             <Link to='/login' className='mt-2 py-2 btn-sm text-center w-50 alt-button'>Voltar para o login</Link >
