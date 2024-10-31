@@ -75,7 +75,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/login " element={<Login onLogin={handleLogin} />}/>
+        <Route path="/login" element={<Login onLogin={handleLogin} />}/>
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/redefinir-senha" element={<Redefinicao />} />

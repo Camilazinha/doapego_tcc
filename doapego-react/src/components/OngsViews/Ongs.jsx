@@ -61,10 +61,6 @@ const ONGs = () => {
         <div className="table-responsive">
         <div className="borda-view container-fluid my-5 p-4">
             <p className='h2'>ONGs Registradas</p>
-            <Link to={`/ongs/criar`} style={{ display: 'inline-block' }}>
-            <button className="btn btn-add">+ Nova ONG</button>
-            </Link>
-
             <hr />
 
             <table className="table table-bordered table-hover">
