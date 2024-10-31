@@ -18,9 +18,9 @@ function Footer() {
 
           <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <h6 className="text-uppercase fw-bold mb-4">Utilidade</h6>
-            <p><Link to="/" className="text-reset">Política de privacidade</Link></p>
-            <p><Link to="/" className="text-reset">Termos de uso</Link></p>
-            <p><Link to="/" className="text-reset">Como doar</Link></p>
+            <p><Link to="/politica-de-privacidade" className="text-reset">Política de privacidade</Link></p>
+            <p><Link to="/termos-de-uso" className="text-reset">Termos de uso</Link></p>
+            <p><Link to="/tutorial" className="text-reset">Como doar</Link></p>
             <p><Link to="/" className="text-reset">Ajuda</Link></p>
           </div>
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+
 import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
 import Cadastro from './components/Cadastro';
@@ -10,6 +11,8 @@ import Login from './components/Login';
 import Parceiros from './components/Parceiros';
 import Redefinicao from './components/Redefinicao';
 import Esquecimento from './components/Esquecimento';
+import Termos from './components/Termos';
+import Privacidade from './components/Privacidade';
 
 import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
@@ -58,6 +61,9 @@ const App = () => {
         <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/redefinir-senha" element={<Redefinicao />} />
         <Route path="/esqueci-senha" element={<Esquecimento />} />
+        <Route path="/politica-de-privacidade" element={<Privacidade />} />
+        <Route path="/termos-de-uso" element={<Termos />} />
+
 
         <Route path="/gerenciar" element={<Gerenciar />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
