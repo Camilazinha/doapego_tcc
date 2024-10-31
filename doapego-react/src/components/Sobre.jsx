@@ -7,17 +7,12 @@ function Sobre() {
     <>
       <main className='d-block'>
         <div className="position-relative" id="capa" style={{ backgroundImage: `url("/fundo.jpg")` }}>
-          <img src="futebol.png" className="rounded position-absolute top-100 start-50 translate-middle" id="futebolkids" alt="..." />
-          <div className="card text-white bg-primary top-0 start-0" id="bloco-card1">
-            <div className="card-body">
-              <h1 className="card-text">Nosso Propósito: Descubra Alegria</h1>
-            </div>
-          </div>
-          <div className="card text-white bg-primary position-absolute bottom-0 end-0" id="bloco-card2">
-            <div className="card-body">
-              <h1 className="card-text">Através de Doações de Brinquedos</h1>
-            </div>
-          </div>
+
+<div className="layered-text">
+  <h1 className="main-text">Nosso Propósito: Descubra Alegria</h1>
+  <h2 className="sub-text">Através de Doações de Brinquedos</h2>
+</div>
+        
         </div>
       </main>
       <div className="container" id="textos">

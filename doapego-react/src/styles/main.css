@@ -1,3 +1,9 @@
+.borda{
+  border: 2px solid #ccc;
+  box-shadow: 0 0 0 .25rem rgb(245, 245, 245);
+  border-radius: 20px;
+}
+
 .imagem {
   background-image: radial-gradient(#ffe68d, #ff92b6);
   background-size: cover;
@@ -21,10 +27,16 @@ h3.text-center li::marker {
 }
 
 
-#bloco {
-  max-width: 200rem;
-  background-color: #eee !important;
+.fundo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 5rem;
+  min-height: 100vh; 
+  background-color: #eee !important;
+  max-width: 120rem;
+  margin: 0 auto; 
 }
 
 .container .d-grid .btn-a,
@@ -79,8 +91,7 @@ bg-light {
 .clearfix .img {
   margin-left: 10rem;
 }
-
-
+/*
 .card {
   display: inline-flex;
   padding: 20px;
@@ -89,9 +100,7 @@ bg-light {
 
 }
 
-*,
-*::before,
-*::after {
+*,*::before,*::after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
@@ -104,72 +113,69 @@ bg-light {
   padding: 1rem 0;
   display: grid;
   place-content: center;
-}
+    }
 
-.cards {
-  display: inline-flex;
-  width: 70rem;
-  text-align: center;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  pointer-events: none;
-}
+    .cards {    
+      display:inline-flex;
+      width: 70rem;
+      text-align: center;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+    
+    .card {
+      max-width: 15rem;
+      color: #4e4e4e;
+      padding: 1.5rem;
+      background-color: #fff;
+      
+      pointer-events: auto;
+      
+      transform: scale(1);
+      opacity: 1;
+      transition: all 150ms ease-in-out; 
+      
+      display: flex;
+      flex-direction: column;
+    }
+      .card-title {
+        position: relative;
+      }
+        &::before {
+          content: "";
+          height: 1rem;
+          width: 1rem;
+          border-radius: 50%;
+          box-shadow: inset 0 0 3px #fff;
+          background-color: transparent;
+          
+          position: absolute;
+          right: 0;
+        }
 
-.card {
-  max-width: 15rem;
-  color: #4e4e4e;
-  padding: 1.5rem;
-  background-color: #fff;
+    .description {
+      font-size: 0.9rem;
+    }
+    
+    &:nth-child(even) {
+      transform: translateY(8px);
+    }
+    
+    &:nth-child(n) {
+      transform: rotate(0deg);
+    
+  }
 
-  pointer-events: auto;
-
-  transform: scale(1);
-  opacity: 1;
-  transition: all 150ms ease-in-out;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.card-title {
-  position: relative;
-}
-
-&::before {
-  content: "";
-  height: 1rem;
-  width: 1rem;
-  border-radius: 50%;
-  box-shadow: inset 0 0 3px #fff;
-  background-color: transparent;
-
-  position: absolute;
-  right: 0;
-}
-
-.description {
-  font-size: 0.9rem;
-}
-
-&:nth-child(even) {
-  transform: translateY(8px);
-}
-
-&:nth-child(n) {
-  transform: rotate(0deg);
-
-}
-
-.cards:hover>.card:hover {
+.cards:hover > .card:hover {
   transform: scale(1.15);
   box-shadow: 0 0 10px #fffabb80;
   z-index: 10;
 }
-
-.cards:hover>.card:not(:hover) {
+.cards:hover > .card:not(:hover) {
   opacity: 0.5;
 }
-
+*/
 
 #img-deck {
   object-fit: cover;
@@ -336,33 +342,33 @@ bg-light {
   display: block;
 }
 
-#slide1 {
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 100rem;
-  box-sizing: border-box;
-}
-
-#slide2 {
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 120rem;
-  box-sizing: border-box;
-}
-
-#slide3 {
-  margin-top: 5rem;
-  align-content: center !important;
-  max-width: 100rem;
-  box-sizing: border-box;
+#grad2 {
+  height: 100%;
+  background-image: linear-gradient(180deg,rgba(97, 97, 97, 0.1), rgb(54, 54, 54));
 }
 
 #slide-trabalho {
-  margin-right: 400px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem; 
+  line-height: 1.2; 
 }
 
 #carouselExampleControls {
-  max-width: 95rem;
+  max-width: 50rem;
+  width: 100%;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  height: auto; 
 }
 
 #bloco-card1 {
@@ -529,6 +535,12 @@ bg-light {
   margin-bottom: 20px;
 }
 
+.card-body p {
+  flex-grow: 1;
+  margin-top: 20px;
+
+}
+
 .card-body a {
   align-self: center;
   margin-top: 10px;
@@ -573,10 +585,10 @@ bg-light {
   gap: 20px;
 }
 
-#profile-section>.item-config {
+#profile-section> .item-config {
   background-color: #ffffff;
   border: 1px solid #d1d1d1;
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
   position: relative;
   max-width: 100%;
@@ -708,6 +720,69 @@ bg-light {
   align-items: center;
 }
 
+/* Layout padrão para a foto e as informações lado a lado */
+#profile-info-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  #profile-info-container {
+    grid-template-columns: 1fr;
+  }
+
+  #profile-photo {
+    width: 40vh; /* Ajusta para ocupar a largura completa no layout mobile */
+    height: auto; /* Mantém a proporção */
+    margin: 0 auto 20px; /* Centraliza a foto e adiciona margem inferior */
+  }
+  
+  #edit-profile-container {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Ajusta a largura dos inputs para não ultrapassar os limites da div */
+  .profile-input {
+    width: 100%;
+  }
+}
+
+/* Layout padrão para a foto e as informações lado a lado */
+#profile-info-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  #profile-info-container {
+    grid-template-columns: 1fr;
+  }
+
+  #profile-photo {
+    width: 40vh; /* Ajusta para ocupar a largura completa no layout mobile */
+    height: auto; /* Mantém a proporção */
+    margin: 0 auto 20px; /* Centraliza a foto e adiciona margem inferior */
+  }
+  
+  #edit-profile-container {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Ajusta a largura dos inputs para não ultrapassar os limites da div */
+  .profile-input {
+    width: 100%;
+  }
+}
+
+
 
 /* SCROLLBAR DA DESCRIÇÃO DO GERENCIAMENTO-PERFIL */
 /* width */
@@ -763,6 +838,7 @@ bg-light {
 .label-edit {
   margin-left: 10px;
   margin-bottom: 5px;
+  color: #4e4e4e;
 }
 
 /*Pendentes*/
@@ -869,7 +945,6 @@ bg-light {
   /* Borda correspondente ao fundo ativo */
 }
 
-
 /* Responsividade */
 @media (max-width: 768px) {
   #donation-card {
@@ -888,7 +963,7 @@ bg-light {
   }
 }
 
-#secao {
+.secao {
   margin-top: 10rem;
 }
 
@@ -921,27 +996,17 @@ bg-light {
 }
 
 #futebolkids {
-  margin-top: 90px;
   width: 90%;
   max-width: 1000px;
-  height: auto;
+  top: 120%; /* Ajusta a posição vertical para aparecer entre os cards e o texto */
 }
 
-#texto1 {
-  margin-top: 400px;
+#texto1, #texto2, #texto3 {
+  margin-top: 30px;
 }
 
 #textocor {
   color: #FF5995;
-}
-
-#texto2 {
-  margin-top: 30px;
-}
-
-#texto3 {
-  margin-top: 30px;
-  margin-bottom: 40px;
 }
 
 #textos {
@@ -994,4 +1059,91 @@ bg-light {
   text-align: center;
   margin-top: 5rem;
   margin: 5rem;
+}
+
+.layered-text {
+  text-align: center;
+  position: relative; /* Para posicionar os elementos dentro */
+}
+
+.main-text {
+  color: #ff1493; /* Rosa forte */
+  font-size: 3rem; /* Tamanho maior */
+  margin: 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
+}
+
+.sub-text {
+  color: #fff; /* Branco */
+  font-size: 2rem; /* Um pouco menor */
+  margin: 0.5rem 0;
+  position: relative;
+  top: -10px; /* Eleva um pouco o texto secundário */
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #444;
+  text-align: center;
+}
+
+.text p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* .card-ana {
+  border: none;
+  border-radius: 10px;
+  background-color: #fdfdfd;
+  transition: transform 0.3s, background-color 0.3s;
+} */
+/* .card-ana:hover {
+  transform: scale(1.03);
+  background-color: #fff9e6;
+} */
+
+.row-ana{
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+
+
+/*EDIT PROFILE ADMIN DA ONG*/
+
+.edit-profile-container2 {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #d1d1d1;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do input para escrever */
+.edit-profile-input {
+  width: 70vh;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  color: #4e4e4e;
+}
+
+
+@media (max-width: 768px) {
+  .edit-profile-container2 {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
