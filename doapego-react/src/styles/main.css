@@ -4,6 +4,7 @@
   border-radius: 20px;
 }
 
+
 .imagem {
   background-image: radial-gradient(#ffe68d, #ff92b6);
   background-size: cover;
@@ -91,6 +92,7 @@ bg-light {
 .clearfix .img {
   margin-left: 10rem;
 }
+
 /*
 .card {
   display: inline-flex;
@@ -174,8 +176,8 @@ bg-light {
 }
 .cards:hover > .card:not(:hover) {
   opacity: 0.5;
-}
-*/
+}*/
+
 
 #img-deck {
   object-fit: cover;
@@ -402,6 +404,19 @@ h1 {
   justify-content: space-between;
 }
 
+.card-text {
+  color: #4e4e4e;
+}
+
+#donations-card,
+#profile-card,
+#reports-card,
+#support-card {
+  width: 250px; /* Tamanho máximo para telas menores */
+  max-width: 280px; /* Tamanho fixo para manter o layout uniforme */
+  min-height: 250px;
+}
+
 #donations-card,
 #profile-card,
 #reports-card,
@@ -433,6 +448,17 @@ h1 {
     flex: 1 1 100%;
     /* Cards ocupam 100% da largura em telas pequenas */
     max-width: none;
+  }
+}
+
+@media (max-width: 960px) {
+  #donations-card,
+  #profile-card,
+  #reports-card,
+  #support-card {
+      width: 100vh; /* Aumenta a largura para telas menores */
+      margin: 0 auto; /* Centraliza os cards */
+      justify-content: space-between;
   }
 }
 
@@ -511,7 +537,7 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 250px;
-  background-color: #fdfdfd;
+  background-color: #f3f3f3;
   /* Cinza claro para os cards */
   border: 1px solid #e0e0e0;
   max-width: 300px;
@@ -538,12 +564,41 @@ h1 {
 .card-body p {
   flex-grow: 1;
   margin-top: 20px;
-
 }
 
 .card-body a {
   align-self: center;
   margin-top: 10px;
+}
+
+#link-pendentes,
+#link-feitas,
+#link-recusadas {
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+
+#link-recusadas,
+#link-feitas,
+#link-pendentes {
+  background-color: #c595d6;
+  /* Lilás claro */
+}
+
+#link-pendentes:hover {
+  background-color: #a06ab3;
+}
+
+#link-feitas:hover {
+  background-color: #a06ab3;
+}
+
+#link-recusadas:hover {
+  background-color: #a06ab3;
 }
 
 #titulo-principal {
@@ -563,13 +618,13 @@ h1 {
 }
 
 /* Gerenciamento perfil */
-/* #profile-container {
+#profile-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px;
   border-radius: 10px;
   position: relative;
-} */
+}
 
 #profile-title {
   font-size: 2.5rem;
@@ -883,66 +938,42 @@ h1 {
 /* Estilos gerais do container */
 #filter-container {
   padding: 20px;
-  /* Adiciona mais padding ao container */
-  background-color: #fff1e6;
-  /* Fundo amarelinho claro */
+  background-color: #f5f5f5;
   border-radius: 10px;
-  /* Bordas arredondadas */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Leve sombra para destacar */
   width: 50%;
   margin: 0 auto;
-  /* Centraliza horizontalmente */
   display: flex;
+  margin-bottom: 50px;
 }
 
 /* Estilos gerais dos botões */
 #filter-container .btn {
   background-color: #f8c8dc;
-  /* Cor de fundo rosinha */
   color: #fff;
-  /* Texto branco nos botões */
   border: 2px solid transparent;
-  /* Remove borda padrão */
   border-radius: 5px;
-  /* Bordas arredondadas nos botões */
   padding: 10px 20px;
-  /* Tamanho dos botões */
   font-size: 16px;
-  /* Tamanho da fonte */
   transition: all 0.3s ease;
-  /* Animação suave nas mudanças */
   width: auto;
-  /* Deixa o botão se ajustar automaticamente */
 }
 
-/* Estilo dos botões ao passar o mouse */
+/* Estilo dos botões*/
 #filter-container .btn:hover {
-  background-color: #FF6781;
-  /* Cor rosinha mais escura ao passar o mouse */
-  border-color: #FF6781;
-  /* Bordas ao passar o mouse */
+  background-color: #fab0cf;
   cursor: pointer;
-  /* Mostra que o botão é clicável */
 }
 
 /* Botão ativo */
 #filter-container .btn.active {
-  background-color: #d35472;
-  /* Cor mais escura do botão ativo */
+  background-color: #FF6781;
   color: #fff !important;
-  /* Texto branco mesmo quando ativo */
-  border-color: #d35472;
-  /* Borda correspondente ao fundo ativo */
 }
 
 #button-container .btn-primary:active {
-  background-color: #d35472;
-  /* Cor mais escura do botão ativo */
+  background-color: #FF6781;
   color: #fff !important;
-  /* Texto branco mesmo quando ativo */
-  border-color: #d35472;
-  /* Borda correspondente ao fundo ativo */
 }
 
 /* Responsividade */
@@ -993,12 +1024,6 @@ h1 {
   background-position: center;
   height: 350px;
   align-content: center;
-}
-
-#futebolkids {
-  width: 90%;
-  max-width: 1000px;
-  top: 120%; /* Ajusta a posição vertical para aparecer entre os cards e o texto */
 }
 
 #texto1, #texto2, #texto3 {
@@ -1067,7 +1092,7 @@ h1 {
 }
 
 .main-text {
-  color: #ffffff; /* Rosa forte */
+  color: #ffffff;
   font-size: 3rem; /* Tamanho maior */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
 }
@@ -1077,8 +1102,9 @@ h1 {
   font-size: 2rem; /* Um pouco menor */
   margin: 0.5rem 0;
   position: relative;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
   top: -10px; /* Eleva um pouco o texto secundário */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Sombra do texto */
+
 }
 
 .title {
@@ -1087,28 +1113,21 @@ h1 {
   color: #444;
   text-align: center;
 }
-
 .text p {
   color: #666;
   line-height: 1.6;
   font-size: 1.1rem;
 }
 
-/* .card-ana {
+.card-privacy {
   border: none;
   border-radius: 10px;
   background-color: #fdfdfd;
   transition: transform 0.3s, background-color 0.3s;
-} */
-/* .card-ana:hover {
+}
+.card-privacy:hover {
   transform: scale(1.03);
   background-color: #fff9e6;
-} */
-
-.row-ana{
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
 }
 
 
@@ -1147,3 +1166,251 @@ h1 {
     box-shadow: none;
   }
 }
+
+
+/*INDEX FUNCIONARIO*/
+
+.welcome-title {
+  color: #4e4e4e;
+  margin-bottom: 60px;
+}
+
+.card-title-func {
+  color: #4e4e4e;
+}
+
+#doacoes-card,
+#funcionario-card,
+#faq-card {
+  border: none;
+  transition: transform 0.3s ease-in-out;
+  flex: 1 1 calc(25% - 20px);
+  /* Faz com que cada card ocupe 25% da largura menos o gap 
+  max-width: 300px; */
+  /* Define o tamanho máximo dos cards */
+  box-sizing: border-box;
+}
+
+#doacoes-card:hover,
+#funcionario-card:hover,
+#faq-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Centraliza o container dos cards */
+.cards-container-funcong {
+  display: flex;
+  
+  justify-content: center;
+  gap: 20px; /* Espaçamento entre os cards */
+}
+
+/* Define o tamanho uniforme para os cards */
+.funcong-card {
+  width: 100vh; /* Tamanho máximo para telas menores */
+  max-width: 280px; /* Tamanho fixo para manter o layout uniforme */
+  min-height: 250px; /* Define uma altura mínima */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0px 4px 8px rgba(53, 53, 53, 0.2); /* Sombra leve para destaque */
+  border-radius: 8px; /* Bordas arredondadas */
+  text-align: left;
+}
+
+/* Ajuste da responsividade para diferentes tamanhos de tela 
+@media (max-width: 768px) {
+  .cards-container-funcong {
+    width: 60%; /* Define a largura do container em relação à altura da tela
+    margin: 0 auto; /* Centraliza o container 
+}
+}
+*/
+
+@media (max-width: 960px) {
+  .funcong-card {
+      width: 100vh; /* Aumenta a largura para telas menores */
+      margin: 0 auto; /* Centraliza os cards */
+      justify-content: space-between;
+  }
+}
+
+/* FAQ */
+
+.faq-header {
+  background-color: #f8f9fa;
+}
+
+.faq-body {
+  background-color: #ffffff;
+}
+
+#faq-section {
+  min-height: 100vh;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.faq-titulo-principal {
+  font-size: 2.5rem;
+  margin: 2rem 0rem;
+  color: #4e4e4e;
+  font-weight: 600;
+}
+
+.faq-faq {
+  max-width: 700px;
+  margin-top: 1.5rem;
+  padding-bottom: 1rem;
+  cursor: pointer;
+  border: 0.5px solid #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(124, 124, 124, 0.2);
+}
+
+.faq-questao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-questao h3 {
+  font-size: 1.3rem;
+  margin: 15px 0 0 20px;
+  color: #4e4e4e;
+}
+
+.faq-resposta {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s ease;
+}
+
+.faq-resposta p {
+  padding-top: 1rem;
+  line-height: 1;
+  font-size: 1.1rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: 4e4e4e;
+}
+
+.faq-faq.active .faq-resposta {
+  max-height: 300px;
+  animation: 1s ease-in;
+}
+
+.faq-faq.active svg {
+  transform: rotate(180deg);
+}
+
+svg {
+  transition: transform 0.5s ease-in;
+  margin: 15px 0 0 20px;
+  margin-right: 20px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+#duvida-faq {
+  color: #7a7a7a;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* DOACAO */
+
+.doacao-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.doacao-foto img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.doacao-info {
+  font-size: 1.1rem;
+}
+
+.doacao-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.doacao-buttons .aceito-btn, .doacao-buttons .recusa-btn {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .doacao-card {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+/* DOACAO RECUSADA/ACEITA */
+
+.textinfo-doacao {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.recuso-strong{
+  color: #ff0000;
+}
+
+.aceito-strong{
+  color: #00ff00;
+}
+
+.voltar-btn {
+  color: #fff;
+  background-color: #7a7a7a;
+  border-color: transparent;
+}
+
+.voltar-btn:hover {
+  background-color: #9b9a9a;
+  color: #fff;
+}
+
+.row-ana{
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+/* .card-privacy:hover {
+  transform: scale(1.03);
+  background-color: #fff9e6;
+}
+
+.card-privacy {
+  border: none;
+  border-radius: 10px;
+  background-color: #fdfdfd;
+  transition: transform 0.3s, background-color 0.3s;
+}  */

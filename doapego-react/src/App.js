@@ -14,6 +14,7 @@ import Esquecimento from './components/Esquecimento';
 import Termos from './components/Termos';
 import Privacidade from './components/Privacidade';
 
+import Ajuda from './components/Ajuda';
 import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
 
@@ -67,7 +68,7 @@ const App = () => {
 
         <Route path="/gerenciar" element={<Gerenciar />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
-        
+        <Route path="/ajuda" element={<Ajuda />}/>
 
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/categorias/criar" element={<CreateCategoria />} />

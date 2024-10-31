@@ -82,7 +82,7 @@ function Configuracoes() {
           </Link>
 
           {/* Ajuda e FAQ */}
-          <Link to="/" id='activity-history' className='d-flex align-items-center item-config'>
+          <Link to="/ajuda" id='activity-history' className='d-flex align-items-center item-config'>
             <span className="icon" id="icon-gerenc">
               <ion-icon name="help-circle" />
             </span>
