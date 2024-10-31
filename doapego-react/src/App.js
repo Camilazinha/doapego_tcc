@@ -11,7 +11,7 @@ import Parceiros from './components/Parceiros';
 import Redefinicao from './components/Redefinicao';
 import Esquecimento from './components/Esquecimento';
 
-import Painel from './components/Painel';
+import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
 
 import Categorias from './components/CategoriasViews/Categorias';
@@ -60,7 +60,7 @@ const App = () => {
         <Route path="/esqueci-senha" element={<Esquecimento />} />
 
         <Route path="/gerenciar" element={<Gerenciar />} />
-        <Route path="/painel" element={<Painel />} />
+        <Route path="/configuracoes" element={<Configuracoes />} />
         
 
         <Route path="/categorias" element={<Categorias />} />

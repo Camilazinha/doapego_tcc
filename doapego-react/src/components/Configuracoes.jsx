@@ -4,7 +4,7 @@ import '../styles/main.css';
 import '../styles/layout.css';
 import '../styles/forms.css';
 
-function Painel() {
+function Configuracoes() {
   return (
     <>
       <div id="profile-container" className="container px-4 py-5 px-sm-5 mt-5 borda">
@@ -97,4 +97,4 @@ function Painel() {
   );
 };
 
-export default Painel;
+export default Configuracoes;

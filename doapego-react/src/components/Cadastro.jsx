@@ -11,7 +11,7 @@ const Cadastro = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [tipoUsuario, setTipoUsuario] = useState('MASTER');
+  const [tipoUsuario, setTipoUsuario] = useState('');
   const [ongs, setOngs] = useState([]); // ONGs para o FUNCIONARIO_ONG
   const [ongId, setOngId] = useState("");
 
@@ -191,16 +191,19 @@ const Cadastro = () => {
                   required
                 />
               </div>
+
               <div className="col-11 col-lg-3 mb-4 my-lg-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Descrição"
-                  value={descricao}
-                  onChange={(e) => setDescricao(e.target.value)}
-                  required
-                />
-              </div>
+            <input type="date" className="form-control" placeholder="Data de Fundação" value={fundacao} onChange={(e) => setFundacao(e.target.value)} />
+          </div>
+
+          <div className="col-11 col-lg-3 mb-4 my-lg-4">
+            <input type="text" className="form-control" placeholder="Whatsapp" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
+          </div>
+          
+          <div className="col-11 col-lg-3 mb-4 my-lg-4">
+            <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+          </div>
+
               <h1>Endereço da Organização</h1>
               <div className="col-11 col-lg-3 mb-4 my-lg-4">
                 <input
@@ -278,14 +281,13 @@ const Cadastro = () => {
             <>
             
         <div className="col-11 col-lg-3 my-lg-4">
-              <label className="form-label">Selecione a ONG:</label>
               <select
                 className="form-control mb-4 mb-lg-0"
                 value={ongId}
       onChange={(e) => setOngId(e.target.value)}
       required
     >
-      <option value="">Escolha uma ONG</option>
+      <option value="" disabled selected>Escolha uma ONG</option>
       {ongs.map((ong) => (
         <option key={ong.id} value={ong.id}>{ong.nome}</option>
       ))}
@@ -296,13 +298,13 @@ const Cadastro = () => {
         </div>
 
         <div className="col-11 col-lg-3 mb-4 my-lg-4">
-            <label className="form-label">Tipo de Usuário:</label>
             <select
               className="form-control"
               value={tipoUsuario}
               onChange={(e) => setTipoUsuario(e.target.value)}
               required
             >
+              <option value="" disabled selected>Selecione o tipo de usuário</option>
               <option value="ONG">ONG</option>
               <option value="FUNCIONARIO_ONG">Funcionário</option>
               <option value="MASTER">Master</option>
