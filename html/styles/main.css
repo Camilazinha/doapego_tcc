@@ -1172,3 +1172,76 @@ h1 {
     box-shadow: none;
   }
 }
+
+
+/*INDEX FUNCIONARIO*/
+
+.welcome-title {
+  color: #4e4e4e;
+  margin-bottom: 60px;
+}
+
+.card-title-func {
+  color: #4e4e4e;
+}
+
+#doacoes-card,
+#funcionario-card,
+#faq-card {
+  border: none;
+  transition: transform 0.3s ease-in-out;
+  flex: 1 1 calc(25% - 20px);
+  /* Faz com que cada card ocupe 25% da largura menos o gap 
+  max-width: 300px; */
+  /* Define o tamanho máximo dos cards */
+  box-sizing: border-box;
+}
+
+#doacoes-card:hover,
+#funcionario-card:hover,
+#faq-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Centraliza o container dos cards */
+.cards-container-funcong {
+  display: flex;
+  
+  justify-content: center;
+  gap: 20px; /* Espaçamento entre os cards */
+}
+
+/* Define o tamanho uniforme para os cards */
+.funcong-card {
+  width: 100vh; /* Tamanho máximo para telas menores */
+  max-width: 280px; /* Tamanho fixo para manter o layout uniforme */
+  min-height: 250px; /* Define uma altura mínima */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0px 4px 8px rgba(53, 53, 53, 0.2); /* Sombra leve para destaque */
+  border-radius: 8px; /* Bordas arredondadas */
+  text-align: left;
+}
+
+/* Ajuste da responsividade para diferentes tamanhos de tela 
+@media (max-width: 768px) {
+  .cards-container-funcong {
+    width: 60%; /* Define a largura do container em relação à altura da tela
+    margin: 0 auto; /* Centraliza o container 
+}
+}
+*/
+
+@media (max-width: 960px) {
+  .funcong-card {
+      width: 100vh; /* Aumenta a largura para telas menores */
+      margin: 0 auto; /* Centraliza os cards */
+      justify-content: space-between;
+  }
+}
+
+/* Responsividade para telas menores */
