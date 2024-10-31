@@ -1269,7 +1269,7 @@ h1 {
 .faq-resposta {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 1s ease;
+  transition: max-height 0.4s ease-in;
 }
 
 .faq-resposta p {
@@ -1283,7 +1283,7 @@ h1 {
 
 .faq-faq.active .faq-resposta {
   max-height: 300px;
-  animation: 1s ease-in;
+  animation: 0.6 ease;
 }
 
 .faq-faq.active svg {
@@ -1291,7 +1291,6 @@ h1 {
 }
 
 svg {
-  transition: transform 0.5s ease-in;
   margin: 15px 0 0 20px;
   margin-right: 20px;
 }
