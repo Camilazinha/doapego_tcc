@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -56,14 +56,26 @@ import './styles/views.css';
 import './script/script.js';
 
 const App = () => {
+
+        const [userType, setUserType] = useState(null); // null representa usuário não logado
+      
+        const handleLogin = (type) => setUserType(type); // Recebe o tipo de admin no login
+        const handleLogout = () => setUserType(null);
+
+        useEffect(() => {
+                // Recupera o userType do localStorage ao carregar o App
+                const savedUserType = localStorage.getItem('userType');
+                if (savedUserType) setUserType(savedUserType);
+              }, []);
+        
   return (
     <Router>
-      <Navbar />
+      <Navbar userType={userType} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login " element={<Login onLogin={handleLogin} />}/>
         <Route path="/parceiros" element={<Parceiros />} />
         <Route path="/tutorial" element={<Tutorial />} />
         <Route path="/redefinir-senha" element={<Redefinicao />} />

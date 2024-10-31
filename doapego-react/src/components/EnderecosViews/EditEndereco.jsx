@@ -6,7 +6,7 @@ import '../../styles/layout.css';
 
 const EditEndereco = () => {
   const { id } = useParams();
-  const [ong, setOng] = useState('');
+  const [ongId, setOngId] = useState('');
   const [cep, setCep] = useState('');
   const [estado, setEstado] = useState('');
   const [cidade, setCidade] = useState('');
@@ -25,7 +25,7 @@ const EditEndereco = () => {
       try {
         const response = await axios.get(`http://localhost:8080/enderecos-ong/${id}`);
         const endereco = response.data;
-        setOng(endereco.ong?.id || ''); // Define o ID da ONG no estado como objeto
+        setOngId(endereco.ongId || ''); // Define o ID da ONG no estado como objeto
         setCep(endereco.cep);
         setEstado(endereco.estado);
         setCidade(endereco.cidade);
@@ -48,7 +48,7 @@ const EditEndereco = () => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:8080/enderecos-ong/${id}`, {
-        ong: { id: ong }, // Envia como objeto
+        ong: { id: ongId }, // Envia como objeto
         cep,
         estado,
         cidade,
@@ -77,7 +77,7 @@ const EditEndereco = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group col-10 col-md-11 mb-2">
           <label>ID da ONG:</label>
-          <input type="text" className="form-control" value={ong} disabled /> {/* Campo desabilitado */}
+          <input type="text" className="form-control" value={ongId} disabled /> {/* Campo desabilitado */}
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">

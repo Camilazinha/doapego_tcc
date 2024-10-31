@@ -4,8 +4,64 @@ import { Link } from 'react-router-dom';
 import '../styles/main.css';
 import '../styles/layout.css';
 
-function Navbar() {
-  return (
+function Navbar({ userType, onLogout }) {
+  const renderMenu = () => {
+    switch (userType) {
+      case 'ONG':
+        return (
+<>
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Início</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/parceiros">Parceiros</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/sobre">Propósito</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/tutorial">Como doar</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">Entrar</Link>
+              </li>
+            </>
+        );
+        case 'MASTER':
+          return (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/painel2">Painel Admin 2</Link>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link btn" onClick={onLogout}>Logout</button>
+              </li>
+            </>
+          );
+        case 'FUNCIONARIO_ONG':
+          return (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/painel3">Painel Admin 3</Link>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link btn" onClick={onLogout}>Logout</button>
+              </li>
+            </>
+          );
+          
+        default:
+          return (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">Minha ONG</Link>
+              </li>
+            </>
+          );
+      }
+    };
+         
+    return (
     <header>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid px-2 mx-2">
