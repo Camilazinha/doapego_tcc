@@ -73,7 +73,6 @@ const Admin = () => {
                             <th scope="col">Nome</th>
                             <th scope="col">Email</th>
                             <th scope="col">Tipo</th>
-                            <th scope="col">Ativo</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -84,7 +83,6 @@ const Admin = () => {
                                 <td className="align-middle text-center">{admin.nome}</td>
                                 <td className="align-middle text-center">{admin.email}</td>
                                 <td className="align-middle text-center">{admin.tipo}</td>
-                                <td className="align-middle text-center">{admin.ativo ? 'Sim' : 'Não'}</td>
                                 <td className="align-middle text-center">
                                     <div className="d-flex justify-content-center">
                                         <Link to={`/administradores/detalhes/${admin.id}`}>
