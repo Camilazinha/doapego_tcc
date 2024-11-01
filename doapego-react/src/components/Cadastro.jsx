@@ -297,7 +297,7 @@ const Cadastro = () => {
           )}
         </div>
 
-        <div className="col-11 col-lg-2 mb-4 my-lg-4">
+        <div className="col-11 col-lg-3 mb-4 my-lg-4">
             <select
               className="form-control"
               value={tipoUsuario}
