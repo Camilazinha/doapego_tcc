@@ -24,7 +24,7 @@ import GerenciarDados from './components/GerenciarDados';
 import Pendentes from './components/Pendentes';
 import Aceitas from './components/Aceitas';
 import Recusadas from './components/Recusadas';
-
+import Inicio from './components/Inicio';
 
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
@@ -90,6 +90,8 @@ const App = () => {
         <Route path="/termos-de-uso" element={<Termos />} />
         <Route path="/ajuda" element={<Ajuda />}/>
 
+
+<Route path="/inicio" element={<Inicio />} />
 
 
         <Route path="/faq" element={<Faq />}/>

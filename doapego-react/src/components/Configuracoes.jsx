@@ -1,3 +1,5 @@
+// src/components/Configuracoes.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/main.css';
@@ -5,69 +7,94 @@ import '../styles/layout.css';
 import '../styles/forms.css';
 
 function Configuracoes() {
-  // Recupera o tipo de usuário do localStorage
-  const userType = localStorage.getItem('userType');
+  const userType = localStorage.getItem('userType'); // Recupera o tipo de usuário do localStorage
 
-  return (
-    <>
-      <div id="profile-container" className="container px-4 py-5 px-sm-5 mt-5 borda">
-        <h2 id="titulo-principal">Configurações</h2>
-        <div id="profile-section">
-
-          {/* Editar Perfil */}
-          {/* <Link to='/' id="edit-info" className="d-flex align-items-center item-config">
-            <span className="icon" id="icon-gerenc">
-              <ion-icon name="person-circle" />
-            </span>
-            <h3 id="section-title">Meu perfil</h3>
-            <span className="arrow-link-container ml-auto">
-              <span className="arrow-link">
-                <ion-icon name="chevron-forward" />
-              </span>
-            </span>
-          </Link> */}
-
-          {/* Perfil da Ong */}
-          <Link to='/ongs' id="ong-info" className="d-flex align-items-center item-config">
-            <span className="icon" id="icon-gerenc">
+  const renderLinks = () => {
+    switch (userType) {
+      case 'MASTER':
+        return (
+          <>
+            {/* Links visíveis apenas para MASTER */}
+            <Link to='/ongs' id="ong-info" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
               <ion-icon name="heart-circle" />
-            </span>
-            <h3 id="section-title">Minha ONG</h3>
-            <span className="arrow-link-container ml-auto">
-              <span className="arrow-link">
-                <ion-icon name="chevron-forward" />
               </span>
-            </span>
-          </Link>     
-
-          <Link to='/enderecos' id="edit-info" className="d-flex align-items-center item-config">
-            <span className="icon" id="icon-gerenc">
-              <ion-icon name="business" />
-            </span>
-            <h3 id="section-title">Endereços da ONG</h3>
-            <span className="arrow-link-container ml-auto">
-              <span className="arrow-link">
-                <ion-icon name="chevron-forward" />
+              <h3 id="section-title">ONGs Registradas</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
               </span>
-            </span>
-          </Link>      
-
-          {/* Doações recebidas */}
-          <Link to='/gerenciar' id="activity-history" className="d-flex align-items-center item-config">
-            <span className="icon" id="icon-gerenc">
-              <ion-icon name="document-text" />
-            </span>
-            <h3 id="section-title">Doações recebidas</h3>
-            <span className="arrow-link-container ml-auto">
-              <span className="arrow-link">
-                <ion-icon name="chevron-forward" />
+            </Link>
+            
+            <Link to='/enderecos' id="edit-info" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="business" />
               </span>
-            </span>
-          </Link>
+              <h3 id="section-title">Endereços de ONGs</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
 
-                    {/* Equipe - Visível somente para ADMIN_ONG */}
-                    {userType === 'ONG' && (
-            <Link to='/' id="team-settings" className="d-flex align-items-center item-config">
+            <Link to='/administradores' id="team-settings" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="people" />
+              </span>
+              <h3 id="section-title">Administradores</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+          </>
+        );
+
+      case 'ONG':
+        return (
+          <>
+            {/* Links visíveis para ONG */}
+            <Link to='/ongs' id="ong-info" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="heart-circle" />
+              </span>
+              <h3 id="section-title">Minha ONG</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+
+            <Link to='/enderecos' id="edit-info" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="business" />
+              </span>
+              <h3 id="section-title">Endereços da ONG</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+
+            <Link to='/gerenciar' id="activity-history" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="document-text" />
+              </span>
+              <h3 id="section-title">Doações recebidas</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+
+            {/* Equipe - apenas para ONG */}
+            <Link to='/administradores' id="team-settings" className="d-flex align-items-center item-config">
               <span className="icon" id="icon-gerenc">
                 <ion-icon name="people" />
               </span>
@@ -78,9 +105,79 @@ function Configuracoes() {
                 </span>
               </span>
             </Link>
-          )}
+          </>
+        );
 
-          {/* Segurança */}
+      case 'FUNCIONARIO_ONG':
+        return (
+          <>
+            {/* Links visíveis para ONG */}
+            <Link to='/ongs' id="ong-info" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="heart-circle" />
+              </span>
+              <h3 id="section-title">Minha ONG</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+
+            <Link to='/enderecos' id="edit-info" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="business" />
+              </span>
+              <h3 id="section-title">Endereços da ONG</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+
+            <Link to='/gerenciar' id="activity-history" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="document-text" />
+              </span>
+              <h3 id="section-title">Doações recebidas</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+          </>
+        );
+
+      default:
+        return (
+          <>
+            {/* Links visíveis para visitantes ou outros tipos */}
+            <Link to='/login' className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="log-in" />
+              </span>
+              <h3 id="section-title">Entrar</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+          </>
+        );
+    }
+  };
+
+  return (
+    <>
+      <div id="profile-container" className="container px-4 py-5 px-sm-5 mt-5 borda">
+        <h2 id="titulo-principal">Configurações</h2>
+        <div id="profile-section">
+          {renderLinks()}
+
+          {/* Links comuns para todos os usuários */}
           <Link to='/politica-de-privacidade' id="security-settings" className="d-flex align-items-center item-config">
             <span className="icon" id="icon-gerenc">
               <ion-icon name="shield-checkmark" />
@@ -93,8 +190,7 @@ function Configuracoes() {
             </span>
           </Link>
 
-          {/* Ajuda e FAQ */}
-          <Link to="/ajuda" id='activity-history' className='d-flex align-items-center item-config'>
+          <Link to="/faq" id='activity-history' className='d-flex align-items-center item-config'>
             <span className="icon" id="icon-gerenc">
               <ion-icon name="help-circle" />
             </span>
@@ -109,6 +205,6 @@ function Configuracoes() {
       </div>
     </>
   );
-};
+}
 
 export default Configuracoes;
