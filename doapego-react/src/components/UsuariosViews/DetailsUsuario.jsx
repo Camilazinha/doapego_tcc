@@ -42,35 +42,32 @@ const DetailsUsuario = () => {
             )}
           </div>
 
+          <div className='d-flex flex-column'>
           {/* Tabela de detalhes do usuário */}
-          <table className="table">
-            <tbody>
-              <tr>
-                <th>Nome</th>
-                <td>{usuario.nome}</td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td>{usuario.email}</td>
-              </tr>
-              <tr>
-                <th>Telefone</th>
-                <td>{usuario.telefone || 'Não informado'}</td>
-              </tr>
-              <tr>
-                <th>Endereço</th>
-                <td>{`${usuario.logradouro}, ${usuario.numero} - ${usuario.bairro}, ${usuario.cidade}, ${usuario.estado}`}</td>
-              </tr>
-              <tr>
-                <th>CEP</th>
-                <td>{usuario.cep}</td>
-              </tr>
-              <tr>
-                <th>Status</th>
-                <td>{usuario.ativo ? 'Ativo' : 'Suspenso'}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Nome: </strong>  {usuario.nome}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>E-mail: </strong>  {usuario.email}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Telefone: </strong>  {usuario.telefone || 'Não informado'}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Endereço: </strong>  {`${usuario.logradouro}, ${usuario.numero} - ${usuario.bairro}, ${usuario.cidade}, ${usuario.estado}`}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>CEP: </strong>  {usuario.cep}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Status: </strong>  {usuario.ativo ? 'Ativo' : 'Suspenso'}
+          </div>
+        </div>
         </div>
       ) : (
         <p>Carregando detalhes...</p>

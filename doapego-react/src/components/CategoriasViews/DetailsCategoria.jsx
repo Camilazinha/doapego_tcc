@@ -41,14 +41,9 @@ const DetailsCategoria = () => {
               <span className='fake-img-details'>Sem foto</span>
             )}
           </div>
-          <table className="table align-self-start">
-            <tbody>
-              <tr>
-                <th>Nome</th>
-                <td>{categoria.nome}</td>
-              </tr>
-              </tbody>
-              </table>
+          <div className="d-flex align-self-start fake-input col"> 
+              <strong>Nome: </strong>  {categoria.nome}
+          </div>
         </div>
       ) : (
         <p>Carregando detalhes...</p>
