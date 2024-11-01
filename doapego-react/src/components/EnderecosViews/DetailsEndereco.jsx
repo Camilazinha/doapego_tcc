@@ -21,7 +21,7 @@ const DetailsEndereco = () => {
     }, [id]);
 
     return (
-        <div className="borda-view container-fluid my-5 p-4">
+        <div className="borda-view container-fluid mt-5 p-4">
             <p className='h2'>Detalhes do endereço</p>
             <hr />
 

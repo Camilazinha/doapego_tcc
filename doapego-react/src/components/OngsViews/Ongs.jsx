@@ -41,7 +41,7 @@ const ONGs = () => {
 
     if (loading) return (
         <div className="table-responsive">
-        <div className="borda-view container-fluid my-5 p-4">
+        <div className="borda-view container-fluid mt-5 p-4">
         <p className='h2'>Carregando...</p>
         <hr />
         </div>
@@ -49,7 +49,7 @@ const ONGs = () => {
     );
     if (error) return (
         <div className="table-responsive">
-        <div className="borda-view container-fluid my-5 p-4">
+        <div className="borda-view container-fluid mt-5 p-4">
         <p className='h2'>Erro ao carregar os dados:</p>
         <p className='h4' style={{ color: '#4c4c4c' }}>{error.message}</p>
         <hr />
@@ -59,7 +59,7 @@ const ONGs = () => {
 
     return (
         <div className="table-responsive">
-        <div className="borda-view container-fluid my-5 p-4">
+        <div className="borda-view container-fluid mt-5 p-4">
             <p className='h2'>ONGs Registradas</p>
             <hr />
 
@@ -83,10 +83,10 @@ const ONGs = () => {
                             <td className="align-middle text-center">
                                 <div className="d-flex justify-content-center">
                                     <Link to={`/ongs/detalhes/${ong.id}`}>
-                                        <button className="btn btn-info btn-sm mx-1">Ver</button>
+                                        <button className="btn btn-details-views btn-sm mx-1">Ver</button>
                                     </Link>
                                     <Link to={`/ongs/editar/${ong.id}`}>
-                                        <button className="btn btn-warning btn-sm mx-1">Editar</button>
+                                        <button className="btn btn-edit-views btn-sm mx-1">Editar</button>
                                     </Link>
                                     <button className="btn btn-danger btn-sm mx-1" onClick={() => { setOngId(ong.id); setShowModal(true); }}>Excluir</button>
                                 </div>

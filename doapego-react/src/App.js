@@ -20,6 +20,7 @@ import Ajuda from './components/Ajuda';
 import Faq from './components/Faq';
 import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
+import GerenciarDados from './components/GerenciarDados';
 import Pendentes from './components/Pendentes';
 import Aceitas from './components/Aceitas';
 import Recusadas from './components/Recusadas';
@@ -96,7 +97,8 @@ const App = () => {
         <Route path="/doacoes-pendentes" element={<Pendentes />} />
         <Route path="/doacoes-recusadas" element={<Recusadas />} />
         <Route path="/doacoes-aceitas" element={<Aceitas />} />
-
+        <Route path="/gerenciar-dados" element={<GerenciarDados />} />
+        
         <Route path="/configuracoes" element={<Configuracoes />} />
 
         <Route path="/categorias" element={<Categorias />} />

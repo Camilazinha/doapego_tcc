@@ -15,7 +15,7 @@ function Configuracoes() {
         <div id="profile-section">
 
           {/* Editar Perfil */}
-          <Link to='/' id="edit-info" className="d-flex align-items-center item-config">
+          {/* <Link to='/' id="edit-info" className="d-flex align-items-center item-config">
             <span className="icon" id="icon-gerenc">
               <ion-icon name="person-circle" />
             </span>
@@ -25,10 +25,10 @@ function Configuracoes() {
                 <ion-icon name="chevron-forward" />
               </span>
             </span>
-          </Link>
+          </Link> */}
 
           {/* Perfil da Ong */}
-          <Link to='/' id="ong-info" className="d-flex align-items-center item-config">
+          <Link to='/ongs' id="ong-info" className="d-flex align-items-center item-config">
             <span className="icon" id="icon-gerenc">
               <ion-icon name="heart-circle" />
             </span>
@@ -38,22 +38,19 @@ function Configuracoes() {
                 <ion-icon name="chevron-forward" />
               </span>
             </span>
-          </Link>           
-          
-          {/* Equipe - Visível somente para ADMIN_ONG */}
-          {userType === 'ONG' && (
-            <Link to='/' id="team-settings" className="d-flex align-items-center item-config">
-              <span className="icon" id="icon-gerenc">
-                <ion-icon name="people" />
+          </Link>     
+
+          <Link to='/enderecos' id="edit-info" className="d-flex align-items-center item-config">
+            <span className="icon" id="icon-gerenc">
+              <ion-icon name="business" />
+            </span>
+            <h3 id="section-title">Endereços da ONG</h3>
+            <span className="arrow-link-container ml-auto">
+              <span className="arrow-link">
+                <ion-icon name="chevron-forward" />
               </span>
-              <h3 id="section-title">Minha equipe</h3>
-              <span className="arrow-link-container ml-auto">
-                <span className="arrow-link">
-                  <ion-icon name="chevron-forward" />
-                </span>
-              </span>
-            </Link>
-          )}
+            </span>
+          </Link>      
 
           {/* Doações recebidas */}
           <Link to='/gerenciar' id="activity-history" className="d-flex align-items-center item-config">
@@ -67,6 +64,21 @@ function Configuracoes() {
               </span>
             </span>
           </Link>
+
+                    {/* Equipe - Visível somente para ADMIN_ONG */}
+                    {userType === 'ONG' && (
+            <Link to='/' id="team-settings" className="d-flex align-items-center item-config">
+              <span className="icon" id="icon-gerenc">
+                <ion-icon name="people" />
+              </span>
+              <h3 id="section-title">Minha equipe</h3>
+              <span className="arrow-link-container ml-auto">
+                <span className="arrow-link">
+                  <ion-icon name="chevron-forward" />
+                </span>
+              </span>
+            </Link>
+          )}
 
           {/* Segurança */}
           <Link to='/politica-de-privacidade' id="security-settings" className="d-flex align-items-center item-config">

@@ -70,7 +70,7 @@ const EditEndereco = () => {
   };
 
   return (
-    <div className="borda-view container-fluid my-5 p-4">
+    <div className="borda-view container-fluid mt-5 p-4">
       <p className='h2'>Editar Endereço</p>
       <hr />
 

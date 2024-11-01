@@ -54,7 +54,7 @@ const Enderecos = () => {
 
     if (loading) return (
         <div className="table-responsive">
-            <div className="borda-view container-fluid my-5 p-4">
+            <div className="borda-view container-fluid mt-5 p-4">
                 <p className='h2'>Carregando...</p>
                 <hr />
             </div>
@@ -63,7 +63,7 @@ const Enderecos = () => {
 
     if (error) return (
         <div className="table-responsive">
-            <div className="borda-view container-fluid my-5 p-4">
+            <div className="borda-view container-fluid mt-5 p-4">
                 <p className='h2'>Erro ao carregar os dados:</p>
                 <p className='h4' style={{ color: '#4c4c4c' }}>{error.message}</p>
                 <hr />
@@ -73,7 +73,7 @@ const Enderecos = () => {
 
     return (
         <div className="table-responsive">
-            <div className="borda-view container-fluid my-5 p-4">
+            <div className="borda-view container-fluid mt-5 p-4">
                 <p className='h2'>Endereços das ONGs</p>
 
                 {/* Botão de adicionar endereço, visível apenas para Admin ONG */}
