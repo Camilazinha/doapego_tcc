@@ -18,10 +18,16 @@ function Navbar({ userType, onLogout }) {
         return (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Início</Link>
+              <Link className="nav-link" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={handleLogout}>Logout</button>
+              <Link className="nav-link" to="/gerenciar">Gerenciar doações</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/configuracoes">Configurações</Link>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link btn" onClick={handleLogout}><strong>Logout</strong></button>
             </li>
           </>
         );
@@ -29,13 +35,16 @@ function Navbar({ userType, onLogout }) {
         return (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Início</Link>
-            </li>          
-            <li className="nav-item">
-              <Link className="nav-link" to="/painel2">Painel Admin 2</Link>
+              <Link className="nav-link" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={handleLogout}>Logout</button>
+              <Link className="nav-link" to="/gerenciar-dados">Gerenciar dados</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/configuracoes">Configurações</Link>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link btn" onClick={handleLogout}><strong>Logout</strong></button>
             </li>
           </>
         );
@@ -43,13 +52,16 @@ function Navbar({ userType, onLogout }) {
         return (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Início</Link>
-            </li>          
-            <li className="nav-item">
-              <Link className="nav-link" to="/painel3">Painel Admin 3</Link>
+              <Link className="nav-link" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={handleLogout}>Logout</button>
+              <Link className="nav-link" to="/gerenciar">Gerenciar doações</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/configuracoes">Configurações</Link>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link btn" onClick={handleLogout}><strong>Logout</strong></button>
             </li>
           </>
         );
