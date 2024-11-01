@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../../styles/views.css';
 import '../../styles/layout.css';
 
-const CreateEndereco = ({ ongId }) => {
+const CreateEndereco = () => {
   const [cep, setCep] = useState('');
   const [estado, setEstado] = useState('');
   const [cidade, setCidade] = useState('');
@@ -16,40 +16,72 @@ const CreateEndereco = ({ ongId }) => {
   const [longitude, setLongitude] = useState('');
   const [ativo, setAtivo] = useState(true);
   const [principal, setPrincipal] = useState(false);
+  const [ongNome, setOngNome] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const ongId = queryParams.get('ongId');
 
   useEffect(() => {
-    console.log("ID da ONG recebido:", ongId); // Verifica se o ID está disponível no console
     if (!ongId) {
       alert('ID da ONG não encontrado!');
-      navigate('/enderecos'); // Redireciona caso o ID não seja encontrado
+      navigate('/enderecos');
+      return;
+    }
+
+    // Verifica se o nome da ONG já está no localStorage
+    const nomeLocalStorage = localStorage.getItem('ongNome');
+    if (nomeLocalStorage) {
+      setOngNome(nomeLocalStorage);
+    } else {
+      // Caso contrário, busca o nome pelo ID da ONG
+      axios.get(`http://localhost:8080/ongs/${ongId}`)
+        .then(response => {
+          const nome = response.data.nome;
+          setOngNome(nome);
+          localStorage.setItem('ongNome', nome);  // Armazena no localStorage
+        })
+        .catch(error => {
+          console.error('Erro ao buscar o nome da ONG:', error);
+          alert('Erro ao buscar o nome da ONG.');
+        });
     }
   }, [ongId, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:8080/enderecos-ong`, {
-        ong: { id: ongId },
-        cep,
-        estado,
-        cidade,
-        bairro,
-        numero,
-        logradouro,
-        complemento,
-        latitude,
-        longitude,
-        principal,
-        ativo
-      });
-      alert('Endereço criado com sucesso!');
-      navigate('/enderecos');
+        await axios.post(
+            'http://localhost:8080/enderecos-ong',
+            {
+                ong: { id: Number(ongId) },
+                cep,
+                estado,
+                cidade,
+                bairro,
+                numero,
+                logradouro,
+                complemento,
+                latitude: latitude ? parseFloat(latitude) : null,
+                longitude: longitude ? parseFloat(longitude) : null,
+                principal: Boolean(principal),
+                ativo: Boolean(ativo)
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        alert('Endereço criado com sucesso!');
+        navigate('/enderecos');
     } catch (err) {
-      console.error('Erro ao criar endereço:', err);
-      alert('Erro ao criar endereço. Tente novamente!');
+        console.error('Erro ao criar endereço:', err.response || err);
+        alert(`Erro ao criar endereço: ${err.response?.data?.message || 'Tente novamente!'}`);
     }
-  };
+};
+
 
   return (
     <div className="borda-view container-fluid mt-5 p-4">
@@ -58,8 +90,8 @@ const CreateEndereco = ({ ongId }) => {
 
       <form onSubmit={handleSubmit}>
         <div className="form-group col-10 col-md-11 mb-2">
-          <label>ID da ONG:</label>
-          <input type="text" className="form-control" value={ongId || ''} disabled />
+          <label>Nome da ONG:</label>
+          <input type="text" className="form-control" value={ongNome || ''} disabled />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">

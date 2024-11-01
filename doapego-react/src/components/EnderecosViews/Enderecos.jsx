@@ -19,13 +19,9 @@ const Enderecos = () => {
         const fetchEnderecos = async () => {
             try {
                 let endpoint = 'http://localhost:8080/enderecos-ong?sortDirection=asc';
+                console.log(localStorage.getItem('ongId'));
 
                 // Filtra endereços dependendo do tipo de usuário
-                if (userType === 'MASTER') {
-                    endpoint = `${endpoint}?principal=true`;
-                } else if (userType === 'FUNCIONARIO_ONG' && ongId) {
-                    endpoint = `${endpoint}?ongId=${ongId}`;
-                }
 
                 const response = await axios.get(endpoint);
                 setEnderecos(response.data.items);
@@ -77,11 +73,11 @@ const Enderecos = () => {
                 <p className='h2'>Endereços das ONGs</p>
 
                 {/* Botão de adicionar endereço, visível apenas para Admin ONG */}
-                {userType === 'ONG' && (
-                    <Link to={`/enderecos/criar`} style={{ display: 'inline-block' }}>
-                        <button className="btn btn-add">+ Novo Endereço</button>
-                    </Link>
-                )}
+                {userType === 'ONG' && ongId && (
+    <Link to={`/enderecos/criar?ongId=${ongId}`} style={{ display: 'inline-block' }}>
+        <button className="btn btn-add">+ Novo Endereço</button>
+    </Link>
+)}
 
                 <hr />
 

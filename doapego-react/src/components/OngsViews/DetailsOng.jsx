@@ -38,17 +38,40 @@ const DetailsOng = () => {
                 style={{ objectFit: 'cover', borderRadius: '8px' }} 
               />
             ) : (
-              <p>Sem foto</p>
+              <span className='fake-img-details'>Sem foto</span>
             )}
           </div>
-          <div className="d-flex flex-column">
-            <p><strong>Nome:</strong> {ong.nome}</p>
-            <p><strong>Email:</strong> {ong.email}</p>
-            <p><strong>Telefone:</strong> {ong.telefone}</p>
-            <p><strong>Fundação:</strong> {ong.fundacao ? new Date(ong.fundacao).toLocaleDateString() : 'Não informado'}</p>
-            <p><strong>Descrição:</strong> {ong.descricao || 'Sem descrição'}</p>
-            <p><strong>WhatsApp:</strong> {ong.whatsapp || 'Não informado'}</p>
-            <p><strong>Ativo:</strong> {ong.ativo ? 'Sim' : 'Não'}</p>
+
+          <div className='d-flex flex-column'>
+          {/* Tabela de detalhes do usuário */}
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Nome: </strong>  {ong.nome}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>E-mail: </strong>  {ong.email}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Telefone: </strong>  {ong.telefone}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Fundação: </strong>  {ong.fundacao ? new Date(ong.fundacao).toLocaleDateString() : 'Não informado'}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Descrição: </strong>  {ong.descricao || 'Sem descrição'}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Whatsapp: </strong>  {ong.whatsapp}
+          </div>
+
+          <div className="d-flex fake-input col my-2"> 
+              <strong>Ativo: </strong>  {ong.ativo ? 'Sim' : 'Não'}
+          </div>
+
           </div>
         </div>
       ) : (

@@ -56,60 +56,73 @@ const Cadastro = () => {
     e.preventDefault();
 
     try {
-      const adminData = {
-        nome,
-        email,
-        senha,
-        tipo: tipoUsuario,
-        ativo: true,
-        ong: tipoUsuario === 'ONG' || tipoUsuario === 'FUNCIONARIO_ONG' ? { id: ongId || null } : null
-      };
+        let newOngId = ongId; // ID da ONG selecionada ou nulo
 
-      if (tipoUsuario === 'ONG') {
-        const ongResponse = await axios.post('http://localhost:8080/ongs', {
-          nome: nomeOng,
-          email: emailOng,
-          senha: senhaOng,
-          telefone,
-          fundacao,
-          descricao,
-          whatsapp,
-          ativo: true
-        });
+        // Se o tipo de usuário for ONG, criamos a ONG
+        if (tipoUsuario === 'ONG') {
+            const ongResponse = await axios.post('http://localhost:8080/ongs', {
+                nome: nomeOng,
+                email: emailOng,
+                senha: senhaOng,
+                telefone,
+                fundacao,
+                descricao,
+                whatsapp,
+                ativo: true
+            });
 
-        const newOngId = ongResponse.data.id;
-        adminData.ong = { id: newOngId };
+            // Armazena o ID da nova ONG
+            newOngId = ongResponse.data.id;
+            localStorage.setItem('ongId', newOngId); // Salva no localStorage
 
-        await axios.post('http://localhost:8080/enderecos-ong', {
-          cep,
-          estado,
-          cidade,
-          bairro,
-          logradouro,
-          numero,
-          complemento,
-          latitude: null,
-          longitude: null,
-          principal: true,
-          ativo: true,
-          ong: { id: newOngId }
-        });
-      }
+            // Criação do endereço principal para ONG
+            await axios.post('http://localhost:8080/enderecos-ong', {
+                cep,
+                estado,
+                cidade,
+                bairro,
+                logradouro,
+                numero,
+                complemento,
+                latitude: null,
+                longitude: null,
+                principal: true,
+                ativo: true,
+                ong: { id: newOngId }
+            });
+        }
 
-      await axios.post('http://localhost:8080/administradores', adminData);
+        // Define os dados do admin, com o ID da ONG (para ONG ou FUNCIONARIO_ONG)
+        const adminData = {
+            nome,
+            email,
+            senha,
+            tipo: tipoUsuario,
+            ativo: true,
+            ong: tipoUsuario === 'ONG' || tipoUsuario === 'FUNCIONARIO_ONG' ? { id: newOngId } : null
+        };
 
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userPassword', senha);
-      localStorage.setItem('userType', tipoUsuario);
+        await axios.post('http://localhost:8080/administradores', adminData);
 
-      alert('Cadastro realizado com sucesso!');
-      navigate('/login');
+        // Salva tipo de usuário e credenciais no localStorage
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userPassword', senha);
+        localStorage.setItem('userType', tipoUsuario);
+
+        // Salva o ID da ONG também para FUNCIONARIO_ONG
+        if (tipoUsuario === 'FUNCIONARIO_ONG') {
+            localStorage.setItem('ongId', ongId); // Salva a ONG selecionada
+        }
+
+        alert('Cadastro realizado com sucesso!');
+        navigate('/login');
 
     } catch (err) {
-      console.error('Erro ao realizar o cadastro:', err);
-      alert('Erro ao realizar o cadastro. Tente novamente.');
+        console.error('Erro ao realizar o cadastro:', err);
+        alert('Erro ao realizar o cadastro. Tente novamente.');
     }
-  };
+};
+
 
   return (
     <div className="container px-4 py-5 px-md-5 mt-5 text-lg-start borda">
