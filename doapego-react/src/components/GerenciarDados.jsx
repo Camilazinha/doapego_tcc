@@ -12,6 +12,7 @@ function GerenciarDados() {
       <h2 id="titulo-principal">Gerenciar dados</h2>
 
       <div id="cards-container2" className="mt-4 row">
+        
         {/* Card para Ver Categorias */}
         <div id="card-pendentes" className="card col-md-6 mb-4">
           <div className="card-body text-center">
@@ -42,7 +43,7 @@ function GerenciarDados() {
         {/* Card para Ver e Suspender Usuários */}
         <div id="card-pendentes" className="card col-md-6 mb-4">
           <div className="card-body text-center">
-            <h5 className="card-title">Gerenciar Usuários</h5>
+            <h5 className="card-title">Ver Usuários</h5>
             <p className="card-text">Visualize os usuários cadastrados e suspenda suas contas, se necessário.</p>
             <Link to="/usuarios" className="btn w-75 btn-navbar-custom">Gerenciar</Link>
           </div>
@@ -51,7 +52,7 @@ function GerenciarDados() {
         {/* Card para Ver Todas as ONGs */}
         <div id="card-pendentes" className="card col-md-6 mb-4">
           <div className="card-body text-center">
-            <h5 className="card-title">Ver Todas as ONGs</h5>
+            <h5 className="card-title">Ver ONGs</h5>
             <p className="card-text">Explore e gerencie todas as ONGs registradas na plataforma.</p>
             <Link to="/ongs" className="btn w-75 btn-navbar-custom">Gerenciar</Link>
           </div>

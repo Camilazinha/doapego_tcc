@@ -393,6 +393,7 @@ h1 {
 
 .card-text {
   color: #4e4e4e;
+  align-self: center;
 }
 
 #donations-card,
@@ -535,6 +536,8 @@ h1 {
 #card-canceladas .card-body {
   text-align: center;
   align-self: center;
+  align-items: center;
+  align-content: center;
 }
 
 

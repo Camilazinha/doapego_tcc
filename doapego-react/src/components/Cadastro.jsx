@@ -116,7 +116,7 @@ const Cadastro = () => {
       <form onSubmit={handleSubmit} id="form" className="px-3">
         <h1>Dados de Contato</h1>
         <div className="row gx-lg-5 align-items-center">
-          <div className="col-11 col-lg-3 my-lg-4 mb-4">
+          <div className="col-11 col-lg-4 my-lg-4 mb-4">
             <input
               type="text"
               className="form-control inputs required"
@@ -127,7 +127,7 @@ const Cadastro = () => {
             />
           </div>
 
-          <div className="col-11 col-lg-3 my-lg-4 mb-4">
+          <div className="col-11 col-lg-4 my-lg-4 mb-4">
             <input
               type="email"
               className="form-control"
@@ -137,7 +137,7 @@ const Cadastro = () => {
               required
             />
           </div>
-          <div className="col-11 col-lg-3 mb-4 my-lg-4">
+          <div className="col-11 col-lg-4 mb-4 my-lg-4">
             <input
               type="password"
               className="form-control"
@@ -151,7 +151,7 @@ const Cadastro = () => {
           {tipoUsuario === 'ONG' && (
             <>
               <h1>Dados da Organização</h1>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -161,7 +161,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="email"
                   className="form-control"
@@ -171,7 +171,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="password"
                   className="form-control"
@@ -181,7 +181,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -192,20 +192,20 @@ const Cadastro = () => {
                 />
               </div>
 
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
             <input type="date" className="form-control" placeholder="Data de Fundação" value={fundacao} onChange={(e) => setFundacao(e.target.value)} />
           </div>
 
-          <div className="col-11 col-lg-3 mb-4 my-lg-4">
+          <div className="col-11 col-lg-4 mb-4 my-lg-4">
             <input type="text" className="form-control" placeholder="Whatsapp" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
           </div>
           
-          <div className="col-11 col-lg-3 mb-4 my-lg-4">
+          <div className="col-11 col-lg-4 mb-4 my-lg-4">
             <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
           </div>
 
               <h1>Endereço da Organização</h1>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -215,7 +215,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -225,7 +225,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -235,7 +235,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -245,7 +245,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -255,7 +255,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -265,7 +265,7 @@ const Cadastro = () => {
                   required
                 />
               </div>
-              <div className="col-11 col-lg-3 mb-4 my-lg-4">
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
                 <input
                   type="text"
                   className="form-control"
@@ -280,7 +280,7 @@ const Cadastro = () => {
           {tipoUsuario === 'FUNCIONARIO_ONG' && (
             <>
             
-        <div className="col-11 col-lg-3 my-lg-4">
+        <div className="col-11 col-lg-4 my-lg-4">
               <select
                 className="form-control mb-4 mb-lg-0"
                 value={ongId}
@@ -297,7 +297,7 @@ const Cadastro = () => {
           )}
         </div>
 
-        <div className="col-11 col-lg-3 mb-4 my-lg-4">
+        <div className="col-11 col-lg-2 mb-4 my-lg-4">
             <select
               className="form-control"
               value={tipoUsuario}
