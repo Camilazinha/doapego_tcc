@@ -20,7 +20,7 @@ function Inicio() {
                 <div className="card-body text-center">
                   <h5 className="card-title">Gerenciar dados</h5>
                   <p className="card-text align-self-center">Gerencie e visualize as informações cadastradas na plataforma.</p>
-                  <Link to="/configuracoes" className="btn btn-navbar-custom w-75">Ver configurações</Link>
+                  <Link to="/gerenciar-dados" className="btn btn-navbar-custom w-75">Ver configurações</Link>
                 </div>
               </div>
 
@@ -36,7 +36,7 @@ function Inicio() {
                 <div className="card-body text-center">
                   <h5 className="card-title">Ajuda</h5>
                   <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
-                  <Link to="/faq" className="btn ">Suporte</Link>
+                  <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
                 </div>
               </div>
           </>
@@ -66,7 +66,7 @@ function Inicio() {
                 <div className="card-body text-center">
                   <h5 className="card-title">Ajuda</h5>
                   <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
-                  <Link to="/gerenciar" className="btn btn-navbar-custom w-75">Suporte</Link>
+                  <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
                 </div>
               </div>
           </>

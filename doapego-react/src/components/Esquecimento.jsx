@@ -27,11 +27,11 @@ function Esquecimento() {
           </div>
 
           <p style={{ fontSize: '.8em', color: '#4e4e4e', margin: '0', textAlign: 'center' }}>
-            Insira o email cadastrado para receber o link.
+            Insira o e-mail cadastrado para receber o link.
           </p>
 
           <div className="button-box dois-links">
-            <button type="submit" className="mt-3 py-2 btn-sm btn-navbar-custom w-75" onClick={() => navigate('/redefinir-senha')}>
+            <button type="submit" className="mt-3 py-2 btn-sm btn-navbar-custom w-75" required onClick={() => navigate('/redefinir-senha')}>
               Enviar link de recuperação
             </button>
             <Link to='/login' className='mt-2 py-2 btn-sm text-center w-50 alt-button'>Voltar para o login</Link >

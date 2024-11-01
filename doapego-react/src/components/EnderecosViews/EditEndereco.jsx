@@ -117,17 +117,17 @@ const EditEndereco = () => {
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Latitude:</label>
-          <input type="text" className="form-control" value={latitude} onChange={(e) => setLatitude(e.target.value)} required />
+          <input type="text" className="form-control" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Longitude:</label>
-          <input type="text" className="form-control" value={longitude} onChange={(e) => setLongitude(e.target.value)} required />
+          <input type="text" className="form-control" value={longitude} onChange={(e) => setLongitude(e.target.value)} />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Principal:</label>
-          <select className="form-control" value={principal} onChange={(e) => setPrincipal(e.target.value === 'true')} required>
+          <select className="form-control" value={principal} onChange={(e) => setPrincipal(e.target.value === 'true')}>
             <option value="true">Sim</option>
             <option value="false">Não</option>
           </select>
@@ -135,7 +135,7 @@ const EditEndereco = () => {
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Ativo:</label>
-          <select className="form-control" value={ativo} onChange={(e) => setAtivo(e.target.value === 'true')} required>
+          <select className="form-control" value={ativo} onChange={(e) => setAtivo(e.target.value === 'true')}>
             <option value="true">Sim</option>
             <option value="false">Não</option>
           </select>

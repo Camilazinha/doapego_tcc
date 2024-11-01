@@ -54,75 +54,69 @@ const Cadastro = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-        let newOngId = ongId; // ID da ONG selecionada ou nulo
-
-        // Se o tipo de usuário for ONG, criamos a ONG
-        if (tipoUsuario === 'ONG') {
-            const ongResponse = await axios.post('http://localhost:8080/ongs', {
-                nome: nomeOng,
-                email: emailOng,
-                senha: senhaOng,
-                telefone,
-                fundacao,
-                descricao,
-                whatsapp,
-                ativo: true
-            });
-
-            // Armazena o ID da nova ONG
-            newOngId = ongResponse.data.id;
-            localStorage.setItem('ongId', newOngId); // Salva no localStorage
-
-            // Criação do endereço principal para ONG
-            await axios.post('http://localhost:8080/enderecos-ong', {
-                cep,
-                estado,
-                cidade,
-                bairro,
-                logradouro,
-                numero,
-                complemento,
-                latitude: null,
-                longitude: null,
-                principal: true,
-                ativo: true,
-                ong: { id: newOngId }
-            });
-        }
-
-        // Define os dados do admin, com o ID da ONG (para ONG ou FUNCIONARIO_ONG)
-        const adminData = {
-            nome,
-            email,
-            senha,
-            tipo: tipoUsuario,
-            ativo: true,
-            ong: tipoUsuario === 'ONG' || tipoUsuario === 'FUNCIONARIO_ONG' ? { id: newOngId } : null
-        };
-
-        await axios.post('http://localhost:8080/administradores', adminData);
-
-        // Salva tipo de usuário e credenciais no localStorage
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('userPassword', senha);
-        localStorage.setItem('userType', tipoUsuario);
-
-        // Salva o ID da ONG também para FUNCIONARIO_ONG
-        if (tipoUsuario === 'FUNCIONARIO_ONG') {
-            localStorage.setItem('ongId', ongId); // Salva a ONG selecionada
-        }
-
-        alert('Cadastro realizado com sucesso!');
-        navigate('/login');
-
+      let newOngId = ongId; // Inicializa com o ID selecionado, se for FUNCIONARIO_ONG
+  
+      // Se o tipo de usuário é ONG, cria a ONG e atualiza `newOngId`
+      if (tipoUsuario === 'ONG') {
+        const ongResponse = await axios.post('http://localhost:8080/ongs', {
+          nome: nomeOng,
+          email: emailOng,
+          senha: senhaOng,
+          telefone,
+          fundacao,
+          descricao,
+          whatsapp,
+          ativo: true
+        });
+  
+        newOngId = ongResponse.data.id; // Armazena o novo ID da ONG
+        localStorage.setItem('ongId', newOngId); // Opcional: armazena no localStorage para futura referência
+  
+        // Criação de endereço principal, se aplicável
+        await axios.post('http://localhost:8080/enderecos-ong', {
+          cep,
+          estado,
+          cidade,
+          bairro,
+          logradouro,
+          numero,
+          complemento,
+          latitude: null,
+          longitude: null,
+          principal: true,
+          ativo: true,
+          ong: { id: newOngId }
+        });
+      }
+  
+      // Configura os dados do admin, incluindo o `ongId`
+      const adminData = {
+        nome,
+        email,
+        senha,
+        tipo: tipoUsuario,
+        ativo: true,
+        ong: tipoUsuario === 'ONG' || tipoUsuario === 'FUNCIONARIO_ONG' ? { id: newOngId } : null
+      };
+  
+      await axios.post('http://localhost:8080/administradores', adminData);
+  
+      // Salva tipo de usuário e credenciais no localStorage para futuras requisições
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', senha);
+      localStorage.setItem('userType', tipoUsuario);
+  
+      alert('Cadastro realizado com sucesso!');
+      navigate('/login'); // Redireciona para /inicio após o cadastro
+  
     } catch (err) {
-        console.error('Erro ao realizar o cadastro:', err);
-        alert('Erro ao realizar o cadastro. Tente novamente.');
+      console.error('Erro ao realizar o cadastro:', err);
+      alert('Erro ao realizar o cadastro. Tente novamente.');
     }
-};
-
+  };
+  
 
   return (
     <div className="container px-4 py-5 px-md-5 mt-5 text-lg-start borda">

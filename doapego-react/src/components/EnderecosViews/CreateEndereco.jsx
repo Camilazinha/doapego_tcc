@@ -30,57 +30,50 @@ const CreateEndereco = () => {
       return;
     }
 
-    // Verifica se o nome da ONG já está no localStorage
-    const nomeLocalStorage = localStorage.getItem('ongNome');
-    if (nomeLocalStorage) {
-      setOngNome(nomeLocalStorage);
-    } else {
-      // Caso contrário, busca o nome pelo ID da ONG
-      axios.get(`http://localhost:8080/ongs/${ongId}`)
-        .then(response => {
-          const nome = response.data.nome;
-          setOngNome(nome);
-          localStorage.setItem('ongNome', nome);  // Armazena no localStorage
-        })
-        .catch(error => {
-          console.error('Erro ao buscar o nome da ONG:', error);
-          alert('Erro ao buscar o nome da ONG.');
-        });
-    }
+    // Busca o nome da ONG pelo ID da URL
+    axios.get(`http://localhost:8080/ongs/${ongId}`)
+      .then(response => {
+        const nome = response.data.nome;
+        setOngNome(nome); // Define o nome da ONG no estado
+      })
+      .catch(error => {
+        console.error('Erro ao buscar o nome da ONG:', error);
+        alert('Erro ao buscar o nome da ONG.');
+      });
   }, [ongId, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await axios.post(
-            'http://localhost:8080/enderecos-ong',
-            {
-                ong: { id: Number(ongId) },
-                cep,
-                estado,
-                cidade,
-                bairro,
-                numero,
-                logradouro,
-                complemento,
-                latitude: latitude ? parseFloat(latitude) : null,
-                longitude: longitude ? parseFloat(longitude) : null,
-                principal: Boolean(principal),
-                ativo: Boolean(ativo)
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-        alert('Endereço criado com sucesso!');
-        navigate('/enderecos');
+      await axios.post(
+        'http://localhost:8080/enderecos-ong',
+        {
+          ong: { id: Number(ongId) },
+          cep,
+          estado,
+          cidade,
+          bairro,
+          numero,
+          logradouro,
+          complemento,
+          latitude: latitude ? parseFloat(latitude) : null,
+          longitude: longitude ? parseFloat(longitude) : null,
+          principal: Boolean(principal),
+          ativo: Boolean(ativo)
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      alert('Endereço criado com sucesso!');
+      navigate('/enderecos');
     } catch (err) {
-        console.error('Erro ao criar endereço:', err.response || err);
-        alert(`Erro ao criar endereço: ${err.response?.data?.message || 'Tente novamente!'}`);
+      console.error('Erro ao criar endereço:', err.response || err);
+      alert(`Erro ao criar endereço: ${err.response?.data?.message || 'Tente novamente!'}`);
     }
-};
+  };
 
 
   return (
@@ -131,17 +124,17 @@ const CreateEndereco = () => {
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Latitude:</label>
-          <input type="text" className="form-control" value={latitude} onChange={(e) => setLatitude(e.target.value)} required />
+          <input type="text" className="form-control" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Longitude:</label>
-          <input type="text" className="form-control" value={longitude} onChange={(e) => setLongitude(e.target.value)} required />
+          <input type="text" className="form-control" value={longitude} onChange={(e) => setLongitude(e.target.value)} />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Principal:</label>
-          <select className="form-control" value={principal} onChange={(e) => setPrincipal(e.target.value === 'true')} required>
+          <select className="form-control" value={principal} onChange={(e) => setPrincipal(e.target.value === 'true')}>
             <option value="true">Sim</option>
             <option value="false">Não</option>
           </select>
@@ -149,7 +142,7 @@ const CreateEndereco = () => {
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Ativo:</label>
-          <select className="form-control" value={ativo} onChange={(e) => setAtivo(e.target.value === 'true')} required>
+          <select className="form-control" value={ativo} onChange={(e) => setAtivo(e.target.value === 'true')}>
             <option value="true">Sim</option>
             <option value="false">Não</option>
           </select>
