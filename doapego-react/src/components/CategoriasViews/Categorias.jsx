@@ -77,8 +77,8 @@ const Categorias = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {categorias.length > 0 ? (categorias.map((categoria, index) => (<tr key={categoria.id}>
-                    <th className="align-middle text-center" scope="row">{index + 1}</th>
+                    {categorias.length > 0 ? (categorias.map((categoria) => (<tr key={categoria.id}>
+                    <th className="align-middle text-center" scope="row">{categoria.id}</th>
                     <td className="text-center align-middle">
                         {categoria.foto ? ( <img src={categoria.foto} alt={`Foto de ${categoria.nome}`} width="70" height="70" style={{ objectFit: 'cover', borderRadius: '8px' }} />) : ('Sem foto')}
                     </td>

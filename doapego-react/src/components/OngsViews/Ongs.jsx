@@ -74,9 +74,9 @@ const ONGs = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {ongs.length > 0 ? (ongs.map((ong, index) => (
+                    {ongs.length > 0 ? (ongs.map((ong) => (
                         <tr key={ong.id}>
-                            <th className="align-middle text-center" scope="row">{index + 1}</th>
+                            <th className="align-middle text-center" scope="row">{ong.id}</th>
                             <td className="align-middle text-center">{ong.nome}</td>
                             <td className="align-middle text-center">{ong.email}</td>
                             <td className="align-middle text-center">{ong.telefone || 'Sem telefone'}</td>

@@ -18,7 +18,7 @@ const Enderecos = () => {
     useEffect(() => {
         const fetchEnderecos = async () => {
             try {
-                let endpoint = 'http://localhost:8080/enderecos-ong';
+                let endpoint = 'http://localhost:8080/enderecos-ong?sortDirection=asc';
 
                 // Filtra endereços dependendo do tipo de usuário
                 if (userType === 'MASTER') {
@@ -99,9 +99,9 @@ const Enderecos = () => {
                     </thead>
                     <tbody>
                         {enderecos.length > 0 ? (
-                            enderecos.map((endereco, index) => (
+                            enderecos.map((endereco) => (
                                 <tr key={endereco.id}>
-                                    <th className="align-middle text-center" scope="row">{index + 1}</th>
+                                    <th className="align-middle text-center" scope="row">{endereco.id}</th>
                                     {/* <td className="align-middle text-center">{endereco.cep}</td> */}
                                     <td className="align-middle text-center">{endereco.estado}</td>
                                     <td className="align-middle text-center">{endereco.cidade}</td>

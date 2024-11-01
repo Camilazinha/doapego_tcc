@@ -105,9 +105,9 @@ const Usuarios = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {usuarios.length > 0 ? (usuarios.map((usuario, index) => (
+                        {usuarios.length > 0 ? (usuarios.map((usuario) => (
                             <tr key={usuario.id}>
-                                <th className="align-middle text-center" scope="row">{index + 1}</th>
+                                <th className="align-middle text-center" scope="row">{usuario.id}</th>
                                 <td className="align-middle text-center">{usuario.nome}</td>
                                 <td className="align-middle text-center">{usuario.email}</td>
                                 <td className="align-middle text-center">

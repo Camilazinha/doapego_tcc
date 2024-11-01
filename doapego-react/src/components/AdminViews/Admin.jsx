@@ -81,9 +81,9 @@ const Admin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {administradores.length > 0 ? (administradores.map((admin, index) => (
+                        {administradores.length > 0 ? (administradores.map((admin) => (
                             <tr key={admin.id}>
-                                <th className="align-middle text-center" scope="row">{index + 1}</th>
+                                <th className="align-middle text-center" scope="row">{admin.id}</th>
                                 <td className="align-middle text-center">{admin.nome}</td>
                                 <td className="align-middle text-center">{admin.email}</td>
                                 <td className="align-middle text-center">{admin.tipo}</td>
