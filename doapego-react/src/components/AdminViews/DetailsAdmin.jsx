@@ -39,20 +39,20 @@ const DetailsAdmin = () => {
 
       {admin ? (
         <div className="d-flex flex-column">
-          <div className="mb-3">
+          <div className="my-2 fake-input col">
             <strong>Nome:</strong> {admin.nome}
           </div>
-          <div className="mb-3">
+          <div className="my-2 fake-input col">
             <strong>Email:</strong> {admin.email}
           </div>
-          <div className="mb-3">
+          <div className="my-2 fake-input col">
             <strong>Tipo:</strong> {admin.tipo}
           </div>
-          <div className="mb-3">
+          <div className="my-2 fake-input col">
             <strong>Ativo:</strong> {admin.ativo ? 'Sim' : 'Não'}
           </div>
           {admin.ong_id && (
-            <div className="mb-3">
+            <div className="my-2 fake-input col">
               <strong>ID da ONG:</strong> {admin.ong_id}
             </div>
           )}
@@ -62,7 +62,7 @@ const DetailsAdmin = () => {
       )}
 
       <div className="mt-3 d-flex justify-content-start">
-        <button className="btn btn-voltar" onClick={() => navigate('/admins')}>Voltar</button>
+        <button className="btn btn-voltar" onClick={() => navigate('/administradores')}>Voltar</button>
       </div>
     </div>
   );
