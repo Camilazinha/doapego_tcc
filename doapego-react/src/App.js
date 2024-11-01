@@ -34,8 +34,6 @@ import EditOng from './components/OngsViews/EditOng';
 import DetailsOng from './components/OngsViews/DetailsOng';
 
 import Admin from './components/AdminViews/Admin';
-import CreateAdmin from './components/AdminViews/CreateAdmin';
-import EditAdmin from './components/AdminViews/EditAdmin';
 import DetailsAdmin from './components/AdminViews/DetailsAdmin';
 
 import Enderecos from './components/EnderecosViews/Enderecos';
@@ -117,8 +115,6 @@ const App = () => {
                 <Route path="/enderecos/detalhes/:id" element={<DetailsEndereco />} />
                 
         <Route path="/administradores" element={<Admin />} />
-        <Route path="/administradores/criar" element={<CreateAdmin />} />
-                <Route path="/administradores/editar/:id" element={<EditAdmin />} />
                 <Route path="/administradores/detalhes/:id" element={<DetailsAdmin />} />      
 
         {/* <Route path="/arquivos" element={<Arquivos />} />
