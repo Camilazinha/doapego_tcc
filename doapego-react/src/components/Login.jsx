@@ -22,7 +22,7 @@ function Login() {
     // Verifica as credenciais
     if (emailAdmin === storedEmail && senha === storedPassword) {
       alert('Login realizado com sucesso!');
-      navigate('/enderecos'); // Redireciona para uma página de boas-vindas ou outra de sua escolha
+      navigate('/inicio'); // Redireciona para uma página de boas-vindas ou outra de sua escolha
     } else {
       alert('Email ou senha incorretos. Tente novamente!');
     }

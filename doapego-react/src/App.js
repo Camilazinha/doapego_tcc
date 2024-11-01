@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -71,7 +73,8 @@ const App = () => {
               }, []);
         
   return (
-    <Router>
+        <AuthProvider>        
+    <Router>   
       <Navbar userType={userType} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -125,6 +128,7 @@ const App = () => {
       </Routes>
       <Footer />
     </Router>
+    </AuthProvider>    
   );
 };
 

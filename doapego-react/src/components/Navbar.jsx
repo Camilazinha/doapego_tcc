@@ -1,12 +1,17 @@
 // src/components/Navbar.js
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../styles/main.css';
 import '../styles/layout.css';
 
 function Navbar({ userType, onLogout }) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    onLogout();
+    navigate('/');
+  }
   const renderMenu = () => {
     switch (userType) {
       case 'ONG':
@@ -16,7 +21,7 @@ function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/">Início</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={onLogout}>Logout</button>
+              <button className="nav-link btn" onClick={handleLogout}>Logout</button>
             </li>
           </>
         );
@@ -30,7 +35,7 @@ function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/painel2">Painel Admin 2</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={onLogout}>Logout</button>
+              <button className="nav-link btn" onClick={handleLogout}>Logout</button>
             </li>
           </>
         );
@@ -44,7 +49,7 @@ function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/painel3">Painel Admin 3</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={onLogout}>Logout</button>
+              <button className="nav-link btn" onClick={handleLogout}>Logout</button>
             </li>
           </>
         );
