@@ -534,6 +534,7 @@ h1 {
 #card-feitas .card-body,
 #card-canceladas .card-body {
   text-align: center;
+  align-self: center;
 }
 
 
