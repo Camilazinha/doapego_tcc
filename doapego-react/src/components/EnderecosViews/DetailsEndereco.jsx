@@ -1,3 +1,5 @@
+// src/components/DetailsEndereco.js
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
@@ -7,6 +9,9 @@ const DetailsEndereco = () => {
     const { id } = useParams();
     const [endereco, setEndereco] = useState(null);
     const navigate = useNavigate();
+
+    // Recupera o tipo de usuário
+    const userType = localStorage.getItem('userType');
 
     useEffect(() => {
         const fetchEndereco = async () => {
@@ -25,10 +30,9 @@ const DetailsEndereco = () => {
             <p className='h2'>Detalhes do endereço</p>
             <hr />
 
-            {endereco ? ( // Verifica se o endereço existe
+            {endereco ? (
                 <div className="d-flex flex-column">
-                  
-                  <div className="my-2 fake-input col">
+                    <div className="my-2 fake-input col">
                         <strong>CEP: </strong> {endereco.cep}
                     </div>
                     <div className="my-2 fake-input col">
@@ -66,11 +70,13 @@ const DetailsEndereco = () => {
                 <p>Carregando detalhes...</p>
             )}
 
-            {endereco && ( // Verifica se o endereço existe antes de renderizar os botões
+            {endereco && (
                 <div className="mt-3 d-flex justify-content-start">
-                    <Link to={`/enderecos/editar/${endereco.id}`}>
-                        <button className="btn btn-add">Editar</button>
-                    </Link>
+                    {userType === 'ADMIN_ONG' && ( // Exibe o botão "Editar" apenas para o admin ONG
+                        <Link to={`/enderecos/editar/${endereco.id}`}>
+                            <button className="btn btn-add">Editar</button>
+                        </Link>
+                    )}
                     <button className="btn btn-voltar" onClick={() => navigate('/enderecos')}>Voltar</button>
                 </div>
             )}
