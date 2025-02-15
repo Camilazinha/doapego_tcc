@@ -38,10 +38,12 @@
 .input-box .icon {
   position: absolute;
   right: 8px;
-  color: #FFA4C5;
+  color: #FDA5c2;
   font-size: 1.2em;
   line-height: 57px;
 }
+
+/* Página - Esqueci a senha */
 
 .remember-forgot a {
   color: #212529;
