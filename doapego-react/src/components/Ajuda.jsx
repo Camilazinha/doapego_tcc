@@ -3,7 +3,7 @@ import '../styles/main.css';
 import '../styles/layout.css';
 import '../script/script.js';
 
-function Ajuda() {
+export default function Ajuda() {
   return (
     <>
     <section id="faq-section" className="container px-4 py-5 px-md-5 mt-5 borda">
@@ -105,5 +105,3 @@ function Ajuda() {
       </>
   );
 }
-
-export default Ajuda;

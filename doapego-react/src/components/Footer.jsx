@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/main.css';
 import '../styles/layout.css';
 
-function Footer() {
+export default function Footer() {
   return (
     <footer className="bg-body-tertiary pt-3 mt-5">
       <div className="container text-center text-md-start mt-5">
@@ -41,5 +41,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

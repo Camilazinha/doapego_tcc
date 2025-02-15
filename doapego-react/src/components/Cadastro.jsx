@@ -7,7 +7,7 @@ import '../styles/views.css';
 import '../styles/layout.css';
 import '../styles/forms.css';
 
-const Cadastro = () => {
+export default function Cadastro() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -342,5 +342,3 @@ const Cadastro = () => {
     </div>
   );
 };
-
-export default Cadastro;
