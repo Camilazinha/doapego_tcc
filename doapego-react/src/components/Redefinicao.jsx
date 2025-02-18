@@ -1,8 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/main.css';
-import '../styles/layout.css';
-import '../styles/forms.css';
 
 function Redefinicao() {
   const navigate = useNavigate();

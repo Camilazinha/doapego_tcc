@@ -2,9 +2,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/main.css';
-import '../styles/layout.css';
-import '../styles/forms.css';
 
 function Configuracoes() {
   const userType = localStorage.getItem('userType'); // Recupera o tipo de usuário do localStorage
@@ -17,7 +14,7 @@ function Configuracoes() {
             {/* Links visíveis apenas para MASTER */}
             <Link to='/ongs' id="ong-info" className="d-flex align-items-center item-config">
               <span className="icon" id="icon-gerenc">
-              <ion-icon name="heart-circle" />
+                <ion-icon name="heart-circle" />
               </span>
               <h3 id="section-title">ONGs Registradas</h3>
               <span className="arrow-link-container ml-auto">
@@ -26,7 +23,7 @@ function Configuracoes() {
                 </span>
               </span>
             </Link>
-            
+
             <Link to='/enderecos' id="edit-info" className="d-flex align-items-center item-config">
               <span className="icon" id="icon-gerenc">
                 <ion-icon name="business" />

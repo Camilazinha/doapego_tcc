@@ -1,9 +1,6 @@
 // src/components/GerenciarDados.js
 
 import React from 'react';
-import '../styles/main.css';
-import '../styles/layout.css';
-import '../styles/forms.css';
 import { Link } from 'react-router-dom';
 
 function GerenciarDados() {
@@ -12,7 +9,7 @@ function GerenciarDados() {
       <h2 id="titulo-principal">Gerenciar dados</h2>
 
       <div id="cards-container2" className="mt-4 row">
-        
+
         {/* Card para Ver Categorias */}
         <div id="card-pendentes" className="card col-md-6 mb-4">
           <div className="card-body text-center">

@@ -1,6 +1,5 @@
 import React from 'react';
-import '../styles/main.css';
-import '../styles/layout.css';
+
 
 function Parceiros() {
   return (

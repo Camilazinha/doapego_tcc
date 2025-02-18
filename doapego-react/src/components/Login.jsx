@@ -2,10 +2,6 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../styles/main.css';
-import '../styles/layout.css';
-import '../styles/login.css';
-import '../styles/forms.css';
 
 function Login() {
   const [emailAdmin, setEmailAdmin] = useState('');

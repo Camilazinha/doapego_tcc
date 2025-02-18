@@ -1,12 +1,10 @@
 import React from 'react';
-import '../styles/main.css';
-import '../styles/layout.css';
 
 function Tutorial() {
   return (
     <div>
       <div className="position-relative text-white">
-        <div className=" position-relative main-text" style={{ backgroundImage: 'url(/index1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center'}}>
+        <div className=" position-relative main-text" style={{ backgroundImage: 'url(/index1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: 350, alignContent: 'center' }}>
           <div className="container-fluid" style={{ maxWidth: '100%', width: 'auto', textAlign: 'center' }} >
             <h1 className="ps-5" style={{ fontSize: 'calc(1.5rem + 1vw)' }}>
               Quer nos ajudar com uma doação?
@@ -16,7 +14,7 @@ function Tutorial() {
       </div>
       <div className="container-fluid px-2 mx-2">
         <div className="box">
-          <h3 className="text-center mt-5" style={{ textAlign: 'left' }}>Baixe o aplicativo hoje e <br /> se torne <span style={{color: 'rgb(247 196 68)'}}> uma estrela</span> para <br /> crianças que realmente precisam!
+          <h3 className="text-center mt-5" style={{ textAlign: 'left' }}>Baixe o aplicativo hoje e <br /> se torne <span style={{ color: 'rgb(247 196 68)' }}> uma estrela</span> para <br /> crianças que realmente precisam!
           </h3>
         </div>
         <h3 className="text-center mt-5" style={{ textAlign: 'left' }}>
@@ -24,7 +22,7 @@ function Tutorial() {
         </h3>
       </div>
       <div className="d-flex justify-content-center" id="ul-list">
-        <ol className="w-50 p-3" style={{ fontSize: 20}} id="list-circles">
+        <ol className="w-50 p-3" style={{ fontSize: 20 }} id="list-circles">
           <li>Instale o nosso aplicativo Doapego;</li>
           <li>Entrando no Doapego, você pode acessar a sua conta já existente com o login. Caso ainda não tenha sua conta,
             você cadastrará uma nova;</li>

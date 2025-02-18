@@ -1,9 +1,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../styles/main.css';
-import '../styles/layout.css';
-import '../styles/forms.css';
-import '../styles/login.css'
+
 
 function Esquecimento() {
   const navigate = useNavigate();

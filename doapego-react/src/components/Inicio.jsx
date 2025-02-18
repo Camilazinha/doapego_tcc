@@ -1,9 +1,6 @@
 // src/components/Inicio.js
 
 import React from 'react';
-import '../styles/main.css';
-import '../styles/layout.css';
-import '../styles/forms.css';
 import { Link } from 'react-router-dom';
 
 
@@ -16,29 +13,29 @@ function Inicio() {
         return (
           <>
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Gerenciar dados</h5>
-                  <p className="card-text align-self-center">Gerencie e visualize as informações cadastradas na plataforma.</p>
-                  <Link to="/gerenciar-dados" className="btn btn-navbar-custom w-75">Ver configurações</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Gerenciar dados</h5>
+                <p className="card-text align-self-center">Gerencie e visualize as informações cadastradas na plataforma.</p>
+                <Link to="/gerenciar-dados" className="btn btn-navbar-custom w-75">Ver configurações</Link>
               </div>
+            </div>
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Configurações</h5>
-                  <p className="card-text align-self-center">Gerencie e visualize suas informações.</p>
-                  <Link to="/configuracoes" className="btn btn-navbar-custom w-75">Ver configurações</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Configurações</h5>
+                <p className="card-text align-self-center">Gerencie e visualize suas informações.</p>
+                <Link to="/configuracoes" className="btn btn-navbar-custom w-75">Ver configurações</Link>
               </div>
+            </div>
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Ajuda</h5>
-                  <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
-                  <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Ajuda</h5>
+                <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
+                <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
               </div>
+            </div>
           </>
         );
 
@@ -46,29 +43,29 @@ function Inicio() {
         return (
           <>
             {/* Cards específicos para ONG */}
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Gerenciar Doações</h5>
-                  <p className="card-text">Visualize e gerencie as doações recebidas por sua ONG.</p>
-                  <a href="/gerenciar" className="btn btn-navbar-custom w-75">Gerenciar</a>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Gerenciar Doações</h5>
+                <p className="card-text">Visualize e gerencie as doações recebidas por sua ONG.</p>
+                <a href="/gerenciar" className="btn btn-navbar-custom w-75">Gerenciar</a>
               </div>
+            </div>
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Configurações</h5>
-                  <p className="card-text">Gerencie e visualize suas informações.</p>
-                  <Link to="/configuracoes" className="btn btn-navbar-custom w-75">Ver configurações</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Configurações</h5>
+                <p className="card-text">Gerencie e visualize suas informações.</p>
+                <Link to="/configuracoes" className="btn btn-navbar-custom w-75">Ver configurações</Link>
               </div>
+            </div>
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Ajuda</h5>
-                  <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
-                  <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Ajuda</h5>
+                <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
+                <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
               </div>
+            </div>
           </>
         );
 
@@ -78,29 +75,29 @@ function Inicio() {
             {/* Cards específicos para FUNCIONARIO_ONG */}
 
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Gerenciar Doações</h5>
-                  <p className="card-text">Visualize e gerencie as doações recebidas por sua ONG.</p>
-                  <Link to="/gerenciar" className="btn btn-navbar-custom w-75">Gerenciar</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Gerenciar Doações</h5>
+                <p className="card-text">Visualize e gerencie as doações recebidas por sua ONG.</p>
+                <Link to="/gerenciar" className="btn btn-navbar-custom w-75">Gerenciar</Link>
               </div>
+            </div>
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Configurações</h5>
-                  <p className="card-text">Gerencie e visualize suas informações.</p>
-                  <Link to="/configuracoes" className="btn btn-navbar-custom w-75">Ver configurações</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Configurações</h5>
+                <p className="card-text">Gerencie e visualize suas informações.</p>
+                <Link to="/configuracoes" className="btn btn-navbar-custom w-75">Ver configurações</Link>
               </div>
+            </div>
 
-              <div id="card-pendentes" className="card funcong-card">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Ajuda</h5>
-                  <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
-                  <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
-                </div>
+            <div id="card-pendentes" className="card funcong-card">
+              <div className="card-body text-center">
+                <h5 className="card-title">Ajuda</h5>
+                <p className="card-text">Encontre respostas para dúvidas frequentes ou entre em contato com o suporte.</p>
+                <Link to="/faq" className="btn btn-navbar-custom w-75">Suporte</Link>
               </div>
+            </div>
           </>
         );
 

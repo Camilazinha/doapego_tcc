@@ -1,7 +1,4 @@
 // import React from 'react';
-// import '../styles/main.css';
-// import '../styles/layout.css';
-// import '../styles/forms.css';
 // import { Link } from 'react-router-dom';
 
 // function Pendentes() {

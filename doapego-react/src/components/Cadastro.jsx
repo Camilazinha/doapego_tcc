@@ -3,9 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../styles/views.css';
-import '../styles/layout.css';
-import '../styles/forms.css';
+
 
 export default function Cadastro() {
   const [nome, setNome] = useState('');
@@ -39,7 +37,7 @@ export default function Cadastro() {
         .then(response => {
           console.log('Resposta da API para ONGs:', response.data);
           // Tente acessar `items` se existir
-          const data = response.data.items || response.data; 
+          const data = response.data.items || response.data;
           if (Array.isArray(data)) {
             const ongIds = data.map(ong => ({ id: ong.id, nome: ong.nome }));
             setOngs(ongIds);
@@ -50,14 +48,14 @@ export default function Cadastro() {
         .catch(error => console.error('Erro ao carregar ONGs:', error));
     }
   }, [tipoUsuario]);
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       let newOngId = ongId; // Inicializa com o ID selecionado, se for FUNCIONARIO_ONG
-  
+
       // Se o tipo de usuário é ONG, cria a ONG e atualiza `newOngId`
       if (tipoUsuario === 'ONG') {
         const ongResponse = await axios.post('http://localhost:8080/ongs', {
@@ -70,10 +68,10 @@ export default function Cadastro() {
           whatsapp,
           ativo: true
         });
-  
+
         newOngId = ongResponse.data.id; // Armazena o novo ID da ONG
         localStorage.setItem('ongId', newOngId); // Opcional: armazena no localStorage para futura referência
-  
+
         // Criação de endereço principal, se aplicável
         await axios.post('http://localhost:8080/enderecos-ong', {
           cep,
@@ -90,7 +88,7 @@ export default function Cadastro() {
           ong: { id: newOngId }
         });
       }
-  
+
       // Configura os dados do admin, incluindo o `ongId`
       const adminData = {
         nome,
@@ -100,23 +98,23 @@ export default function Cadastro() {
         ativo: true,
         ong: tipoUsuario === 'ONG' || tipoUsuario === 'FUNCIONARIO_ONG' ? { id: newOngId } : null
       };
-  
+
       await axios.post('http://localhost:8080/administradores', adminData);
-  
+
       // Salva tipo de usuário e credenciais no localStorage para futuras requisições
       localStorage.setItem('userEmail', email);
       localStorage.setItem('userPassword', senha);
       localStorage.setItem('userType', tipoUsuario);
-  
+
       alert('Cadastro realizado com sucesso!');
       navigate('/login'); // Redireciona para /inicio após o cadastro
-  
+
     } catch (err) {
       console.error('Erro ao realizar o cadastro:', err);
       alert('Erro ao realizar o cadastro. Tente novamente.');
     }
   };
-  
+
 
   return (
     <div className="container px-4 py-5 px-md-5 mt-5 text-lg-start borda">
@@ -200,16 +198,16 @@ export default function Cadastro() {
               </div>
 
               <div className="col-11 col-lg-4 mb-4 my-lg-4">
-            <input type="date" className="form-control" placeholder="Data de Fundação" value={fundacao} onChange={(e) => setFundacao(e.target.value)} />
-          </div>
+                <input type="date" className="form-control" placeholder="Data de Fundação" value={fundacao} onChange={(e) => setFundacao(e.target.value)} />
+              </div>
 
-          <div className="col-11 col-lg-4 mb-4 my-lg-4">
-            <input type="text" className="form-control" placeholder="Whatsapp" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
-          </div>
-          
-          <div className="col-11 col-lg-4 mb-4 my-lg-4">
-            <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
-          </div>
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
+                <input type="text" className="form-control" placeholder="Whatsapp" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
+              </div>
+
+              <div className="col-11 col-lg-4 mb-4 my-lg-4">
+                <textarea rows="3" className="form-control" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+              </div>
 
               <h1>Endereço da Organização</h1>
               <div className="col-11 col-lg-4 mb-4 my-lg-4">
@@ -286,52 +284,52 @@ export default function Cadastro() {
 
           {tipoUsuario === 'FUNCIONARIO_ONG' && (
             <>
-            
-        <div className="col-11 col-lg-4 my-lg-4">
-              <select
-                className="form-control mb-4 mb-lg-0"
-                value={ongId}
-      onChange={(e) => setOngId(e.target.value)}
-      required
-    >
-      <option value="" disabled selected>Escolha uma ONG</option>
-      {ongs.map((ong) => (
-        <option key={ong.id} value={ong.id}>{ong.nome}</option>
-      ))}
-    </select>
-    </div>
+
+              <div className="col-11 col-lg-4 my-lg-4">
+                <select
+                  className="form-control mb-4 mb-lg-0"
+                  value={ongId}
+                  onChange={(e) => setOngId(e.target.value)}
+                  required
+                >
+                  <option value="" disabled selected>Escolha uma ONG</option>
+                  {ongs.map((ong) => (
+                    <option key={ong.id} value={ong.id}>{ong.nome}</option>
+                  ))}
+                </select>
+              </div>
             </>
           )}
         </div>
 
         <div className="col-11 col-lg-3 mb-4 my-lg-4">
-            <select
-              className="form-control"
-              value={tipoUsuario}
-              onChange={(e) => setTipoUsuario(e.target.value)}
-              required
-            >
-              <option value="" disabled selected>Selecione o tipo de usuário</option>
-              <option value="ONG">ONG</option>
-              <option value="FUNCIONARIO_ONG">Funcionário</option>
-              <option value="MASTER">Master</option>
-            </select>
-          </div>
-        
-        <div className="col col-12">
-        <div className="form-check" id="checkText">
-          <input className="form-check-input" type="checkbox" id="invalidCheck2" required />
-          <label className="form-check-label" htmlFor="invalidCheck2">
-            Eu li e concordo com os termos de uso <strong>(obrigatório)</strong>
-          </label>
+          <select
+            className="form-control"
+            value={tipoUsuario}
+            onChange={(e) => setTipoUsuario(e.target.value)}
+            required
+          >
+            <option value="" disabled selected>Selecione o tipo de usuário</option>
+            <option value="ONG">ONG</option>
+            <option value="FUNCIONARIO_ONG">Funcionário</option>
+            <option value="MASTER">Master</option>
+          </select>
         </div>
 
-        <div className="form-check" id="checkText">
-          <input className="form-check-input" type="checkbox" id="invalidCheck1" required />
-          <label className="form-check-label" htmlFor="invalidCheck1">
-            Eu li e concordo com a política de privacidade <strong>(obrigatório)</strong>
-          </label>
-        </div>
+        <div className="col col-12">
+          <div className="form-check" id="checkText">
+            <input className="form-check-input" type="checkbox" id="invalidCheck2" required />
+            <label className="form-check-label" htmlFor="invalidCheck2">
+              Eu li e concordo com os termos de uso <strong>(obrigatório)</strong>
+            </label>
+          </div>
+
+          <div className="form-check" id="checkText">
+            <input className="form-check-input" type="checkbox" id="invalidCheck1" required />
+            <label className="form-check-label" htmlFor="invalidCheck1">
+              Eu li e concordo com a política de privacidade <strong>(obrigatório)</strong>
+            </label>
+          </div>
         </div>
 
         <div className="form-group">

@@ -1,6 +1,4 @@
 import React from 'react';
-import '../styles/main.css';
-import '../styles/layout.css';
 
 function Sobre() {
   return (
@@ -8,11 +6,11 @@ function Sobre() {
       <main className='d-block'>
         <div className="position-relative" style={{ backgroundImage: `url("/crianca-mao-logo.png")`, backgroundSize: 'cover', backgroundPosition: 'center', height: '350px', alignContent: 'center' }}>
 
-<div className="layered-text">
-  <h1 className="main-text" style={{margin: '0.5rem 0'}}>Nosso Propósito: Descubra Alegria</h1>
-  <h2 className="sub-text">Através de Doações de Brinquedos</h2>
-</div>
-        
+          <div className="layered-text">
+            <h1 className="main-text" style={{ margin: '0.5rem 0' }}>Nosso Propósito: Descubra Alegria</h1>
+            <h2 className="sub-text">Através de Doações de Brinquedos</h2>
+          </div>
+
         </div>
       </main>
       <div className="container" id="textos">
