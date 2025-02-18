@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import '../../styles/views.css';
+
 
 const DetailsOng = () => {
   const { id } = useParams();
@@ -29,13 +29,13 @@ const DetailsOng = () => {
         <div className="d-flex align-items-center">
           <div className="me-4"> {/* Margem à direita para separar a imagem do texto */}
             {ong.foto ? (
-              <img 
-                src={ong.foto} 
-                alt={`Foto de ${ong.nome}`} 
-                width="300" 
-                height="300" 
+              <img
+                src={ong.foto}
+                alt={`Foto de ${ong.nome}`}
+                width="300"
+                height="300"
                 className='img-details'
-                style={{ objectFit: 'cover', borderRadius: '8px' }} 
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             ) : (
               <span className='fake-img-details'>Sem foto</span>
@@ -43,34 +43,34 @@ const DetailsOng = () => {
           </div>
 
           <div className='d-flex flex-column'>
-          {/* Tabela de detalhes do usuário */}
-          <div className="d-flex fake-input col my-2"> 
+            {/* Tabela de detalhes do usuário */}
+            <div className="d-flex fake-input col my-2">
               <strong>Nome: </strong>  {ong.nome}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>E-mail: </strong>  {ong.email}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Telefone: </strong>  {ong.telefone}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Fundação: </strong>  {ong.fundacao ? new Date(ong.fundacao).toLocaleDateString() : 'Não informado'}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Descrição: </strong>  {ong.descricao || 'Sem descrição'}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Whatsapp: </strong>  {ong.whatsapp}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Ativo: </strong>  {ong.ativo ? 'Sim' : 'Não'}
-          </div>
+            </div>
 
           </div>
         </div>

@@ -3,9 +3,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import '../styles/main.css';
-import '../styles/layout.css';
-
 export default function Navbar({ userType, onLogout }) {
   const navigate = useNavigate();
   const handleLogout = () => {

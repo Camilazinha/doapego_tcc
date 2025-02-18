@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/layout.css';
-import '../../styles/views.css';
 import axios from 'axios';
 
 const Admin = () => {
@@ -49,7 +47,7 @@ const Admin = () => {
             </div>
         </div>
     );
-    
+
     if (error) return (
         <div className="table-responsive">
             <div className="borda-view container-fluid mt-5 p-4">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import '../../styles/views.css';
 
 const DetailsUsuario = () => {
   const { id } = useParams();
@@ -29,13 +28,13 @@ const DetailsUsuario = () => {
         <div className="d-flex align-items-center">
           <div className="me-4"> {/* Margem à direita para separar a imagem do texto */}
             {usuario.foto ? (
-              <img 
-                src={usuario.foto} 
-                alt={`Foto de ${usuario.nome}`} 
-                width="295" 
-                height="295" 
+              <img
+                src={usuario.foto}
+                alt={`Foto de ${usuario.nome}`}
+                width="295"
+                height="295"
                 className='img-details'
-                style={{ objectFit: 'cover', borderRadius: '8px' }} 
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             ) : (
               <span className='fake-img-details'>Sem foto</span>
@@ -43,31 +42,31 @@ const DetailsUsuario = () => {
           </div>
 
           <div className='d-flex flex-column'>
-          {/* Tabela de detalhes do usuário */}
-          <div className="d-flex fake-input col my-2"> 
+            {/* Tabela de detalhes do usuário */}
+            <div className="d-flex fake-input col my-2">
               <strong>Nome: </strong>  {usuario.nome}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>E-mail: </strong>  {usuario.email}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Telefone: </strong>  {usuario.telefone || 'Não informado'}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Endereço: </strong>  {`${usuario.logradouro}, ${usuario.numero} - ${usuario.bairro}, ${usuario.cidade}, ${usuario.estado}`}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>CEP: </strong>  {usuario.cep}
-          </div>
+            </div>
 
-          <div className="d-flex fake-input col my-2"> 
+            <div className="d-flex fake-input col my-2">
               <strong>Status: </strong>  {usuario.ativo ? 'Ativo' : 'Suspenso'}
+            </div>
           </div>
-        </div>
         </div>
       ) : (
         <p>Carregando detalhes...</p>

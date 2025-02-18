@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import '../../styles/views.css';
+
 
 const EditOng = () => {
   const { id } = useParams();
@@ -47,7 +47,7 @@ const EditOng = () => {
       whatsapp,
       ativo
     };
-    
+
     // Log para verificar os dados enviados
     console.log('Dados enviados:', ongData);
 
@@ -71,37 +71,37 @@ const EditOng = () => {
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Nome:</label>
-          <input 
+          <input
             type="text" className="form-control" value={nome} onChange={(e) => setNome(e.target.value)} required />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Email:</label>
-          <input 
+          <input
             type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Telefone:</label>
-          <input 
+          <input
             type="text" className="form-control" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Data de Fundação:</label>
-          <input 
+          <input
             type="date" className="form-control" value={fundacao} onChange={(e) => setFundacao(e.target.value)} />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Descrição:</label>
-          <textarea 
+          <textarea
             className="form-control" value={descricao} onChange={(e) => setDescricao(e.target.value)} rows="3" />
         </div>
 
         <div className="form-group col-10 col-md-11 mb-2">
           <label>Whatsapp:</label>
-          <input 
+          <input
             type="text" className="form-control" value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} />
         </div>
 

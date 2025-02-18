@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import '../../styles/views.css';
 
 const DetailsEndereco = () => {
     const { id } = useParams();

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/layout.css';
-import '../../styles/views.css';
+
 import axios from 'axios';
 
 const Enderecos = () => {
@@ -74,10 +73,10 @@ const Enderecos = () => {
 
                 {/* Botão de adicionar endereço, visível apenas para Admin ONG */}
                 {userType === 'ONG' && ongId && (
-    <Link to={`/enderecos/criar?ongId=${ongId}`} style={{ display: 'inline-block' }}>
-        <button className="btn btn-add">+ Novo Endereço</button>
-    </Link>
-)}
+                    <Link to={`/enderecos/criar?ongId=${ongId}`} style={{ display: 'inline-block' }}>
+                        <button className="btn btn-add">+ Novo Endereço</button>
+                    </Link>
+                )}
 
                 <hr />
 

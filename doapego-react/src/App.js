@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 
 import Footer from './components/Footer';
@@ -52,18 +52,10 @@ import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
 // import EditArquivo from './components/ArquivosViews/EditArquivo';
 // import DetailsArquivo from './components/ArquivosViews/DetailsArquivo';
 
-
-import './styles/main.css';
-import './styles/layout.css';
-import './styles/forms.css';
-import './styles/login.css';
-import './styles/views.css';
-import './script/script.js';
-
 const App = () => {
 
         const [userType, setUserType] = useState(null); // null representa usuário não logado
-      
+
         const handleLogin = (type) => setUserType(type); // Recebe o tipo de admin no login
         const handleLogout = () => setUserType(null);
 
@@ -71,69 +63,69 @@ const App = () => {
                 // Recupera o userType do localStorage ao carregar o App
                 const savedUserType = localStorage.getItem('userType');
                 if (savedUserType) setUserType(savedUserType);
-              }, []);
-        
-  return (
-        <AuthProvider>        
-    <Router>   
-      <Navbar userType={userType} onLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sobre" element={<Sobre />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />}/>
-        <Route path="/parceiros" element={<Parceiros />} />
-        <Route path="/tutorial" element={<Tutorial />} />
-        <Route path="/redefinir-senha" element={<Redefinicao />} />
-        <Route path="/esqueci-senha" element={<Esquecimento />} />
-        <Route path="/politica-de-privacidade" element={<Privacidade />} />
-        <Route path="/termos-de-uso" element={<Termos />} />
-        <Route path="/ajuda" element={<Ajuda />}/>
+        }, []);
+
+        return (
+                <AuthProvider>
+                        <Router>
+                                <Navbar userType={userType} onLogout={handleLogout} />
+                                <Routes>
+                                        <Route path="/" element={<Home />} />
+                                        <Route path="/sobre" element={<Sobre />} />
+                                        <Route path="/cadastro" element={<Cadastro />} />
+                                        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                                        <Route path="/parceiros" element={<Parceiros />} />
+                                        <Route path="/tutorial" element={<Tutorial />} />
+                                        <Route path="/redefinir-senha" element={<Redefinicao />} />
+                                        <Route path="/esqueci-senha" element={<Esquecimento />} />
+                                        <Route path="/politica-de-privacidade" element={<Privacidade />} />
+                                        <Route path="/termos-de-uso" element={<Termos />} />
+                                        <Route path="/ajuda" element={<Ajuda />} />
 
 
-<Route path="/inicio" element={<Inicio />} />
+                                        <Route path="/inicio" element={<Inicio />} />
 
 
-        <Route path="/faq" element={<Faq />}/>
-        <Route path="/gerenciar" element={<Gerenciar />} />
-        <Route path="/doacoes-pendentes" element={<Pendentes />} />
-        <Route path="/doacoes-recusadas" element={<Recusadas />} />
-        <Route path="/doacoes-aceitas" element={<Aceitas />} />
-        <Route path="/gerenciar-dados" element={<GerenciarDados />} />
-        
-        <Route path="/configuracoes" element={<Configuracoes />} />
+                                        <Route path="/faq" element={<Faq />} />
+                                        <Route path="/gerenciar" element={<Gerenciar />} />
+                                        <Route path="/doacoes-pendentes" element={<Pendentes />} />
+                                        <Route path="/doacoes-recusadas" element={<Recusadas />} />
+                                        <Route path="/doacoes-aceitas" element={<Aceitas />} />
+                                        <Route path="/gerenciar-dados" element={<GerenciarDados />} />
 
-        <Route path="/categorias" element={<Categorias />} />
-        <Route path="/categorias/criar" element={<CreateCategoria />} />
-                <Route path="/categorias/editar/:id" element={<EditCategoria />} />
-                <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
+                                        <Route path="/configuracoes" element={<Configuracoes />} />
 
-        <Route path="/usuarios" element={<Usuarios />} />
-                <Route path="/usuarios/detalhes/:id" element={<DetailsUsuario />} />
+                                        <Route path="/categorias" element={<Categorias />} />
+                                        <Route path="/categorias/criar" element={<CreateCategoria />} />
+                                        <Route path="/categorias/editar/:id" element={<EditCategoria />} />
+                                        <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
 
-        <Route path="/ongs" element={<Ongs />} />
-        <Route path="/ongs/criar" element={<CreateOng />} />
-                <Route path="/ongs/editar/:id" element={<EditOng />} />
-                <Route path="/ongs/detalhes/:id" element={<DetailsOng />} /> 
+                                        <Route path="/usuarios" element={<Usuarios />} />
+                                        <Route path="/usuarios/detalhes/:id" element={<DetailsUsuario />} />
 
-        <Route path="/enderecos" element={<Enderecos />} />
-        <Route path="/enderecos/criar" element={<CreateEndereco />} />
-                <Route path="/enderecos/editar/:id" element={<EditEndereco />} />
-                <Route path="/enderecos/detalhes/:id" element={<DetailsEndereco />} />
-                
-        <Route path="/administradores" element={<Admin />} />
-                <Route path="/administradores/detalhes/:id" element={<DetailsAdmin />} />      
+                                        <Route path="/ongs" element={<Ongs />} />
+                                        <Route path="/ongs/criar" element={<CreateOng />} />
+                                        <Route path="/ongs/editar/:id" element={<EditOng />} />
+                                        <Route path="/ongs/detalhes/:id" element={<DetailsOng />} />
 
-        {/* <Route path="/arquivos" element={<Arquivos />} />
+                                        <Route path="/enderecos" element={<Enderecos />} />
+                                        <Route path="/enderecos/criar" element={<CreateEndereco />} />
+                                        <Route path="/enderecos/editar/:id" element={<EditEndereco />} />
+                                        <Route path="/enderecos/detalhes/:id" element={<DetailsEndereco />} />
+
+                                        <Route path="/administradores" element={<Admin />} />
+                                        <Route path="/administradores/detalhes/:id" element={<DetailsAdmin />} />
+
+                                        {/* <Route path="/arquivos" element={<Arquivos />} />
         <Route path="/arquivos/criar" element={<CreateArquivo />} />
                 <Route path="/arquivos/editar/:id" element={<EditArquivo />} />
                 <Route path="/arquivos/detalhes/:id" element={<DetailsArquivo />} />       */}
 
-      </Routes>
-      <Footer />
-    </Router>
-    </AuthProvider>    
-  );
+                                </Routes>
+                                <Footer />
+                        </Router>
+                </AuthProvider>
+        );
 };
 
 export default App;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/layout.css';
-import '../../styles/views.css';
+
 import axios from 'axios';
 
 const Usuarios = () => {
@@ -15,7 +14,7 @@ const Usuarios = () => {
         const fetchUsuarios = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/usuarios');
-                setUsuarios(response.data.items); 
+                setUsuarios(response.data.items);
                 setLoading(false);
             } catch (err) {
                 console.error('Erro ao buscar usuários:', err);
@@ -32,10 +31,10 @@ const Usuarios = () => {
             // Faz um GET para pegar os dados do usuário pelo ID
             const response = await axios.get(`http://localhost:8080/usuarios/${usuarioId}`);
             const usuario = response.data;
-    
+
             // Alterna o status 'ativo'
             const novoStatus = !usuario.ativo;
-    
+
             // Cria o novo objeto com o status atualizado
             const usuarioAtualizado = {
                 id: usuario.id,
@@ -51,13 +50,13 @@ const Usuarios = () => {
                 numero: usuario.numero,
                 logradouro: usuario.logradouro,
                 complemento: usuario.complemento,
-                latitude: usuario.latitude, 
+                latitude: usuario.latitude,
                 longitude: usuario.longitude
             };
-    
+
             // Faz um PUT enviando o objeto completo com o novo status
             await axios.put(`http://localhost:8080/usuarios/${usuarioId}`, usuarioAtualizado);
-    
+
             // Atualiza o estado do frontend para refletir a mudança
             setUsuarios(usuarios.map(u => u.id === usuarioId ? { ...u, ativo: novoStatus } : u));
             setShowModal(false);
@@ -67,8 +66,8 @@ const Usuarios = () => {
             alert('Erro ao suspender usuário. Tente novamente!');
         }
     };
-    
-    
+
+
     if (loading) return (
         <div className="table-responsive">
             <div className="borda-view container-fluid mt-5 p-4">
@@ -77,7 +76,7 @@ const Usuarios = () => {
             </div>
         </div>
     );
-    
+
     if (error) return (
         <div className="table-responsive">
             <div className="borda-view container-fluid mt-5 p-4">

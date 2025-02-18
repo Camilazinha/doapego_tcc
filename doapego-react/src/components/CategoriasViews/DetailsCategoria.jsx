@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import '../../styles/views.css';
 
 const DetailsCategoria = () => {
   const { id } = useParams();
@@ -29,20 +28,20 @@ const DetailsCategoria = () => {
         <div className="d-flex align-items-center">
           <div className="me-4"> {/* Margem à direita para separar a imagem do texto */}
             {categoria.foto ? (
-              <img 
-                src={categoria.foto} 
-                alt={`Foto de ${categoria.nome}`} 
-                width="300" 
-                height="300" 
+              <img
+                src={categoria.foto}
+                alt={`Foto de ${categoria.nome}`}
+                width="300"
+                height="300"
                 className='img-details'
-                style={{ objectFit: 'cover', borderRadius: '8px' }} 
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             ) : (
               <span className='fake-img-details'>Sem foto</span>
             )}
           </div>
-          <div className="d-flex align-self-start fake-input col"> 
-              <strong>Nome: </strong>  {categoria.nome}
+          <div className="d-flex align-self-start fake-input col">
+            <strong>Nome: </strong>  {categoria.nome}
           </div>
         </div>
       ) : (
