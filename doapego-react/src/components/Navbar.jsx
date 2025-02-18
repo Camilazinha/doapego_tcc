@@ -3,6 +3,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import lockIcon from "../img/lock-icon.svg"
+
 export default function Navbar({ userType, onLogout }) {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -75,7 +77,7 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/sobre">Como doar?</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login"><img src='img\lock-icon.svg'></img>Entrar</Link>
+              <Link className="nav-link" to="/login"><img src={lockIcon}></img>Entrar</Link>
             </li>
           </>
         );
@@ -87,7 +89,7 @@ export default function Navbar({ userType, onLogout }) {
     <header>
       <nav className='navbar navbar-expand-lg'>
         <div className='container-fluid'>
-          <a href='/inicio'><img src='../../../../img/lock-icon.svg' alt='Doapego' /></a>
+          <a href='/inicio'><img src='/logo.png' alt='Doapego' /></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  <span className="navbar-toggler-icon"></span> </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
