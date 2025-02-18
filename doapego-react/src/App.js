@@ -10,7 +10,7 @@ import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
 import Cadastro from './components/Cadastro';
 import Login from './components/Login';
-import Parceiros from './components/Parceiros';
+// import Parceiros from './components/Parceiros';
 import Redefinicao from './components/Redefinicao';
 import Esquecimento from './components/Esquecimento';
 import Termos from './components/Termos';
@@ -52,6 +52,13 @@ import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
 // import EditArquivo from './components/ArquivosViews/EditArquivo';
 // import DetailsArquivo from './components/ArquivosViews/DetailsArquivo';
 
+import "./styles/global.css";
+import "./styles/auth.css";
+import "./styles/info.css";
+import "./styles/admin.css";
+import "./styles/modal.css";
+import "./styles/buttons.css";
+
 const App = () => {
 
         const [userType, setUserType] = useState(null); // null representa usuário não logado
@@ -74,7 +81,7 @@ const App = () => {
                                         <Route path="/sobre" element={<Sobre />} />
                                         <Route path="/cadastro" element={<Cadastro />} />
                                         <Route path="/login" element={<Login onLogin={handleLogin} />} />
-                                        <Route path="/parceiros" element={<Parceiros />} />
+                                        {/* <Route path="/parceiros" element={<Parceiros />} /> */}
                                         <Route path="/tutorial" element={<Tutorial />} />
                                         <Route path="/redefinir-senha" element={<Redefinicao />} />
                                         <Route path="/esqueci-senha" element={<Esquecimento />} />

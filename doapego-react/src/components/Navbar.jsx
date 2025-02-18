@@ -69,13 +69,10 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/">Início</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/parceiros">Sobre nós</Link>
+              <Link className="nav-link" to="/tutorial">Sobre nós</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/sobre">Como doar?</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/tutorial">Como doar</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/login"><img src='img\lock-icon.svg'></img>Entrar</Link>
@@ -89,9 +86,19 @@ export default function Navbar({ userType, onLogout }) {
 
     <header>
       <nav className='navbar navbar-expand-lg'>
-        <a href='/inicio'><img src='../../../img/logo.png' alt='Doapego'></img></a>
+        <div className='container-fluid'>
+          <a href='/inicio'><img src='../../../../img/lock-icon.svg' alt='Doapego' /></a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">  <span className="navbar-toggler-icon"></span> </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              {renderMenu()}
+            </ul>
+            <div className="d-flex ms-auto">
+              <a href="https://www.figma.com/proto/bmqmNIZJerSPvmC0WHdVQm/TCC---Prot%C3%B3tipo-Mobile---Doapego?node-id=4-2&t=gtSMir502SSKgJ1x-1&starting-point-node-id=4%3A2&scaling=scale-down content-scaling=fixed" target="_blank" rel="noopener noreferrer" className="ml-auto">Baixe o App!</a>
+            </div>
+          </div>
+        </div>
       </nav>
-      <a href="https://www.figma.com/proto/bmqmNIZJerSPvmC0WHdVQm/TCC---Prot%C3%B3tipo-Mobile---Doapego?node-id=4-2&t=gtSMir502SSKgJ1x-1&starting-point-node-id=4%3A2&scaling=scale-down content-scaling=fixed" target="_blank" rel="noopener noreferrer">Baixe o App!</a>
     </header>
 
   );
