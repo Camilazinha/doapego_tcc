@@ -1,2 +1,20 @@
 /*CSS para botões*/
 @import url('./variables.css');
+
+.btn-custom-filled {
+  color: var(--color-white);
+  background-color: var(--color-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
+.btn-custom-filled:hover {
+  background-color: var(--color-secondary-hover);
+  color: var(--color-white);
+}
+
+.btn-custom-filled:active {
+  background-color: var(--color-secondary-active) !important;
+  color: var(--color-white) !important;
+}

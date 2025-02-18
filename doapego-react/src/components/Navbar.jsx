@@ -92,7 +92,7 @@ export default function Navbar({ userType, onLogout }) {
     <header>
       <nav className='navbar navbar-expand-lg'>
         <div className='container-fluid'>
-          <a href='/inicio'><img src='/logo.png' alt='Doapego' className='logo-imagem me-2' /></a>
+          <a href='/'><img src='/logo.png' alt='Doapego' className='logo-imagem me-2' /></a>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span className="navbar-toggler-icon"></span> </button>
 
@@ -102,7 +102,7 @@ export default function Navbar({ userType, onLogout }) {
             </ul>
 
             <div className="d-flex ms-auto">
-              <a href="https://www.figma.com/proto/bmqmNIZJerSPvmC0WHdVQm/TCC---Prot%C3%B3tipo-Mobile---Doapego?node-id=4-2&t=gtSMir502SSKgJ1x-1&starting-point-node-id=4%3A2&scaling=scale-down content-scaling=fixed" target="_blank" rel="noopener noreferrer" className="ml-auto">Baixe o App!</a>
+              <a href="https://www.figma.com/proto/bmqmNIZJerSPvmC0WHdVQm/TCC---Prot%C3%B3tipo-Mobile---Doapego?node-id=4-2&t=gtSMir502SSKgJ1x-1&starting-point-node-id=4%3A2&scaling=scale-down content-scaling=fixed" target="_blank" rel="noopener noreferrer" className="ml-auto btn btn-custom-filled">Baixe o App!</a>
             </div>
           </div>
         </div>
