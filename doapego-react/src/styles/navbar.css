@@ -1,0 +1,11 @@
+@import url('./variables.css');
+
+.logo-imagem {
+  max-width: 100%;
+  height: 24px;
+}
+
+.navbar {
+  background-color: var(--color-background-accent);
+  padding: 1rem;
+}
