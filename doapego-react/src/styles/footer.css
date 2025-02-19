@@ -9,3 +9,13 @@ footer h6 {
   text-decoration: none;
   color: var(--color-black);
 }
+
+.link-info-footer:hover {
+  color: var(--color-black);
+  text-decoration: underline;
+}
+
+footer {
+  /* background-color: var(--color-primary); */
+  color: var(--color-black);
+}

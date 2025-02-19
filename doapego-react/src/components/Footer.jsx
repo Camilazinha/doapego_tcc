@@ -38,8 +38,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="p-4"> © 2024 Copyright:
-        <a href='/' className="fw-bold" to="/">doapegoitb.com</a>
+      <div className="p-4"> © 2025 Doapego - Todos os direitos reservados
       </div>
     </footer>
   );
