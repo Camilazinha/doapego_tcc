@@ -19,7 +19,7 @@ export default function Navbar({ userType, onLogout }) {
         return (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/inicio">Início</Link>
+              <Link className="nav-link mt-2 mt-lg-0" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/gerenciar">Gerenciar doações</Link>
@@ -36,7 +36,7 @@ export default function Navbar({ userType, onLogout }) {
         return (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/inicio">Início</Link>
+              <Link className="nav-link mt-2 mt-lg-0" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/gerenciar-dados">Gerenciar dados</Link>
@@ -53,7 +53,7 @@ export default function Navbar({ userType, onLogout }) {
         return (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/inicio">Início</Link>
+              <Link className="nav-link mt-2 mt-lg-0" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/gerenciar">Gerenciar doações</Link>
@@ -71,7 +71,7 @@ export default function Navbar({ userType, onLogout }) {
         return (
           <>
             <li className="nav-item">
-              <Link className="nav-link" to="/">Início</Link>
+              <Link className="nav-link mt-2 mt-lg-0" to="/">Início</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/tutorial">Sobre nós</Link>
@@ -80,7 +80,7 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/sobre">Como doar?</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login"><img src={lockIcon}></img>Entrar</Link>
+              <Link className="nav-link" to="/login"><img src={lockIcon} alt="Apenas para administradores"></img>Entrar</Link>
             </li>
           </>
         );
@@ -92,7 +92,7 @@ export default function Navbar({ userType, onLogout }) {
     <header>
       <nav className='navbar navbar-expand-lg'>
         <div className='container-fluid'>
-          <a href='/'><img src='/logo.png' alt='Doapego' className='logo-imagem me-2' /></a>
+          <a href='/'><img src='/logo.png' alt='Doapego' className='logo-imagem me-3' /></a>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span className="navbar-toggler-icon"></span> </button>
 
