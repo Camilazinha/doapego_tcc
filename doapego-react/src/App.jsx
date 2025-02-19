@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 
 import Footer from './components/Footer';
@@ -78,7 +78,7 @@ const App = () => {
                         <Router>
                                 <Navbar userType={userType} onLogout={handleLogout} />
                                 <Routes>
-                                        <Route path="/" element={<Home />} />
+                                        <Route path="/" element={userType ? <Navigate to="/inicio" /> : <Home />} />
                                         <Route path="/sobre" element={<Sobre />} />
                                         <Route path="/cadastro" element={<Cadastro />} />
                                         <Route path="/login" element={<Login onLogin={handleLogin} />} />

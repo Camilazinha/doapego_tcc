@@ -4,6 +4,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import lockIcon from "../img/lock-icon.svg"
+import logoutIcon from "../img/logout-icon.svg"
 
 export default function Navbar({ userType, onLogout }) {
 
@@ -28,7 +29,7 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/configuracoes">Configurações</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={handleLogout}><strong>Logout</strong></button>
+              <button className="nav-link d-flex align-items-center" onClick={handleLogout}><img src={logoutIcon} alt="Apenas para administradores" /><strong>Sair</strong></button>
             </li>
           </>
         );
@@ -45,7 +46,7 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/configuracoes">Configurações</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link btn" onClick={handleLogout}><strong>Logout</strong></button>
+              <button className="nav-link d-flex align-items-center" onClick={handleLogout}><img src={logoutIcon} alt="Apenas para administradores" /><strong>Sair</strong></button>
             </li>
           </>
         );
@@ -61,8 +62,8 @@ export default function Navbar({ userType, onLogout }) {
             <li className="nav-item">
               <Link className="nav-link" to="/configuracoes">Configurações</Link>
             </li>
-            <li className="nav-item">
-              <button className="nav-link btn" onClick={handleLogout}><strong>Logout</strong></button>
+            <li className="nav-item d-flex align-items-center">
+              <button className="nav-link d-flex align-items-center" onClick={handleLogout}><img src={logoutIcon} alt="Apenas para administradores" /><strong>Sair</strong></button>
             </li>
           </>
         );
@@ -80,7 +81,7 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link" to="/sobre">Como doar?</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login"><img src={lockIcon} alt="Apenas para administradores"></img>Entrar</Link>
+              <Link className="nav-link d-flex align-items-center" to="/login"><img src={lockIcon} alt="Apenas para administradores" />Entrar</Link>
             </li>
           </>
         );
