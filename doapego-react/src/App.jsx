@@ -22,8 +22,6 @@ import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
 import GerenciarDados from './components/GerenciarDados';
 import Pendentes from './components/Pendentes';
-import Aceitas from './components/Aceitas';
-import Recusadas from './components/Recusadas';
 import Inicio from './components/Inicio';
 
 import Categorias from './components/CategoriasViews/Categorias';
@@ -62,7 +60,9 @@ import "./styles/navbar.css";
 
 const App = () => {
 
-        const [userType, setUserType] = useState(null); // null representa usuário não logado
+
+        //IMPORTANTISSIMO
+        const [userType, setUserType] = useState('MASTER'); // null representa usuário não logado
 
         const handleLogin = (type) => setUserType(type); // Recebe o tipo de admin no login
         const handleLogout = () => setUserType(null);
@@ -97,8 +97,6 @@ const App = () => {
                                         <Route path="/faq" element={<Faq />} />
                                         <Route path="/gerenciar" element={<Gerenciar />} />
                                         <Route path="/doacoes-pendentes" element={<Pendentes />} />
-                                        <Route path="/doacoes-recusadas" element={<Recusadas />} />
-                                        <Route path="/doacoes-aceitas" element={<Aceitas />} />
                                         <Route path="/gerenciar-dados" element={<GerenciarDados />} />
 
                                         <Route path="/configuracoes" element={<Configuracoes />} />
