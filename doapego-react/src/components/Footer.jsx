@@ -1,41 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import documentIcon from '../img/document-icon.svg';
+import giftIcon from '../img/gift-icon.svg';
+import faqIcon from '../img/faq-icon.svg';
+import mailIcon from "../img/mail-icon.svg";
+import locationIcon from "../img/location-icon.svg";
+import phoneIcon from "../img/phone-icon.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-body-tertiary pt-3 mt-5">
-      <div className="container text-center text-md-start mt-5">
+    <footer className="container-fluid text-center pt-3 mt-5">
+      <div className="container text-md-start mt-5">
         <div className="row mt-3">
-          <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <h6 className="text-uppercase fw-bold mb-4">Doapego</h6>
+          <div className="col-md-3 mx-auto mb-4">
+            <h6 className="mb-4">DOAPEGO</h6>
             <p>
-              Ajudamos você a doar brinquedos para ONGs parceiras que fazem a diferença na vida de muitas crianças.
-              Juntos, podemos espalhar alegria e transformar momentos com simples gestos de carinho.
+              Conectamos doadores a ONGs parceiras para levar alegria e esperança a crianças carentes. Com sua doação, pequenos gestos se transformam em grandes sorrisos!
             </p>
           </div>
 
-          <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 className="text-uppercase fw-bold mb-4">Utilidade</h6>
-            <p><Link to="/politica-de-privacidade" className="text-reset">Política de privacidade</Link></p>
-            <p><Link to="/termos-de-uso" className="text-reset">Termos de uso</Link></p>
-            <p><Link to="/tutorial" className="text-reset">Como doar</Link></p>
-            <p><Link to="/ajuda" className="text-reset">Ajuda</Link></p>
+          <div className="col-md-3 mx-auto mb-4">
+            <h6 className="mb-4">UTILIDADE</h6>
+            <p><Link to="/politica-de-privacidade" className='link-info-footer'><img src={documentIcon} alt='' />Política de privacidade</Link></p>
+            <p><Link to="/termos-de-uso" className='link-info-footer'><img src={documentIcon} alt='' />Termos de uso</Link></p>
+            <p><Link to="/tutorial" className='link-info-footer'><img src={giftIcon} alt='' />Como doar</Link></p>
+            <p><Link to="/ajuda" className='link-info-footer'><img src={faqIcon} alt='' />Ajuda</Link></p>
           </div>
 
-          <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <h6 className="text-uppercase fw-bold mb-4">Contato</h6>
-            <p>Av. Grupo Bandeirantes 138, 06420-150</p>
-            <p>doapegoitb@gmail.com</p>
-            <p>+55 11 92078-7810</p>
-            <p>+55 11 91234-5678</p>
+          <div className="col-md-4 mx-auto mb-md-0 mb-4">
+            <h6 className="mb-4">CONTATO</h6>
+            <p><img src={locationIcon} alt='' />Av. Grupo Bandeirantes 138, 06420-150</p>
+            <p><img src={mailIcon} alt='' /> doapegoitb@gmail.com</p>
+            <p><img src={phoneIcon} alt='' />+55 (11) 92078-7810</p>
+            <p><img src={phoneIcon} alt='' />+55 (11) 91234-5678</p>
           </div>
         </div>
       </div>
 
-      <div className="text-center p-4" style={{ backgroundColor: "#fcfcfc" }}>
-        © 2024 Copyright:
-        <Link className="fw-bold" to="/" style={{ color: "#696969" }}>doapegoitb.com</Link>
+      <div className="p-4"> © 2024 Copyright:
+        <a href='/' className="fw-bold" to="/">doapegoitb.com</a>
       </div>
     </footer>
   );

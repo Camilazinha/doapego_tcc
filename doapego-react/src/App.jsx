@@ -56,7 +56,7 @@ import "./styles/info.css";
 import "./styles/admin.css";
 import "./styles/modal.css";
 import "./styles/buttons.css";
-import "./styles/navbar.css";
+import "./styles/footer.css";
 
 const App = () => {
 

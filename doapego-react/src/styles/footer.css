@@ -1,0 +1,11 @@
+@import url('./variables.css');
+
+footer h6 {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.link-info-footer {
+  text-decoration: none;
+  color: var(--color-black);
+}
