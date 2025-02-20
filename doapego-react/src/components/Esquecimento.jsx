@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 
-function Esquecimento() {
+export default function Esquecimento() {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -12,8 +12,8 @@ function Esquecimento() {
 
   return (
     <div>
-      <div className="container px-1 py-5 px-md-4 mt-5 text-lg-start borda" style={{ width: 400, height: 'auto' }}>
-        <h2 className='text-center' style={{ fontSize: '2em', fontWeight: 600, color: '#FFCF55' }}>Recuperar senha</h2>
+      <div className="container px-1 py-5 px-md-4 mt-5 text-lg-start">
+        <h2 className='text-center'>Recuperar senha</h2>
 
         <form onSubmit={handleSubmit}>
           <div className="input-box">
@@ -23,7 +23,7 @@ function Esquecimento() {
             <input type="email" placeholder="E-mail" required />
           </div>
 
-          <p style={{ fontSize: '.8em', color: '#4e4e4e', margin: '0', textAlign: 'center' }}>
+          <p>
             Insira o e-mail cadastrado para receber o link.
           </p>
 
@@ -40,5 +40,3 @@ function Esquecimento() {
 
   );
 };
-
-export default Esquecimento;
