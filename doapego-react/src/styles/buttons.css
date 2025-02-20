@@ -5,8 +5,9 @@
   color: var(--color-white);
   background-color: var(--color-secondary);
   text-decoration: none;
+  font-weight: 500;
   padding: 0.5rem 1rem;
-  border-radius: 2rem;
+  border-radius: .5rem;
 }
 
 .btn-custom-filled:hover {
@@ -15,6 +16,26 @@
 }
 
 .btn-custom-filled:active {
+  background-color: var(--color-secondary-active) !important;
+  color: var(--color-white) !important;
+}
+
+.btn-custom-unfilled {
+  border: .12rem solid var(--color-secondary);
+  color: var(--color-secondary);
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: .5rem;
+}
+
+.btn-custom-unfilled:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.btn-custom-unfilled:active {
   background-color: var(--color-secondary-active) !important;
   color: var(--color-white) !important;
 }
