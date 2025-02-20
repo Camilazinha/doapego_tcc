@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Categorias = () => {
+export default function Categorias() {
     const [categorias, setCategorias] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -122,5 +122,3 @@ const Categorias = () => {
         </div>
     );
 };
-
-export default Categorias;

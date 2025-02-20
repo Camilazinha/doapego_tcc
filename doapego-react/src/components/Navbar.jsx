@@ -75,10 +75,10 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link mt-2 mt-lg-0" to="/">Início</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/tutorial">Sobre nós</Link>
+              <Link className="nav-link" to="/sobre">Sobre nós</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/sobre">Como doar?</Link>
+              <Link className="nav-link" to="/tutorial">Como doar?</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link d-flex align-items-center" to="/login"><img src={lockIcon} alt="Apenas para administradores" />Entrar</Link>
