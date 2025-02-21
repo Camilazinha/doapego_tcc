@@ -38,19 +38,19 @@ export default function Login() {
           <span className="icon">
             <ion-icon name="lock-closed" />
           </span>
-          <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required/>
+          <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
         </div>
         <div className="remember-forgot mx-2 d-flex align-items-center">
-          <label><input className="form-check-input me-1" type="checkbox" />Lembre-se de mim </label>
+          <label><input className="form-check-input me-1" type="checkbox" />Lembrar-se de mim </label>
 
           <Link to="/esqueci-senha">Esqueci minha senha</Link>
         </div>
         <div className="button-box">
-          <button type="submit" className="mt-3 py-2 btn btn-navbar-custom w-75"> Login
+          <button type="submit" className="mt-3 py-2 btn btn-navbar-custom w-75"> Entrar
           </button>
         </div>
         <div className="register-link">
-          <p>Novo por aqui? <Link to="/cadastro">Cadastrar-se</Link></p>
+          <p>Ainda não tem uma conta? <Link to="/cadastro">Cadastrar-se</Link></p>
         </div>
       </form>
     </div>

@@ -1,2 +1,7 @@
 /*CSS para formulários*/
 @import url('./variables.css');
+
+.titulo-pagina {
+  color: var(--color-primary);
+  font-weight: 700;
+}

@@ -9,7 +9,7 @@ import Home from './components/Home';
 import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
 import Cadastro from './components/Cadastro';
-import Login from './components/Login';
+import Login from './pages/Login';
 // import Parceiros from './components/Parceiros';
 import Redefinicao from './components/Redefinicao';
 import Esquecimento from './components/Esquecimento';
