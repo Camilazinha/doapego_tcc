@@ -8,9 +8,10 @@ import mailIcon from "../img/mail-icon.svg";
 import locationIcon from "../img/location-icon.svg";
 import phoneIcon from "../img/phone-icon.svg";
 
+//    <footer className="container-fluid text-center pt-3 mt-5">
 export default function Footer() {
   return (
-    <footer className="container-fluid text-center pt-3 mt-5">
+    <footer className="container-fluid text-center pt-3">
       <div className="container text-md-start mt-5">
         <div className="row mt-3">
           <div className="col-md-3 mx-auto mb-4">
