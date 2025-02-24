@@ -25,7 +25,7 @@ export default function Login() {
   };
 
   return (
-    <main className="container form-container">
+    <main className="container form-container my-5">
       <h2 className='titulo-pagina'>LOGIN</h2>
 
       <form onSubmit={handleLogin}>
@@ -40,16 +40,18 @@ export default function Login() {
           <input id='senha-admin' type="password" className='form-control' placeholder="Insira sua senha cadastrada" value={senha} onChange={(e) => setSenha(e.target.value)} required />
         </div>
 
-        <div className="form-group form-check">
+        <div className='form-group form-check'>
           <input className="form-check-input" type="checkbox" id='remember-me' />
-          <label className='form-check-label' htmlFor='remember-me'>Lembrar-me</label>
+          <div className="d-flex justify-content-between">
+            <label className='form-check-label' htmlFor='remember-me'>Lembrar-me</label>
+            <Link to="/esqueci-senha" className='form-link'>Esqueci minha senha</Link>
+          </div>
         </div>
-
-        <Link to="/esqueci-senha" className='form-link text-center'>Esqueci minha senha</Link>
 
         <div className="form-group">
           <button type="submit" className="btn btn-custom-filled">Entrar</button>
         </div>
+
 
         <section className="form-group">
           <p>Ainda não tem uma conta? <Link to="/cadastro" className='form-link'>Cadastrar-se</Link></p>

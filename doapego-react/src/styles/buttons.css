@@ -40,3 +40,8 @@
   background-color: var(--color-secondary-active) !important;
   color: var(--color-white) !important;
 }
+
+.form-check-input:checked {
+  background-color: var(--color-tertiary);
+  border-color: var(--color-tertiary-hover);
+}
