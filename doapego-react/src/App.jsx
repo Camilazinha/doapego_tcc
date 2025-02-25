@@ -10,9 +10,8 @@ import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
 import Cadastro from './components/Cadastro';
 import Login from './pages/Login';
-// import Parceiros from './components/Parceiros';
-import Redefinicao from './components/Redefinicao';
-import Esquecimento from './components/Esquecimento';
+import ResetPassword from './pages/ResetPassword';
+import ForgotPassword from './pages/ForgotPassword';
 import Termos from './components/Termos';
 import Privacidade from './components/Privacidade';
 import Ajuda from './components/Ajuda';
@@ -84,8 +83,8 @@ const App = () => {
                                         <Route path="/login" element={<Login onLogin={handleLogin} />} />
                                         {/* <Route path="/parceiros" element={<Parceiros />} /> */}
                                         <Route path="/tutorial" element={<Tutorial />} />
-                                        <Route path="/redefinir-senha" element={<Redefinicao />} />
-                                        <Route path="/esqueci-senha" element={<Esquecimento />} />
+                                        <Route path="/redefinir-senha" element={<ResetPassword />} />
+                                        <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
                                         <Route path="/politica-de-privacidade" element={<Privacidade />} />
                                         <Route path="/termos-de-uso" element={<Termos />} />
                                         <Route path="/ajuda" element={<Ajuda />} />

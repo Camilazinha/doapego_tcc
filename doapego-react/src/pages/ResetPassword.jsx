@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Redefinicao() {
+export default function ResetPassword() {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {

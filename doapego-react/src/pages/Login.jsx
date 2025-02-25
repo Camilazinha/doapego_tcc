@@ -44,7 +44,7 @@ export default function Login() {
           <input className="form-check-input" type="checkbox" id='remember-me' />
           <div className="d-flex justify-content-between">
             <label className='form-check-label' htmlFor='remember-me'>Lembrar-me</label>
-            <Link to="/esqueci-senha" className='form-link'>Esqueci minha senha</Link>
+            <Link to="/esqueci-minha-senha" className='form-link'>Esqueci minha senha</Link>
           </div>
         </div>
 

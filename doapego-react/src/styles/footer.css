@@ -8,6 +8,7 @@ footer h6 {
 .link-info-footer {
   text-decoration: none;
   color: var(--color-black);
+  margin-bottom: 1rem;
 }
 
 .link-info-footer:hover {
