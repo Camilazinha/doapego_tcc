@@ -5,9 +5,8 @@ import { useNavigate, Link } from 'react-router-dom';
 export default function ForgotPassword() {
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate('/login');
+  const handleSubmit = () => {
+    navigate('/redefinir-senha');
   };
 
   return (
@@ -24,7 +23,7 @@ export default function ForgotPassword() {
 
 
         <div className="form-group">
-          <button type="submit" className="btn btn-custom-filled" onClick={() => navigate('/redefinir-senha')} >
+          <button type="submit" className="btn btn-custom-filled">
             Enviar link
           </button>
         </div>
