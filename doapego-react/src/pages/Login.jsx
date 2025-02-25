@@ -32,12 +32,12 @@ export default function Login() {
 
         <div className="form-group">
           <label htmlFor='email-admin' className='form-label'>E-mail</label>
-          <input id='email-admin' type="email" className='form-control' placeholder="Insira seu e-mail cadastrado" value={emailAdmin} onChange={(e) => setEmailAdmin(e.target.value)} required />
+          <input id='email-admin' type="email" className='form-control' placeholder="Insira seu e-mail" value={emailAdmin} onChange={(e) => setEmailAdmin(e.target.value)} required />
         </div>
 
         <div className="form-group">
           <label htmlFor='senha-admin' className='form-label'>Senha</label>
-          <input id='senha-admin' type="password" className='form-control' placeholder="Insira sua senha cadastrada" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+          <input id='senha-admin' type="password" className='form-control' placeholder="Insira sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
         </div>
 
         <div className='form-group form-check'>
