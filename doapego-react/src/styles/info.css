@@ -1,2 +1,6 @@
 /*CSS para textos corridos: faq, politica e termos...*/
 @import url('./variables.css');
+
+.texto-obs {
+  color: var(--color-gray-medium);
+}

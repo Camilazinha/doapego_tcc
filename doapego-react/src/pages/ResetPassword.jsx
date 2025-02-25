@@ -11,30 +11,26 @@ export default function ResetPassword() {
 
   return (
     <>
-      <div className="container px-1 py-5 px-md-4 text-lg-start my-5">
-        <h2 className='text-center'>Criar nova senha</h2>
+      <div className="container form-container my-5">
+        <h2 className='titulo-pagina'>REDEFINIR SENHA</h2>
 
         <form onSubmit={handleSubmit}>
-          <div className="input-box">
-            <span className="icon">
-              <ion-icon name="lock-closed" />
-            </span>
-            <input type="password" placeholder="Digite sua nova senha" required />
-          </div>
-          <div className="input-box">
-            <span className="icon">
-              <ion-icon name="lock-closed" />
-            </span>
-            <input type="password" placeholder="Confirme sua nova senha" required />
+
+          <div className="form-group">
+            <label htmlFor='new-password' className='form-label'>Nova senha</label>
+            <input id='new-password' type="password" className='form-control' placeholder="Digite sua nova senha" required />
           </div>
 
-          <p>
-            Sua senha deve conter no mínimo 8 caracteres (alfanumérico ou especial)
-          </p>
-          <div className="button-box d-flex justify-content-center">
-            <button type="submit" className="mt-3 py-2 btn btn-navbar-custom w-75">
-              Confirmar
-            </button>
+          <div className="form-group">
+            <label htmlFor='confirm-password' className='form-label'>Confirme a nova senha</label>
+            <input id='confirm-password' type="password" className='form-control' placeholder="Confirme sua nova senha" required />
+          </div>
+
+          <div className="form-group">
+            <p className='texto-obs'>
+              Sua senha deve conter no mínimo 8 caracteres (alfanumérico ou especial)
+            </p>
+            <button type="submit" className="btn btn-custom-filled"> Confirmar</button>
           </div>
         </form>
       </div>

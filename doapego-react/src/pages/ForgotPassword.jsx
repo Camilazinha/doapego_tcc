@@ -14,7 +14,7 @@ export default function ForgotPassword() {
       <h2 className='titulo-pagina'>RECUPERAR SENHA</h2>
 
       <form onSubmit={handleSubmit}>
-        <p>Insira o e-mail cadastrado para receber o link.</p>
+        <p className='texto-obs'>Insira o e-mail cadastrado para receber o link.</p>
 
         <div className='form-group'>
           <label htmlFor='email-admin' className='form-label'>E-mail</label>
