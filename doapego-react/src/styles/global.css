@@ -13,6 +13,12 @@ body {
   font-size: 16px;
 }
 
+.titulo-pagina {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-align: center;
+}
+
 /*Navbar*/
 .logo-imagem {
   max-width: 100%;

@@ -5,3 +5,7 @@
   color: var(--color-gray-medium);
   text-align: center;
 }
+
+.card {
+  width: 20rem !important;
+}

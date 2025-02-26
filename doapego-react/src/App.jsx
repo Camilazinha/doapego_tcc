@@ -19,7 +19,7 @@ import Ajuda from './components/Ajuda';
 import Faq from './components/Faq';
 import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
-import GerenciarDados from './components/GerenciarDados';
+import ManageData from './pages/ManageData';
 import Pendentes from './components/Pendentes';
 import Inicio from './components/Inicio';
 
@@ -96,7 +96,7 @@ const App = () => {
                                         <Route path="/faq" element={<Faq />} />
                                         <Route path="/gerenciar" element={<Gerenciar />} />
                                         <Route path="/doacoes-pendentes" element={<Pendentes />} />
-                                        <Route path="/gerenciar-dados" element={<GerenciarDados />} />
+                                        <Route path="/gerenciar-dados" element={<ManageData />} />
 
                                         <Route path="/configuracoes" element={<Configuracoes />} />
 

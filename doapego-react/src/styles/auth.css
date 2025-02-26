@@ -1,11 +1,6 @@
 /*CSS para formulários*/
 @import url('./variables.css');
 
-.titulo-pagina {
-  color: var(--color-primary);
-  font-weight: 700;
-}
-
 .form-group label:not(.form-check-label) {
   color: var(--color-gray-dark);
   font-weight: 600;
