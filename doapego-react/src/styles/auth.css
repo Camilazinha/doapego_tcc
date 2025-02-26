@@ -26,9 +26,14 @@
 .form-container {
   align-items: center;
   justify-items: center;
-
   max-width: fit-content;
   padding: 2rem;
   border: 1px solid var(--color-gray-border);
   border-radius: 1rem;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.form-control {
+  width: 100%;
 }

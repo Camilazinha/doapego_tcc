@@ -3,4 +3,5 @@
 
 .texto-obs {
   color: var(--color-gray-medium);
+  text-align: center;
 }

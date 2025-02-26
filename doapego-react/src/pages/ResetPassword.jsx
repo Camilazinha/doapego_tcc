@@ -27,9 +27,9 @@ export default function ResetPassword() {
           </div>
 
           <div className="form-group">
-            <p className='texto-obs'>
+            {/* <p className='texto-obs'>
               Sua senha deve conter no mínimo 8 caracteres (alfanumérico ou especial)
-            </p>
+            </p> */}
             <button type="submit" className="btn btn-custom-filled"> Confirmar</button>
           </div>
         </form>
