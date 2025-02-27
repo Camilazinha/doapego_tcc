@@ -38,24 +38,25 @@ const sections = [
 export default function ManageData() {
   return (
     <main>
-      <div className='container my-5'>
+      <div className='container-fluid my-5'>
         <h2 className='titulo-pagina'>GERENCIAR DADOS</h2>
 
+        <div className='card-one'>
         {sections.filter(section => section.allowed.includes('master')).map((section, index) => (
           <div key={index} className='card'>
             <img src={section.src} alt='' className="card-img-top" />
 
             <div className='card-body'>
-              <h4 className='card-title'>{section.title}</h4>
+              <h4 className='card-title mb-4'>{section.title}</h4>
               <p className='card-text'>{section.description}</p>
             </div>
 
             <div className='card-body'>
-              <Link to={section.link} class="btn btn-primary">Go somewhere</Link>
+              <Link to={section.link} class="btn btn-custom-filled">Go somewhere</Link>
             </div>
-          </div>
+            </div>
         ))}
-
+      </div>
       </div>
     </main>
   );
