@@ -11,7 +11,7 @@ export default function ForgotPassword() {
 
   return (
     <main className="container form-container my-5">
-      <h2 className='titulo-pagina'>RECUPERAR SENHA</h2>
+      <h2 className='titulo-pagina-container'>RECUPERAR SENHA</h2>
 
       <form onSubmit={handleSubmit}>
         <p className='texto-obs'>Insira o e-mail cadastrado para receber o link.</p>

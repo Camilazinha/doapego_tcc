@@ -7,7 +7,7 @@ export default function ManageData() {
   return (
 
     <div className='container my-5'>
-      <h2 className='titulo-pagina'>Gerenciar dados</h2>
+      <h2 className='titulo-pagina-container'>Gerenciar dados</h2>
 
       <div id='cards-container2' className='mt-4 row'>
 

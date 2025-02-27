@@ -12,7 +12,7 @@ export default function ResetPassword() {
   return (
     <>
       <div className="container form-container my-5">
-        <h2 className='titulo-pagina'>REDEFINIR SENHA</h2>
+        <h2 className='titulo-pagina-container'>REDEFINIR SENHA</h2>
 
         <form onSubmit={handleSubmit}>
 

@@ -26,7 +26,7 @@ export default function Login() {
 
   return (
     <main className="container form-container my-5">
-      <h2 className='titulo-pagina'>LOGIN</h2>
+      <h2 className='titulo-pagina-container'>LOGIN</h2>
 
       <form onSubmit={handleLogin}>
 

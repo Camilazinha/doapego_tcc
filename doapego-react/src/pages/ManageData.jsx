@@ -8,32 +8,32 @@ import gotoIcon from "../img/goto-icon.svg"
 
 const sections = [
   {
-    title: 'Ver Categorias',
+    title: 'Categorias',
     description: 'Gerencie as categorias dos brinquedos, adicione, edite ou remova conforme necessário.',
     src: crianca,
     link: '/categorias',
-    allowed: ['master', 'blablablba']
+    allowed: ['master', 'staff', 'funcionario']
   },
   {
-    title: "Ver Endereços",
+    title: "Endereços",
     description: "Visualize os endereços principais das ONGs cadastradas na plataforma.",
     src: crianca,
     link: '/enderecos',
-    allowed: ['master', 'blablablba']
+    allowed: ['master', 'staff', 'funcionario']
   },
   {
-    title: "Gerenciar ONGs",
+    title: "Organizações Não Governamentais",
     description: "Explore e gerencie todas as ONGs registradas na plataforma.",
     src: crianca,
     link: '/ongs',
-    allowed: ['master', 'blablablba']
+    allowed: ['master']
   },
   {
-    title: "Ver Administradores",
+    title: "Administradores",
     description: "Gerencie as contas dos administradores das ONGs e suas permissões.",
     src: crianca,
     link: '/administradores',
-    allowed: ['master', 'blablablba']
+    allowed: ['master', 'staff']
   }
 ];
 
@@ -43,23 +43,25 @@ export default function ManageData() {
       <div className='container-fluid my-5'>
         <h2 className='titulo-pagina'>GERENCIAR DADOS</h2>
 
-        <div className='card-one'>
-        {sections.filter(section => section.allowed.includes('master')).map((section, index) => (
-          <div key={index} className='card'>
-            <img src={section.src} alt='' className="card-img-top" />
+        <div className='card-one mt-5'>
 
-            <div className='card-body'>
-              <h4 className='card-title mb-4'>{section.title}</h4>
-              <p className='card-text'>{section.description}</p>
-            </div>
+          {sections.filter(section => section.allowed.includes('master')).map((section, index) => (
 
-            <div className='card-body'>
-              <Link to={section.link} class="btn btn-custom-filled">Acessar <img src={gotoIcon} alt='' /> </Link>
-              {/* COLOCAR ICON */}
+            <div key={index} className='card'>
+              <img src={section.src} alt='' className="card-img-top" />
+
+              <div className='card-body'>
+                <h4 className='card-title mb-4'>{section.title}</h4>
+                <p className='card-text'>{section.description}</p>
+              </div>
+
+              <div className='card-body'>
+                <Link to={section.link} class="btn btn-custom-filled">Acessar <img src={gotoIcon} alt='' /> </Link>
+              </div>
+
             </div>
-            </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
     </main>
   );

@@ -13,10 +13,16 @@ body {
   font-size: 16px;
 }
 
+
+.titulo-pagina-container,
 .titulo-pagina {
   color: var(--color-primary);
   font-weight: 700;
   text-align: center;
+}
+
+.titulo-pagina {
+  font-size: 2rem;
 }
 
 /*Navbar*/
