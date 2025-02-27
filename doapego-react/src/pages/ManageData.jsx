@@ -52,7 +52,8 @@ export default function ManageData() {
             </div>
 
             <div className='card-body'>
-              <Link to={section.link} class="btn btn-custom-filled">Go somewhere</Link>
+              <Link to={section.link} class="btn btn-custom-filled">Acessar área</Link>
+              {/* COLOCAR ICON */}
             </div>
             </div>
         ))}

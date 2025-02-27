@@ -23,3 +23,8 @@
   display: grid;
   align-content: space-around;
 }
+
+.card-title{
+  color: var(--color-gray-dark);
+  font-weight: 600;
+}

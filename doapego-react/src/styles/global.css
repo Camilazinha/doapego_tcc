@@ -13,10 +13,6 @@ body {
   font-size: 16px;
 }
 
-p {
-  margin: 0 !important;
-}
-
 .titulo-pagina {
   color: var(--color-primary);
   font-weight: 700;

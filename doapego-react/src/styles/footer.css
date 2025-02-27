@@ -22,3 +22,8 @@ footer {
   padding: 1rem;
   box-shadow: 0 -2px 12px 0 rgba(0, 0, 0, 0.3);
 }
+
+footer p{
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
