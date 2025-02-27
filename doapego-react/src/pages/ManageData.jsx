@@ -2,7 +2,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import crianca from "../img/crianca-mao-logo.png"
+import gotoIcon from "../img/goto-icon.svg"
 
 const sections = [
   {
@@ -52,7 +54,7 @@ export default function ManageData() {
             </div>
 
             <div className='card-body'>
-              <Link to={section.link} class="btn btn-custom-filled">Acessar área</Link>
+              <Link to={section.link} class="btn btn-custom-filled">Acessar <img src={gotoIcon} alt='' /> </Link>
               {/* COLOCAR ICON */}
             </div>
             </div>
