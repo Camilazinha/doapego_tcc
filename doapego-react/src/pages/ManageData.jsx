@@ -7,6 +7,22 @@ import crianca from "../img/crianca-mao-logo.png"
 import gotoIcon from "../img/goto-icon.svg"
 
 const sections = [
+
+  {
+    title: 'Solicitações',
+    description: 'Analise e aprove ou rejeite solicitações de cadastro de novas ONGs.',
+    src: crianca,
+    link: '/inicio',
+    allowed: ['master']
+  },
+
+  {
+    title: 'Usuários',
+    description: 'Visualize os usuários cadastrados e suspenda suas contas, se necessário.',
+    src: crianca,
+    link: '/usuarios',
+    allowed: ['master']
+  },
   {
     title: 'Categorias',
     description: 'Gerencie as categorias dos brinquedos, adicione, edite ou remova conforme necessário.',
@@ -40,7 +56,7 @@ const sections = [
 export default function ManageData() {
   return (
     <main>
-      <div className='container-fluid my-5'>
+      <div className='container-fluid my-5 px-5'>
         <h2 className='titulo-pagina'>GERENCIAR DADOS</h2>
 
         <div className='card-one mt-5'>
