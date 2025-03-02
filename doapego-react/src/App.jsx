@@ -19,7 +19,7 @@ import Ajuda from './components/Ajuda';
 import Faq from './components/Faq';
 import Configuracoes from './components/Configuracoes';
 import Gerenciar from './components/Gerenciar';
-import ManageData from './pages/ManageData';
+import Panel from './pages/Panel';
 import Pendentes from './components/Pendentes';
 import Inicio from './components/Inicio';
 
@@ -57,8 +57,7 @@ import "./styles/modal.css";
 import "./styles/buttons.css";
 import "./styles/footer.css";
 
-const App = () => {
-
+export default function App() {
 
         //IMPORTANTISSIMO
         const [userType, setUserType] = useState('MASTER'); // null representa usuário não logado
@@ -96,7 +95,7 @@ const App = () => {
                                         <Route path="/faq" element={<Faq />} />
                                         <Route path="/gerenciar" element={<Gerenciar />} />
                                         <Route path="/doacoes-pendentes" element={<Pendentes />} />
-                                        <Route path="/gerenciar-dados" element={<ManageData />} />
+                                        <Route path="/painel-de-controle" element={<Panel />} />
 
                                         <Route path="/configuracoes" element={<Configuracoes />} />
 
@@ -132,5 +131,3 @@ const App = () => {
                 </AuthProvider>
         );
 };
-
-export default App;

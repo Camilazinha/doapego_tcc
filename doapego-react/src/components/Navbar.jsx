@@ -40,13 +40,13 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link mt-2 mt-lg-0" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/gerenciar-dados">Gerenciar dados</Link>
+              <Link className="nav-link" to="/painel-de-controle">Gerenciar dados</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/configuracoes">Configurações</Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link d-flex align-items-center" onClick={handleLogout}><img src={logoutIcon} alt="Apenas para administradores" /><strong>Sair</strong></button>
+              <button className="nav-link d-flex align-items-center" onClick={handleLogout}><img src={logoutIcon} alt="" /><strong>Sair</strong></button>
             </li>
           </>
         );
