@@ -1,2 +1,43 @@
 /*CSS para parte administrativa*/
 @import url('./variables.css');
+
+.card {
+  margin: 1rem;
+  width: 20rem;
+}
+
+.card-one {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.card-body {
+  display: grid;
+  align-content: space-evenly;
+}
+
+.card-title {
+  color: var(--color-gray-dark);
+  font-weight: 600;
+}
+
+.container-config{
+
+  box-shadow: 0 2px 4px rgb(0, 0, 0, .25);
+  border-radius: .5rem;
+  padding: .5rem;
+}
+
+.item-config{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  text-decoration: none;
+  color: var(--color-gray-dark);
+  font-weight: 500;
+  font-size: 1rem;
+}

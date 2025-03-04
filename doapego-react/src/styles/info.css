@@ -6,25 +6,3 @@
   text-align: center;
 }
 
-.card {
-  margin: 1rem;
-  width: 20rem !important;
-}
-
-.card-one {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-}
-
-.card-body {
-  display: grid;
-  align-content: space-evenly;
-}
-
-.card-title {
-  color: var(--color-gray-dark);
-  font-weight: 600;
-}

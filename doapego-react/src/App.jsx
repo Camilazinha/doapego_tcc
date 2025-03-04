@@ -17,7 +17,7 @@ import Privacidade from './components/Privacidade';
 import Ajuda from './components/Ajuda';
 
 import Faq from './components/Faq';
-import Configuracoes from './components/Configuracoes';
+import Settings from './pages/Settings';
 import Gerenciar from './components/Gerenciar';
 import Panel from './pages/Panel';
 import Pendentes from './components/Pendentes';
@@ -97,7 +97,7 @@ export default function App() {
                                         <Route path="/doacoes-pendentes" element={<Pendentes />} />
                                         <Route path="/painel-de-controle" element={<Panel />} />
 
-                                        <Route path="/configuracoes" element={<Configuracoes />} />
+                                        <Route path="/configuracoes" element={<Settings />} />
 
                                         <Route path="/categorias" element={<Categorias />} />
                                         <Route path="/categorias/criar" element={<CreateCategoria />} />

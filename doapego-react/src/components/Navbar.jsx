@@ -40,7 +40,7 @@ export default function Navbar({ userType, onLogout }) {
               <Link className="nav-link mt-2 mt-lg-0" to="/inicio">Início</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/painel-de-controle">Gerenciar dados</Link>
+              <Link className="nav-link" to="/painel-de-controle">Painel de controle</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/configuracoes">Configurações</Link>

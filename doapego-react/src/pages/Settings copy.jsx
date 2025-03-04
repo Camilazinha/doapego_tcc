@@ -1,9 +1,9 @@
-// src/components/Configuracoes.js
+// src/pages/Settings.jsx
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Configuracoes() {
+export default function Settings() {
   const userType = localStorage.getItem('userType'); // Recupera o tipo de usuário do localStorage
 
   const renderLinks = () => {
@@ -203,5 +203,3 @@ function Configuracoes() {
     </>
   );
 }
-
-export default Configuracoes;

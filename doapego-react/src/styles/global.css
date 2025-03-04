@@ -13,6 +13,9 @@ body {
   font-size: 16px;
 }
 
+p{
+  margin-bottom: 0;
+}
 
 .titulo-pagina-container,
 .titulo-pagina {
