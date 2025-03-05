@@ -21,7 +21,7 @@ import Settings from './pages/Settings';
 import Gerenciar from './components/Gerenciar';
 import Panel from './pages/Panel';
 import Pendentes from './components/Pendentes';
-import Inicio from './components/Inicio';
+import Inicio from './pages/Inicio';
 
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';

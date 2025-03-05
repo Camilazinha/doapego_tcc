@@ -1,10 +1,8 @@
-// src/components/Inicio.js
+// src/pages/Inicio.js
 
-import React from 'react';
 import { Link } from 'react-router-dom';
 
-
-function Inicio() {
+export default function Inicio() {
   const userType = localStorage.getItem('userType'); // Recupera o tipo de usuário do localStorage
 
   const renderCards = () => {
@@ -128,5 +126,3 @@ function Inicio() {
     </div>
   );
 }
-
-export default Inicio;
