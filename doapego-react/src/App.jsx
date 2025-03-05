@@ -60,7 +60,7 @@ import "./styles/footer.css";
 export default function App() {
 
         //IMPORTANTISSIMO
-        const [userType, setUserType] = useState('MASTER'); // null representa usuário não logado
+        const [userType, setUserType] = useState('STAFF'); // null representa usuário não logado
 
         const handleLogin = (type) => setUserType(type); // Recebe o tipo de admin no login
         const handleLogout = () => setUserType(null);

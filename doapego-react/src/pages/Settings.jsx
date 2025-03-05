@@ -51,8 +51,9 @@ export default function Settings() {
     <main>
       <div className="container my-5">
         <h2 className="titulo-pagina mb-5">CONFIGURAÇÕES</h2>
+        {/* <p className='subtitulo align-center'>TEXTO MENORZINHO</p> */}
 
-        {sections.filter(section => section.allowed.includes('master')).map((section, index) => (
+        {sections.filter(section => section.allowed.includes('staff')).map((section, index) => (
         <div key={index} className="container container-config my-4">
 
           <Link to={section.link} className='item-config'>

@@ -40,7 +40,7 @@ export default function Panel() {
       description: 'Crie novas ONGs e atribua administradores para gerenciá-las.',
       src: crianca,
       link: '/criar-admin',
-      allowed: ['master', 'staff']
+      allowed: ['master']
     },
     {
       title: 'Checar Mídia',
@@ -59,7 +59,7 @@ export default function Panel() {
 
         <div className='card-one mt-5 mx-3'>
 
-          {sections.filter(section => section.allowed.includes('master')).map((section, index) => (
+          {sections.filter(section => section.allowed.includes('staff')).map((section, index) => (
 
             <div key={index} className='card'>
               <img src={section.src} alt='' className="card-img-top" />
