@@ -25,10 +25,9 @@
 }
 
 .container-config{
-
   box-shadow: 0 2px 4px rgb(0, 0, 0, .25);
   border-radius: .5rem;
-  padding: .5rem;
+  padding: 1rem;
 }
 
 .item-config{
@@ -39,5 +38,5 @@
   text-decoration: none;
   color: var(--color-gray-dark);
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }

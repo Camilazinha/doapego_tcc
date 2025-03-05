@@ -39,12 +39,18 @@ export default function Settings() {
       link: '/usuarios',
       allowed: ['master']
     },
+    {
+      title: 'Ajuda',
+      icon: testIcon,
+      link: '/faq',
+      allowed: ['master', 'staff', 'funcionario']
+    }
   ]
 
     return (          
     <main>
       <div className="container my-5">
-        <h2 className="titulo-pagina mb-1">Configurações</h2>
+        <h2 className="titulo-pagina mb-5">CONFIGURAÇÕES</h2>
 
         {sections.filter(section => section.allowed.includes('master')).map((section, index) => (
         <div key={index} className="container container-config my-4">
