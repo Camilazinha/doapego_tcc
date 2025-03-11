@@ -13,6 +13,7 @@ export default function Panel() {
 
   const sections = [
     {
+      id: 'manage-donation',
       title: 'Gerenciar Doações',
       description: 'Aprove ou recuse doações enviadas pelos doadores da plataforma.',
       src: crianca,
@@ -20,6 +21,7 @@ export default function Panel() {
       allowed: ['staff', 'funcionario']
     },
     {
+      id: 'manage-request',
       title: 'Gerenciar Solicitações',
       description: 'Aprove ou recuse solicitações de novas ONGs que desejam ingressar na plataforma.',
       src: crianca,
@@ -36,6 +38,7 @@ export default function Panel() {
         }
       ] : []), // Se não for STAFF/FUNCIONÁRIO, essa seção não aparece
     {
+      id: 'create-admin',
       title: 'Criar Administrador',
       description: 'Crie novas ONGs e atribua administradores para gerenciá-las.',
       src: crianca,
@@ -43,6 +46,7 @@ export default function Panel() {
       allowed: ['master']
     },
     {
+      id: 'check-photo',
       title: 'Checar Mídia',
       description: 'Revise as fotos enviadas pelos doadores antes que sejam exibidas para as ONGs.',
       src: crianca,
@@ -59,9 +63,9 @@ export default function Panel() {
 
         <div className='card-one mt-5 mx-3'>
 
-          {sections.filter(section => section.allowed.includes('staff')).map((section, index) => (
+          {sections.filter(section => section.allowed.includes('staff')).map((section) => (
 
-            <div key={index} className='card'>
+            <div key={section.id} className='card'>
               <img src={section.src} alt='' className="card-img-top" />
 
               <div className='card-body'>

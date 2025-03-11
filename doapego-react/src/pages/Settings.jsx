@@ -10,36 +10,42 @@ export default function Settings() {
 
   const sections = [
     {
+      id: 'adm',
       title: 'Administradores',
       icon: testIcon,
       link: '/administradores',
       allowed: ['master', 'staff']
     },
     {
+      id: 'category',
       title: 'Categorias',
       icon: testIcon,
       link: '/categorias',
       allowed: ['master', 'staff']
     },
     {
+      id: 'address',
       title: 'Endereços',
       icon: testIcon,
       link: '/enderecos',
       allowed: ['master', 'staff', 'funcionario']
     },
     {
+      id: 'ngo',
       title: 'ONGs',
       icon: testIcon,
       link: '/ongs',
       allowed: ['master']
     },
     {
+      id: 'user',
       title: 'Usuários',
       icon: testIcon,
       link: '/usuarios',
       allowed: ['master']
     },
     {
+      id: 'help',
       title: 'Ajuda',
       icon: testIcon,
       link: '/faq',
@@ -53,8 +59,8 @@ export default function Settings() {
         <h2 className="titulo-pagina mb-5">CONFIGURAÇÕES</h2>
         {/* <p className='subtitulo align-center'>TEXTO MENORZINHO</p> */}
 
-        {sections.filter(section => section.allowed.includes('staff')).map((section, index) => (
-        <div key={index} className="container container-config my-4">
+        {sections.filter(section => section.allowed.includes('staff')).map((section) => (
+        <div key={section.id} className="container container-config my-4">
 
           <Link to={section.link} className='item-config'>
             <span className='d-flex gap-2 align-items-center'>
