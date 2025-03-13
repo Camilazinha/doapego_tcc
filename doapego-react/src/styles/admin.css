@@ -40,3 +40,26 @@
   font-weight: 500;
   font-size: 1.25rem;
 }
+
+.name-container{
+  background-color: var(--color-primary);
+  /* background: linear-gradient(45deg, var(--color-primary), #003e38); */
+  color: var(--color-white);
+  padding: 1.5rem;
+  border-radius: .5rem;
+
+  display: grid;
+  gap: .5rem 0;
+}
+
+.titulo-name{
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.link-name{
+  color: var(--color-white);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+}

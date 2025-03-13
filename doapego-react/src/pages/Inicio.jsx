@@ -9,7 +9,7 @@ export default function Inicio() {
     <main className='container my-5'>
 
     <section className='name-container col-6'>
-      <span className='titulo-name'> Olá, Camila! </span>
+      <span className='titulo-name'> Olá, Camila!</span>
       <Link className='link-name'> <img src={testIcon}/> Ir para meu perfil </Link>
     </section>
 
