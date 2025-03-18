@@ -23,6 +23,8 @@ import Panel from './pages/Panel';
 import Pendentes from './components/Pendentes';
 import Inicio from './pages/Inicio';
 
+import ListCrud from "./pages/ListCrud";
+
 import Categorias from './components/CategoriasViews/Categorias';
 import CreateCategoria from './components/CategoriasViews/CreateCategoria';
 import EditCategoria from './components/CategoriasViews/EditCategoria';
@@ -60,7 +62,7 @@ import "./styles/footer.css";
 export default function App() {
 
         //IMPORTANTISSIMO
-        const [userType, setUserType] = useState('STAFF'); // null representa usuário não logado
+        const [userType, setUserType] = useState('master'); // null representa usuário não logado
 
         const handleLogin = (type) => setUserType(type); // Recebe o tipo de admin no login
         const handleLogout = () => setUserType(null);
@@ -91,6 +93,7 @@ export default function App() {
 
                                         <Route path="/inicio" element={<Inicio />} />
 
+                                        <Route path="/listcrud" element={<ListCrud />} />
 
                                         <Route path="/faq" element={<Faq />} />
                                         <Route path="/gerenciar" element={<Gerenciar />} />

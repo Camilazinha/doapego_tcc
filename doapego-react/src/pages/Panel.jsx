@@ -9,7 +9,7 @@ import gotoIcon from "../img/goto-icon.svg"
 export default function Panel() {
 
   const [minhaOng, setMinhaOng] = useState(null);
-  const [userType, setUserType] = useState(null);
+  const [userType, setUserType] = useState('master');
 
   const sections = [
     {
@@ -30,6 +30,7 @@ export default function Panel() {
     },
       ...(userType === 'staff' || userType === 'funcionario' ? [
         {
+          id: 'my-ong',
           title: minhaOng ? minhaOng.nome : 'Minha ONG',
           description: 'Visualize os detalhes da ONG que você administra ou trabalha.',
           src: minhaOng ? minhaOng.foto : crianca,
@@ -63,7 +64,7 @@ export default function Panel() {
 
         <div className='card-one mt-5 mx-3'>
 
-          {sections.filter(section => section.allowed.includes('staff')).map((section) => (
+          {sections.filter(section => section.allowed.includes('master')).map((section) => (
 
             <div key={section.id} className='card'>
               <img src={section.src} alt='' className="card-img-top" />
