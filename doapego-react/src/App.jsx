@@ -93,7 +93,7 @@ export default function App() {
 
                                         <Route path="/inicio" element={<Inicio />} />
 
-                                        <Route path="/listcrud" element={<ListCrud />} />
+                                        <Route path="/gerenciar/:entidade" element={<ListCrud />} />
 
                                         <Route path="/faq" element={<Faq />} />
                                         <Route path="/gerenciar" element={<Gerenciar />} />
