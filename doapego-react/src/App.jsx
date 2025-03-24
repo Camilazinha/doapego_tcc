@@ -51,6 +51,7 @@ import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
 // import EditArquivo from './components/ArquivosViews/EditArquivo';
 // import DetailsArquivo from './components/ArquivosViews/DetailsArquivo';
 
+import "./styles/import.css";
 import "./styles/global.css";
 import "./styles/auth.css";
 import "./styles/info.css";
