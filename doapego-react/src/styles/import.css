@@ -9,7 +9,7 @@
 }
 
 .react-calendar__tile {
-  border-radius: 5px; /* Arredonda os botões dos dias */
+  border-radius: 5px; /*Muda hover do dia*/
 }
 
 .react-calendar__tile--active {
@@ -35,8 +35,7 @@
 }
 
 .react-calendar {
-  width: 180px !important;  /* Define o tamanho total bem pequeno */
-  height: 180px !important;
+  height: 176px !important;
 }
 
 .react-calendar__month-view {

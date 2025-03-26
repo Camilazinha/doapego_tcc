@@ -6,3 +6,29 @@
   text-align: center;
 }
 
+.grid-home{
+  display: grid;
+  grid-template-areas: 
+  "name-container name-container calendar-container"
+  "activity-container report-container calendar-container";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  margin: auto;
+}
+
+.name-container {
+  grid-area: name-container;
+}
+
+.activity-container {
+  grid-area: activity-container;
+}
+
+.report-container {
+  grid-area: report-container;
+}
+
+.calendar-container {
+  grid-area: calendar-container;
+}
