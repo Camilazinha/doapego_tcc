@@ -9,24 +9,24 @@
   padding: 15px;
   background: white;
 }
-
-/* Estilo dos dias da semana */
+  
+/* Dias da semana */
 .react-calendar__month-view__weekdays {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: bold;
-  color: #666;
+  color: var(--color-gray-contrast);
   text-align: center;
-  padding-bottom: 10px;
-  border-bottom: 1px dotted #ccc;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem dotted #ccc;
 }
 
 /* Deixar os domingos e feriados em vermelho */
 .react-calendar__month-view__days__day--weekend {
-  color: var(--color-secondary-hover) !important; 
+  color: var(--color-gray-dark) !important; /*cor decidir*/
 }
 
-/* Estilizando os dias normais */
+/* Dias normais */
 .react-calendar__tile {
   border-radius: 50%;
   min-width: 40px;
@@ -38,7 +38,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-/* Estilizando o hover nos dias */
+/* Hover nos dias */
 .react-calendar__tile:hover {
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50%;
@@ -55,14 +55,26 @@
 /* Dia selecionado */
 .react-calendar__tile--active {
   background: none !important;
-  border: 2px solid var(--color-tertiary-hover) !important;
-  color: var(--color-tertiary-hover) !important;
+  border: .1rem solid var(--color-tertiary-hover) !important;
+  color: var(--color-tertiary) !important;
   font-weight: bold;
 }
 
-/* Ajuste do tamanho da grade */
+/* Tamanho da grade */
 .react-calendar__month-view__days {
   display: grid !important;
-  gap: 5px; 
+  margin-top: .5rem;
+  gap: 2px; 
   grid-template-columns: repeat(7, 1fr);
+}
+
+/*Mês escrito*/
+.react-calendar__navigation__label__labelText--from{
+  font-weight: 600;
+  color: var(--color-gray-medium);
+}
+
+/*Flechinha*/
+.react-calendar__navigation__arrow{
+  color: var(--color-gray-dark);
 }
