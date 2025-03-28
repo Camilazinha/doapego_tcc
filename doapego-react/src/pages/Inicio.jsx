@@ -28,7 +28,7 @@ export default function Inicio() {
     </section>
 
     <section className='calendar-container'>
-      <Calendar />
+      <Calendar calendarType='gregory'/>
     </section>
     </div>
     </main>

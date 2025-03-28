@@ -63,3 +63,8 @@
   font-weight: 500;
   text-decoration: none;
 }
+
+.link-name:hover{
+  color: var(--color-white);
+  text-decoration: underline;
+}
