@@ -25,31 +25,6 @@ import Inicio from './pages/Inicio';
 
 import ListCrud from "./pages/ListCrud";
 
-import Categorias from './components/CategoriasViews/Categorias';
-import CreateCategoria from './components/CategoriasViews/CreateCategoria';
-import EditCategoria from './components/CategoriasViews/EditCategoria';
-import DetailsCategoria from './components/CategoriasViews/DetailsCategoria';
-
-import Ongs from './components/OngsViews/Ongs';
-import CreateOng from './components/OngsViews/CreateOng';
-import EditOng from './components/OngsViews/EditOng';
-import DetailsOng from './components/OngsViews/DetailsOng';
-
-import Admin from './components/AdminViews/Admin';
-import DetailsAdmin from './components/AdminViews/DetailsAdmin';
-
-import Enderecos from './components/EnderecosViews/Enderecos';
-import CreateEndereco from './components/EnderecosViews/CreateEndereco';
-import EditEndereco from './components/EnderecosViews/EditEndereco';
-import DetailsEndereco from './components/EnderecosViews/DetailsEndereco';
-
-import Usuarios from './components/UsuariosViews/Usuarios';
-import DetailsUsuario from './components/UsuariosViews/DetailsUsuario';
-
-// import Arquivos from './components/ArquivosViews/Arquivos';
-// import CreateArquivo from './components/ArquivosViews/CreateArquivo';
-// import EditArquivo from './components/ArquivosViews/EditArquivo';
-// import DetailsArquivo from './components/ArquivosViews/DetailsArquivo';
 
 import "./styles/import.css";
 import "./styles/global.css";
@@ -83,7 +58,6 @@ export default function App() {
                   <Route path="/sobre" element={<Sobre />} />
                   <Route path="/cadastro" element={<Cadastro />} />
                   <Route path="/login" element={<Login onLogin={handleLogin} />} />
-                  {/* <Route path="/parceiros" element={<Parceiros />} /> */}
                   <Route path="/tutorial" element={<Tutorial />} />
                   <Route path="/redefinir-senha" element={<ResetPassword />} />
                   <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
@@ -96,6 +70,7 @@ export default function App() {
 
                   <Route path="/gerenciar/:entidade" element={<ListCrud />} />
 
+
                   <Route path="/faq" element={<Faq />} />
                   <Route path="/gerenciar" element={<Gerenciar />} />
                   <Route path="/doacoes-pendentes" element={<Pendentes />} />
@@ -103,31 +78,6 @@ export default function App() {
 
                   <Route path="/configuracoes" element={<Settings />} />
 
-                  <Route path="/categorias" element={<Categorias />} />
-                  <Route path="/categorias/criar" element={<CreateCategoria />} />
-                  <Route path="/categorias/editar/:id" element={<EditCategoria />} />
-                  <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
-
-                  <Route path="/usuarios" element={<Usuarios />} />
-                  <Route path="/usuarios/detalhes/:id" element={<DetailsUsuario />} />
-
-                  <Route path="/ongs" element={<Ongs />} />
-                  <Route path="/ongs/criar" element={<CreateOng />} />
-                  <Route path="/ongs/editar/:id" element={<EditOng />} />
-                  <Route path="/ongs/detalhes/:id" element={<DetailsOng />} />
-
-                  <Route path="/enderecos" element={<Enderecos />} />
-                  <Route path="/enderecos/criar" element={<CreateEndereco />} />
-                  <Route path="/enderecos/editar/:id" element={<EditEndereco />} />
-                  <Route path="/enderecos/detalhes/:id" element={<DetailsEndereco />} />
-
-                  <Route path="/administradores" element={<Admin />} />
-                  <Route path="/administradores/detalhes/:id" element={<DetailsAdmin />} />
-
-                                        {/* <Route path="/arquivos" element={<Arquivos />} />
-                  <Route path="/arquivos/criar" element={<CreateArquivo />} />
-                <Route path="/arquivos/editar/:id" element={<EditArquivo />} />
-                <Route path="/arquivos/detalhes/:id" element={<DetailsArquivo />} />       */}
 
         </Routes>
                 <Footer />

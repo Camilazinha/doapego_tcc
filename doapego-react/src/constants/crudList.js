@@ -41,36 +41,33 @@ export const crudList = {
             { type: 'edit', label: 'Editar', path: '/editar/' },
             { type: 'delete', label: 'Excluir' }
         ]
+    },
+    'categorias-doacao': {
+        titulo: 'Categorias',
+        apiEndpoint: 'categorias-doacao',
+        colunas: [
+            { key: 'id', label: '#' },
+            { key: 'foto', label: 'Foto', temImagem: true },
+            { key: 'nome', label: 'Nome' }
+        ],
+        acoes: [
+            { type: 'view', label: 'Ver', path: '/detalhes/' },
+            { type: 'edit', label: 'Editar', path: '/editar/' },
+            { type: 'delete', label: 'Excluir' }
+        ]
+    },
+    'ongs': {
+        titulo: 'ONGs',
+        apiEndpoint: 'ongs',
+        colunas: [
+            { key: 'id', label: '#' },
+            { key: 'foto', label: 'Foto', temImagem: true },
+            { key: 'nome', label: 'Nome' }
+        ],
+        acoes: [
+            { type: 'view', label: 'Ver', path: '/detalhes/' },
+            { type: 'edit', label: 'Editar', path: '/editar/' },
+            { type: 'delete', label: 'Excluir' }
+        ]
     }
 };
-
-// export const crudFoto = {
-//     categorias: {
-//         titulo: 'Categorias',
-//         apiEndpoint: 'categorias-doacao',
-//         colunas: [
-//             { key: 'id', label: '#' },
-//             { key: 'foto', label: 'Foto', temImagem: true },
-//             { key: 'nome', label: 'Nome' }
-//         ],
-//         acoes: [
-//             { type: 'view', label: 'Ver', path: '/detalhes/' },
-//             { type: 'edit', label: 'Editar', path: '/editar/' },
-//             { type: 'delete', label: 'Excluir' }
-//         ]
-//     },
-//     ongs: {
-//         titulo: 'ONGs',
-//         apiEndpoint: 'ongs',
-//         colunas: [
-//             { key: 'id', label: '#' },
-//             { key: 'foto', label: 'Foto', temImagem: true },
-//             { key: 'nome', label: 'Nome' }
-//         ],
-//         acoes: [
-//             { type: 'view', label: 'Ver', path: '/detalhes/' },
-//             { type: 'edit', label: 'Editar', path: '/editar/' },
-//             { type: 'delete', label: 'Excluir' }
-//         ]
-//     }
-// };

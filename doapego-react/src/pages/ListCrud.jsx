@@ -73,7 +73,11 @@ export default function ListCrud() {
                             <tr key={item.id}>
                                 {config.colunas.map(col => (
                                     <td key={col.key} className="text-center">
-                                        {item[col.key]}
+                                        {col.temImagem ? (
+                                            item[col.key] ? <img src={item[col.key]} alt="" width="70" height="70" style={{ objectFit: 'cover', borderRadius: '8px' }} /> : 'Sem foto'
+                                        ) : (
+                                            item[col.key]
+                                        )}
                                     </td>
                                 ))}
                                 <td className="text-center">

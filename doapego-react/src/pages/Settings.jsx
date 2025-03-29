@@ -20,7 +20,7 @@ export default function Settings() {
       id: 'category',
       title: 'Categorias',
       icon: testIcon,
-      link: '/gerenciar/categorias',
+      link: '/gerenciar/categorias-doacao',
       allowed: ['master', 'staff']
     },
     {
@@ -34,7 +34,7 @@ export default function Settings() {
       id: 'ngo',
       title: 'ONGs',
       icon: testIcon,
-      link: '/ongs',
+      link: '/gerenciar/ongs',
       allowed: ['master']
     },
     {
