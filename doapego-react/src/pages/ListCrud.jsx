@@ -5,6 +5,7 @@ import { crudList } from '../constants/crudList';
 
 export default function ListCrud() {
     const { entidade } = useParams(); // Pegamos a entidade da URL
+    console.log(entidade);
     const config = crudList[entidade] || null; // Se não existir, deixamos como `null`
 
     // Inicializa os hooks SEMPRE antes de qualquer return
@@ -21,6 +22,7 @@ export default function ListCrud() {
             try {
                 const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
                 setDados(response.data.items);
+
             } catch (err) {
                 console.error('Erro ao buscar dados:', err);
                 setError(err);
@@ -71,11 +73,7 @@ export default function ListCrud() {
                             <tr key={item.id}>
                                 {config.colunas.map(col => (
                                     <td key={col.key} className="text-center">
-                                        {col.temImagem ? (
-                                            item[col.key] ? <img src={item[col.key]} alt="" width="70" height="70" style={{ objectFit: 'cover', borderRadius: '8px' }} /> : 'Sem foto'
-                                        ) : (
-                                            item[col.key]
-                                        )}
+                                        {item[col.key]}
                                     </td>
                                 ))}
                                 <td className="text-center">

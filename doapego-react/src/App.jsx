@@ -75,63 +75,63 @@ export default function App() {
         }, []);
 
         return (
-                <AuthProvider>
-                        <Router>
-                                <Navbar userType={userType} onLogout={handleLogout} />
-                                <Routes>
-                                        <Route path="/" element={userType ? <Navigate to="/inicio" /> : <Home />} />
-                                        <Route path="/sobre" element={<Sobre />} />
-                                        <Route path="/cadastro" element={<Cadastro />} />
-                                        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-                                        {/* <Route path="/parceiros" element={<Parceiros />} /> */}
-                                        <Route path="/tutorial" element={<Tutorial />} />
-                                        <Route path="/redefinir-senha" element={<ResetPassword />} />
-                                        <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
-                                        <Route path="/politica-de-privacidade" element={<Privacidade />} />
-                                        <Route path="/termos-de-uso" element={<Termos />} />
-                                        <Route path="/ajuda" element={<Ajuda />} />
+          <AuthProvider>
+            <Router>
+              <Navbar userType={userType} onLogout={handleLogout} />
+                <Routes>
+                  <Route path="/" element={userType ? <Navigate to="/inicio" /> : <Home />} />
+                  <Route path="/sobre" element={<Sobre />} />
+                  <Route path="/cadastro" element={<Cadastro />} />
+                  <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                  {/* <Route path="/parceiros" element={<Parceiros />} /> */}
+                  <Route path="/tutorial" element={<Tutorial />} />
+                  <Route path="/redefinir-senha" element={<ResetPassword />} />
+                  <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
+                  <Route path="/politica-de-privacidade" element={<Privacidade />} />
+                  <Route path="/termos-de-uso" element={<Termos />} />
+                  <Route path="/ajuda" element={<Ajuda />} />
 
 
-                                        <Route path="/inicio" element={<Inicio />} />
+                  <Route path="/inicio" element={<Inicio />} />
 
-                                        <Route path="/gerenciar/:entidade" element={<ListCrud />} />
+                  <Route path="/gerenciar/:entidade" element={<ListCrud />} />
 
-                                        <Route path="/faq" element={<Faq />} />
-                                        <Route path="/gerenciar" element={<Gerenciar />} />
-                                        <Route path="/doacoes-pendentes" element={<Pendentes />} />
-                                        <Route path="/painel-de-controle" element={<Panel />} />
+                  <Route path="/faq" element={<Faq />} />
+                  <Route path="/gerenciar" element={<Gerenciar />} />
+                  <Route path="/doacoes-pendentes" element={<Pendentes />} />
+                  <Route path="/painel-de-controle" element={<Panel />} />
 
-                                        <Route path="/configuracoes" element={<Settings />} />
+                  <Route path="/configuracoes" element={<Settings />} />
 
-                                        <Route path="/categorias" element={<Categorias />} />
-                                        <Route path="/categorias/criar" element={<CreateCategoria />} />
-                                        <Route path="/categorias/editar/:id" element={<EditCategoria />} />
-                                        <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
+                  <Route path="/categorias" element={<Categorias />} />
+                  <Route path="/categorias/criar" element={<CreateCategoria />} />
+                  <Route path="/categorias/editar/:id" element={<EditCategoria />} />
+                  <Route path="/categorias/detalhes/:id" element={<DetailsCategoria />} />
 
-                                        <Route path="/usuarios" element={<Usuarios />} />
-                                        <Route path="/usuarios/detalhes/:id" element={<DetailsUsuario />} />
+                  <Route path="/usuarios" element={<Usuarios />} />
+                  <Route path="/usuarios/detalhes/:id" element={<DetailsUsuario />} />
 
-                                        <Route path="/ongs" element={<Ongs />} />
-                                        <Route path="/ongs/criar" element={<CreateOng />} />
-                                        <Route path="/ongs/editar/:id" element={<EditOng />} />
-                                        <Route path="/ongs/detalhes/:id" element={<DetailsOng />} />
+                  <Route path="/ongs" element={<Ongs />} />
+                  <Route path="/ongs/criar" element={<CreateOng />} />
+                  <Route path="/ongs/editar/:id" element={<EditOng />} />
+                  <Route path="/ongs/detalhes/:id" element={<DetailsOng />} />
 
-                                        <Route path="/enderecos" element={<Enderecos />} />
-                                        <Route path="/enderecos/criar" element={<CreateEndereco />} />
-                                        <Route path="/enderecos/editar/:id" element={<EditEndereco />} />
-                                        <Route path="/enderecos/detalhes/:id" element={<DetailsEndereco />} />
+                  <Route path="/enderecos" element={<Enderecos />} />
+                  <Route path="/enderecos/criar" element={<CreateEndereco />} />
+                  <Route path="/enderecos/editar/:id" element={<EditEndereco />} />
+                  <Route path="/enderecos/detalhes/:id" element={<DetailsEndereco />} />
 
-                                        <Route path="/administradores" element={<Admin />} />
-                                        <Route path="/administradores/detalhes/:id" element={<DetailsAdmin />} />
+                  <Route path="/administradores" element={<Admin />} />
+                  <Route path="/administradores/detalhes/:id" element={<DetailsAdmin />} />
 
                                         {/* <Route path="/arquivos" element={<Arquivos />} />
-        <Route path="/arquivos/criar" element={<CreateArquivo />} />
+                  <Route path="/arquivos/criar" element={<CreateArquivo />} />
                 <Route path="/arquivos/editar/:id" element={<EditArquivo />} />
                 <Route path="/arquivos/detalhes/:id" element={<DetailsArquivo />} />       */}
 
-                                </Routes>
-                                <Footer />
-                        </Router>
-                </AuthProvider>
+        </Routes>
+                <Footer />
+        </Router>
+        </AuthProvider>
         );
 };

@@ -13,21 +13,21 @@ export default function Settings() {
       id: 'adm',
       title: 'Administradores',
       icon: testIcon,
-      link: '/administradores',
+      link: '/gerenciar/administradores',
       allowed: ['master', 'staff']
     },
     {
       id: 'category',
       title: 'Categorias',
       icon: testIcon,
-      link: '/categorias',
+      link: '/gerenciar/categorias',
       allowed: ['master', 'staff']
     },
     {
       id: 'address',
       title: 'Endereços',
       icon: testIcon,
-      link: '/enderecos',
+      link: '/gerenciar/enderecos-ong',
       allowed: ['master', 'staff', 'funcionario']
     },
     {
@@ -41,7 +41,7 @@ export default function Settings() {
       id: 'user',
       title: 'Usuários',
       icon: testIcon,
-      link: '/usuarios',
+      link: '/gerenciar/usuarios',
       allowed: ['master']
     },
     {
