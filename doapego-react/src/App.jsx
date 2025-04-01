@@ -16,6 +16,8 @@ import Termos from './components/Termos';
 import Privacidade from './components/Privacidade';
 import Ajuda from './components/Ajuda';
 
+import Teste from './pages/Teste';
+
 import Faq from './components/Faq';
 import Settings from './pages/Settings';
 import Gerenciar from './components/Gerenciar';
@@ -67,6 +69,8 @@ export default function App() {
 
 
                   <Route path="/inicio" element={<Inicio />} />
+
+                        <Route path="/teste" element={<Teste />} />
 
                   <Route path="/gerenciar/:entidade" element={<ListCrud />} />
 
