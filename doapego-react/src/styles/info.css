@@ -9,12 +9,12 @@
 
 
 /*estrutura homepage*/
-.grid-home{
+.grid-home {
   display: grid;
-  grid-template-areas: 
-  "name-container name-container calendar-container"
-  "activity-container report-container calendar-container"
-  ". . calendar-container";
+  grid-template-areas:
+    "name-container name-container calendar-container"
+    "activity-container report-container calendar-container"
+    ". . calendar-container";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
   gap: 10px;
@@ -24,11 +24,12 @@
 /* Ajuste responsivo */
 @media (max-width: 768px) {
   .grid-home {
-    grid-template-areas: 
+    grid-template-areas:
       "name-container"
       "activity-container"
       "report-container"
-      "calendar-container"; /* O calendário desce */
+      "calendar-container";
+    /* O calendário desce */
     grid-template-columns: 1fr;
   }
 }
@@ -47,4 +48,22 @@
 
 .calendar-container {
   grid-area: calendar-container;
+}
+
+.accordion-button {
+  background-color: var(--color-white);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--color-secondary);
+  color: #fff !important;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(204, 204, 204, 0.25);
+}
+
+.still-questions p {
+  color: var(--color-gray-medium);
+  text-align: center;
 }
