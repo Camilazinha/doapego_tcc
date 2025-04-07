@@ -12,13 +12,13 @@ import Cadastro from './components/Cadastro';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import ForgotPassword from './pages/ForgotPassword';
-import Termos from './components/Termos';
+import Termos from './pages/Termos';
 import Privacidade from './components/Privacidade';
-import Ajuda from './pages/Ajuda';
+import AjudaPrivado from './pages/AjudaPrivado';
 
 import Teste from './pages/Teste';
 
-import Help from './pages/Help';
+import AjudaPublico from './pages/AjudaPublico';
 import Settings from './pages/Settings';
 import Gerenciar from './components/Gerenciar';
 import Panel from './pages/Panel';
@@ -65,7 +65,7 @@ export default function App() {
                                         <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
                                         <Route path="/politica-de-privacidade" element={<Privacidade />} />
                                         <Route path="/termos-de-uso" element={<Termos />} />
-                                        <Route path="/ajuda" element={<Help />} />
+                                        <Route path="/ajuda" element={<AjudaPublico />} />
 
 
                                         <Route path="/inicio" element={<Inicio />} />
@@ -75,7 +75,7 @@ export default function App() {
                                         <Route path="/gerenciar/:entidade" element={<ListCrud />} />
 
 
-                                        <Route path="/perguntas-frequentes" element={<Help />} />
+                                        <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
                                         <Route path="/gerenciar" element={<Gerenciar />} />
                                         <Route path="/doacoes-pendentes" element={<Pendentes />} />
                                         <Route path="/painel-de-controle" element={<Panel />} />

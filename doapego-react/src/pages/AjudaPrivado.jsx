@@ -1,6 +1,6 @@
 import { faqPrivado } from "../constants/questionsFaq";
 
-export default function Ajuda() {
+export default function AjudaPrivado() {
   return (
     <main>
       <h1 className="titulo-pagina mt-5">FAQ & AJUDA</h1>

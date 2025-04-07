@@ -1,6 +1,6 @@
 import { faqPublico } from "../constants/questionsFaq";
 
-export default function Help() {
+export default function AjudaPublico() {
   return (
     <main>
       <h1 className="titulo-pagina mt-5">FAQ & AJUDA</h1>
@@ -25,13 +25,14 @@ export default function Help() {
           ))}
 
         </div>
-
       </section>
 
-      <p>Ainda tem dúvidas? Entre em contato conosco:</p>
-      <p>Email: doapegoitb@gmail.com</p>
-      <p>Telefone: (11) 92078-7810</p>
-      <p>(Funcionamento: Segunda a Sexta, 08h às 18h)</p>
+      <section className="still-questions mb-5">
+        <p>Ainda tem dúvidas? Entre em contato conosco:</p>
+        <p>Email: doapegoitb@gmail.com</p>
+        <p>Telefone: (11) 92078-7810</p>
+        <p>(Funcionamento: segunda à sexta, 08h às 18h)</p>
+      </section>
     </main>
   );
 }
