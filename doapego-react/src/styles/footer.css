@@ -17,13 +17,14 @@ footer h6 {
 }
 
 footer {
-  /* background-color: var(--color-primary); */
   color: var(--color-black);
   padding: 1rem;
   box-shadow: 0 -2px 12px 0 rgba(0, 0, 0, 0.3);
+  width: 100%;
+  margin-top: auto;
 }
 
-footer p{
+footer p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
