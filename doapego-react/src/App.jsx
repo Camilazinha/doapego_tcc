@@ -13,7 +13,7 @@ import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import ForgotPassword from './pages/ForgotPassword';
 import Termos from './pages/Termos';
-import Privacidade from './components/Privacidade';
+import Privacidade from './pages/Privacidade';
 import AjudaPrivado from './pages/AjudaPrivado';
 
 import Teste from './pages/Teste';

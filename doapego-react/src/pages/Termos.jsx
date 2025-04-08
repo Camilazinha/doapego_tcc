@@ -2,7 +2,7 @@ export default function Termos() {
   return (
     <main>
       <div className="container my-5">
-        <h1 className='titulo-pagina'>TERMOS DE USO</h1>
+        <h2 className='titulo-pagina'>TERMOS DE USO</h2>
 
         <div className="container my-4 py-1">
             <h5>1. INTRODUÇÃO</h5>
