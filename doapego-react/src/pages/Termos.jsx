@@ -4,91 +4,92 @@ export default function Termos() {
       <div className="container my-5">
         <h1 className='titulo-pagina'>TERMOS DE USO</h1>
 
-        <div className="container">
-          <div className="">
-            <p>Obrigado por seu interesse no Doapego! Estamos aqui para esclarecer qualquer
-              dúvida sobre nossos serviços e termos.</p>
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>1. INTRODUÇÃO</h5>
+            <p>Boas-vindas ao Doapego! Estes Termos de Uso regulam o acesso e a utilização da nossa plataforma, que conecta doadores a Organizações Não Governamentais (ONGs) para a doação de brinquedos. Ao utilizar o Doapego, você concorda com os termos descritos abaixo.</p>
+          </div>
+        </div>
+
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>2. DEFINIÇÕES</h5>
+            <p>Plataforma: Site e aplicativo Doapego.<br/> Usuário: Qualquer pessoa que se cadastre na plataforma. <br/> Doador: Usuário que deseja doar brinquedos.<br/> ONG: Organização cadastrada que recebe as doações. <br/>Staff: Responsáveis por gerenciar a ONG na plataforma. </p>
+          </div>
+        </div>
+
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>3. OBJETIVO DA PLATAFORMA </h5>
+            <p>O Doapego atua como um intermediário entre doadores e ONGs, permitindo a conexão entre ambas as partes. O Doapego não realiza a coleta, transporte ou entrega dos brinquedos, sendo essa responsabilidade exclusiva do doador e da ONG.</p>
+          </div>
+        </div>
+
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>4. CADASTRO E USO DA PLATAFORMA </h5>
+            <p>O cadastro é gratuito e necessário para interagir na plataforma. <br/> Os dados fornecidos devem ser verdadeiros e atualizados. <br/> A conta é pessoal e intransferível. <br/> A plataforma se reserva o direito de suspender ou excluir contas que violem os termos.</p>
+          </div>
+        </div>
+        
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>5. RESPONSABILIDADES DOS USUÁRIOS</h5>
             <p>
-              No Doapego, priorizamos a segurança e a privacidade dos nossos usuários e parceiros. Nossa
-              plataforma conecta doadores de brinquedos a ONGs que precisam desses itens, promovendo solidariedade
-              e simplicidade nesse processo. Ao utilizar o Doapego, você concorda com nossos Termos de Uso, que
-              incluem as seguintes diretrizes:
+              Os doadores devem cadastrar brinquedos em bom estado, com imagens reais e descrições fiéis. <br/>
+              As ONGs devem analisar as doações e combinar a retirada diretamente com o doador. <br/>
+              Qualquer comunicação entre usuários deve ser respeitosa e ética.
             </p>
           </div>
         </div>
 
-        <div className="container">
+        <div className="container my-4 py-1">
           <div className="row">
-            <div className="">
-              <div className="">
-                <div className="">
-                  <h5 className="">Afirmação</h5>
-                  <p className="">Ao usar o Doapego, você concorda com estes Termos de Uso. Se não concordar,
-                    por favor, não utilize o site.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="">
-                <div className="">
-                  <h5 className="">O que fazemos?</h5>
-                  <p className="">O Doapego é uma plataforma que conecta doadores de brinquedos a ONGs que
-                    precisam desses itens.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="">
-                <div className="">
-                  <h5 className="">Rsponsabilidades</h5>
-                  <p className="">Você é responsável pela veracidade dos dados que fornece e pela qualidade dos brinquedos doados.
-                    A entrega dos brinquedos deve ser combinada entre doador e ONG.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="">
-                <div className="">
-                  <h5 className="">Conteúdo</h5>
-                  <p className="">O conteúdo do site, como textos e imagens, é protegido por direitos autorais.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="">
-                <div className="">
-                  <h5 className="">Limitação de responsabilidade</h5>
-                  <p className="">O Doapego não se responsabiliza por problemas relacionados ao uso do site ou às doações.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="">
-                <div className="">
-                  <h5 className="">Cadastro e Uso</h5>
-                  <p className="">Para usar o site, você pode precisar se cadastrar. Mantenha suas informações atualizadas
-                    e sua senha segura.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="">
-              <div className="">
-                <div className="">
-                  <h5 className="">Mudanças nos Termos</h5>
-                  <p className="">Podemos alterar estes Termos a qualquer momento. Avisaremos sobre mudanças,
-                    e o uso contínuo indica sua aceitação.</p>
-                </div>
-              </div>
-            </div>
-
+            <h5>6. LIMITAÇÕES</h5>
+            <p>
+            O Doapego não se responsabiliza pelo(s): <br/> 
+            a) atrasos, problemas na coleta ou qualidade dos brinquedos. <br/>
+            b) a aceitação de todas as doações pelas ONGs. <br/>
+            c) danos ou prejuízos decorrentes do uso da plataforma.
+            </p>
           </div>
         </div>
+
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>7. MODERAÇÃO E CONDUTA</h5>
+            <p>
+            O Doapego pode remover conteúdos inaporpriados ou falsos.<br/> 
+            Contas podem ser suspensas em casos de má-fé, comportamento abusivo ou tentativa de fraude.
+            </p>
+          </div>
+        </div>
+
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>8. ALTERAÇÕES NOS TERMOS</h5>
+            <p>
+            O Doapego pode modificar estes Termos a qualquer momento. A continuidade do uso da plataforma após atualizações implica na aceitação das novas condições.
+            </p>
+          </div>
+        </div>
+
+        <div className="container my-4 py-1">
+          <div className="row">
+            <h5>9. CONTATO</h5>
+            <p>
+            Para dúvidas ou suporte, entre em contato pelo e-mail <code>doapegoitb@gmail.com</code>.
+            </p>
+          </div>
+        </div>
+
+        <div className="container my-4 py-1">
+          <div className="row">
+            <p>
+            Última atualização: 08 de abril de 2025.
+            </p>
+          </div>
+          </div>
       </div>
     </main>
   );

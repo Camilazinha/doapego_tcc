@@ -79,3 +79,7 @@
   color: var(--color-black);
   text-align: center;
 }
+
+.big-text{
+  font-size: 1.2rem;
+}
