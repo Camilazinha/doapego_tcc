@@ -51,9 +51,7 @@ export default function ListCrud() {
     if (!config) return (
         <main className='container my-5 px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
-            <section className='borda p-5 d-flex'>
-                <p>Configuração não encontrada para "{entidade}"</p>
-            </section>
+            <div className="alert alert-danger">Configuração não encontrada para "{entidade}"</div>
         </main>
     )
 
@@ -67,12 +65,6 @@ export default function ListCrud() {
         </main>
     );
 
-    if (error) return (
-        <main className='container my-5 px-5'>
-            <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
-            <div className="alert alert-danger">Erro ao carregar os dados: {error.message}</div>
-        </main>
-    )
 
     return (
         <main className='container my-5 px-5'>
