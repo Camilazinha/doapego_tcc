@@ -17,6 +17,8 @@ import Privacidade from './pages/Privacidade';
 import AjudaPrivado from './pages/AjudaPrivado';
 
 import Teste from './pages/Teste';
+import GerenciarDoacoes from './pages/GerenciarDoacoes';
+
 
 import AjudaPublico from './pages/AjudaPublico';
 import Settings from './pages/Settings';
@@ -73,6 +75,8 @@ export default function App() {
                                         <Route path="/teste" element={<Teste />} />
 
                                         <Route path="/configuracoes/:entidade" element={<ListCrud />} />
+
+                                        <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
 
 
                                         <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
