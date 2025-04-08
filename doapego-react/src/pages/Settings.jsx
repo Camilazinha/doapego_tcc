@@ -48,7 +48,7 @@ export default function Settings() {
       id: 'help',
       title: 'Ajuda',
       icon: testIcon,
-      link: '/faq',
+      link: '/perguntas-frequentes',
       allowed: ['master', 'staff', 'funcionario']
     }
   ]

@@ -1,80 +1,83 @@
 import { useState } from "react";
 
-const doacoes = [
-    { id: 1, nome: "Carrinho", status: "pendente" },
-    { id: 2, nome: "Boneca", status: "aceita" },
-    { id: 3, nome: "Quebra-Cabeça", status: "recusada" },
-    { id: 4, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 5, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 6, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 7, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 8, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 9, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 10, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 14, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 41, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 411, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 4111, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 141, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 1141, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 11, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 1114, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 11114, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 41111111111111, nome: "Urso de Pelúcia", status: "pendente" },
-    { id: 0, nome: "Urso de Pelúcia", status: "pendente" },
+export default function Teste() {
+    const doacoes = [
+        { id: 1, nome: "Carrinho", status: "pendente" },
+        { id: 2, nome: "Boneca", status: "aceita" },
+        { id: 3, nome: "Quebra-Cabeça", status: "recusada" },
+        { id: 4, nome: "Urso de Pelúcia", status: "pendente" },
+        { id: 5, nome: "Urso de Pelúcia", status: "pendente" },
+        { id: 6, nome: "Urso de Pelúcia", status: "pendente" },
+        { id: 7, nome: "Urso de Pelúcia", status: "pendente" },
+        { id: 8, nome: "Urso de Pelúcia", status: "pendente" },
+        { id: 9, nome: "Urso de Pelúcia", status: "pendente" },
+        { id: 10, nome: "Urso de Pelúcia", status: "pendente" },
+    ];
 
-];
-
-const itemsPerPage = 5;
-
-const Teste = () => {
     const [abaAtiva, setAbaAtiva] = useState("pendente");
-    const [currentPage, setCurrentPage] = useState(1);
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const itensPorPagina = 5;
 
+    // Filtrar doações por aba ativa
     const doacoesFiltradas = doacoes.filter((d) => d.status === abaAtiva);
-    const totalPages = Math.ceil(doacoesFiltradas.length / itemsPerPage);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentItems = doacoesFiltradas.slice(startIndex, startIndex + itemsPerPage);
+
+    // Paginação
+    const totalPaginas = Math.ceil(doacoesFiltradas.length / itensPorPagina);
+    const indiceInicial = (paginaAtual - 1) * itensPorPagina;
+    const itensAtuais = doacoesFiltradas.slice(indiceInicial, indiceInicial + itensPorPagina);
 
     return (
-        <div>
-            {/* Tabs */}
-            <div className="flex space-x-2 mb-4">
-                {["pendente", "aceita", "recusada"].map((status) => (
-                    <button
-                        key={status}
-                        onClick={() => {
-                            setAbaAtiva(status);
-                            setCurrentPage(1); // Resetar para primeira página ao mudar de aba
-                        }}
-                        className={`px-4 py-2 border ${abaAtiva === status ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-                    >
-                        {status.toUpperCase()}
-                    </button>
-                ))}
-            </div>
+        <div className="container my-5">
+            <h2 className="titulo-pagina">GERENCIAR DOAÇÕES</h2>
 
-            {/* Lista de doações */}
-            <div>
-                {currentItems.map((doacao) => (
-                    <div key={doacao.id} className="border p-2 mb-2">
-                        {doacao.nome}
-                    </div>
+            {/* Tabs do Bootstrap */}
+            <ul className="nav nav-tabs mb-4">
+                {["pendente", "aceita", "recusada"].map((status) => (
+                    <li className="nav-item" key={status}>
+                        <button
+                            className={`nav-link ${abaAtiva === status ? "active" : ""}`}
+                            onClick={() => {
+                                setAbaAtiva(status);
+                                setPaginaAtual(1); // Resetar a página ao trocar de aba
+                            }}
+                        >
+                            {status.toUpperCase()}
+                        </button>
+                    </li>
                 ))}
-            </div>
+            </ul>
+
+            {/* Lista de Doações */}
+            <ul className="list-group mb-3">
+                {itensAtuais.length > 0 ? (
+                    itensAtuais.map((doacao) => (
+                        <li key={doacao.id} className="list-group-item">
+                            {doacao.nome}
+                        </li>
+                    ))
+                ) : (
+                    <li className="list-group-item text-muted">Nenhuma doação encontrada</li>
+                )}
+            </ul>
 
             {/* Paginação */}
-            <div className="mt-4">
-                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
-                    Anterior
-                </button>
-                <span> Página {currentPage} de {totalPages} </span>
-                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>
-                    Próxima
-                </button>
-            </div>
+            <nav>
+                <ul className="pagination">
+                    <li className={`page-item ${paginaAtual === 1 ? "disabled" : ""}`}>
+                        <button className="page-link" onClick={() => setPaginaAtual(paginaAtual - 1)}>Anterior</button>
+                    </li>
+
+                    {Array.from({ length: totalPaginas }, (_, i) => (
+                        <li key={i} className={`page-item ${paginaAtual === i + 1 ? "active" : ""}`}>
+                            <button className="page-link" onClick={() => setPaginaAtual(i + 1)}>{i + 1}</button>
+                        </li>
+                    ))}
+
+                    <li className={`page-item ${paginaAtual === totalPaginas ? "disabled" : ""}`}>
+                        <button className="page-link" onClick={() => setPaginaAtual(paginaAtual + 1)}>Próxima</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     );
-};
-
-export default Teste;
+}

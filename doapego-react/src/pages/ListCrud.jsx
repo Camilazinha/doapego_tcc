@@ -48,28 +48,29 @@ export default function ListCrud() {
         }
     };
 
-    if (!config) return(
+    if (!config) return (
         <main className='container my-5 px-5'>
-        <section className='borda p-5 d-flex'>
-        <p>Configuração não encontrada para "{entidade}"</p>
-        </section>
+            <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
+            <section className='borda p-5 d-flex'>
+                <p>Configuração não encontrada para "{entidade}"</p>
+            </section>
         </main>
     )
 
-    if (loading) return( 
+    if (loading) return (
         <main className='container my-5 px-5'>
+            <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
             <section className='borda p-5 d-flex justify-content-center align-items-center flex-column'>
-            <div className='spinner-border text-secondary m-3' role='status' style={{width: '3rem', height: '3rem'}}></div>  
+                <div className='spinner-border text-secondary m-3' role='status' style={{ width: '3rem', height: '3rem' }}></div>
                 <p className='loading-text'>Carregando...</p>
             </section>
         </main>
     );
 
-    if (error) return(
-        <main className='containere my-5 px-5'>
-            <section className='borda p-5 d-flex'>
-                <p>Erro ao carregar os dados: {error.message}</p>
-            </section>
+    if (error) return (
+        <main className='container my-5 px-5'>
+            <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
+            <div className="alert alert-danger">Erro ao carregar os dados: {error.message}</div>
         </main>
     )
 

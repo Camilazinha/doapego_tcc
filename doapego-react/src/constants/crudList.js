@@ -1,6 +1,6 @@
 export const crudList = {
     'administradores': {
-        titulo: 'Administradores',
+        titulo: 'ADMINISTRADORES',
         apiEndpoint: 'administradores',
         colunas: [
             { key: 'id', label: '#' },
@@ -14,7 +14,7 @@ export const crudList = {
         ]
     },
     'usuarios': {
-        titulo: 'Usuários',
+        titulo: 'USUÁRIOS',
         apiEndpoint: 'usuarios',
         colunas: [
             { key: 'id', label: '#' },
@@ -27,9 +27,9 @@ export const crudList = {
             { type: 'disable', label: 'Desativar' }
         ]
     },
-    
+
     'enderecos-ong': {
-        titulo: 'Endereços',
+        titulo: 'ENDEREÇOS (ONGS)',
         apiEndpoint: 'enderecos-ong',
         colunas: [
             { key: 'id', label: '#' },
@@ -43,7 +43,7 @@ export const crudList = {
         ]
     },
     'categorias-doacao': {
-        titulo: 'Categorias',
+        titulo: 'CATEGORIAS',
         apiEndpoint: 'categorias-doacao',
         colunas: [
             { key: 'id', label: '#' },
@@ -57,7 +57,7 @@ export const crudList = {
         ]
     },
     'ongs': {
-        titulo: 'ONGs',
+        titulo: 'ONGS',
         apiEndpoint: 'ongs',
         colunas: [
             { key: 'id', label: '#' },
