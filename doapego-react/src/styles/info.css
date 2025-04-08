@@ -60,7 +60,7 @@
 }
 
 .accordion-button:focus {
-  box-shadow: 0 0 0 0.2rem rgba(204, 204, 204, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(181, 181, 181, 0.25);
 }
 
 .still-questions p {
@@ -80,6 +80,6 @@
   text-align: center;
 }
 
-.big-text{
+.big-text {
   font-size: 1.2rem;
 }

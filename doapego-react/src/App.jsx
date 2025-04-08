@@ -72,7 +72,7 @@ export default function App() {
 
                                         <Route path="/teste" element={<Teste />} />
 
-                                        <Route path="/gerenciar/:entidade" element={<ListCrud />} />
+                                        <Route path="/configuracoes/:entidade" element={<ListCrud />} />
 
 
                                         <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
