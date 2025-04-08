@@ -6,7 +6,7 @@ export default function Privacidade() {
 
         <div className="container my-4 py-1">
           <h5>1. INTRODUÇÃO</h5>
-          <p>Boas-vindas! O Doapego valoriza a privacidade dos seus usuários e está comprometido com a proteção dos seus dados pessoais. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e protegemos suas informações ao utilizar nossa plataforma.</p>
+          <p>Boas-vindas! O Doapego valoriza a privacidade dos seus usuários e está comprometido com a proteção dos seus dados pessoais. Esta Política de Privacidade explica como coletamos, usamos, armazenamos e protegemos suas informações ao utilizar nossa plataforma. Ao utilizar o Doapego, você concorda com a política de privacidade descrita abaixo.</p>
         </div>
 
         <div className="container my-4 py-1">
@@ -40,39 +40,36 @@ export default function Privacidade() {
           <h5>5. ARMAZENAMENTO E SEGURANÇA</h5>
           <p>Adotamos medidas de segurança para proteger seus dados contra acessos não autorizados, uso indevido ou perda. No entanto, nenhum sistema é 100% seguro, e incentivamos os usuários a tomarem precauções ao compartilhar informações online.</p>
         </div>
-        
+
         <div className="container my-4 py-1">
           <h5>6. DIREITOS DO USUÁRIO</h5>
           <p>Você pode:</p>
-          <p>Acessar, corrigir ou excluir seus dados pessoais.</p>
-          <p>Solicitar esclarecimentos sobre o uso das suas informações.</p>
-          <p>Revogar seu consentimento para o uso dos dados, quando aplicável.</p>
-        </div>
-        
+          <p>a) Acessar, corrigir ou excluir seus dados pessoais.</p>
+          <p>b) Solicitar esclarecimentos sobre o uso das suas informações.</p>
+          <p>c) Revogar seu consentimento para o uso dos dados, quando aplicável.</p>
         </div>
 
-          <div className="col">
-            <div className="card-ana shadow p-3 mb-5 bg-body rounded">
-              <div className="card-body">
-                  1. INTRODUÇÃO
+        <div className="container my-4 py-1">
+          <h5>7. COOKIES E TECNOLOGIAS SEMELHANTES</h5>
+          <p>Utilizamos cookies para melhorar a experiência na plataforma, como lembrar preferências e analisar o uso do site. O usuário pode gerenciar as configurações de cookies no próprio navegador.</p>
+        </div>
 
-7. COOKIES E TECNOLOGIAS SEMELHANTES
-Utilizamos cookies para melhorar a experiência na plataforma, como lembrar preferências e analisar o uso do site. O usuário pode gerenciar as configurações de cookies no próprio navegador.
+        <div className="container my-4 py-1">
+          <h5>8. ALTERAÇÕES NA POLÍTICA DE PRIVACIDADE</h5>
+          <p>Podemos atualizar esta Política de Privacidade periodicamente. O uso contínuo da plataforma após alterações indica a aceitação das novas condições.</p>
+        </div>
 
-8. ALTERAÇÕES NA POLÍTICA
-Podemos atualizar esta Política de Privacidade periodicamente. O uso contínuo da plataforma após alterações indica a aceitação das novas condições.
+        <div className="container my-4 py-1">
+          <h5>9. CONTATO</h5>
+          <p>Para dúvidas ou solicitações sobre sua privacidade, entre em contato pelo e-mail <span className="text-secondary">doapegoitb@gmail.com</span>.</p>
+        </div>
 
-9. CONTATO
-Para dúvidas ou solicitações sobre sua privacidade, entre em contato pelo e-mail [email de suporte].
+        <div className="container my-4 py-1">
+          <p>Última atualização: 08 de abril de 2025.</p>
+        </div>
 
-Última atualização: [data]
-
-Ao utilizar o Doapego, você declara estar ciente e concordar com esta Política de Privacidade.
-              </div>
-            </div>
-          </div>
-
-</main>
+      </div>
+    </main>
 
   );
 };
