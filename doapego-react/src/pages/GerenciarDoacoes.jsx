@@ -38,7 +38,7 @@ export default function GerenciarDoacoes() {
   }, []) // Array vazio significa que o efeito só roda uma vez, quando o componente monta
 
   // Filtrar doações por aba ativa usando o campo status-doacao
-  const doacoesFiltradas = doacoes.filter((d) => d["status-doacao"] === abaAtiva)
+  const doacoesFiltradas = doacoes.filter((d) => d["status"] === abaAtiva)
 
   // Paginação
   const totalPaginas = Math.ceil(doacoesFiltradas.length / itensPorPagina)
@@ -76,7 +76,7 @@ export default function GerenciarDoacoes() {
 
       {/* Tabs do Bootstrap */}
       <ul className="nav nav-tabs mb-4">
-        {["pendente", "aceita", "recusada"].map((status) => (
+        {["PENDENTE", "COLETADA", "RECUSADA"].map((status) => (
           <li className="nav-item" key={status}>
             <button
               className={`nav-link ${abaAtiva === status ? "active" : ""}`}
@@ -85,7 +85,7 @@ export default function GerenciarDoacoes() {
                 setPaginaAtual(1) // Resetar a página ao trocar de aba
               }}
             >
-              {status.toUpperCase()}
+              {status}
             </button>
           </li>
         ))}
@@ -124,7 +124,7 @@ export default function GerenciarDoacoes() {
                   <span
                     className={`badge ${doacao["status"] === "pendente"
                       ? "bg-warning"
-                      : doacao["status-doacao"] === "aceita"
+                      : doacao["status"] === "aceita"
                         ? "bg-success"
                         : "bg-danger"
                       }`}
