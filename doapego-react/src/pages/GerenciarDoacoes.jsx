@@ -29,8 +29,9 @@ export default function GerenciarDoacoes() {
           setError("Ocorreu um erro inesperado.")
         }
 
-        setLoading(false)
-      }
+      } finally {
+        setLoading(false);
+    }
     }
 
     fetchDoacoes()
@@ -121,14 +122,14 @@ export default function GerenciarDoacoes() {
                 <p className="mb-0">
                   <span className="badge bg-info me-2">Categoria: {doacao.categoria || "Não especificada"}</span>
                   <span
-                    className={`badge ${doacao["status-doacao"] === "pendente"
+                    className={`badge ${doacao["status"] === "pendente"
                       ? "bg-warning"
                       : doacao["status-doacao"] === "aceita"
                         ? "bg-success"
                         : "bg-danger"
                       }`}
                   >
-                    {doacao["status-doacao"]?.toUpperCase()}
+                    {doacao["status"]?.toUpperCase()}
                   </span>
                 </p>
               </div>

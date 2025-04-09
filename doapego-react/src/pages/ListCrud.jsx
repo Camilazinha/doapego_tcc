@@ -33,8 +33,9 @@ export default function ListCrud() {
                 } else {
                     setError("Ocorreu um erro inesperado.")
                 }
-                setLoading(false)
-            }
+        } finally {
+            setLoading(false);
+        }
 
         };
 
