@@ -24,11 +24,18 @@ export default function ListCrud() {
                 setDados(response.data.items);
 
             } catch (err) {
-                console.error('Erro ao buscar dados:', err);
-                setError(err);
-            } finally {
-                setLoading(false);
+                console.error("Erro ao buscar doações:", err)
+
+                if (err.response) {
+                    setError("Erro ao carregar os dados. Tente novamente mais tarde.")
+                } else if (err.request) {
+                    setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+                } else {
+                    setError("Ocorreu um erro inesperado.")
+                }
+                setLoading(false)
             }
+
         };
 
         fetchData();
@@ -55,10 +62,21 @@ export default function ListCrud() {
         </main>
     )
 
+    if (error) return (
+        <main className='container my-5 px-5'>
+            <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
+            <div className="alert alert-danger">
+                {error
+                    ? <p className="erro">{error}</p>
+                    : null}
+            </div>
+        </main>
+    )
+
     if (loading) return (
         <main className='container my-5 px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
-            <section className='borda p-5 d-flex justify-content-center align-items-center flex-column'>
+            <section className='p-5 d-flex justify-content-center align-items-center flex-column'>
                 <div className='spinner-border text-secondary m-3' role='status' style={{ width: '3rem', height: '3rem' }}></div>
                 <p className='loading-text'>Carregando...</p>
             </section>

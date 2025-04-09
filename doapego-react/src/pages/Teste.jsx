@@ -16,7 +16,7 @@ export default function Teste() {
 
     const [abaAtiva, setAbaAtiva] = useState("pendente");
     const [paginaAtual, setPaginaAtual] = useState(1);
-    const itensPorPagina = 5;
+    const itensPorPagina = 1;
 
     // Filtrar doações por aba ativa
     const doacoesFiltradas = doacoes.filter((d) => d.status === abaAtiva);
@@ -28,7 +28,7 @@ export default function Teste() {
 
     return (
         <div className="container my-5">
-            <h2 className="titulo-pagina">GERENCIAR DOAÇÕES</h2>
+            <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
             {/* Tabs do Bootstrap */}
             <ul className="nav nav-tabs mb-4">
@@ -62,7 +62,7 @@ export default function Teste() {
 
             {/* Paginação */}
             <nav>
-                <ul className="pagination">
+                <ul className="pagination mb-5">
                     <li className={`page-item ${paginaAtual === 1 ? "disabled" : ""}`}>
                         <button className="page-link" onClick={() => setPaginaAtual(paginaAtual - 1)}>Anterior</button>
                     </li>

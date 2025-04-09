@@ -20,7 +20,15 @@ export default function GerenciarDoacoes() {
         setLoading(false)
       } catch (err) {
         console.error("Erro ao buscar doações:", err)
-        setError(err)
+
+        if (err.response) {
+          setError("Erro ao carregar os dados. Tente novamente mais tarde.")
+        } else if (err.request) {
+          setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+        } else {
+          setError("Ocorreu um erro inesperado.")
+        }
+
         setLoading(false)
       }
     }
@@ -53,7 +61,11 @@ export default function GerenciarDoacoes() {
       <div className="container my-5">
         <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
-        <div className="alert alert-danger">Erro ao carregar as doações: {error.message}</div>
+        <div className="alert alert-danger">
+          {error
+            ? <p className="erro">{error}</p>
+            : null}
+        </div>
       </div>
     )
 
