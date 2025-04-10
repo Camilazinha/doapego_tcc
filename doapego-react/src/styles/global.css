@@ -29,6 +29,9 @@ html {
 
 .container.my-5 {
   min-height: 60vh;
+}
+
+.container.my-5:not(.nao-unico-elemento) {
   display: flex;
   flex-direction: column;
   justify-content: center;

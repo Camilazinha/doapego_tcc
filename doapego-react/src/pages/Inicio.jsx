@@ -8,7 +8,7 @@ import testIcon from '../img/goto-icon.svg';
 export default function Inicio() {
   return (
     <main>
-      <div className='container my-5'>
+      <div className='container my-5 nao-unico-elemento'>
 
         <div className='grid-home'>
           <section className='name-container'>

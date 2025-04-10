@@ -57,14 +57,14 @@ export default function ListCrud() {
     };
 
     if (!config) return (
-        <main className='container my-5 px-5'>
+        <main className='container my-5 nao-unico-elemento px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
             <div className="alert alert-danger">Configuração não encontrada para "{entidade}"</div>
         </main>
     )
 
     if (error) return (
-        <main className='container my-5 px-5'>
+        <main className='container my-5 nao-unico-elemento px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
             <div className="alert alert-danger">
                 {error
@@ -75,7 +75,7 @@ export default function ListCrud() {
     )
 
     if (loading) return (
-        <main className='container my-5 px-5'>
+        <main className='container my-5 nao-unico-elemento px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
             <section className='p-5 d-flex justify-content-center align-items-center flex-column'>
                 <div className='spinner-border text-secondary m-3' role='status' style={{ width: '3rem', height: '3rem' }}></div>
@@ -87,7 +87,7 @@ export default function ListCrud() {
 
     return (
         <main>
-            <div className='container my-5 px-5'>
+            <div className='container my-5 nao-unico-elemento px-5'>
                 <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
 
                 <section className='borda p-5'>

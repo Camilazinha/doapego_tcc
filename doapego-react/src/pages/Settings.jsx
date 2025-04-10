@@ -55,7 +55,7 @@ export default function Settings() {
 
   return (
     <main>
-      <div className="container my-5">
+      <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">CONFIGURAÇÕES</h2>
         {/* <p className='subtitulo align-center'>TEXTO MENORZINHO</p> */}
 
