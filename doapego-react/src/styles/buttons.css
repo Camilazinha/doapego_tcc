@@ -16,7 +16,8 @@
   color: var(--color-white);
 }
 
-.btn-custom-filled:active {
+.btn-custom-filled:active,
+.btn-custom-filled:focus-visible {
   background-color: var(--color-secondary-active) !important;
   color: var(--color-white) !important;
 }
@@ -36,7 +37,8 @@
   color: var(--color-white);
 }
 
-.btn-custom-unfilled:active {
+.btn-custom-unfilled:active,
+.btn-custom-unfilled:focus-visible {
   background-color: var(--color-secondary-active) !important;
   color: var(--color-white) !important;
 }

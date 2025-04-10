@@ -29,6 +29,9 @@ import Pendentes from './components/Pendentes';
 import Inicio from './pages/Inicio';
 
 import ListCrud from "./pages/ListCrud";
+import AddCrud from "./pages/AddCrud";
+import EditCrud from "./pages/EditCrud";
+import ViewCrud from "./pages/ViewCrud";
 
 
 import "./styles/import.css";
@@ -78,6 +81,12 @@ export default function App() {
                                         <Route path="/teste" element={<Teste />} />
 
                                         <Route path="/configuracoes/:entidade" element={<ListCrud />} />
+                                        <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
+                                        <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
+                                        <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
+
+
+
 
                                         <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
                                         <Route path="/gerenciar-solicitacoes" element={<Solicitacoes />} />

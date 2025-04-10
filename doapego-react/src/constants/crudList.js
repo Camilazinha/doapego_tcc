@@ -5,7 +5,7 @@ export const crudList = {
         colunas: [
             { key: 'id', label: '#' },
             { key: 'nome', label: 'Nome' },
-            { key: 'tipo', label: 'Tipo' }
+            { key: 'tipo', label: 'Tipo', selectOptions: ['MASTER', 'STAFF', 'FUNCIONARIO'] }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: '/detalhes/' },
