@@ -35,7 +35,7 @@ export default function GerenciarDoacoes() {
 
       } finally {
         setLoading(false);
-    }
+      }
     }
 
     fetchDoacoes()
@@ -75,102 +75,104 @@ export default function GerenciarDoacoes() {
     )
 
   return (
-    <div className="container my-5">
-      <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
+    <main>
+      <div className="container my-5">
+        <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
-      {/* Tabs do Bootstrap */}
-      <ul className="nav nav-tabs mb-4">
-        {["PENDENTE", "COLETADA", "RECUSADA"].map((status) => (
-          <li className="nav-item" key={status}>
-            <button
-              className={`nav-link ${abaAtiva === status ? "active" : ""}`}
-              onClick={() => {
-                setAbaAtiva(status)
-                setPaginaAtual(1) // Resetar a página ao trocar de aba
-              }}
-            >
-              {status}
-            </button>
-          </li>
-        ))}
-      </ul>
+        {/* Tabs do Bootstrap */}
+        <ul className="nav nav-tabs mb-4">
+          {["PENDENTE", "COLETADA", "RECUSADA"].map((status) => (
+            <li className="nav-item" key={status}>
+              <button
+                className={`nav-link ${abaAtiva === status ? "active" : ""}`}
+                onClick={() => {
+                  setAbaAtiva(status)
+                  setPaginaAtual(1) // Resetar a página ao trocar de aba
+                }}
+              >
+                {status}
+              </button>
+            </li>
+          ))}
+        </ul>
 
-      {/* Lista de Doações com mais detalhes */}
+        {/* Lista de Doações com mais detalhes */}
 
-      <div className="list-group mb-5">
-        {itensAtuais.length > 0 ? (
-          itensAtuais.map((doacao) => (
-            <div key={doacao.id} className="list-group-item d-flex align-items-center">
-              {/* Foto da doação */}
-              <div className="me-4 p-1">
-                {doacao.foto ? (
-                  <img
-                    src={doacao.foto || "/placeholder.svg"}
-                    alt={doacao.nome}
-                    width="120"
-                    height="120"
-                    style={{ objectFit: "cover", borderRadius: ".5rem" }}
-                  />
-                ) : (
-                  <div
-                    className="d-flex align-items-center justify-content-center"
-                    style={{ width: "7.5rem", height: "7.5rem", borderRadius: ".5rem" }}
-                  >
-                    <img src={noImageIcon} alt="Sem imagem" width={80}/>
-                  </div>
-                )}
-              </div>
+        <div className="list-group mb-5">
+          {itensAtuais.length > 0 ? (
+            itensAtuais.map((doacao) => (
+              <div key={doacao.id} className="list-group-item d-flex align-items-center">
+                {/* Foto da doação */}
+                <div className="me-4 p-1">
+                  {doacao.foto ? (
+                    <img
+                      src={doacao.foto || "/placeholder.svg"}
+                      alt={doacao.nome}
+                      width="120"
+                      height="120"
+                      style={{ objectFit: "cover", borderRadius: ".5rem" }}
+                    />
+                  ) : (
+                    <div
+                      className="d-flex align-items-center justify-content-center"
+                      style={{ width: "7.5rem", height: "7.5rem", borderRadius: ".5rem" }}
+                    >
+                      <img src={noImageIcon} alt="Sem imagem" width={80} />
+                    </div>
+                  )}
+                </div>
 
-              {/* Informações da doação */}
-              <div className="flex-grow-1">
-                <h5 className="mb-1">{doacao.nome}</h5>
-                <p className="mb-0">
-                  <span className="badge tag-categoria">Categoria: {doacao.categoria || "Não especificada"}</span>
-                </p>
-              </div>
+                {/* Informações da doação */}
+                <div className="flex-grow-1">
+                  <h5 className="mb-1">{doacao.nome}</h5>
+                  <p className="mb-0">
+                    <span className="badge tag-categoria">Categoria: {doacao.categoria || "Não especificada"}</span>
+                  </p>
+                </div>
 
-              <div className="ms-auto me-4">
-                <button className="btn btn-sm btn-custom-unfilled">Ver</button>
-                {/* {abaAtiva === "PENDENTE" && (
+                <div className="ms-auto me-4">
+                  <button className="btn btn-sm btn-custom-unfilled">Ver</button>
+                  {/* {abaAtiva === "PENDENTE" && (
                   <>
                     <button className="btn btn-sm btn-success me-2">Aceitar</button>
                     <button className="btn btn-sm btn-danger">Recusar</button>
                   </>
                 )} */}
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <div className="list-group-item text-muted py-3"><img src={errorIcon} className="mx-2"></img> Nenhuma doação encontrada</div>
-        )}
-      </div>
+            ))
+          ) : (
+            <div className="list-group-item text-muted py-3"><img src={errorIcon} className="mx-2"></img> Nenhuma doação encontrada</div>
+          )}
+        </div>
 
-      {/* Paginação - só mostrar se houver itens */}
-      {doacoesFiltradas.length > 0 && (
-        <nav>
-          <ul className="pagination">
-            <li className={`page-item ${paginaAtual === 1 ? "disabled" : ""}`}>
-              <button className="page-link" onClick={() => setPaginaAtual(paginaAtual - 1)}>
-                Anterior
-              </button>
-            </li>
-
-            {Array.from({ length: totalPaginas }, (_, i) => (
-              <li key={i} className={`page-item ${paginaAtual === i + 1 ? "active" : ""}`}>
-                <button className="page-link" onClick={() => setPaginaAtual(i + 1)}>
-                  {i + 1}
+        {/* Paginação - só mostrar se houver itens */}
+        {doacoesFiltradas.length > 0 && (
+          <nav>
+            <ul className="pagination">
+              <li className={`page-item ${paginaAtual === 1 ? "disabled" : ""}`}>
+                <button className="page-link" onClick={() => setPaginaAtual(paginaAtual - 1)}>
+                  Anterior
                 </button>
               </li>
-            ))}
 
-            <li className={`page-item ${paginaAtual === totalPaginas ? "disabled" : ""}`}>
-              <button className="page-link" onClick={() => setPaginaAtual(paginaAtual + 1)}>
-                Próxima
-              </button>
-            </li>
-          </ul>
-        </nav>
-      )}
-    </div>
+              {Array.from({ length: totalPaginas }, (_, i) => (
+                <li key={i} className={`page-item ${paginaAtual === i + 1 ? "active" : ""}`}>
+                  <button className="page-link" onClick={() => setPaginaAtual(i + 1)}>
+                    {i + 1}
+                  </button>
+                </li>
+              ))}
+
+              <li className={`page-item ${paginaAtual === totalPaginas ? "disabled" : ""}`}>
+                <button className="page-link" onClick={() => setPaginaAtual(paginaAtual + 1)}>
+                  Próxima
+                </button>
+              </li>
+            </ul>
+          </nav>
+        )}
+      </div>
+    </main>
   )
 }

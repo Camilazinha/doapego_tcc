@@ -5,7 +5,7 @@ export default function AjudaPrivado() {
     <main>
       <h1 className="titulo-pagina mt-5">FAQ & AJUDA</h1>
 
-      <section className="container my-5">
+      <div className="container my-5">
         <div className="accordion" id="accordionFaq">
 
           {faqPrivado.map((qa) => (
@@ -25,7 +25,7 @@ export default function AjudaPrivado() {
           ))}
 
         </div>
-      </section>
+      </div>
 
       <section className="still-questions mb-5">
         <p>Ainda tem dúvidas? Entre em contato conosco:</p>

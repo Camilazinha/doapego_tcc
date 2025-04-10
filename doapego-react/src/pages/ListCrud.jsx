@@ -33,9 +33,9 @@ export default function ListCrud() {
                 } else {
                     setError("Ocorreu um erro inesperado.")
                 }
-        } finally {
-            setLoading(false);
-        }
+            } finally {
+                setLoading(false);
+            }
 
         };
 
@@ -86,54 +86,56 @@ export default function ListCrud() {
 
 
     return (
-        <main className='container my-5 px-5'>
-            <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
+        <main>
+            <div className='container my-5 px-5'>
+                <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
 
-            <section className='borda p-5'>
-                <table className="table table-bordered table-hover">
-                    <thead className='table-light'>
-                        <tr className='text-center'>
-                            {config.colunas.map(col => (
-                                <th key={col.key}>{col.label}</th>
-                            ))}
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dados.length > 0 ? dados.map(item => (
-                            <tr key={item.id}>
+                <section className='borda p-5'>
+                    <table className="table table-bordered table-hover">
+                        <thead className='table-light'>
+                            <tr className='text-center'>
                                 {config.colunas.map(col => (
-                                    <td key={col.key} className="text-center">
-                                        {col.temImagem ? (
-                                            item[col.key] ? <img src={item[col.key]} alt="" width="70" height="70" style={{ objectFit: 'cover', borderRadius: '8px' }} /> : 'Sem foto'
-                                        ) : (
-                                            item[col.key]
-                                        )}
-                                    </td>
+                                    <th key={col.key}>{col.label}</th>
                                 ))}
-                                <td className="text-center">
-                                    {config.acoes.map(acao => (
-                                        acao.type === 'delete' ? (
-                                            <button key={acao.type} className="btn btn-sm btn-danger"
-                                                onClick={() => { setItemId(item.id); setShowModal(true); }}>
-                                                {acao.label}
-                                            </button>
-                                        ) : (
-                                            <Link key={acao.type} to={`${acao.path}${item.id}`}>
-                                                <button className="btn btn-sm btn-primary">{acao.label}</button>
-                                            </Link>
-                                        )
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dados.length > 0 ? dados.map(item => (
+                                <tr key={item.id}>
+                                    {config.colunas.map(col => (
+                                        <td key={col.key} className="text-center">
+                                            {col.temImagem ? (
+                                                item[col.key] ? <img src={item[col.key]} alt="" width="70" height="70" style={{ objectFit: 'cover', borderRadius: '8px' }} /> : 'Sem foto'
+                                            ) : (
+                                                item[col.key]
+                                            )}
+                                        </td>
                                     ))}
-                                </td>
-                            </tr>
-                        )) : (
-                            <tr>
-                                <td colSpan={config.colunas.length + 1} className="text-center">Nenhum dado encontrado</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </section>
+                                    <td className="text-center">
+                                        {config.acoes.map(acao => (
+                                            acao.type === 'delete' ? (
+                                                <button key={acao.type} className="btn btn-sm btn-danger"
+                                                    onClick={() => { setItemId(item.id); setShowModal(true); }}>
+                                                    {acao.label}
+                                                </button>
+                                            ) : (
+                                                <Link key={acao.type} to={`${acao.path}${item.id}`}>
+                                                    <button className="btn btn-sm btn-primary">{acao.label}</button>
+                                                </Link>
+                                            )
+                                        ))}
+                                    </td>
+                                </tr>
+                            )) : (
+                                <tr>
+                                    <td colSpan={config.colunas.length + 1} className="text-center">Nenhum dado encontrado</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         </main>
     );
 }

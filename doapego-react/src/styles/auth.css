@@ -21,14 +21,22 @@
 .form-container {
   align-items: center;
   justify-items: center;
-  max-width: fit-content;
   padding: 2rem;
   border: 1px solid var(--color-gray-border);
   border-radius: 1rem;
   max-width: 28rem;
   margin: 0 auto;
+  min-width: 22rem;
+}
+
+.form-container .form-group {
+  min-width: 24rem;
 }
 
 .form-control {
   width: 100%;
+}
+
+.form-group p {
+  text-align: center;
 }
