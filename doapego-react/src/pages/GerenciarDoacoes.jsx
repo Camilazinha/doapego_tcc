@@ -57,7 +57,7 @@ export default function GerenciarDoacoes() {
     return (
       <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
-        <div className="d-flex justify-content-center align-items-center flex-column" style={{ minHeight: "200px" }}>
+        <div className="d-flex justify-content-center align-items-center flex-column">
           <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
           <p className="loading-text">Carregando...</p>
         </div>
