@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import noImageIcon from "../img/noimage-icon.svg"
 import errorIcon from "../img/errorexclamation-icon.svg"
-
+import indexPic from "../img/imagem-teste.jpg"
 
 export default function Teste() {
     const doacoes = [
@@ -37,7 +37,7 @@ export default function Teste() {
 
             {/* Tabs do Bootstrap */}
             <ul className="nav nav-tabs mb-4">
-                {["pendente", "aceita", "recusada"].map((status) => (
+                {["PENDENTE", "COLETADA", "RECUSADA"].map((status) => (
                     <li className="nav-item" key={status}>
                         <button
                             className={`nav-link ${abaAtiva === status ? "active" : ""}`}
@@ -46,7 +46,7 @@ export default function Teste() {
                                 setPaginaAtual(1); // Resetar a página ao trocar de aba
                             }}
                         >
-                            {status.toUpperCase()}
+                            {status}
                         </button>
                     </li>
                 ))}
@@ -59,7 +59,7 @@ export default function Teste() {
 
                             {/* Foto da doação */}
                             <div className="me-4 p-1">
-                                <img src={noImageIcon} alt="Sem imagem" width={80} />
+                                <img src={indexPic} alt="Sem imagem" className="com-imagem" />
                             </div>
 
                             {/* Informações da doação */}

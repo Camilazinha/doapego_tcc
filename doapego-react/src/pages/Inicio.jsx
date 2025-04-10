@@ -13,7 +13,7 @@ export default function Inicio() {
         <div className='grid-home'>
           <section className='name-container'>
             <span className='titulo-name'> Olá, Camila!</span>
-            <Link className='link-name'> <img src={testIcon} /> Ir para meu perfil </Link>
+            <Link className='link-name'> <img src={testIcon} alt='' /> Ir para meu perfil </Link>
           </section>
 
           <section className='activity-container'>

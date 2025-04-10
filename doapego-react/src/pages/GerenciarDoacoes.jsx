@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import axios from "axios"
 
 import noImageIcon from "../img/noimage-icon.svg"
@@ -40,9 +41,9 @@ export default function GerenciarDoacoes() {
     }
 
     fetchDoacoes()
-  }, []) // Array vazio significa que o efeito só roda uma vez, quando o componente monta
+  }, [])
 
-  // Filtrar doações por aba ativa usando o campo status-doacao
+  // Filtrar doações por aba ativa usando o campo status
   const doacoesFiltradas = doacoes.filter((d) => d["status"] === abaAtiva)
 
   // Paginação
@@ -99,27 +100,23 @@ export default function GerenciarDoacoes() {
           ))}
         </ul>
 
-        {/* Lista de Doações com mais detalhes */}
-
+        {/* Lista de doações com mais detalhes */}
         <div className="list-group mb-5">
           {itensAtuais.length > 0 ? (
             itensAtuais.map((doacao) => (
               <div key={doacao.id} className="list-group-item d-flex align-items-center">
+
                 {/* Foto da doação */}
                 <div className="me-4 p-1">
                   {doacao.foto ? (
                     <img
                       src={doacao.foto || "/placeholder.svg"}
                       alt={doacao.nome}
-                      width="120"
-                      height="120"
-                      style={{ objectFit: "cover", borderRadius: ".5rem" }}
+                      className="com-imagem"
+                      style={{ objectFit: "cover" }}
                     />
                   ) : (
-                    <div
-                      className="d-flex align-items-center justify-content-center"
-                      style={{ width: "7.5rem", height: "7.5rem", borderRadius: ".5rem" }}
-                    >
+                    <div className="d-flex align-items-center justify-content-center">
                       <img src={noImageIcon} alt="Sem imagem" width={80} />
                     </div>
                   )}
@@ -129,12 +126,16 @@ export default function GerenciarDoacoes() {
                 <div className="flex-grow-1">
                   <h5 className="mb-1">{doacao.nome}</h5>
                   <p className="mb-0">
-                    <span className="badge tag-categoria">Categoria: {doacao.categoria || "Não especificada"}</span>
+                    <Link to="/configuracoes/categorias-doacao">
+                      <span className="badge tag-categoria">
+                        {doacao.categoria || "Não especificada"}
+                      </span>
+                    </Link>
                   </p>
                 </div>
 
                 <div className="ms-auto me-4">
-                  <button className="btn btn-sm btn-custom-unfilled">Ver</button>
+                  <button className="btn btn-sm btn-custom-unfilled">Checar</button>
                   {/* {abaAtiva === "PENDENTE" && (
                   <>
                     <button className="btn btn-sm btn-success me-2">Aceitar</button>
@@ -145,7 +146,7 @@ export default function GerenciarDoacoes() {
               </div>
             ))
           ) : (
-            <div className="list-group-item text-muted py-3"><img src={errorIcon} className="mx-2"></img> Nenhuma doação encontrada</div>
+            <div className="list-group-item text-muted py-3"><img src={errorIcon} className="mx-2" alt="erro" /> Nenhuma doação encontrada</div>
           )}
         </div>
 

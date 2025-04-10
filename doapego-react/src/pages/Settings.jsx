@@ -1,6 +1,5 @@
 // src/pages/Settings.jsx
 
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import rightChevronIcon from "../img/rightchevron-icon.svg"

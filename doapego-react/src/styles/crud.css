@@ -53,3 +53,11 @@
 .page-item:not(.active) button:focus {
   color: var(--color-secondary-active);
 }
+
+.com-imagem {
+  border-radius: .3rem;
+  min-width: 6rem;
+  max-width: 7rem;
+  min-height: 4rem;
+  max-height: 5rem;
+}
