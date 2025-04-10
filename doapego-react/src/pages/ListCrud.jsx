@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { crudList } from '../constants/crudList';
+import errorTriangleIcon from "../img/errortriangle-icon.svg"
 
 export default function ListCrud() {
     const { entidade } = useParams(); // Pegamos a entidade da URL
@@ -66,10 +67,12 @@ export default function ListCrud() {
     if (error) return (
         <main className='container my-5 nao-unico-elemento px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
-            <div className="alert alert-danger">
+            <div className="alert alert-danger d-flex">
+                <img src={errorTriangleIcon} className="me-2" alt="" />
                 {error
                     ? <p className="erro">{error}</p>
-                    : null}
+                    : null
+                }
             </div>
         </main>
     )

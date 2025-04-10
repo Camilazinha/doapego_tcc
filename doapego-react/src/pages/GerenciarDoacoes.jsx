@@ -3,6 +3,7 @@ import axios from "axios"
 
 import noImageIcon from "../img/noimage-icon.svg"
 import errorIcon from "../img/errorexclamation-icon.svg"
+import errorTriangleIcon from "../img/errortriangle-icon.svg"
 
 
 export default function GerenciarDoacoes() {
@@ -67,7 +68,8 @@ export default function GerenciarDoacoes() {
       <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
-        <div className="alert alert-danger">
+        <div className="alert alert-danger d-flex">
+          <img src={errorTriangleIcon} className="me-2" alt="" />
           {error
             ? <p className="erro">{error}</p>
             : null}
