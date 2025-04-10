@@ -83,10 +83,3 @@
 .big-text {
   font-size: 1.2rem;
 }
-
-.tag-categoria{
-  background-color: var(--color-tertiary);
-  font-weight: 500;
-  padding: 0.3rem 0.5rem;
-  margin: 0.5rem 0;
-}

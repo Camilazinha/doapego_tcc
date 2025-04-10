@@ -38,6 +38,8 @@ import "./styles/admin.css";
 import "./styles/modal.css";
 import "./styles/buttons.css";
 import "./styles/footer.css";
+import "./styles/crud.css";
+
 
 export default function App() {
 

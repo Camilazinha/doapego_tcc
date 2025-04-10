@@ -1,4 +1,9 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
+
+import noImageIcon from "../img/noimage-icon.svg"
+import errorIcon from "../img/errorexclamation-icon.svg"
+
 
 export default function Teste() {
     const doacoes = [
@@ -6,8 +11,8 @@ export default function Teste() {
         { id: 2, nome: "Boneca", status: "aceita" },
         { id: 3, nome: "Quebra-Cabeça", status: "recusada" },
         { id: 4, nome: "Urso de Pelúcia", status: "pendente" },
-        { id: 5, nome: "Urso de Pelúcia", status: "pendente" },
-        { id: 6, nome: "Urso de Pelúcia", status: "pendente" },
+        { id: 5, nome: "Urso de Pelúcia", status: "pendente", categoria: "Boneco" },
+        { id: 6, nome: "Urso de Pelúcia", status: "pendente", categoria: "Pelúcia" },
         { id: 7, nome: "Urso de Pelúcia", status: "pendente" },
         { id: 8, nome: "Urso de Pelúcia", status: "pendente" },
         { id: 9, nome: "Urso de Pelúcia", status: "pendente" },
@@ -16,7 +21,7 @@ export default function Teste() {
 
     const [abaAtiva, setAbaAtiva] = useState("pendente");
     const [paginaAtual, setPaginaAtual] = useState(1);
-    const itensPorPagina = 1;
+    const itensPorPagina = 3;
 
     // Filtrar doações por aba ativa
     const doacoesFiltradas = doacoes.filter((d) => d.status === abaAtiva);
@@ -27,7 +32,7 @@ export default function Teste() {
     const itensAtuais = doacoesFiltradas.slice(indiceInicial, indiceInicial + itensPorPagina);
 
     return (
-        <div className="container my-5">
+        <div className="container my-5 nao-unico-elemento">
             <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
             {/* Tabs do Bootstrap */}
@@ -47,18 +52,35 @@ export default function Teste() {
                 ))}
             </ul>
 
-            {/* Lista de Doações */}
-            <ul className="list-group mb-3">
+            <div className="list-group mb-5">
                 {itensAtuais.length > 0 ? (
                     itensAtuais.map((doacao) => (
-                        <li key={doacao.id} className="list-group-item">
-                            {doacao.nome}
-                        </li>
+                        <div key={doacao.id} className="list-group-item d-flex align-items-center">
+
+                            {/* Foto da doação */}
+                            <div className="me-4 p-1">
+                                <img src={noImageIcon} alt="Sem imagem" width={80} />
+                            </div>
+
+                            {/* Informações da doação */}
+                            <div className="flex-grow-1">
+                                <h5 className="mb-1">{doacao.nome}</h5>
+                                <p className="mb-0">
+                                    <Link to="/configuracoes/categorias-doacao"><span className="badge tag-categoria">{doacao.categoria || "Não especificada"}</span></Link>
+                                </p>
+                            </div>
+                            <div className="ms-auto me-4">
+                                <button className="btn btn-custom-unfilled">Checar</button>
+                            </div>
+                        </div>
+
                     ))
                 ) : (
-                    <li className="list-group-item text-muted">Nenhuma doação encontrada</li>
+                    <div className="list-group-item text-muted py-3"><img src={errorIcon} className="mx-2"></img> Nenhuma doação encontrada</div>
                 )}
-            </ul>
+
+            </div>
+
 
             {/* Paginação */}
             <nav>
