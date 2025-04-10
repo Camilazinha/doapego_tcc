@@ -8,8 +8,8 @@ export const crudList = {
             { key: 'tipo', label: 'Tipo', selectOptions: ['MASTER', 'STAFF', 'FUNCIONARIO'] }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: '/detalhes/' },
-            { type: 'edit', label: 'Editar', path: '/editar/' },
+            { type: 'view', label: 'Ver', path: 'detalhes/' },
+            { type: 'edit', label: 'Editar', path: 'editar/' },
             { type: 'delete', label: 'Excluir' }
         ]
     },
@@ -22,8 +22,8 @@ export const crudList = {
             { key: 'status', label: 'Status' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: '/detalhes/' },
-            { type: 'edit', label: 'Editar', path: '/editar/' },
+            { type: 'view', label: 'Ver', path: 'detalhes/' },
+            { type: 'edit', label: 'Editar', path: 'editar/' },
             { type: 'disable', label: 'Desativar' }
         ]
     },
@@ -37,8 +37,8 @@ export const crudList = {
             { key: 'cidade', label: 'Cidade' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: '/detalhes/' },
-            { type: 'edit', label: 'Editar', path: '/editar/' },
+            { type: 'view', label: 'Ver', path: 'detalhes/' },
+            { type: 'edit', label: 'Editar', path: 'editar/' },
             { type: 'delete', label: 'Excluir' }
         ]
     },
@@ -51,8 +51,8 @@ export const crudList = {
             { key: 'nome', label: 'Nome' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: '/detalhes/' },
-            { type: 'edit', label: 'Editar', path: '/editar/' },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view' },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-danger' },
             { type: 'delete', label: 'Excluir' }
         ]
     },
@@ -65,8 +65,8 @@ export const crudList = {
             { key: 'nome', label: 'Nome' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: '/detalhes/' },
-            { type: 'edit', label: 'Editar', path: '/editar/' },
+            { type: 'view', label: 'Ver', path: 'detalhes/' },
+            { type: 'edit', label: 'Editar', path: 'editar/' },
             { type: 'delete', label: 'Excluir' }
         ]
     }

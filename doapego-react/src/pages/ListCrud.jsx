@@ -41,7 +41,7 @@ export default function ListCrud() {
         };
 
         fetchData();
-    }, [config]); // Garantimos que o efeito só roda quando a entidade muda
+    }, [config]);
 
     const handleDelete = async () => {
         if (!config) return; // Evita tentar excluir sem uma entidade válida
@@ -124,7 +124,7 @@ export default function ListCrud() {
                                                 </button>
                                             ) : (
                                                 <Link key={acao.type} to={`${acao.path}${item.id}`}>
-                                                    <button className="btn btn-sm btn-primary">{acao.label}</button>
+                                                    <button className={acao.classname}>{acao.label}</button>
                                                 </Link>
                                             )
                                         ))}

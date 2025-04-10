@@ -68,7 +68,7 @@ export default function Solicitacoes() {
 
   return (
     <main>
-      <div className="container my-5">
+      <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">GERENCIAR SOLICITAÇÕES</h2>
 
         <div className="list-group mb-5">
