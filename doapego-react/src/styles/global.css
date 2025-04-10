@@ -27,6 +27,10 @@ html {
   margin: 0;
 }
 
+.container.my-5{
+  min-height: 60vh;
+}
+
 p {
   margin-bottom: 0;
 }

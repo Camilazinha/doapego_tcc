@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
+import noImageIcon from "../img/noimage-icon.svg"
+import errorIcon from "../img/errorexclamation-icon.svg"
+
+
 export default function GerenciarDoacoes() {
   // Estados para armazenar os dados e controlar o carregamento
   const [doacoes, setDoacoes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [abaAtiva, setAbaAtiva] = useState("pendente")
+  const [abaAtiva, setAbaAtiva] = useState("PENDENTE")
   const [paginaAtual, setPaginaAtual] = useState(1)
   const itensPorPagina = 5
 
@@ -92,26 +96,27 @@ export default function GerenciarDoacoes() {
       </ul>
 
       {/* Lista de Doações com mais detalhes */}
-      <div className="list-group mb-3">
+
+      <div className="list-group mb-5">
         {itensAtuais.length > 0 ? (
           itensAtuais.map((doacao) => (
             <div key={doacao.id} className="list-group-item d-flex align-items-center">
               {/* Foto da doação */}
-              <div className="me-3">
+              <div className="me-4 p-1">
                 {doacao.foto ? (
                   <img
                     src={doacao.foto || "/placeholder.svg"}
                     alt={doacao.nome}
-                    width="70"
-                    height="70"
-                    style={{ objectFit: "cover", borderRadius: "8px" }}
+                    width="120"
+                    height="120"
+                    style={{ objectFit: "cover", borderRadius: ".5rem" }}
                   />
                 ) : (
                   <div
-                    className="bg-secondary d-flex align-items-center justify-content-center text-white"
-                    style={{ width: "70px", height: "70px", borderRadius: "8px" }}
+                    className="d-flex align-items-center justify-content-center"
+                    style={{ width: "7.5rem", height: "7.5rem", borderRadius: ".5rem" }}
                   >
-                    Sem foto
+                    <img src={noImageIcon} alt="Sem imagem" width={80}/>
                   </div>
                 )}
               </div>
@@ -120,34 +125,23 @@ export default function GerenciarDoacoes() {
               <div className="flex-grow-1">
                 <h5 className="mb-1">{doacao.nome}</h5>
                 <p className="mb-0">
-                  <span className="badge bg-info me-2">Categoria: {doacao.categoria || "Não especificada"}</span>
-                  <span
-                    className={`badge ${doacao["status"] === "pendente"
-                      ? "bg-warning"
-                      : doacao["status"] === "aceita"
-                        ? "bg-success"
-                        : "bg-danger"
-                      }`}
-                  >
-                    {doacao["status"]?.toUpperCase()}
-                  </span>
+                  <span className="badge tag-categoria">Categoria: {doacao.categoria || "Não especificada"}</span>
                 </p>
               </div>
 
-              {/* Botões de ação - você pode adicionar conforme necessário */}
-              <div>
-                <button className="btn btn-sm btn-primary me-2">Ver</button>
-                {abaAtiva === "pendente" && (
+              <div className="ms-auto me-4">
+                <button className="btn btn-sm btn-custom-unfilled">Ver</button>
+                {/* {abaAtiva === "PENDENTE" && (
                   <>
                     <button className="btn btn-sm btn-success me-2">Aceitar</button>
                     <button className="btn btn-sm btn-danger">Recusar</button>
                   </>
-                )}
+                )} */}
               </div>
             </div>
           ))
         ) : (
-          <div className="list-group-item text-muted">Nenhuma doação encontrada</div>
+          <div className="list-group-item text-muted py-3"><img src={errorIcon} className="mx-2"></img> Nenhuma doação encontrada</div>
         )}
       </div>
 
