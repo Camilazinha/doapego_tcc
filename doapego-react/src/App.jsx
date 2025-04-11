@@ -34,6 +34,8 @@ import EditCrud from "./pages/EditCrud";
 import ViewCrud from "./pages/ViewCrud";
 
 
+import CadastroStaff from "./pages/CadastroStaff";
+
 import "./styles/import.css";
 import "./styles/global.css";
 import "./styles/auth.css";
@@ -85,6 +87,7 @@ export default function App() {
                                         <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
                                         <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
 
+                                        <Route path="/cadastro-staff" element={<CadastroStaff />} />
 
 
 
