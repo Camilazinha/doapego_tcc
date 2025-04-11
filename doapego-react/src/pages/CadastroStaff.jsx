@@ -58,11 +58,12 @@ export default function CadastroStaff() {
         fotoPerfil: "",
       });
     } catch (err) {
-      console.error("Erro ao enviar:", err);
+      console.error("Erro ao enviar o cadastro:", err);
+
       if (err.response) {
         setError("Erro ao processar a solicitação. Tente novamente.");
       } else if (err.request) {
-        setError("Falha na conexão com o servidor. Verifique sua internet.");
+        setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
       } else {
         setError("Ocorreu um erro inesperado.");
       }
@@ -74,16 +75,17 @@ export default function CadastroStaff() {
   return (
     <main>
       <div className="container my-5">
-        <h2 className="titulo-pagina mb-5">SOLICITAR CADASTRO</h2>
-        <div className="form-container">
+        <h2 className="titulo-pagina mb-4">SOLICITAR CADASTRO</h2>
+        <p className="subtitulo mb-4">Preencha os campos com as informações da sua ONG. Após análise, entraremos em contato por e-mail com os dados de acesso ao sistema, caso seu cadastro seja aprovado.</p>
 
-          {/* Exibir mensagens de erro */}
-          {(error || validationError) && (
-            <div className="alert alert-danger d-flex align-items-center">
-              <img src={errorTriangleIcon} className="me-2" alt="Erro" />
-              <p className="m-0">{error || validationError}</p>
-            </div>
-          )}
+        {/* Exibir mensagens de erro */}
+        {(error || validationError) && (
+          <div className="alert alert-danger d-flex align-items-center">
+            <img src={errorTriangleIcon} className="me-2" alt="Erro" />
+            <p className="m-0">{error || validationError}</p>
+          </div>
+        )}
+        <div className="mt-4 form-container-cadastro">
 
           <form onSubmit={handleSubmit}>
 
@@ -93,7 +95,7 @@ export default function CadastroStaff() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">E-mail <span className="text-danger">*</span></label>
+              <label className="form-label">E-mail da ONG<span className="text-danger">*</span></label>
               <input type="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
             </div>
 
@@ -107,7 +109,7 @@ export default function CadastroStaff() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Data de Fundação</label>
+              <label className="form-label">Data de fundação</label>
               <input type="date" className="form-control" name="fundacao" value={formData.fundacao} onChange={handleChange} />
             </div>
 
@@ -117,7 +119,7 @@ export default function CadastroStaff() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">URL da Foto de Perfil</label>
+              <label className="form-label">Foto da ONG (URL)</label>
               <input type="url" className="form-control" name="fotoPerfil" value={formData.fotoPerfil} onChange={handleChange} />
             </div>
 

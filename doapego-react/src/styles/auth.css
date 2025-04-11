@@ -11,6 +11,7 @@
   font-weight: 500;
 }
 
+.form-container-cadastro form,
 .form-container form,
 .form-container {
   display: grid;
@@ -29,6 +30,13 @@
   min-width: 22rem;
 }
 
+
+
+
+.form-container-cadastro .form-group {
+  min-width: 44rem;
+}
+
 .form-container .form-group {
   min-width: 24rem;
 }
@@ -39,4 +47,47 @@
 
 .form-group p {
   text-align: center;
+}
+
+
+.form-container-cadastro {
+  align-items: center;
+  justify-items: center;
+  padding: 2rem;
+  border: 1px solid var(--color-gray-border);
+  border-radius: 1rem;
+  max-width: 48rem;
+  /* Mantido para telas grandes */
+  margin: 0 auto;
+  min-width: 42rem;
+  /* Mantido para desktops */
+}
+
+/* Ajuste para telas menores (tablets e celulares) */
+@media (max-width: 992px) {
+  .form-container-cadastro {
+    max-width: 90%;
+    /* Ocupa quase toda a largura da tela */
+    min-width: 30rem;
+    /* Remove o min-width fixo */
+    padding: 1.5rem;
+    /* Menos padding para evitar aperto */
+  }
+
+  .form-container-cadastro .form-group {
+    min-width: 26rem;
+    /* Faz os inputs ocuparem toda a largura */
+  }
+}
+
+/* Ajuste para telas muito pequenas (menos de 480px) */
+@media (max-width: 495px) {
+  .form-container-cadastro {
+    min-width: 25rem;
+    padding: 1.5rem;
+  }
+
+  .form-container-cadastro .form-group {
+    min-width: 22rem;
+  }
 }
