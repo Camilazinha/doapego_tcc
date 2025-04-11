@@ -87,7 +87,7 @@ export default function App() {
                                         <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
                                         <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
 
-                                        <Route path="/cadastro-staff" element={<CadastroStaff />} />
+                                        <Route path="/solicitar-cadastro" element={<CadastroStaff />} />
 
 
 

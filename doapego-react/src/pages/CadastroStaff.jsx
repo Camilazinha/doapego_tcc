@@ -74,50 +74,49 @@ export default function CadastroStaff() {
   return (
     <main>
       <div className="container my-5">
-        <h2 className="titulo-pagina mb-5 text-center">SOLICITAR CADASTRO</h2>
+        <h2 className="titulo-pagina mb-5">SOLICITAR CADASTRO</h2>
+        <div className="form-container">
 
-        {/* Exibir mensagens de erro */}
-        {(error || validationError) && (
-          <div className="alert alert-danger d-flex align-items-center">
-            <img src={errorTriangleIcon} className="me-2" alt="Erro" />
-            <p className="m-0">{error || validationError}</p>
-          </div>
-        )}
+          {/* Exibir mensagens de erro */}
+          {(error || validationError) && (
+            <div className="alert alert-danger d-flex align-items-center">
+              <img src={errorTriangleIcon} className="me-2" alt="Erro" />
+              <p className="m-0">{error || validationError}</p>
+            </div>
+          )}
 
-        <section className="p-5 shadow bg-light rounded">
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
+
+            <div className="form-group">
               <label className="form-label">Nome da ONG <span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="nome" value={formData.nome} onChange={handleChange} required />
             </div>
 
-            <div className="mb-3">
+            <div className="form-group">
               <label className="form-label">E-mail <span className="text-danger">*</span></label>
               <input type="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
             </div>
 
-            <div className="row">
-              <div className="col-md-6 mb-3">
-                <label className="form-label">Telefone</label>
-                <input type="text" className="form-control" name="telefone" value={formData.telefone} onChange={handleChange} />
-              </div>
-              <div className="col-md-6 mb-3">
-                <label className="form-label">WhatsApp</label>
-                <input type="text" className="form-control" name="whatsapp" value={formData.whatsapp} onChange={handleChange} />
-              </div>
+            <div className="form-group">
+              <label className="form-label">Telefone</label>
+              <input type="text" className="form-control" name="telefone" value={formData.telefone} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">WhatsApp</label>
+              <input type="text" className="form-control" name="whatsapp" value={formData.whatsapp} onChange={handleChange} />
             </div>
 
-            <div className="mb-3">
+            <div className="form-group">
               <label className="form-label">Data de Fundação</label>
               <input type="date" className="form-control" name="fundacao" value={formData.fundacao} onChange={handleChange} />
             </div>
 
-            <div className="mb-3">
+            <div className="form-group">
               <label className="form-label">Descrição da ONG <span className="text-danger">*</span></label>
               <textarea className="form-control" name="descricao" rows="3" value={formData.descricao} onChange={handleChange} required></textarea>
             </div>
 
-            <div className="mb-3">
+            <div className="form-group">
               <label className="form-label">URL da Foto de Perfil</label>
               <input type="url" className="form-control" name="fotoPerfil" value={formData.fotoPerfil} onChange={handleChange} />
             </div>
@@ -133,8 +132,9 @@ export default function CadastroStaff() {
               )}
             </button>
           </form>
-        </section>
+        </div>
       </div>
-    </main>
+
+    </main >
   );
 }
