@@ -1,3 +1,7 @@
+import deleteIcon from "../img/delete-icon.svg"
+import editIcon from "../img/edit-icon.svg"
+import viewIcon from "../img/view-icon.svg"
+
 export const crudList = {
     'administradores': {
         titulo: 'ADMINISTRADORES',
@@ -51,9 +55,9 @@ export const crudList = {
             { key: 'nome', label: 'Nome' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view' },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-danger' },
-            { type: 'delete', label: 'Excluir' }
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-info mx-2', icon: editIcon },
+            { type: 'delete', label: 'Excluir', icon: 'deleteIcon', icon: deleteIcon}
         ]
     },
     'ongs': {

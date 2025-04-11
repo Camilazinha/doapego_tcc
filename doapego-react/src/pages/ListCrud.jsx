@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { crudList } from '../constants/crudList';
 import errorTriangleIcon from "../img/errortriangle-icon.svg"
-
+import noImageIcon from "../img/noimage-icon.svg"
 export default function ListCrud() {
     const { entidade } = useParams(); // Pegamos a entidade da URL
     console.log(entidade);
@@ -93,7 +93,7 @@ export default function ListCrud() {
             <div className='container my-5 nao-unico-elemento px-5'>
                 <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
 
-                <section className='borda p-5'>
+                <section className='p-5'>
                     <table className="table table-bordered table-hover">
                         <thead className='table-light'>
                             <tr className='text-center'>
@@ -105,30 +105,43 @@ export default function ListCrud() {
                         </thead>
                         <tbody>
                             {dados.length > 0 ? dados.map(item => (
-                                <tr key={item.id}>
+                                <tr key={item.id} className='text-center align-baseline'>
                                     {config.colunas.map(col => (
                                         <td key={col.key} className="text-center">
                                             {col.temImagem ? (
-                                                item[col.key] ? <img src={item[col.key]} alt="" width="70" height="70" style={{ objectFit: 'cover', borderRadius: '8px' }} /> : 'Sem foto'
+                                            item[col.key] ? (
+
+                                            <img src={item[col.key]} alt="" className="com-imagem" style={{ objectFit: 'cover' }} />
                                             ) : (
-                                                item[col.key]
-                                            )}
+<div className="d-flex align-items-center justify-content-center">
+                      <img src={noImageIcon} alt="Sem imagem" width={80} />
+                    </div>
+                                            )
+                                            ) : (
+                                            item[col.key]
+                                            )}  
                                         </td>
                                     ))}
+
                                     <td className="text-center">
                                         {config.acoes.map(acao => (
                                             acao.type === 'delete' ? (
                                                 <button key={acao.type} className="btn btn-sm btn-danger"
                                                     onClick={() => { setItemId(item.id); setShowModal(true); }}>
+                                                        <img src={acao.icon} alt="" className="me-2" />
+
                                                     {acao.label}
                                                 </button>
                                             ) : (
                                                 <Link key={acao.type} to={`${acao.path}${item.id}`}>
-                                                    <button className={acao.classname}>{acao.label}</button>
+                                                    <button className={acao.classname}>
+                                                        <img src={acao.icon} alt="" className="me-2" />
+                                                        {acao.label}</button>
                                                 </Link>
                                             )
                                         ))}
                                     </td>
+                                    
                                 </tr>
                             )) : (
                                 <tr>
