@@ -91,3 +91,9 @@
     min-width: 22rem;
   }
 }
+
+.subtitulo-container {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
