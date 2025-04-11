@@ -13,7 +13,7 @@
   display: grid;
   grid-template-areas:
     "name-container name-container calendar-container"
-    "activity-container report-container calendar-container"
+    "estatistica-scontainer report-container calendar-container"
     ". . calendar-container";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
@@ -82,4 +82,8 @@
 
 .big-text {
   font-size: 1.2rem;
+}
+
+.list-group-item {
+  padding: 0.5rem;
 }
