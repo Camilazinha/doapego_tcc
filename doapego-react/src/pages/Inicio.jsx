@@ -11,7 +11,7 @@ import testIcon from '../img/goto-icon.svg';
 
 export default function Inicio() {
   // Variáveis para simular o tipo de administrador e o id da ONG
-  // Mude "tipoAdm" para "master" para ver todas as doações
+  // Altere "tipoAdm" para "master" para ver todas as doações
   const tipoAdm = "staff"; // ou "master"
   const idOng = 1; // Id da ONG para admins que não são master
 
@@ -22,40 +22,32 @@ export default function Inicio() {
   });
 
   useEffect(() => {
-    // Dados simulados de doações, com campo 'status' e 'ongId'
-    const simulatedDoacoes = [
-      { id: 1, ongId: 1, status: "PENDENTE" },
-      { id: 2, ongId: 2, status: "COLETADA" },
-      { id: 3, ongId: 1, status: "PENDENTE" },
-      { id: 4, ongId: 3, status: "RECUSADA" },
-      { id: 5, ongId: 1, status: "COLETADA" },
-      { id: 6, ongId: 1, status: "COLETADA" },
-      { id: 7, ongId: 2, status: "RECUSADA" },
-      { id: 8, ongId: 1, status: "PENDENTE" },
-      { id: 9, ongId: 3, status: "COLETADA" },
-      { id: 10, ongId: 1, status: "RECUSADA" },
-      { id: 11, ongId: 1, status: "COLETADA" },
-      { id: 12, ongId: 2, status: "COLETADA" },
-      { id: 13, ongId: 1, status: "PENDENTE" }
-    ];
+    // Chamada à API real para buscar as doações.
+    // Ajuste a URL para a do seu endpoint.
+    fetch("http://localhost:8080/doacoes")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Erro ao buscar as doações.");
+        }
+        return response.json();
+      })
+      .then(data => {
+        // 'data' deve ser um array de doações contendo pelo menos os campos "ongId" e "status"
+        const doacoesFiltradas =
+          tipoAdm === "master"
+            ? data
+            : data.filter(doacao => doacao.ongId === idOng);
 
-    // Se for master, utilizar todas as doações; caso contrário, filtrar por idOng
-    const doacoesFiltradas =
-      tipoAdm === "master"
-        ? simulatedDoacoes
-        : simulatedDoacoes.filter(doacao => doacao.ongId === idOng);
+        // Calcular as estatísticas dos diferentes status
+        const PENDENTES = doacoesFiltradas.filter(doacao => doacao.status === "PENDENTE").length;
+        const COLETADAS = doacoesFiltradas.filter(doacao => doacao.status === "COLETADA").length;
+        const RECUSADAS = doacoesFiltradas.filter(doacao => doacao.status === "RECUSADA").length;
 
-    // Contar os diferentes status
-    const PENDENTES = doacoesFiltradas.filter(doacao => doacao.status === "PENDENTE").length;
-    const COLETADAS = doacoesFiltradas.filter(doacao => doacao.status === "COLETADA").length;
-    const RECUSADAS = doacoesFiltradas.filter(doacao => doacao.status === "RECUSADA").length;
-
-    // Atualizar o estado com as estatísticas
-    setDoacoesStats({
-      PENDENTES,
-      COLETADAS,
-      RECUSADAS
-    });
+        setDoacoesStats({ PENDENTES, COLETADAS, RECUSADAS });
+      })
+      .catch(error => {
+        console.error("Erro ao buscar doações:", error);
+      });
   }, [tipoAdm, idOng]);
 
   return (
@@ -69,14 +61,23 @@ export default function Inicio() {
             </Link>
           </section>
 
-          {/* Seção de Estatísticas (Novo Nome: Resumo das Doações) */}
+          {/* Seção de Estatísticas (Lista de Doações) */}
           <section className="estatisticas-container">
             <div className="shadow-sm p-4">
               <h3 className="fw-bold">Lista de doações</h3>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item"><img src={coletadaIcon} alt="" className='me-2' />Aceitas: <strong>{doacoesStats.COLETADAS}</strong></li>
-                <li className="list-group-item"><img src={pendenteIcon} alt="" className='me-2' />Pendentes: <strong>{doacoesStats.PENDENTES}</strong></li>
-                <li className="list-group-item"><img src={recusadaIcon} alt="" className='me-2' />Recusadas: <strong>{doacoesStats.RECUSADAS}</strong></li>
+                <li className="list-group-item">
+                  <img src={coletadaIcon} alt="" className='me-2' />
+                  Aceitas: <strong>{doacoesStats.COLETADAS}</strong>
+                </li>
+                <li className="list-group-item">
+                  <img src={pendenteIcon} alt="" className='me-2' />
+                  Pendentes: <strong>{doacoesStats.PENDENTES}</strong>
+                </li>
+                <li className="list-group-item">
+                  <img src={recusadaIcon} alt="" className='me-2' />
+                  Recusadas: <strong>{doacoesStats.RECUSADAS}</strong>
+                </li>
               </ul>
             </div>
           </section>
