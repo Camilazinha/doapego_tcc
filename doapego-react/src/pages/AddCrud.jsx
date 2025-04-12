@@ -7,7 +7,7 @@ import errorTriangleIcon from "../img/errortriangle-icon.svg";
 export default function AddCrud() {
   const { entidade } = useParams(); // Pegamos a entidade da URL
   const config = crudList[entidade] || null; // Se não existir, deixamos como null
-  const userTipo = "STAFF"; // ou "STAFF", depende de quem está logado
+  const userTipo = "MASTER"; // ou "STAFF", depende de quem está logado
 
   // Inicializa o estado do formulário dinamicamente com base nas colunas da configuração
   const [formData, setFormData] = useState(() => {

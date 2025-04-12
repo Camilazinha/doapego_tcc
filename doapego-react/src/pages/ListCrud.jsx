@@ -6,15 +6,12 @@ import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
 
 export default function ListCrud() {
-    const { entidade } = useParams(); // Pegamos a entidade da URL
-    console.log(entidade);
-    const config = crudList[entidade] || null; // Se não existir, deixamos como `null`
+    const { entidade } = useParams();
+    const config = crudList[entidade] || null;
 
-    // Variáveis simuladas de autenticação: substitua pelos dados reais do usuário logado.
-    const userTipo = "STAFF"; // ou "STAFF"
-    const userOngId = 48;       // para staff, ID da ONG a que ele pertence
+    const userTipo = "MASTER";
+    const userOngId = 48;
 
-    // Inicializa os hooks SEMPRE antes de qualquer return
     const [dados, setDados] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -28,36 +25,28 @@ export default function ListCrud() {
             try {
                 if (entidade === "administradores") {
                     if (userTipo === "MASTER") {
-                        // Para MASTER, buscamos STAFFs e MASTERs  e combinamos
                         const [staffResponse, masterResponse] = await Promise.all([
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&sortDirection=asc`),
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=MASTER&sortDirection=asc`)
                         ]);
-                        
-                        // Combina os resultados
                         setDados([...staffResponse.data.items, ...masterResponse.data.items]);
                         
                     } else if (userTipo === "STAFF") {
                         const [staffResponse, funcionarioResponse] = await Promise.all([
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&sortDirection=asc`),
-                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=MASTER&sortDirection=asc`)
+                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=FUNCIONARIO&sortDirection=asc`)
                         ]);
                         setDados([...staffResponse.data.items, ...funcionarioResponse.data.items]);
                     }
                 } else if (entidade === "ongs") {
-                    // Para STAFF, buscamos apenas a ONG do usuário logado
                     const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?statusOng=ATIVO`);
                     setDados(response.data.items);
-                }
-
-                else {
-                    // Para outras entidades, busca normal
+                } else {
                     const response = await axios.get(
                         `http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`
                     );
                     setDados(response.data.items);
                 }
-
             } catch (err) {
                 console.error("Erro ao buscar dados:", err);
                 if (err.response) {
@@ -75,8 +64,26 @@ export default function ListCrud() {
         fetchData();
     }, [config, entidade, userTipo, userOngId]);
 
+    const toggleUserStatus = async (userId, currentStatus) => {
+        try {
+            const newStatus = !currentStatus; // Inverte o status
+            await axios.patch(`http://localhost:8080/usuarios/${userId}`, { 
+                ativo: newStatus 
+            });
+            
+            setDados(dados.map(user => 
+                user.id === userId ? { ...user, ativo: newStatus } : user
+            ));
+            
+            alert(`Usuário ${newStatus ? 'ativado' : 'suspenso'} com sucesso!`);
+        } catch (err) {
+            console.error('Erro ao alterar status:', err);
+            alert('Erro ao alterar status. Tente novamente!');
+        }
+    };
+
     const handleDelete = async () => {
-        if (!config) return; // Evita tentar excluir sem uma entidade válida
+        if (!config) return;
 
         try {
             await axios.delete(`http://localhost:8080/${config.apiEndpoint}/${itemId}`);
@@ -146,9 +153,13 @@ export default function ListCrud() {
                                                         <img src={noImageIcon} alt="Sem imagem" width={80} />
                                                     </div>
                                                 )
+                                            ) : col.key === 'ativo' ? (
+                                                <span className={`badge ${item.ativo ? 'bg-success' : 'bg-danger'}`}>
+                                                    {item.ativo ? 'Ativo' : 'Suspenso'}
+                                                </span>
                                             ) : (
                                                 item[col.key]
-                                            )}  
+                                            )}
                                         </td>
                                     ))}
                                     <td className="text-center">
@@ -159,6 +170,13 @@ export default function ListCrud() {
                                                     onClick={() => { setItemId(item.id); setShowModal(true); }}>
                                                     <img src={acao.icon} alt="" className="me-2" />
                                                     {acao.label}
+                                                </button>
+                                            ) : acao.type === 'disable' ? (
+                                                <button key={acao.type}
+                                                    className={'btn btn-sm btn-danger'}
+                                                    onClick={() => toggleUserStatus(item.id, item.ativo)}>
+                                                    <img src={acao.icon} alt="" className="me-2" />
+                                                    {item.ativo ? 'Suspender' : 'Reativar'}
                                                 </button>
                                             ) : (
                                                 <Link key={acao.type} to={`${acao.path}${item.id}`}>

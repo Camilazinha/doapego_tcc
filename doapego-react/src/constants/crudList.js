@@ -27,12 +27,18 @@ export const crudList = {
         colunas: [
             { key: 'id', label: '#' },
             { key: 'nome', label: 'Nome' },
-            { key: 'status', label: 'Status' }
+            { key: 'ativo', label: 'Status' }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
             { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
-            { type: 'disable', label: 'Desativar', icon: desativarIcon}
+            { 
+                type: 'disable', 
+                label: 'Desativar', 
+                icon: desativarIcon,
+                activeLabel: 'Suspender',  // Novo
+                inactiveLabel: 'Reativar'  // Novo
+            }
         ]
     },
 
