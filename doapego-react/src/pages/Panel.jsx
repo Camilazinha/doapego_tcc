@@ -43,7 +43,7 @@ export default function Panel() {
       title: 'Criar Administrador',
       description: 'Crie novas ONGs e atribua administradores para gerenciá-las.',
       src: crianca,
-      link: '/criar-admin',
+      link: '/configuracoes/administradores/adicionar',
       allowed: ['master']
     },
     {

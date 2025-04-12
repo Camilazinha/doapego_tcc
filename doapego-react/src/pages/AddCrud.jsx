@@ -7,6 +7,7 @@ import errorTriangleIcon from "../img/errortriangle-icon.svg";
 export default function AddCrud() {
   const { entidade } = useParams(); // Pegamos a entidade da URL
   const config = crudList[entidade] || null; // Se não existir, deixamos como null
+  const userTipo = "STAFF"; // ou "STAFF", depende de quem está logado
 
   // Inicializa o estado do formulário dinamicamente com base nas colunas da configuração
   const [formData, setFormData] = useState(() => {
@@ -42,11 +43,23 @@ export default function AddCrud() {
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
+  // Força o valor de tipo com base no userTipo
+  if (entidade === "administradores") {
+    if (userTipo === "MASTER") {
+      formData.tipo = "STAFF";
+    } else if (userTipo === "STAFF") {
+      formData.tipo = "FUNCIONARIO";
+    }
+  }
+
     setLoading(true);
     setError(null);
     setValidationError(""); // Limpa erro de validação antes de enviar
 
+
+    
     // Validação: verifica se algum campo (exceto id) ficou vazio ou contém somente espaços
     const camposVazios = config.colunas.filter(
       col => col.key !== 'id' && (!formData[col.key] || !formData[col.key].trim())
@@ -83,6 +96,8 @@ export default function AddCrud() {
     }
   };
 
+  
+
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
@@ -97,28 +112,46 @@ export default function AddCrud() {
 
         <section className='p-5 form-container'>
           <form onSubmit={handleSubmit}>
-            {config.colunas.map(col => {
-              // Se for o campo "id", não exibe
-              if (col.key === "id") return null;
+
+{config.colunas.map(col => {
+  if (col.key === "id") return null;
+
+  const isTipoField = col.key === "tipo";
+  const isAdminPage = entidade === 'administradores';
+
+  // Definindo tipo fixo com base no tipo do usuário logado
+  const tipoFixo =
+    isAdminPage && isTipoField && userTipo === "MASTER"
+      ? "STAFF"
+      : isAdminPage && isTipoField && userTipo === "STAFF"
+      ? "FUNCIONARIO"
+      : null;
 
               return (
                 <div key={col.key} className="mb-3">
                   <div className='form-group'>
                     <label className="form-label">{col.label}:</label>
-                    {col.selectOptions ? (
+                    {tipoFixo ? (
                       <select
                         name={col.key}
-                        value={formData[col.key]}
-                        onChange={handleChange}
+                        value={tipoFixo}
                         className="form-control form-select"
+                        aria-readonly="true"
+                        disabled
                       >
-                        <option className="text-muted" value="">Selecione uma opção</option>
-                        {col.selectOptions.map((option, index) => (
-                          <option key={index} value={option}>
-                            {option}
-                          </option>
-                        ))}
+                        <option value={tipoFixo}>{tipoFixo}</option>
                       </select>
+                    ) : col.selectOptions ? (
+                      <select
+                      name={col.key}
+                      value={formData[col.key]}
+                      onChange={handleChange}
+                      className='form-control form-select'>
+                        <option className='text-muted' value="">Selecione uma opção</option>
+                        {col.selectOptions.map((option, idx) => (
+              <option key={idx} value={option}>{option}</option>
+            ))}
+          </select>
                     ) : (
                       <input
                         type="text"

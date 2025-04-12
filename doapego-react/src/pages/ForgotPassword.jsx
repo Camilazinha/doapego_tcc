@@ -29,6 +29,7 @@ export default function ForgotPassword() {
                 Enviar link
               </button>
             </div>
+            
             <Link to='/login' className='form-link d-grid justify-content-center'>Voltar para login</Link >
 
           </form>

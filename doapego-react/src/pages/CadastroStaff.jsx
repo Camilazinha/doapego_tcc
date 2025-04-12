@@ -1,26 +1,28 @@
 import { useState } from "react";
 import axios from "axios";
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CadastroStaff() {
   const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    telefone: "",
-    whatsapp: "",
-    fundacao: "",
-    descricao: "",
-    fotoPerfil: "",
+    nome: null,
+    email: null,
+    telefone: null,
+    whatsapp: null,
+    fundacao: null,
+    descricao: null,
+    fotoPerfil: null,
   });
 
   const [endereco, setEndereco] = useState({
-    cep: "",
-    estado: "",
-    cidade: "",
-    bairro: "",
-    numero: "",
-    logradouro: "",
-    complemento: "",
+    cep: null,
+    estado: null,
+    cidade: null,
+    bairro: null,
+    numero: null,
+    logradouro: null,
+    complemento: null,
     principal: true,
     ativo: true,
   });
@@ -184,6 +186,9 @@ export default function CadastroStaff() {
             <button type="submit" className="btn btn-custom-filled" disabled={loading}>
               {loading ? "Enviando..." : "Enviar solicitação"}
             </button>
+            
+                        <Link to='/login' className='form-link d-grid justify-content-center'>Voltar para login</Link >
+
           </form>
         </div>
       </div>

@@ -11,6 +11,10 @@
   font-weight: 500;
 }
 
+.form-link:hover {
+  color: var(--color-gray-dark);
+}
+
 .form-container-cadastro form,
 .form-container form,
 .form-container {
