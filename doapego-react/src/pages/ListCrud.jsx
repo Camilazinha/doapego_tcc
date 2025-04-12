@@ -241,7 +241,7 @@ export default function ListCrud() {
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title">Confirmar Exclusão</h5>
+                    <h5 className="modal-title subtitulo-container" style={{color: 'var(--color-gray-dark)'}}>Confirmar Exclusão</h5>
                     <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
                 </div>
                 <div className="modal-body">
@@ -251,14 +251,14 @@ export default function ListCrud() {
                     <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
                         Cancelar
                     </button>
-                    <button type="button" className="btn btn-danger" onClick={handleDelete}>
-                        Confirmar Exclusão
+                    <button type="button" className="btn btn-danger d-flex" onClick={handleDelete}>
+                        Confirmar
                     </button>
                 </div>
             </div>
         </div>
     </div>
-)}
+)} 
         </main>
     );
 }
