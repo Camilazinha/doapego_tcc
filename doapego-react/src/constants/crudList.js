@@ -41,8 +41,9 @@ export const crudList = {
         apiEndpoint: 'enderecos-ong',
         colunas: [
             { key: 'id', label: '#' },
-            { key: 'logradouro', label: 'Endereço' },
-            { key: 'cidade', label: 'Cidade' }
+            { key: 'estado', label: 'Estado' },
+            { key: 'cidade', label: 'Cidade' },
+            { key: 'bairro', label: 'Bairro' }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },

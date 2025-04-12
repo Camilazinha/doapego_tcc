@@ -44,13 +44,20 @@ export default function ListCrud() {
                         ]);
                         setDados([...staffResponse.data.items, ...funcionarioResponse.data.items]);
                     }
-                } else {
+                } else if (entidade === "ongs") {
+                    // Para STAFF, buscamos apenas a ONG do usuário logado
+                    const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?statusOng=ATIVO`);
+                    setDados(response.data.items);
+                }
+
+                else {
                     // Para outras entidades, busca normal
                     const response = await axios.get(
                         `http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`
                     );
                     setDados(response.data.items);
                 }
+
             } catch (err) {
                 console.error("Erro ao buscar dados:", err);
                 if (err.response) {
@@ -128,7 +135,7 @@ export default function ListCrud() {
                         </thead>
                         <tbody>
                             {dados.length > 0 ? dados.map(item => (
-                                <tr key={item.id} className='text-center align-baseline'>
+                                <tr key={item.id} className='text-center align-middle'>
                                     {config.colunas.map(col => (
                                         <td key={col.key} className="text-center">
                                             {col.temImagem ? (
