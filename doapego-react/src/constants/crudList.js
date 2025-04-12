@@ -16,8 +16,7 @@ export const crudList = {
 
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
             { type: 'delete', label: 'Excluir', icon: deleteIcon}
         ]
     },
@@ -30,13 +29,12 @@ export const crudList = {
             { key: 'ativo', label: 'Status' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
             { 
                 type: 'disable', 
                 label: 'Desativar', 
                 icon: desativarIcon,
-                activeLabel: 'Suspender',  // Novo
+                activeLabel: 'Desativar',  // Novo
                 inactiveLabel: 'Reativar'  // Novo
             }
         ]
@@ -52,8 +50,8 @@ export const crudList = {
             { key: 'bairro', label: 'Bairro' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: editIcon },
             { type: 'delete', label: 'Excluir', icon: deleteIcon}
         ]
     },
@@ -66,8 +64,8 @@ export const crudList = {
             { key: 'nome', label: 'Nome' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: editIcon },
             { type: 'delete', label: 'Excluir', icon: deleteIcon}
         ]
     },
@@ -80,9 +78,15 @@ export const crudList = {
             { key: 'nome', label: 'Nome' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
-            { type: 'delete', label: 'Excluir', icon: deleteIcon}   
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: editIcon },
+            { 
+                type: 'disable', 
+                label: 'Desativar', 
+                icon: desativarIcon,
+                activeLabel: 'Desativar',  // Novo
+                inactiveLabel: 'Reativar'  // Novo
+            }  
         ]
     }
 };
