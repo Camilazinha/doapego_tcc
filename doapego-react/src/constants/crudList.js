@@ -1,4 +1,6 @@
 import deleteIcon from "../img/delete-icon.svg"
+import desativarIcon from "../img/desativar-icon.svg"
+
 import editIcon from "../img/edit-icon.svg"
 import viewIcon from "../img/view-icon.svg"
 
@@ -9,12 +11,14 @@ export const crudList = {
         colunas: [
             { key: 'id', label: '#' },
             { key: 'nome', label: 'Nome' },
-            { key: 'tipo', label: 'Tipo', selectOptions: ['MASTER', 'STAFF', 'FUNCIONARIO'] }
+            { key: 'email', label: 'E-mail' },
+            { key: 'tipo', label: 'Tipo' },
+
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/' },
-            { type: 'edit', label: 'Editar', path: 'editar/' },
-            { type: 'delete', label: 'Excluir' }
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'delete', label: 'Excluir', icon: deleteIcon}
         ]
     },
     'usuarios': {
@@ -26,9 +30,9 @@ export const crudList = {
             { key: 'status', label: 'Status' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/' },
-            { type: 'edit', label: 'Editar', path: 'editar/' },
-            { type: 'disable', label: 'Desativar' }
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'disable', label: 'Desativar', icon: desativarIcon}
         ]
     },
 
@@ -41,9 +45,9 @@ export const crudList = {
             { key: 'cidade', label: 'Cidade' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/' },
-            { type: 'edit', label: 'Editar', path: 'editar/' },
-            { type: 'delete', label: 'Excluir' }
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'delete', label: 'Excluir', icon: deleteIcon}
         ]
     },
     'categorias-doacao': {
@@ -56,8 +60,8 @@ export const crudList = {
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-info mx-2', icon: editIcon },
-            { type: 'delete', label: 'Excluir', icon: 'deleteIcon', icon: deleteIcon}
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'delete', label: 'Excluir', icon: deleteIcon}
         ]
     },
     'ongs': {
@@ -69,9 +73,9 @@ export const crudList = {
             { key: 'nome', label: 'Nome' }
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/' },
-            { type: 'edit', label: 'Editar', path: 'editar/' },
-            { type: 'delete', label: 'Excluir' }
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-2', icon: editIcon },
+            { type: 'delete', label: 'Excluir', icon: deleteIcon}   
         ]
     }
 };

@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { crudList } from '../constants/crudList';
-import errorTriangleIcon from "../img/errortriangle-icon.svg"
-import noImageIcon from "../img/noimage-icon.svg"
+import errorTriangleIcon from "../img/errortriangle-icon.svg";
+import noImageIcon from "../img/noimage-icon.svg";
+
 export default function ListCrud() {
     const { entidade } = useParams(); // Pegamos a entidade da URL
     console.log(entidade);
     const config = crudList[entidade] || null; // Se não existir, deixamos como `null`
+
+    // Variáveis simuladas de autenticação: substitua pelos dados reais do usuário logado.
+    const userTipo = "STAFF"; // ou "STAFF"
+    const userOngId = 48;       // para staff, ID da ONG a que ele pertence
 
     // Inicializa os hooks SEMPRE antes de qualquer return
     const [dados, setDados] = useState([]);
@@ -17,31 +22,51 @@ export default function ListCrud() {
     const [itemId, setItemId] = useState(null);
 
     useEffect(() => {
-        if (!config) return; // Evita executar se a entidade não existir
-
+        if (!config) return;
+    
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
-                setDados(response.data.items);
-
-            } catch (err) {
-                console.error("Erro ao buscar doações:", err)
-
-                if (err.response) {
-                    setError("Erro ao carregar os dados. Tente novamente mais tarde.")
-                } else if (err.request) {
-                    setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+                if (entidade === "administradores") {
+                    if (userTipo === "MASTER") {
+                        // Para MASTER, buscamos STAFFs e MASTERs  e combinamos
+                        const [staffResponse, masterResponse] = await Promise.all([
+                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&sortDirection=asc`),
+                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=MASTER&sortDirection=asc`)
+                        ]);
+                        
+                        // Combina os resultados
+                        setDados([...staffResponse.data.items, ...masterResponse.data.items]);
+                        
+                    } else if (userTipo === "STAFF") {
+                        const [staffResponse, funcionarioResponse] = await Promise.all([
+                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&sortDirection=asc`),
+                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=MASTER&sortDirection=asc`)
+                        ]);
+                        setDados([...staffResponse.data.items, ...funcionarioResponse.data.items]);
+                    }
                 } else {
-                    setError("Ocorreu um erro inesperado.")
+                    // Para outras entidades, busca normal
+                    const response = await axios.get(
+                        `http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`
+                    );
+                    setDados(response.data.items);
+                }
+            } catch (err) {
+                console.error("Erro ao buscar dados:", err);
+                if (err.response) {
+                    setError("Erro ao carregar os dados. Tente novamente mais tarde.");
+                } else if (err.request) {
+                    setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+                } else {
+                    setError("Ocorreu um erro inesperado.");
                 }
             } finally {
                 setLoading(false);
             }
-
         };
-
+    
         fetchData();
-    }, [config]);
+    }, [config, entidade, userTipo, userOngId]);
 
     const handleDelete = async () => {
         if (!config) return; // Evita tentar excluir sem uma entidade válida
@@ -62,20 +87,20 @@ export default function ListCrud() {
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
             <div className="alert alert-danger">Configuração não encontrada para "{entidade}"</div>
         </main>
-    )
+    );
 
     if (error) return (
         <main className='container my-5 nao-unico-elemento px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
             <div className="alert alert-danger d-flex">
-                <img src={errorTriangleIcon} className="me-2" alt="" />
+                <img src={errorTriangleIcon} className="me-2" alt="" />                
                 {error
                     ? <p className="erro">{error}</p>
                     : null
                 }
             </div>
         </main>
-    )
+    );
 
     if (loading) return (
         <main className='container my-5 nao-unico-elemento px-5'>
@@ -87,13 +112,11 @@ export default function ListCrud() {
         </main>
     );
 
-
     return (
         <main>
             <div className='container my-5 nao-unico-elemento px-5'>
                 <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
-
-                <section className='p-5'>
+                <section className='p-4'>
                     <table className="table table-bordered table-hover">
                         <thead className='table-light'>
                             <tr className='text-center'>
@@ -109,39 +132,37 @@ export default function ListCrud() {
                                     {config.colunas.map(col => (
                                         <td key={col.key} className="text-center">
                                             {col.temImagem ? (
-                                            item[col.key] ? (
-
-                                            <img src={item[col.key]} alt="" className="com-imagem" style={{ objectFit: 'cover' }} />
+                                                item[col.key] ? (
+                                                    <img src={item[col.key]} alt="" className="com-imagem" style={{ objectFit: 'cover' }} />
+                                                ) : (
+                                                    <div className="d-flex align-items-center justify-content-center">
+                                                        <img src={noImageIcon} alt="Sem imagem" width={80} />
+                                                    </div>
+                                                )
                                             ) : (
-<div className="d-flex align-items-center justify-content-center">
-                      <img src={noImageIcon} alt="Sem imagem" width={80} />
-                    </div>
-                                            )
-                                            ) : (
-                                            item[col.key]
+                                                item[col.key]
                                             )}  
                                         </td>
                                     ))}
-
                                     <td className="text-center">
                                         {config.acoes.map(acao => (
                                             acao.type === 'delete' ? (
-                                                <button key={acao.type} className="btn btn-sm btn-danger"
+                                                <button key={acao.type}
+                                                    className="btn btn-sm btn-danger"
                                                     onClick={() => { setItemId(item.id); setShowModal(true); }}>
-                                                        <img src={acao.icon} alt="" className="me-2" />
-
+                                                    <img src={acao.icon} alt="" className="me-2" />
                                                     {acao.label}
                                                 </button>
                                             ) : (
                                                 <Link key={acao.type} to={`${acao.path}${item.id}`}>
                                                     <button className={acao.classname}>
                                                         <img src={acao.icon} alt="" className="me-2" />
-                                                        {acao.label}</button>
+                                                        {acao.label}
+                                                    </button>
                                                 </Link>
                                             )
                                         ))}
                                     </td>
-                                    
                                 </tr>
                             )) : (
                                 <tr>

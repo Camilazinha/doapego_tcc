@@ -55,4 +55,8 @@
 
   --color-tertiary-active: #ff7a52;
   /* Laranja clareado */
+
+  --color-primary-dark:   #1c504c;  /* Verde petróleo escuro */
+--color-secondary-dark: #810127;  /* Vermelho escuro vinho */
+--color-tertiary-dark:  #a04323;  /* Laranja escuro queimado */
 }

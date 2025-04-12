@@ -48,20 +48,39 @@
   border-color: var(--color-tertiary-hover);
 }
 
-.btn-custom-view {
-  color: var(--color-white);
+.btn-custom-edit {
   background-color: var(--color-tertiary);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.btn-custom-edit:hover {
+  background-color: var(--color-tertiary-hover);
+  color: var(--color-white);
+}
+
+.btn-custom-edit:active,
+.btn-custom-edit:focus-visible {
+  background-color: var(--color-tertiary-active) !important;
+  color: var(--color-white) !important;
+}
+
+.btn-custom-view {
+  background-color: var(--color-primary);
+  color: var(--color-white);
   text-decoration: none;
   font-weight: 400;
 }
 
 .btn-custom-view:hover {
-  background-color: var(--color-tertiary-hover);
+  background-color: var(--color-primary-hover); ;
   color: var(--color-white);
 }
 
 .btn-custom-view:active,
 .btn-custom-view:focus-visible {
-  background-color: var(--color-tertiary-active) !important;
+  background-color: var(--color-primary-active) !important;
   color: var(--color-white) !important;
 }
+

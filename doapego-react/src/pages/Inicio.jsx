@@ -12,7 +12,7 @@ import testIcon from '../img/goto-icon.svg';
 export default function Inicio() {
   // Variáveis para simular o tipo de administrador e o id da ONG
   // Altere "tipoAdm" para "master" para ver todas as doações
-  const tipoAdm = "staff"; // ou "master"
+  const tipoAdm = "master"; // ou "master"
   const idOng = 1; // Id da ONG para admins que não são master
 
   const [doacoesStats, setDoacoesStats] = useState({
@@ -54,7 +54,7 @@ export default function Inicio() {
     <main>
       <div className='container my-5 nao-unico-elemento'>
         <div className='grid-home'>
-          <section className='name-container'>
+          <section className='name-container mb-1'>
             <span className='titulo-name'>Olá, Camila!</span>
             <Link className='link-name' to="/perfil">
               <img src={testIcon} alt='Perfil' /> Ir para meu perfil
@@ -62,8 +62,8 @@ export default function Inicio() {
           </section>
 
           {/* Seção de Estatísticas (Lista de Doações) */}
-          <section className="estatisticas-container">
-            <div className="shadow-sm p-4">
+          <section className="estatisticas-container me-1">
+            <div className="borda-teste p-4">
               <h3 className="fw-bold">Lista de doações</h3>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
@@ -84,14 +84,14 @@ export default function Inicio() {
 
           {/* Seção de Relatório de Erros */}
           <section className="report-container">
-            <div className="shadow-sm p-4">
+            <div className="borda-teste ms-1 p-4">
               <h3 className="fw-bold">Encontrou um erro?</h3>
               <p>Reporte para nós! Estamos disponíveis das <strong>08h às 18h</strong>.</p>
               <p className="mb-0">📧 <strong>@doapegoitb.com</strong></p>
             </div>
           </section>
 
-          <section className='calendar-container'>
+          <section className='ms-2 calendar-container'>
             <Calendar calendarType='gregory' />
           </section>
         </div>
