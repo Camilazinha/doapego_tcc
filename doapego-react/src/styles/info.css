@@ -22,7 +22,7 @@
 }
 
 /* Ajuste responsivo */
-@media (max-width: 768px) {
+@media (max-width: 1010px) {
   .grid-home {
     grid-template-areas:
       "name-container"
