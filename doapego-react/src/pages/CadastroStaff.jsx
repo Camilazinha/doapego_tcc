@@ -1,8 +1,9 @@
 import { useState } from "react";
-import axios from "axios";
-import errorTriangleIcon from "../img/errortriangle-icon.svg";
-import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import errorTriangleIcon from "../img/errortriangle-icon.svg";
+import successIcon from "../img/success-icon.svg";
 
 export default function CadastroStaff() {
   const [formData, setFormData] = useState({
@@ -30,6 +31,7 @@ export default function CadastroStaff() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [validationError, setValidationError] = useState("");
+  const [successMessage, setSuccessMessage] = useState(null); // Novo estado para mensagem de sucesso
 
   // Atualiza os campos da ONG
   const handleChange = (e) => {
@@ -47,8 +49,8 @@ export default function CadastroStaff() {
     setLoading(true);
     setError(null);
     setValidationError("");
+    setSuccessMessage(null); // Reseta a mensagem de sucesso antes de cada envio
 
-    // Verifica se os campos obrigatórios estão preenchidos
     const camposObrigatorios = ["nome", "email", "descricao", "cep", "estado", "cidade", "bairro", "numero", "logradouro"];
     const camposVazios = camposObrigatorios.filter((campo) => !formData[campo]?.trim() && !endereco[campo]?.trim());
 
@@ -99,7 +101,37 @@ export default function CadastroStaff() {
       });
     } catch (err) {
       console.error("Erro ao enviar o cadastro:", err);
-      setError("Erro ao processar a solicitação. Tente novamente.");
+
+      // Captura erros de resposta do servidor
+      if (err.response) {
+        if (err.response.status === 400) {
+          setError("Erro de validação: " + err.response.data.message);
+          alert("Erro de validação: " + err.response.data.message);
+
+        } else if (err.response.status === 409) {
+          setError("E-mail já cadastrado.");
+          alert("E-mail já cadastrado.");
+
+        } else if (err.response.status >= 500) {
+          setError("Erro no servidor. Tente novamente mais tarde.");
+          alert("Erro no servidor. Tente novamente mais tarde.");
+
+        } else {
+          setError("Erro ao processar a solicitação. Tente novamente.");
+          alert("Erro ao processar a solicitação. Tente novamente.");
+
+        }
+      }
+      // Captura erros de requisição (ex: problemas de rede ou timeout)
+      else if (err.request) {
+        setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+        alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+      }
+      // Captura erros desconhecidos
+      else {
+        setError("Ocorreu um erro inesperado.");
+        alert("Ocorreu um erro inesperado.");
+      }
     } finally {
       setLoading(false);
     }
@@ -116,6 +148,14 @@ export default function CadastroStaff() {
           <div className="alert alert-danger d-flex align-items-center">
             <img src={errorTriangleIcon} className="me-2" alt="Erro" />
             <p className="m-0">{error || validationError}</p>
+          </div>
+        )}
+
+        {/* Exibir mensagem de sucesso */}
+        {successMessage && (
+          <div className="alert alert-success d-flex align-items-center">
+            <img src={successIcon} className="me-2" alt="Erro" />
+            <p className="m-0">{successMessage}</p>
           </div>
         )}
 
@@ -186,8 +226,8 @@ export default function CadastroStaff() {
             <button type="submit" className="btn btn-custom-filled" disabled={loading}>
               {loading ? "Enviando..." : "Enviar solicitação"}
             </button>
-            
-                        <Link to='/login' className='form-link d-grid justify-content-center'>Voltar para login</Link >
+
+            <Link to='/login' className='form-link d-grid justify-content-center'>Voltar para login</Link >
 
           </form>
         </div>

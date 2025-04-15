@@ -20,11 +20,14 @@ export default function ViewCrud() {
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
         if (err.response) {
-          setError("Erro ao carregar os dados. Tente novamente mais tarde.");
+          setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
+          alert("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
         } else {
           setError("Ocorreu um erro inesperado.");
+          alert("Ocorreu um erro inesperado.");
         }
       } finally {
         setLoading(false);

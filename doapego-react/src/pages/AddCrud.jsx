@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 import { crudList } from '../constants/crudList';
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
+import successIcon from "../img/success-icon.svg";
 
 export default function AddCrud() {
   const { entidade } = useParams(); // Pegamos a entidade da URL
@@ -25,41 +27,31 @@ export default function AddCrud() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
   const [validationError, setValidationError] = useState(""); // Estado para erros de validação
 
-  if (!config)
-    return (
-      <main className='container my-5 nao-unico-elemento px-5'>
-        <div className="alert alert-danger d-flex">
-          <img src={errorTriangleIcon} className="me-2" alt="erro" />
 
-          Configuração não encontrada para "{entidade}"
-        </div>
-      </main>
-    );
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    
+
     e.preventDefault();
-  // Força o valor de tipo com base no userTipo
-  if (entidade === "administradores") {
-    if (userTipo === "MASTER") {
-      formData.tipo = "STAFF";
-    } else if (userTipo === "STAFF") {
-      formData.tipo = "FUNCIONARIO";
+    // Força o valor de tipo com base no userTipo
+    if (entidade === "administradores") {
+      if (userTipo === "MASTER") {
+        formData.tipo = "STAFF";
+      } else if (userTipo === "STAFF") {
+        formData.tipo = "FUNCIONARIO";
+      }
     }
-  }
 
     setLoading(true);
     setError(null);
     setValidationError(""); // Limpa erro de validação antes de enviar
 
-
-    
     // Validação: verifica se algum campo (exceto id) ficou vazio ou contém somente espaços
     const camposVazios = config.colunas.filter(
       col => col.key !== 'id' && (!formData[col.key] || !formData[col.key].trim())
@@ -72,7 +64,10 @@ export default function AddCrud() {
 
     try {
       await axios.post(`http://localhost:8080/${config.apiEndpoint}`, formData);
-      alert(`${config.titulo} adicionado com sucesso!`);
+      setSuccessMessage(`${config.titulo} adicionado com sucesso!`);
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
 
       // Reinicia o formulário após a adição
       const resetData = {};
@@ -86,17 +81,29 @@ export default function AddCrud() {
       console.error("Erro ao adicionar:", err);
       if (err.response) {
         setError("Erro ao carregar os dados. Tente novamente mais tarde.");
-      } else if (err.request) {
+      }
+      else if (err.request) {
         setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
       } else {
         setError("Ocorreu um erro inesperado.");
       }
-    } finally {
+    }
+
+    finally {
       setLoading(false);
     }
   };
 
-  
+  if (!config)
+    return (
+      <main className='container my-5 nao-unico-elemento px-5'>
+        <div className="alert alert-danger d-flex">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+
+          Configuração não encontrada para "{entidade}"
+        </div>
+      </main>
+    );
 
   return (
     <main>
@@ -110,22 +117,29 @@ export default function AddCrud() {
           </div>
         )}
 
+        {successMessage && (
+          <div className="alert alert-success d-flex">
+            <img src={successIcon} className="me-2" alt="" />
+            <p className="">{successMessage}</p>
+          </div>
+        )}
+
         <section className='p-5 form-container'>
           <form onSubmit={handleSubmit}>
 
-{config.colunas.map(col => {
-  if (col.key === "id") return null;
+            {config.colunas.map(col => {
+              if (col.key === "id") return null;
 
-  const isTipoField = col.key === "tipo";
-  const isAdminPage = entidade === 'administradores';
+              const isTipoField = col.key === "tipo";
+              const isAdminPage = entidade === 'administradores';
 
-  // Definindo tipo fixo com base no tipo do usuário logado
-  const tipoFixo =
-    isAdminPage && isTipoField && userTipo === "MASTER"
-      ? "STAFF"
-      : isAdminPage && isTipoField && userTipo === "STAFF"
-      ? "FUNCIONARIO"
-      : null;
+              // Definindo tipo fixo com base no tipo do usuário logado
+              const tipoFixo =
+                isAdminPage && isTipoField && userTipo === "MASTER"
+                  ? "STAFF"
+                  : isAdminPage && isTipoField && userTipo === "STAFF"
+                    ? "FUNCIONARIO"
+                    : null;
 
               return (
                 <div key={col.key} className="mb-3">
@@ -143,15 +157,15 @@ export default function AddCrud() {
                       </select>
                     ) : col.selectOptions ? (
                       <select
-                      name={col.key}
-                      value={formData[col.key]}
-                      onChange={handleChange}
-                      className='form-control form-select'>
+                        name={col.key}
+                        value={formData[col.key]}
+                        onChange={handleChange}
+                        className='form-control form-select'>
                         <option className='text-muted' value="">Selecione uma opção</option>
                         {col.selectOptions.map((option, idx) => (
-              <option key={idx} value={option}>{option}</option>
-            ))}
-          </select>
+                          <option key={idx} value={option}>{option}</option>
+                        ))}
+                      </select>
                     ) : (
                       <input
                         type="text"

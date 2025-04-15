@@ -17,10 +17,9 @@ export default function Login() {
 
     // Verifica as credenciais
     if (emailAdmin === storedEmail && senha === storedPassword) {
-      alert('Login realizado com sucesso!');
       navigate('/inicio');
     } else {
-      alert('Email ou senha incorretos. Tente novamente!');
+      alert('E-mail ou senha incorretos. Tente novamente!');
     }
   };
 
@@ -34,12 +33,28 @@ export default function Login() {
 
             <div className="form-group">
               <label htmlFor='email-admin' className='form-label'>E-mail</label>
-              <input id='email-admin' type="email" className='form-control' placeholder="Insira seu e-mail" value={emailAdmin} onChange={(e) => setEmailAdmin(e.target.value)} required />
+              <input
+                id='email-admin'
+                type="email"
+                className='form-control'
+                placeholder="Insira seu e-mail"
+                value={emailAdmin}
+                onChange={(e) => setEmailAdmin(e.target.value)}
+                required
+              />
             </div>
 
             <div className="form-group">
               <label htmlFor='senha-admin' className='form-label'>Senha</label>
-              <input id='senha-admin' type="password" className='form-control' placeholder="Insira sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+              <input
+                id='senha-admin'
+                type="password"
+                className='form-control'
+                placeholder="Insira sua senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+              />
             </div>
 
             <div className='form-group form-check'>
@@ -53,7 +68,6 @@ export default function Login() {
             <div className="form-group">
               <button type="submit" className="btn btn-custom-filled">Entrar</button>
             </div>
-
 
             <section className="form-group">
               <p>Ainda não tem uma conta? <Link to="/solicitar-cadastro" className='form-link'>Solicitar cadastro</Link></p>

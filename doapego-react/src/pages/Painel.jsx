@@ -7,10 +7,10 @@ import crianca from "../img/crianca-mao-logo.png"
 import gotoIcon from "../img/goto-icon.svg"
 
 
-export default function Panel() {
+export default function Painel() {
 
-  const [minhaOng, setMinhaOng] = useState(null);
-  const [userType, setUserType] = useState('master');
+  const [minhaOng] = useState(null);
+  const [userType] = useState('master');
   const userOngId = 48;
 
   const sections = [
@@ -30,16 +30,16 @@ export default function Panel() {
       link: '/gerenciar-solicitacoes',
       allowed: ['master']
     },
-      ...(userType === 'staff' || userType === 'funcionario' ? [
-        {
-          id: 'my-ong',
-          title: minhaOng ? minhaOng.nome : 'Minha ONG',
-          description: 'Visualize os detalhes da ONG que você administra ou trabalha.',
-          src: minhaOng ? minhaOng.foto : crianca,
-          link: `/configuracao/ongs/${userOngId}`,
-          allowed: ['staff', 'funcionario']
-        }
-      ] : []), // Se não for STAFF/FUNCIONÁRIO, essa seção não aparece
+    ...(userType === 'staff' || userType === 'funcionario' ? [
+      {
+        id: 'my-ong',
+        title: minhaOng ? minhaOng.nome : 'Minha ONG',
+        description: 'Visualize os detalhes da ONG que você administra ou trabalha.',
+        src: minhaOng ? minhaOng.foto : crianca,
+        link: `/configuracao/ongs/${userOngId}`,
+        allowed: ['staff', 'funcionario']
+      }
+    ] : []), // Se não for STAFF/FUNCIONÁRIO, essa seção não aparece
     {
       id: 'create-admin',
       title: 'Criar Administrador',

@@ -1,11 +1,11 @@
-// src/pages/Settings.jsx
+// src/pages/Configuracoes.jsx
 
 import { Link } from 'react-router-dom';
 
 import rightChevronIcon from "../img/rightchevron-icon.svg"
 import testIcon from "../img/test-icon.svg"
 
-export default function Settings() {
+export default function Configuracoes() {
 
   const sections = [
     {
