@@ -5,7 +5,7 @@ export default function AjudaPrivado() {
     <main>
       <h1 className="titulo-pagina mt-5">FAQ & AJUDA</h1>
 
-      <div className="container my-5">
+      <div className="container my-5 nao-unico-elemento">
         <div className="accordion" id="accordionFaq">
 
           {faqPrivado.map((qa) => (

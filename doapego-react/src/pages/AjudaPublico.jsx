@@ -1,3 +1,5 @@
+//src/pages/AjudaPublico.jsx
+
 import { faqPublico } from "../constants/questionsFaq";
 
 export default function AjudaPublico() {
@@ -5,7 +7,7 @@ export default function AjudaPublico() {
     <main>
       <h1 className="titulo-pagina mt-5">FAQ & AJUDA</h1>
 
-      <section className="container my-5 nao-unico-elemento">
+      <div className="container my-5 nao-unico-elemento">
         <div className="accordion" id="accordionFaq">
 
           {faqPublico.map((qa) => (
@@ -25,7 +27,7 @@ export default function AjudaPublico() {
           ))}
 
         </div>
-      </section>
+      </div>
 
       <section className="still-questions mb-5">
         <p>Ainda tem dúvidas? Entre em contato conosco:</p>

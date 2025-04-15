@@ -1,11 +1,16 @@
+//src/pages/ListCrud.jsx
+
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+
 import { crudList } from '../constants/crudList';
+
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
 
 export default function ListCrud() {
+
     const { entidade } = useParams();
     const config = crudList[entidade] || null;
 
@@ -22,7 +27,7 @@ export default function ListCrud() {
 
     useEffect(() => {
         if (!config) return;
-    
+
         const fetchData = async () => {
             try {
                 if (entidade === "administradores") {
@@ -32,7 +37,7 @@ export default function ListCrud() {
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=MASTER&sortDirection=asc`)
                         ]);
                         setDados([...staffResponse.data.items, ...masterResponse.data.items]);
-                        
+
                     } else if (userTipo === "STAFF") {
                         const [staffResponse, funcionarioResponse] = await Promise.all([
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&sortDirection=asc`),
@@ -62,30 +67,30 @@ export default function ListCrud() {
                 setLoading(false);
             }
         };
-    
+
         fetchData();
     }, [config, entidade, userTipo, userOngId]);
 
     const toggleStatus = async (itemId, currentStatus) => {
         try {
             const newStatus = !currentStatus;
-            
+
             // Determina campo e valor com base na entidade
             const isOng = entidade === "ongs";
             const statusField = isOng ? "statusOng" : "ativo";
             const statusValue = isOng ? (newStatus ? "ATIVO" : "INATIVO") : newStatus;
-    
+
             // Faz a requisição PATCH
-            await axios.patch(`http://localhost:8080/${config.apiEndpoint}/${itemId}`, { 
-                [statusField]: statusValue 
+            await axios.patch(`http://localhost:8080/${config.apiEndpoint}/${itemId}`, {
+                [statusField]: statusValue
             });
-    
+
             // Atualiza o estado local CORRETAMENTE
             setDados(dados.map(item => {
                 if (item.id === itemId) {
                     return {
                         ...item,
-                        ...(isOng 
+                        ...(isOng
                             ? { statusOng: statusValue }
                             : { ativo: newStatus }
                         )
@@ -93,7 +98,7 @@ export default function ListCrud() {
                 }
                 return item;
             }));
-    
+
             alert(`${config.titulo} ${newStatus ? 'ativado' : 'desativado'} com sucesso!`);
         } catch (err) {
             console.error('Erro ao alterar status:', err);
@@ -103,7 +108,7 @@ export default function ListCrud() {
 
     const handleDelete = async () => {
         if (!config || !itemToDelete) return;
-    
+
         try {
             await axios.delete(`http://localhost:8080/${config.apiEndpoint}/${itemToDelete}`);
             setDados(dados.filter(item => item.id !== itemToDelete));
@@ -127,7 +132,7 @@ export default function ListCrud() {
         <main className='container my-5 nao-unico-elemento px-5'>
             <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
             <div className="alert alert-danger d-flex">
-                <img src={errorTriangleIcon} className="me-2" alt="" />                
+                <img src={errorTriangleIcon} className="me-2" alt="" />
                 {error
                     ? <p className="erro">{error}</p>
                     : null
@@ -165,67 +170,67 @@ export default function ListCrud() {
                                 <tr key={item.id} className='text-center align-middle'>
                                     {config.colunas.map(col => (
                                         <td key={col.key} className="text-center">
-                                        {col.temImagem ? (
-                                            item[col.key] ? (
-                                                <img src={item[col.key]} alt="" className="com-imagem" style={{ objectFit: 'cover' }} />
+                                            {col.temImagem ? (
+                                                item[col.key] ? (
+                                                    <img src={item[col.key]} alt="" className="com-imagem" style={{ objectFit: 'cover' }} />
+                                                ) : (
+                                                    <div className="d-flex align-items-center justify-content-center">
+                                                        <img src={noImageIcon} alt="Sem imagem" width={80} />
+                                                    </div>
+                                                )
+                                            ) : col.key === 'ativo' || col.key === 'statusOng' ? (
+                                                <span className={`badge ${(item.ativo === true || item.statusOng === 'ATIVO')
+                                                        ? 'bg-success'
+                                                        : 'bg-danger'
+                                                    }`}>
+                                                    {item.ativo !== undefined
+                                                        ? (item.ativo ? 'Ativo' : 'Suspenso')
+                                                        : (item.statusOng === 'ATIVO' ? 'Ativo' : 'Inativo')}
+                                                </span>
                                             ) : (
-                                                <div className="d-flex align-items-center justify-content-center">
-                                                    <img src={noImageIcon} alt="Sem imagem" width={80} />
-                                                </div>
-                                            )
-                                        ) : col.key === 'ativo' || col.key === 'statusOng' ? (
-                                            <span className={`badge ${
-                                                (item.ativo === true || item.statusOng === 'ATIVO') 
-                                                    ? 'bg-success' 
-                                                    : 'bg-danger'
-                                            }`}>
-                                                {item.ativo !== undefined 
-                                                    ? (item.ativo ? 'Ativo' : 'Suspenso')
-                                                    : (item.statusOng === 'ATIVO' ? 'Ativo' : 'Inativo')}
-                                            </span>
-                                        ) : (
-                                            item[col.key]
-                                        )}
-                                    </td>
+                                                item[col.key]
+                                            )}
+                                        </td>
                                     ))}
                                     <td className="text-center">
-    {config.acoes.map(acao => {
-        if (acao.type === 'delete') {
-            return (
-                <button key={acao.type}
-                    className="btn btn-sm btn-danger mx-1"
-                    onClick={() => {
-                        setItemToDelete(item.id);
-                        setShowModal(true);
-                    }}>
-                    <img src={acao.icon} alt="" className="me-2" />
-                    {acao.label}
-                </button>
-            )}
-        if (acao.type === 'disable') {
-            const isActive = entidade === "ongs" 
-                ? item.statusOng === "ATIVO" 
-                : item.ativo;
-            
-            return (
-                <button key={acao.type}
-                    className={`btn btn-sm mx-1 btn-danger`}
-                    onClick={() => toggleStatus(item.id, isActive)}>
-                    <img src={acao.icon} alt="" className="me-2" />
-                    {isActive ? 'Desativar' : 'Ativar'}
-                </button>
-            );
-        }
-        return (
-            <Link key={acao.type} to={`${acao.path}${item.id}`}>
-                <button className={acao.classname}>
-                    <img src={acao.icon} alt="" className="me-2" />
-                    {acao.label}
-                </button>
-            </Link>
-        );
-    })}
-</td>
+                                        {config.acoes.map(acao => {
+                                            if (acao.type === 'delete') {
+                                                return (
+                                                    <button key={acao.type}
+                                                        className="btn btn-sm btn-danger mx-1"
+                                                        onClick={() => {
+                                                            setItemToDelete(item.id);
+                                                            setShowModal(true);
+                                                        }}>
+                                                        <img src={acao.icon} alt="" className="me-2" />
+                                                        {acao.label}
+                                                    </button>
+                                                )
+                                            }
+                                            if (acao.type === 'disable') {
+                                                const isActive = entidade === "ongs"
+                                                    ? item.statusOng === "ATIVO"
+                                                    : item.ativo;
+
+                                                return (
+                                                    <button key={acao.type}
+                                                        className={`btn btn-sm mx-1 btn-danger`}
+                                                        onClick={() => toggleStatus(item.id, isActive)}>
+                                                        <img src={acao.icon} alt="" className="me-2" />
+                                                        {isActive ? 'Desativar' : 'Ativar'}
+                                                    </button>
+                                                );
+                                            }
+                                            return (
+                                                <Link key={acao.type} to={`${acao.path}${item.id}`}>
+                                                    <button className={acao.classname}>
+                                                        <img src={acao.icon} alt="" className="me-2" />
+                                                        {acao.label}
+                                                    </button>
+                                                </Link>
+                                            );
+                                        })}
+                                    </td>
                                 </tr>
                             )) : (
                                 <tr>
@@ -237,28 +242,28 @@ export default function ListCrud() {
                 </section>
             </div>
             {showModal && (
-    <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-        <div className="modal-dialog">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title subtitulo-container" style={{color: 'var(--color-gray-dark)'}}>Confirmar Exclusão</h5>
-                    <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+                <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title subtitulo-container" style={{ color: 'var(--color-gray-dark)' }}>Confirmar Exclusão</h5>
+                                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+                            </div>
+                            <div className="modal-body">
+                                Tem certeza que deseja excluir este item permanentemente?
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
+                                    Cancelar
+                                </button>
+                                <button type="button" className="btn btn-danger d-flex" onClick={handleDelete}>
+                                    Confirmar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="modal-body">
-                    Tem certeza que deseja excluir este item permanentemente?
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
-                        Cancelar
-                    </button>
-                    <button type="button" className="btn btn-danger d-flex" onClick={handleDelete}>
-                        Confirmar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-)} 
+            )}
         </main>
     );
 }

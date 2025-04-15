@@ -49,7 +49,7 @@ export default function ViewCrud() {
 
   if (error) return (
     <main className='container my-5 nao-unico-elemento px-5'>
-      <h2 className='titulo-pagina mb-5'>Detalhes de {config.titulo}</h2>
+      <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
       <div className="alert alert-danger d-flex">
         <img src={errorTriangleIcon} className="me-2" alt="erro" />
         <p className="erro">{error}</p>

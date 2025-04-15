@@ -1,3 +1,5 @@
+//src/pages/EditCrud.jsx
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -8,6 +10,7 @@ import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function EditCrud() {
+
   const { entidade, id } = useParams();
   const config = crudList[entidade] || null;
 
@@ -19,6 +22,7 @@ export default function EditCrud() {
 
   useEffect(() => {
     const fetchItem = async () => {
+
       try {
         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${id}`);
         const itemData = response.data;
@@ -28,15 +32,21 @@ export default function EditCrud() {
             initialData[col.key] = itemData[col.key] || "";
           }
         });
+
         setFormData(initialData);
-      } catch (err) {
+
+      }
+      catch (err) {
         console.error("Erro ao buscar os dados:", err);
         if (err.response) {
           setError("Erro ao carregar os dados. Tente novamente mais tarde.");
+          alert("Erro ao carregar os dados. Tente novamente mais tarde.");
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
         } else {
           setError("Ocorreu um erro inesperado.");
+          alert("Ocorreu um erro inesperado.");
         }
       } finally {
         setLoading(false);
@@ -61,16 +71,20 @@ export default function EditCrud() {
       setSuccessMessage(`${config.titulo} atualizado com sucesso!`);
     } catch (err) {
       console.error("Erro ao atualizar:", err);
+
       if (err.response) {
         setError("Erro ao atualizar os dados. Tente novamente mais tarde.");
         alert("Erro ao atualizar os dados. Tente novamente mais tarde.");
+
       } else if (err.request) {
         setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
         alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+
       } else {
         setError("Ocorreu um erro inesperado.");
         alert("Ocorreu um erro inesperado.");
       }
+
     } finally {
       setSaving(false);
     }
@@ -97,7 +111,7 @@ export default function EditCrud() {
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
-        <h2 className='titulo-pagina mb-5'>Editar {config.titulo}</h2>
+        <h2 className='titulo-pagina mb-5'>EDITAR {config.titulo}</h2>
 
         {error && (
           <div className="alert alert-danger d-flex">

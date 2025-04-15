@@ -1,3 +1,5 @@
+//src/pages/AddCrud.jsx
+
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -7,19 +9,22 @@ import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function AddCrud() {
-  const { entidade } = useParams(); // Pegamos a entidade da URL
-  const config = crudList[entidade] || null; // Se não existir, deixamos como null
-  const userTipo = "MASTER"; // ou "STAFF", depende de quem está logado
 
-  // Inicializa o estado do formulário dinamicamente com base nas colunas da configuração
+  const { entidade } = useParams();
+  const config = crudList[entidade] || null;
+  const userTipo = "MASTER";
+
   const [formData, setFormData] = useState(() => {
+
     if (config) {
       const initialData = {};
+
       config.colunas.forEach(col => {
         if (col.key !== 'id') { // Não precisamos do campo de id na criação
           initialData[col.key] = "";
         }
       });
+
       return initialData;
     }
     return {};
@@ -28,9 +33,7 @@ export default function AddCrud() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
-  const [validationError, setValidationError] = useState(""); // Estado para erros de validação
-
-
+  const [validationError, setValidationError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,9 +53,8 @@ export default function AddCrud() {
 
     setLoading(true);
     setError(null);
-    setValidationError(""); // Limpa erro de validação antes de enviar
+    setValidationError("");
 
-    // Validação: verifica se algum campo (exceto id) ficou vazio ou contém somente espaços
     const camposVazios = config.colunas.filter(
       col => col.key !== 'id' && (!formData[col.key] || !formData[col.key].trim())
     );
@@ -65,9 +67,7 @@ export default function AddCrud() {
     try {
       await axios.post(`http://localhost:8080/${config.apiEndpoint}`, formData);
       setSuccessMessage(`${config.titulo} adicionado com sucesso!`);
-      setTimeout(() => {
-        setSuccessMessage("");
-      }, 3000);
+      alert(`${config.titulo} adicionado com sucesso!`);
 
       // Reinicia o formulário após a adição
       const resetData = {};
@@ -76,16 +76,22 @@ export default function AddCrud() {
           resetData[col.key] = "";
         }
       });
+
       setFormData(resetData);
-    } catch (err) {
+    }
+
+    catch (err) {
       console.error("Erro ao adicionar:", err);
       if (err.response) {
         setError("Erro ao carregar os dados. Tente novamente mais tarde.");
+        alert("Erro ao carregar os dados. Tente novamente mais tarde.");
       }
       else if (err.request) {
         setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+        alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
       } else {
         setError("Ocorreu um erro inesperado.");
+        alert("Ocorreu um erro inesperado.");
       }
     }
 
@@ -99,7 +105,6 @@ export default function AddCrud() {
       <main className='container my-5 nao-unico-elemento px-5'>
         <div className="alert alert-danger d-flex">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
-
           Configuração não encontrada para "{entidade}"
         </div>
       </main>
@@ -133,7 +138,6 @@ export default function AddCrud() {
               const isTipoField = col.key === "tipo";
               const isAdminPage = entidade === 'administradores';
 
-              // Definindo tipo fixo com base no tipo do usuário logado
               const tipoFixo =
                 isAdminPage && isTipoField && userTipo === "MASTER"
                   ? "STAFF"
@@ -155,6 +159,7 @@ export default function AddCrud() {
                       >
                         <option value={tipoFixo}>{tipoFixo}</option>
                       </select>
+
                     ) : col.selectOptions ? (
                       <select
                         name={col.key}
@@ -179,9 +184,11 @@ export default function AddCrud() {
                 </div>
               );
             })}
+
             <button type="submit" className="btn btn-custom-filled" disabled={loading}>
               {loading ? "Adicionando..." : "Adicionar"}
             </button>
+
           </form>
         </section>
       </div>

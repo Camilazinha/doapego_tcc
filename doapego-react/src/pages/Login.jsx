@@ -70,7 +70,7 @@ export default function Login() {
             </div>
 
             <section className="form-group">
-              <p>Ainda não tem uma conta? <Link to="/solicitar-cadastro" className='form-link'>Solicitar cadastro</Link></p>
+              <p>Ainda não cadastrado? <Link to="/solicitar-cadastro" className='form-link'>Solicitar cadastro</Link></p>
             </section>
 
           </form>

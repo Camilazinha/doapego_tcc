@@ -1,19 +1,19 @@
 // src/pages/Inicio.js
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 import pendenteIcon from "../img/pendente-icon.svg";
 import recusadaIcon from "../img/recusada-icon.svg";
 import coletadaIcon from "../img/coletada-icon.svg";
-import testIcon from '../img/goto-icon.svg';
+import goToIcon from '../img/goto-icon.svg';
 
 export default function Inicio() {
-  // Variáveis para simular o tipo de administrador e o id da ONG
-  // Altere "tipoAdm" para "master" para ver todas as doações
-  const tipoAdm = "master"; // ou "master"
-  const idOng = 1; // Id da ONG para admins que não são master
+  //Hardcoded
+  const tipoAdm = "master";
+  const idOng = 1;
 
   const [doacoesStats, setDoacoesStats] = useState({
     PENDENTES: 0,
@@ -22,23 +22,16 @@ export default function Inicio() {
   });
 
   useEffect(() => {
-    // Chamada à API real para buscar as doações.
-    // Ajuste a URL para a do seu endpoint.
-    fetch("http://localhost:8080/doacoes")
+    axios
+      .get("http://localhost:8080/doacoes")
       .then(response => {
-        if (!response.ok) {
-          throw new Error("Erro ao buscar as doações.");
-        }
-        return response.json();
-      })
-      .then(data => {
-        // 'data' deve ser um array de doações contendo pelo menos os campos "ongId" e "status"
+        const data = response.data;
+
         const doacoesFiltradas =
           tipoAdm === "master"
             ? data
             : data.filter(doacao => doacao.ongId === idOng);
 
-        // Calcular as estatísticas dos diferentes status
         const PENDENTES = doacoesFiltradas.filter(doacao => doacao.status === "PENDENTE").length;
         const COLETADAS = doacoesFiltradas.filter(doacao => doacao.status === "COLETADA").length;
         const RECUSADAS = doacoesFiltradas.filter(doacao => doacao.status === "RECUSADA").length;
@@ -57,7 +50,7 @@ export default function Inicio() {
           <section className='name-container mb-1'>
             <span className='titulo-name'>Olá, Camila!</span>
             <Link className='link-name' to="/perfil">
-              <img src={testIcon} alt='Perfil' /> Ir para meu perfil
+              <img src={goToIcon} alt='Perfil' /> Ir para meu perfil
             </Link>
           </section>
 

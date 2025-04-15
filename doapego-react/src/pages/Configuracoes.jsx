@@ -56,7 +56,6 @@ export default function Configuracoes() {
     <main>
       <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">CONFIGURAÇÕES</h2>
-        {/* <p className='subtitulo align-center'>TEXTO MENORZINHO</p> */}
 
         {sections.filter(section => section.allowed.includes('master')).map((section) => (
           <div key={section.id} className="container container-config my-4">

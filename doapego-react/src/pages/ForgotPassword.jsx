@@ -1,8 +1,9 @@
+//src/pages/ForgotPassword.jsx
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-
 export default function ForgotPassword() {
+
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -23,13 +24,12 @@ export default function ForgotPassword() {
               <input id='email-admin' type="email" className='form-control' placeholder="Digite seu e-mail" required />
             </div>
 
-
             <div className="form-group">
               <button type="submit" className="btn btn-custom-filled">
                 Enviar link
               </button>
             </div>
-            
+
             <Link to='/login' className='form-link d-grid justify-content-center'>Voltar para login</Link >
 
           </form>

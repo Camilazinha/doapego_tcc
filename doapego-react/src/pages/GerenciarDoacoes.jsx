@@ -1,3 +1,5 @@
+//src/pages/GerenciarDoacoes.jsx
+
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
@@ -6,9 +8,8 @@ import noImageIcon from "../img/noimage-icon.svg"
 import errorIcon from "../img/errorexclamation-icon.svg"
 import errorTriangleIcon from "../img/errortriangle-icon.svg"
 
-
 export default function GerenciarDoacoes() {
-  // Estados para armazenar os dados e controlar o carregamento
+
   const [doacoes, setDoacoes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -16,23 +17,30 @@ export default function GerenciarDoacoes() {
   const [paginaAtual, setPaginaAtual] = useState(1)
   const itensPorPagina = 5
 
-  // Efeito para buscar os dados da API
   useEffect(() => {
+
     const fetchDoacoes = async () => {
+
       try {
-        // Fazendo a requisição para o endpoint de doações
         const response = await axios.get("http://localhost:8080/doacoes?sortDirection=asc")
         setDoacoes(response.data.items || response.data) // Ajuste conforme a estrutura da sua API
         setLoading(false)
-      } catch (err) {
+      }
+      catch (err) {
         console.error("Erro ao buscar doações:", err)
 
         if (err.response) {
           setError("Erro ao carregar os dados. Tente novamente mais tarde.")
+          alert("Erro ao carregar os dados. Tente novamente mais tarde.")
+
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+
         } else {
           setError("Ocorreu um erro inesperado.")
+          alert("Ocorreu um erro inesperado.")
+
         }
 
       } finally {
@@ -43,7 +51,6 @@ export default function GerenciarDoacoes() {
     fetchDoacoes()
   }, [])
 
-  // Filtrar doações por aba ativa usando o campo status
   const doacoesFiltradas = doacoes.filter((d) => d["status"] === abaAtiva)
 
   // Paginação
@@ -51,31 +58,34 @@ export default function GerenciarDoacoes() {
   const indiceInicial = (paginaAtual - 1) * itensPorPagina
   const itensAtuais = doacoesFiltradas.slice(indiceInicial, indiceInicial + itensPorPagina)
 
-  // Renderização condicional para estados de carregamento e erro
 
   if (loading)
     return (
-      <div className="container my-5 nao-unico-elemento">
-        <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
-        <div className="d-flex justify-content-center align-items-center flex-column">
-          <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
-          <p className="loading-text">Carregando...</p>
+      <main>
+        <div className="container my-5 nao-unico-elemento">
+          <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
+          <div className="d-flex justify-content-center align-items-center flex-column">
+            <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
+            <p className="loading-text">Carregando...</p>
+          </div>
         </div>
-      </div>
+      </main>
     )
 
   if (error)
     return (
-      <div className="container my-5 nao-unico-elemento">
-        <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
+      <main>
+        <div className="container my-5 nao-unico-elemento">
+          <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
-        <div className="alert alert-danger d-flex">
-          <img src={errorTriangleIcon} className="me-2" alt="" />
-          {error
-            ? <p className="erro">{error}</p>
-            : null}
+          <div className="alert alert-danger d-flex">
+            <img src={errorTriangleIcon} className="me-2" alt="" />
+            {error
+              ? <p className="erro">{error}</p>
+              : null}
+          </div>
         </div>
-      </div>
+      </main>
     )
 
   return (
@@ -83,7 +93,6 @@ export default function GerenciarDoacoes() {
       <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
-        {/* Tabs do Bootstrap */}
         <ul className="nav nav-tabs mb-4">
           {["PENDENTE", "COLETADA", "RECUSADA"].map((status) => (
             <li className="nav-item" key={status}>
@@ -100,13 +109,11 @@ export default function GerenciarDoacoes() {
           ))}
         </ul>
 
-        {/* Lista de doações com mais detalhes */}
         <div className="list-group mb-5">
           {itensAtuais.length > 0 ? (
             itensAtuais.map((doacao) => (
               <div key={doacao.id} className="list-group-item d-flex align-items-center">
 
-                {/* Foto da doação */}
                 <div className="me-4 p-1">
                   {doacao.foto ? (
                     <img
@@ -122,7 +129,6 @@ export default function GerenciarDoacoes() {
                   )}
                 </div>
 
-                {/* Informações da doação */}
                 <div className="flex-grow-1">
                   <h5 className="mb-1">{doacao.nome}</h5>
                   <p className="mb-0">
@@ -150,7 +156,6 @@ export default function GerenciarDoacoes() {
           )}
         </div>
 
-        {/* Paginação - só mostrar se houver itens */}
         {doacoesFiltradas.length > 0 && (
           <nav>
             <ul className="pagination">
