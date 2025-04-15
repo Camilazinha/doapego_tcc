@@ -56,7 +56,7 @@ export default function Login() {
 
 
             <section className="form-group">
-              <p>Ainda não tem uma conta? <Link to="/solicitar-cadastro" className='form-link'>Cadastrar-se</Link></p>
+              <p>Ainda não tem uma conta? <Link to="/solicitar-cadastro" className='form-link'>Solicitar cadastro</Link></p>
             </section>
 
           </form>

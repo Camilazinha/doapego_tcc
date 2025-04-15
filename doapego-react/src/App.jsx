@@ -8,7 +8,6 @@ import Home from './components/Home';
 
 import Sobre from './components/Sobre';
 import Tutorial from './components/Tutorial'
-import Cadastro from './components/Cadastro';
 import Login from './pages/Login';
 import ResetPassword from './pages/ResetPassword';
 import ForgotPassword from './pages/ForgotPassword';
@@ -23,9 +22,7 @@ import Solicitacoes from './pages/Solicitacoes';
 
 import AjudaPublico from './pages/AjudaPublico';
 import Settings from './pages/Settings';
-import Gerenciar from './components/Gerenciar';
 import Panel from './pages/Panel';
-import Pendentes from './components/Pendentes';
 import Inicio from './pages/Inicio';
 
 import ListCrud from "./pages/ListCrud";
@@ -68,7 +65,6 @@ export default function App() {
                                 <Routes>
                                         <Route path="/" element={userType ? <Navigate to="/inicio" /> : <Home />} />
                                         <Route path="/sobre" element={<Sobre />} />
-                                        <Route path="/cadastro" element={<Cadastro />} />
                                         <Route path="/login" element={<Login onLogin={handleLogin} />} />
                                         <Route path="/tutorial" element={<Tutorial />} />
                                         <Route path="/redefinir-senha" element={<ResetPassword />} />
@@ -96,8 +92,6 @@ export default function App() {
 
 
                                         <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
-                                        <Route path="/gerenciar" element={<Gerenciar />} />
-                                        <Route path="/doacoes-pendentes" element={<Pendentes />} />
                                         <Route path="/painel-de-controle" element={<Panel />} />
 
                                         <Route path="/configuracoes" element={<Settings />} />
