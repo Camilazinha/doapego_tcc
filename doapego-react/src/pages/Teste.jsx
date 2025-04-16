@@ -1,3 +1,5 @@
+import noImageIcon from "../img/noimage-icon.svg";
+
 export default function Teste() {
     const config = {
         titulo: "USUÁRIOS",
@@ -12,7 +14,7 @@ export default function Teste() {
     const itemData = {
         nome: "Maria da Silva",
         email: "maria@empresa.com",
-        avatar: "https://picsum.photos/200/200",
+        avatar: "",
         telefone: "(11) 91234-5678",
     };
 
@@ -22,26 +24,43 @@ export default function Teste() {
 
             <section className="container form-container-crud">
                 {/* Imagem em destaque */}
-                <div className="d-flex flex-column align-items-center mb-4">
-                    <img
-                        src={itemData.avatar}
-                        alt="Foto"
-                        className="rounded-circle shadow-sm"
-                        style={{
-                            width: "200px",
-                            height: "200px",
-                            objectFit: "cover",
-                        }}
-                    />
-                    <hr style={{ marginTop: "3rem", width: "8rem" }} />
-                </div>
+                {config.colunas
+                    .filter((col) => col.temImagem)
+                    .map((col) => {
+                        const imagem = itemData[col.key];
+                        const temImagem =
+                            imagem !== null &&
+                            imagem !== undefined &&
+                            String(imagem).trim() !== "";
+
+                        const imagemUrl = temImagem ? imagem : noImageIcon;
+
+
+                        return (
+                            <div
+                                key={col.key}
+                                className="d-flex flex-column align-items-center mb-4"
+                            >
+                                <img
+                                    src={imagemUrl}
+                                    alt={col.label}
+                                    className="rounded-circle shadow-sm"
+                                    style={{
+                                        width: "200px",
+                                        height: "200px",
+                                        objectFit: "cover",
+                                        padding: !temImagem ? "2rem" : "0", // opcional pra deixar o ícone mais centralizado
+                                        backgroundColor: !temImagem ? "#fdfdfd" : "transparent", // visual leve
+                                    }}
+                                />
+                                <hr style={{ marginTop: "3rem", width: "8rem" }} />
+                            </div>
+                        );
+                    })}
 
                 {/* Mini tabela para os demais dados */}
                 <div className="table-responsive">
-                    <table
-                        className="table table-bordered align-middle mb-0"
-                    // estilo arredondado foi removido conforme sua escolha
-                    >
+                    <table className="table table-bordered align-middle mb-0">
                         <tbody>
                             {config.colunas
                                 .filter((col) => !col.temImagem)
@@ -70,7 +89,6 @@ export default function Teste() {
                         </tbody>
                     </table>
                 </div>
-
             </section>
         </main>
     );
