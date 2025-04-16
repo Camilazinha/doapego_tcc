@@ -2,11 +2,11 @@ export default function Teste() {
     const config = {
         titulo: "USUÁRIOS",
         colunas: [
-            { key: "avatar", label: "Foto", temImagem: true }, //ordem importa
+            { key: "avatar", label: "Foto", temImagem: true },
             { key: "nome", label: "Nome", temImagem: false },
             { key: "email", label: "E-mail", temImagem: false },
             { key: "telefone", label: "Telefone", temImagem: false },
-        ]
+        ],
     };
 
     const itemData = {
@@ -21,37 +21,56 @@ export default function Teste() {
             <h2 className="titulo-pagina mb-5">DETALHES DE {config.titulo}</h2>
 
             <section className="container form-container-crud">
-                <div className="mb-3">
-                    {config.colunas.map(col => (
-                        <div key={col.key} className="col-12 mb-3">
-                            {/* Área modificada */}
-                            {col.temImagem ? (
-                                <>
-                                    <label className="form-label fw-semibold d-block mb-1">{!col.temImagem && col.label}{!col.temImagem && ":"}</label>
-                                    <div className="d-flex flex-column align-items-center">
-                                        <img
-                                            src={itemData[col.key]}
-                                            alt={col.label}
-                                            className="rounded shadow-sm"
-                                            style={{ width: "200px", height: "200px", objectFit: "cover" }}
-                                        />
-                                        <hr style={{ margin: "3rem", width: "8rem" }} />
-                                    </div>
-                                </>
-                            ) : (
-                                // Novo layout para campos não-imagem
-                                <div className="d-flex align-items-center">
-                                    <span className="fw-semibold" style={{ minWidth: "80px" }}>
-                                        {col.label}:
-                                    </span>
-                                    <p className="form-control-plaintext text-dark mb-0">
-                                        {itemData[col.key]}
-                                    </p>
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                {/* Imagem em destaque */}
+                <div className="d-flex flex-column align-items-center mb-4">
+                    <img
+                        src={itemData.avatar}
+                        alt="Foto"
+                        className="rounded-circle shadow-sm"
+                        style={{
+                            width: "200px",
+                            height: "200px",
+                            objectFit: "cover",
+                        }}
+                    />
+                    <hr style={{ marginTop: "3rem", width: "8rem" }} />
                 </div>
+
+                {/* Mini tabela para os demais dados */}
+                <div className="table-responsive">
+                    <table
+                        className="table table-bordered align-middle mb-0"
+                    // estilo arredondado foi removido conforme sua escolha
+                    >
+                        <tbody>
+                            {config.colunas
+                                .filter((col) => !col.temImagem)
+                                .map((col) => {
+                                    const valor = itemData[col.key];
+                                    const temValor =
+                                        valor !== null &&
+                                        valor !== undefined &&
+                                        String(valor).trim() !== "";
+
+                                    return (
+                                        <tr key={col.key}>
+                                            <th
+                                                scope="row"
+                                                className="text-nowrap text-secondary fw-semibold"
+                                                style={{ width: "30%" }}
+                                            >
+                                                {col.label}
+                                            </th>
+                                            <td className={temValor ? "" : "text-muted fst-italic"}>
+                                                {temValor ? valor : "Sem informação"}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </table>
+                </div>
+
             </section>
         </main>
     );
