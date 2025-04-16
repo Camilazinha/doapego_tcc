@@ -23,7 +23,6 @@ export default function Teste() {
             <h2 className="titulo-pagina mb-5">DETALHES DE {config.titulo}</h2>
 
             <section className="container form-container-crud">
-                {/* Imagem em destaque */}
                 {config.colunas
                     .filter((col) => col.temImagem)
                     .map((col) => {
@@ -49,8 +48,8 @@ export default function Teste() {
                                         width: "200px",
                                         height: "200px",
                                         objectFit: "cover",
-                                        padding: !temImagem ? "2rem" : "0", // opcional pra deixar o ícone mais centralizado
-                                        backgroundColor: !temImagem ? "#fdfdfd" : "transparent", // visual leve
+                                        padding: !temImagem ? "2rem" : "0",
+                                        backgroundColor: !temImagem ? "#fdfdfd" : "transparent",
                                     }}
                                 />
                                 <hr style={{ marginTop: "3rem", width: "8rem" }} />

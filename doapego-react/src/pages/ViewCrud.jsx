@@ -5,6 +5,7 @@ import axios from 'axios';
 import { crudList } from '../constants/crudList';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
+import noImageIcon from "../img/noimage-icon.svg";
 
 export default function ViewCrud() {
   const { entidade, id } = useParams();
@@ -79,26 +80,47 @@ export default function ViewCrud() {
         <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
 
         <section className='borda p-5'>
-          {config.colunas.map(col => (
-            <div key={col.key} className="mb-3">
-              <label className="form-label"><strong>{col.label}:</strong></label>
-              <div>
-                {col.temImagem ? (
-                  itemData[col.key] ? (
-                    <img
-                      src={itemData[col.key]}
-                      alt={col.label}
-                      style={{ width: "150px", objectFit: 'cover', borderRadius: '8px' }}
-                    />
-                  ) : (
-                    <span>Sem foto</span>
-                  )
-                ) : (
-                  <span>{itemData[col.key]}</span>
-                )}
-              </div>
-            </div>
-          ))}
+          {config.colunas
+            .filter((col) => col.temImagem)
+            .map(col => {
+              const imagem = itemData[col.key];
+              const temImagem =
+                imagem !== null &&
+                imagem !== undefined &&
+                String(imagem).trim() !== "";
+
+              const imagemUrl = temImagem ? imagem : noImageIcon;
+
+              return (
+                <div key={col.key} className="d-flex flex-column align-items-center mb-4">
+                  <img src={imagemUrl} alt={col.label} className="rounded-circle shadow-sm" style={{ width: "200px", height: "200px", objectFit: "cover", padding: !temImagem ? "2rem" : "0", backgroundColor: !temImagem ? "#fdfdfd" : "transparent" }} />
+                  <hr style={{ marginTop: "3rem", width: "8rem" }} />
+                </div>
+              );
+
+            })}
+          <div className='table-responsive'>
+            <table className='table table-bordered align-middle mb-0'>
+              <tbody>
+                {config.colunas
+                  .filter((col) => !col.temImagem)
+                  .map(col => {
+                    const valor = itemData[col.key];
+                    const temValor =
+                      valor !== null &&
+                      valor !== undefined &&
+                      String(valor).trim() !== "";
+
+                    return (
+                      <tr key={col.key}>
+                        <th scope="row" className="text-nowrap text-secondary fw-semibold" style={{ width: "30%" }}>{col.label}</th>
+                        <td>{temValor ? valor : "Sem informação"}</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
     </main>
