@@ -46,7 +46,7 @@ export default function ViewCrud() {
 
   if (loading) return (
     <main className='container my-5 nao-unico-elemento px-5'>
-      <h2 className='titulo-pagina mb-5'>Detalhes de {config.titulo}</h2>
+      <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
       <section className='p-5 d-flex justify-content-center align-items-center flex-column'>
         <div className='spinner-border text-secondary m-3' role='status' style={{ width: '3rem', height: '3rem' }}></div>
         <p className='loading-text'>Carregando...</p>
@@ -76,7 +76,8 @@ export default function ViewCrud() {
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
-        <h2 className='titulo-pagina mb-5'>Detalhes de {config.titulo}</h2>
+        <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
+
         <section className='borda p-5'>
           {config.colunas.map(col => (
             <div key={col.key} className="mb-3">
