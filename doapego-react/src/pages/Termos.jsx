@@ -1,3 +1,5 @@
+//src/pages/Termos.jsx
+
 export default function Termos() {
   return (
     <main>
@@ -5,13 +7,13 @@ export default function Termos() {
         <h2 className='titulo-pagina'>TERMOS DE USO</h2>
 
         <div className="container my-4 py-1">
-            <h5>1. INTRODUÇÃO</h5>
-            <p>Boas-vindas ao Doapego! Estes Termos de Uso regulam o acesso e a utilização da nossa plataforma, que conecta doadores a Organizações Não Governamentais (ONGs) para a doação de brinquedos. Ao utilizar o Doapego, você concorda com os termos descritos abaixo.</p>
+          <h5>1. INTRODUÇÃO</h5>
+          <p>Boas-vindas ao Doapego! Estes Termos de Uso regulam o acesso e a utilização da nossa plataforma, que conecta doadores a Organizações Não Governamentais (ONGs) para a doação de brinquedos. Ao utilizar o Doapego, você concorda com os termos descritos abaixo.</p>
         </div>
 
         <div className="container my-4 py-1">
           <h5>2. DEFINIÇÕES</h5>
-          <p>Plataforma: Site e aplicativo Doapego.</p> 
+          <p>Plataforma: Site e aplicativo Doapego.</p>
           <p>Usuário: Qualquer pessoa que se cadastre na plataforma.</p>
           <p>Doador: Usuário que deseja doar brinquedos.</p>
           <p>ONG: Organização cadastrada que recebe as doações. </p>
@@ -26,11 +28,11 @@ export default function Termos() {
         <div className="container my-4 py-1">
           <h5>4. CADASTRO E USO DA PLATAFORMA </h5>
           <p>O cadastro é gratuito e necessário para interagir na plataforma. </p>
-          <p>Os dados fornecidos devem ser verdadeiros e atualizados. </p> 
-          <p>A conta é pessoal e intransferível. </p>  
+          <p>Os dados fornecidos devem ser verdadeiros e atualizados. </p>
+          <p>A conta é pessoal e intransferível. </p>
           <p>A plataforma se reserva o direito de suspender ou excluir contas que violem os termos.</p>
         </div>
-        
+
         <div className="container my-4 py-1">
           <h5>5. RESPONSABILIDADES DOS USUÁRIOS</h5>
           <p>Os doadores devem cadastrar brinquedos em bom estado, com imagens reais e descrições fiéis. </p>
@@ -40,7 +42,7 @@ export default function Termos() {
 
         <div className="container my-4 py-1">
           <h5>6. LIMITAÇÕES</h5>
-          <p>O Doapego não se responsabiliza pelo(s): </p> 
+          <p>O Doapego não se responsabiliza pelo(s): </p>
           <p>a) atrasos, problemas na coleta ou qualidade dos brinquedos. </p>
           <p>b) a aceitação de todas as doações pelas ONGs. </p>
           <p>c) danos ou prejuízos decorrentes do uso da plataforma.</p>
@@ -48,7 +50,7 @@ export default function Termos() {
 
         <div className="container my-4 py-1">
           <h5>7. MODERAÇÃO E CONDUTA</h5>
-          <p>O Doapego pode remover conteúdos inaporpriados ou falsos.</p> 
+          <p>O Doapego pode remover conteúdos inaporpriados ou falsos.</p>
           <p>Contas podem ser suspensas em casos de má-fé, comportamento abusivo ou tentativa de fraude.</p>
         </div>
 

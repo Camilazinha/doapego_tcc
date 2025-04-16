@@ -1,9 +1,10 @@
-// src/components/Login.js
+// src/components/Login.jsx
 
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
+
   const [emailAdmin, setEmailAdmin] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
@@ -15,7 +16,6 @@ export default function Login() {
     const storedEmail = localStorage.getItem('userEmail');
     const storedPassword = localStorage.getItem('userPassword');
 
-    // Verifica as credenciais
     if (emailAdmin === storedEmail && senha === storedPassword) {
       navigate('/inicio');
     } else {

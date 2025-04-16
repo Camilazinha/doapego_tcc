@@ -1,11 +1,10 @@
-// src/pages/Panel.jsx
+// src/pages/Painel.jsx
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import crianca from "../img/crianca-mao-logo.png"
 import gotoIcon from "../img/goto-icon.svg"
-
 
 export default function Painel() {
 

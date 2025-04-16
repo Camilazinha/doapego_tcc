@@ -1,7 +1,9 @@
+//src/pages/Teste.jsx
+
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 
-import noImageIcon from "../img/noimage-icon.svg"
+// import noImageIcon from "../img/noimage-icon.svg"
 import errorIcon from "../img/errorexclamation-icon.svg"
 import indexPic from "../img/imagem-teste.jpg"
 
@@ -76,7 +78,7 @@ export default function Teste() {
 
                     ))
                 ) : (
-                    <div className="list-group-item text-muted py-3"><img src={errorIcon} className="mx-2"></img> Nenhuma doação encontrada</div>
+                    <div className="list-group-item text-muted py-3"><img src={errorIcon} alt="" className="mx-2"></img> Nenhuma doação encontrada</div>
                 )}
 
             </div>

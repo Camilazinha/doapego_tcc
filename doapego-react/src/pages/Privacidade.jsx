@@ -1,3 +1,5 @@
+//src/pages/Privacidade.jsx
+
 export default function Privacidade() {
   return (
     <main>

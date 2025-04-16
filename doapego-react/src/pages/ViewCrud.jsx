@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 import { crudList } from '../constants/crudList';
+
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 
 export default function ViewCrud() {
-  const { entidade, id } = useParams(); // Pegamos a entidade e o id da URL
-  const config = crudList[entidade] || null; // Se a entidade não existir na configuração, retorna null
+  const { entidade, id } = useParams();
+  const config = crudList[entidade] || null;
 
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -17,17 +19,22 @@ export default function ViewCrud() {
       try {
         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${id}`);
         setItemData(response.data);
+
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
+
         if (err.response) {
           setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
           alert("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
+
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
           alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+
         } else {
           setError("Ocorreu um erro inesperado.");
           alert("Ocorreu um erro inesperado.");
+
         }
       } finally {
         setLoading(false);

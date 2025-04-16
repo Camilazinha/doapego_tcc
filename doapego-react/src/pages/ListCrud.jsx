@@ -75,17 +75,14 @@ export default function ListCrud() {
         try {
             const newStatus = !currentStatus;
 
-            // Determina campo e valor com base na entidade
             const isOng = entidade === "ongs";
             const statusField = isOng ? "statusOng" : "ativo";
             const statusValue = isOng ? (newStatus ? "ATIVO" : "INATIVO") : newStatus;
 
-            // Faz a requisição PATCH
             await axios.patch(`http://localhost:8080/${config.apiEndpoint}/${itemId}`, {
                 [statusField]: statusValue
             });
 
-            // Atualiza o estado local CORRETAMENTE
             setDados(dados.map(item => {
                 if (item.id === itemId) {
                     return {
@@ -180,8 +177,8 @@ export default function ListCrud() {
                                                 )
                                             ) : col.key === 'ativo' || col.key === 'statusOng' ? (
                                                 <span className={`badge ${(item.ativo === true || item.statusOng === 'ATIVO')
-                                                        ? 'bg-success'
-                                                        : 'bg-danger'
+                                                    ? 'bg-success'
+                                                    : 'bg-danger'
                                                     }`}>
                                                     {item.ativo !== undefined
                                                         ? (item.ativo ? 'Ativo' : 'Suspenso')
