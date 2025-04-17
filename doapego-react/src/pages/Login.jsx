@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+
 import axios from 'axios';
+
+import errorTriangleIcon from '../img/errortriangle-icon.svg';
 
 export default function Login() {
   const [emailAdmin, setEmailAdmin] = useState('');
@@ -44,6 +47,9 @@ export default function Login() {
           <h2 className='titulo-pagina-container'>LOGIN</h2>
 
           <form onSubmit={handleLogin}>
+
+            {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='24' className='me-2' />{error}</div>}
+
             <div className="form-group">
               <label htmlFor='email-admin' className='form-label'>E-mail</label>
               <input
