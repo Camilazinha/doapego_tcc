@@ -6,21 +6,20 @@ export default function Login() {
   const [emailAdmin, setEmailAdmin] = useState('');
   const [senha, setSenha] = useState('');
   const [lembrarMe, setLembrarMe] = useState(false);
-  const [erro, setErro] = useState('');
-  const [carregando, setCarregando] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setCarregando(true);
-    setErro('');
+    setLoading(true);
+    setError('');
 
     try {
-      // 1. Chamada para o backend
-      const response = await axios.post('http://localhost:8080/auth/login', {
-        email: emailAdmin,
-        senha: senha
-      });
+      const response = await axios.post(
+          'http://localhost:8080/auth/admin/login',
+          { email: emailAdmin, senha }
+      );
 
       // 2. Se quiser implementar "Lembrar-me" com JWT depois:
       if (lembrarMe) {
@@ -32,9 +31,9 @@ export default function Login() {
 
     } catch (error) {
       // 4. Trata erros
-      setErro(error.response?.data || 'Erro ao conectar com o servidor');
+      setError(error.response?.data || 'Erro ao conectar com o servidor');;
     } finally {
-      setCarregando(false);
+      setLoading(false);
     }
   };
 
@@ -43,13 +42,6 @@ export default function Login() {
       <div className="container my-5">
         <div className="form-container">
           <h2 className='titulo-pagina-container'>LOGIN</h2>
-
-          {/* Mensagem de erro (mantive sua estrutura original) */}
-          {erro && (
-            <div className="alert alert-danger mt-3">
-              {erro}
-            </div>
-          )}
 
           <form onSubmit={handleLogin}>
             <div className="form-group">
@@ -62,7 +54,7 @@ export default function Login() {
                 value={emailAdmin}
                 onChange={(e) => setEmailAdmin(e.target.value)}
                 required
-                disabled={carregando}
+                disabled={loading}
               />
             </div>
 
@@ -76,7 +68,7 @@ export default function Login() {
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
                 required
-                disabled={carregando}
+                disabled={loading}
               />
             </div>
 
@@ -87,7 +79,7 @@ export default function Login() {
                 id='remember-me' 
                 checked={lembrarMe}
                 onChange={(e) => setLembrarMe(e.target.checked)}
-                disabled={carregando}
+                disabled={loading}
               />
               <div className="d-flex justify-content-between">
                 <label className='form-check-label' htmlFor='remember-me'>Lembrar-me</label>
@@ -99,9 +91,9 @@ export default function Login() {
               <button 
                 type="submit" 
                 className="btn btn-custom-filled" 
-                disabled={carregando}
+                disabled={loading}
               >
-                {carregando ? 'Carregando...' : 'Entrar'}
+                {loading ? 'Carregando...' : 'Entrar'}
               </button>
             </div>
 
