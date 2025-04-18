@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import { crudList } from '../constants/crudList';
+import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
@@ -12,7 +12,7 @@ import successIcon from "../img/success-icon.svg";
 export default function EditCrud() {
 
   const { entidade, id } = useParams();
-  const config = crudList[entidade] || null;
+  const config = crudData[entidade] || null;
 
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(true);

@@ -4,7 +4,7 @@ import desativarIcon from "../img/desativar-icon.svg"
 import editIcon from "../img/edit-icon.svg"
 import viewIcon from "../img/view-icon.svg"
 
-export const crudList = {
+export const crudData = {
     'administradores': {
         titulo: 'ADMINISTRADORES',
         apiEndpoint: 'administradores',
@@ -34,8 +34,8 @@ export const crudList = {
                 type: 'disable', 
                 label: 'Desativar', 
                 icon: desativarIcon,
-                activeLabel: 'Desativar',  // Novo
-                inactiveLabel: 'Reativar'  // Novo
+                activeLabel: 'Desativar',
+                inactiveLabel: 'Reativar'
             }
         ]
     },

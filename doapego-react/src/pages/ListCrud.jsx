@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-
-import { crudList } from '../constants/crudList';
+import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
@@ -12,7 +11,7 @@ import noImageIcon from "../img/noimage-icon.svg";
 export default function ListCrud() {
 
     const { entidade } = useParams();
-    const config = crudList[entidade] || null;
+    const config = crudData[entidade] || null;
 
     const userTipo = "MASTER";
     const userOngId = 48;

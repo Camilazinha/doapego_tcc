@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import gotoIcon from "../img/goto-icon.svg";
@@ -7,8 +7,29 @@ export default function Painel() {
   // Pega os dados do localStorage
   const [userType] = useState(localStorage.getItem('tipo') || '');
   const userOngId = localStorage.getItem('ongId');
+  const [ongData, setOngData] = useState(null);
+  const [loading, setLoading] = useState(null);
 
-  const [minhaOng] = useState(null); // Mantive seu estado original
+  useEffect(() => {
+    if (userOngId) {
+      fetch(`http://localhost:8080/ongs/${userOngId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Erro ao buscar dados da ONG');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setOngData(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Erro:', error);
+          setLoading(false);
+        });
+    }
+  }, [userOngId]);
+
 
   const sections = [
     {
@@ -30,10 +51,10 @@ export default function Painel() {
     ...((userType === 'STAFF' || userType === 'FUNCIONARIO') ? [
       {
         id: 'my-ong',
-        title: minhaOng ? minhaOng.nome : 'Minha ONG',
+        title: ongData ? ongData.nome : 'Minha ONG',
         description: 'Visualize ou edite os detalhes da ONG que você administra ou trabalha.',
-        src: minhaOng ? minhaOng.foto : 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
-        link: `/configuracao/ongs/${userOngId}`,
+        src: ongData && ongData.foto ? ongData.foto : 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
+        link: `/configuracoes/ongs/detalhes/${userOngId}`,
         allowed: ['STAFF', 'FUNCIONARIO']
       }
     ] : []),
@@ -54,6 +75,10 @@ export default function Painel() {
       allowed: ['MASTER']
     }
   ];
+
+  if (loading) {
+    return <p>Carregando...</p>;
+  }
 
   return (
     <main>
