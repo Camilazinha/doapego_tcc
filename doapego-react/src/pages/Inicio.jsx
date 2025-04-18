@@ -14,9 +14,8 @@ export default function Inicio() {
 
   const [userType] = useState(localStorage.getItem('tipo') || '');
   const userOngId = localStorage.getItem('ongId');
-  const [ongData, setOngData] = useState(null);
-  const [adminName, setAdminName] = useState('');
   const adminId = localStorage.getItem('id');
+  const [adminName, setAdminName] = useState('');
 
   useEffect(() => {
     if (adminId) {
@@ -29,19 +28,6 @@ export default function Inicio() {
         });
     }
   }, [adminId]);
-
-  // NOVO USEEFFECT
-  useEffect(() => {
-    if (userOngId) {
-      axios.get(`http://localhost:8080/ongs/${userOngId}`)
-        .then(response => {
-          setOngData(response.data);
-        })
-        .catch(error => {
-          console.error("Erro ao buscar dados da ONG:", error);
-        });
-    }
-  }, [userOngId]);
 
   const [doacoesStats, setDoacoesStats] = useState({
     PENDENTES: 0,
