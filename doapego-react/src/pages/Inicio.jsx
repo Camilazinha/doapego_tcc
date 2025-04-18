@@ -11,9 +11,37 @@ import coletadaIcon from "../img/coletada-icon.svg";
 import goToIcon from '../img/goto-icon.svg';
 
 export default function Inicio() {
-  //Hardcoded
-  const tipoAdm = "master";
-  const idOng = 1;
+
+  const [userType] = useState(localStorage.getItem('tipo') || '');
+  const userOngId = localStorage.getItem('ongId');
+  const [ongData, setOngData] = useState(null);
+  const [adminName, setAdminName] = useState('');
+  const adminId = localStorage.getItem('id');
+
+  useEffect(() => {
+    if (adminId) {
+      axios.get(`http://localhost:8080/administradores/${adminId}`)
+        .then(response => {
+          setAdminName(response.data.nome); // ou "nomeCompleto", dependendo da API
+        })
+        .catch(error => {
+          console.error("Erro ao buscar nome do administrador:", error);
+        });
+    }
+  }, [adminId]);
+
+  // NOVO USEEFFECT
+  useEffect(() => {
+    if (userOngId) {
+      axios.get(`http://localhost:8080/ongs/${userOngId}`)
+        .then(response => {
+          setOngData(response.data);
+        })
+        .catch(error => {
+          console.error("Erro ao buscar dados da ONG:", error);
+        });
+    }
+  }, [userOngId]);
 
   const [doacoesStats, setDoacoesStats] = useState({
     PENDENTES: 0,
@@ -25,12 +53,12 @@ export default function Inicio() {
     axios
       .get("http://localhost:8080/doacoes")
       .then(response => {
-        const data = response.data;
+        const data = response.data.items;
 
         const doacoesFiltradas =
-          tipoAdm === "master"
+          userType === "MASTER"
             ? data
-            : data.filter(doacao => doacao.ongId === idOng);
+            : data.filter(doacao => doacao.ongId === parseInt(userOngId));
 
         const PENDENTES = doacoesFiltradas.filter(doacao => doacao.status === "PENDENTE").length;
         const COLETADAS = doacoesFiltradas.filter(doacao => doacao.status === "COLETADA").length;
@@ -41,14 +69,14 @@ export default function Inicio() {
       .catch(error => {
         console.error("Erro ao buscar doações:", error);
       });
-  }, [tipoAdm, idOng]);
+  }, [userType, userOngId]);
 
   return (
     <main>
       <div className='container my-5 nao-unico-elemento'>
         <div className='grid-home'>
           <section className='name-container mb-1'>
-            <span className='titulo-name'>Olá, Camila!</span>
+            <span className='titulo-name'>Olá, {adminName || 'visitante'}!</span>
             <Link className='link-name' to="/perfil">
               <img src={goToIcon} alt='Perfil' /> Ir para meu perfil
             </Link>
