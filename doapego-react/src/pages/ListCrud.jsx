@@ -243,7 +243,7 @@ export default function ListCrud() {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title subtitulo-container" style={{ color: 'var(--color-gray-dark)' }}>Confirmar Exclusão</h5>
+                                <h5 className="modal-title subtitulo-container text-danger">CUIDADO!</h5>
                                 <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
                             </div>
                             <div className="modal-body">

@@ -79,7 +79,7 @@ export default function ViewCrud() {
       <div className='container my-5 nao-unico-elemento px-5'>
         <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
 
-        <section className='borda p-5'>
+        <section className='container form-container-crud bg-white'>
           {config.colunas
             .filter((col) => col.temImagem)
             .map(col => {

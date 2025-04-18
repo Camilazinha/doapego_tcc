@@ -48,7 +48,7 @@ export default function Navbar() {
             <Link className="nav-link mt-2 mt-lg-0" to="/inicio">Início</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/gerenciar-doacoes">Gerenciar doações</Link>
+            <Link className="nav-link" to="/painel-de-controle">Painel de controle</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/configuracoes">Configurações</Link>
@@ -70,7 +70,7 @@ export default function Navbar() {
             <Link className="nav-link mt-2 mt-lg-0" to="/inicio">Início</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/gerenciar-solicitacoes">Gerenciar Solicitações</Link>
+            <Link className="nav-link" to="/painel-de-controle">Painel de controle</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/configuracoes">Configurações</Link>

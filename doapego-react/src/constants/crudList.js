@@ -9,7 +9,7 @@ export const crudList = {
         titulo: 'ADMINISTRADORES',
         apiEndpoint: 'administradores',
         colunas: [
-            { key: 'id', label: '#' },
+            { key: 'id', label: 'Código' },
             { key: 'nome', label: 'Nome' },
             { key: 'email', label: 'E-mail' },
             { key: 'tipo', label: 'Tipo' },
@@ -24,7 +24,7 @@ export const crudList = {
         titulo: 'USUÁRIOS',
         apiEndpoint: 'usuarios',
         colunas: [
-            { key: 'id', label: '#' },
+            { key: 'id', label: 'Código' },
             { key: 'nome', label: 'Nome' },
             { key: 'ativo', label: 'Status' }
         ],
@@ -44,7 +44,7 @@ export const crudList = {
         titulo: 'ENDEREÇOS (ONGS)',
         apiEndpoint: 'enderecos-ong',
         colunas: [
-            { key: 'id', label: '#' },
+            { key: 'id', label: 'Código' },
             { key: 'estado', label: 'Estado' },
             { key: 'cidade', label: 'Cidade' },
             { key: 'bairro', label: 'Bairro' }
@@ -57,7 +57,7 @@ export const crudList = {
         titulo: 'CATEGORIAS',
         apiEndpoint: 'categorias-doacao',
         colunas: [
-            { key: 'id', label: '#' },
+            { key: 'id', label: 'Código' },
             { key: 'foto', label: 'Foto', temImagem: true },
             { key: 'nome', label: 'Nome' }
         ],
@@ -71,7 +71,7 @@ export const crudList = {
         titulo: 'ONGS',
         apiEndpoint: 'ongs',
         colunas: [
-            { key: 'id', label: '#' },
+            { key: 'id', label: 'Código' },
             { key: 'foto', label: 'Foto', temImagem: true },
             { key: 'nome', label: 'Nome' }
         ],
