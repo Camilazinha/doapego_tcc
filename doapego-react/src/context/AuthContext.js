@@ -1,30 +1,32 @@
-// src/context/AuthContext.js
+// import { createContext, useContext, useState, useEffect } from 'react';
 
-import React, { createContext, useContext, useState } from 'react';
+// const AuthContext = createContext();
 
-// Criando o contexto
-const AuthContext = createContext();
+// export const AuthProvider = ({ children }) => {
+//   const [token, setToken] = useState(null);
 
-// Hook para consumir o contexto
-export const useAuth = () => useContext(AuthContext);
+//   // Verifica o localStorage quando o app carrega
+//   useEffect(() => {
+//     const tokenStorage = localStorage.getItem('token');
+//     if (tokenStorage) setToken(tokenStorage);
+//   }, []);
 
-export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userType, setUserType] = useState(null); // Tipo de usuário atual
+//   // Funções de login/logout
+//   const login = (newToken) => {
+//     localStorage.setItem('token', newToken);
+//     setToken(newToken);
+//   };
 
-  const login = (type) => {
-    setIsLoggedIn(true);
-    setUserType(type);
-  };
+//   const logout = () => {
+//     localStorage.removeItem('token');
+//     setToken(null);
+//   };
 
-  const logout = () => {
-    setIsLoggedIn(false);
-    setUserType(null);
-  };
+//   return (
+//     <AuthContext.Provider value={{ token, login, logout }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
 
-  return (
-    <AuthContext.Provider value={{ isLoggedIn, userType, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+// export const useAuth = () => useContext(AuthContext);

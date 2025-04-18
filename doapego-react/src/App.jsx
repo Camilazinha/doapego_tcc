@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -44,52 +45,47 @@ import "./styles/crud.css";
 
 export default function App() {
 
-        //IMPORTANTISSIMO
-        const [userType, setUserType] = useState('master'); // null representa usuário não logado
-
-        const handleLogin = (type) => setUserType(type); // Recebe o tipo de admin no login
-        const handleLogout = () => setUserType(null);
-
-        useEffect(() => {
-                // Recupera o userType do localStorage ao carregar o App
-                const savedUserType = localStorage.getItem('userType');
-                if (savedUserType) setUserType(savedUserType);
-        }, []);
-
         return (
-                <AuthProvider>
-                        <Router>
-                                <Navbar userType={userType} onLogout={handleLogout} />
+                <Router>
+                        <AuthProvider>
+
+                                <Navbar />
                                 <Routes>
-                                        <Route path="/" element={userType ? <Navigate to="/inicio" /> : <Home />} />
+                                        {/* Rotas públicas */}
+                                        <Route path="/" element={<Home />} />
                                         <Route path="/sobre" element={<Sobre />} />
                                         <Route path="/tutorial" element={<Tutorial />} />
                                         <Route path="/politica-de-privacidade" element={<Privacidade />} />
                                         <Route path="/termos-de-uso" element={<Termos />} />
                                         <Route path="/ajuda" element={<AjudaPublico />} />
-
-                                        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                                        <Route path="/login" element={<Login />} />
                                         <Route path="/redefinir-senha" element={<ResetPassword />} />
                                         <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
-
-                                        <Route path="/inicio" element={<Inicio />} />
-                                        <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
-
-                                        <Route path="/painel-de-controle" element={<Painel />} />
-                                        <Route path="/configuracoes" element={<Configuracoes />} />
                                         <Route path="/solicitar-cadastro" element={<CadastroStaff />} />
-                                        <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
-                                        <Route path="/gerenciar-solicitacoes" element={<Solicitacoes />} />
-
-                                        <Route path="/configuracoes/:entidade" element={<ListCrud />} />
-                                        <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
-                                        <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
-                                        <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
-
                                         <Route path="/teste" element={<Teste />} />
+
+                                        {/* Rotas privadas */}
+                                        <Route element={<ProtectedRoute allowedRoles={['MASTER', 'STAFF', 'FUNCIONARIO']} />}>
+                                                <Route path="/inicio" element={<Inicio />} />
+                                                <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
+                                                <Route path="/painel-de-controle" element={<Painel />} />
+                                                <Route path="/configuracoes" element={<Configuracoes />} />
+                                                <Route path="/configuracoes/:entidade" element={<ListCrud />} />
+                                                <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
+                                                <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
+                                                <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
+                                        </Route>
+
+                                        <Route element={<ProtectedRoute allowedRoles={['FUNCIONARIO', 'STAFF']} />}>
+                                                <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
+                                        </Route>
+                                        <Route element={<ProtectedRoute allowedRoles={['MASTER']} />}>
+                                                <Route path="/gerenciar-solicitacoes" element={<Solicitacoes />} />
+                                        </Route>
+
                                 </Routes>
                                 <Footer />
-                        </Router>
-                </AuthProvider>
+                        </AuthProvider>
+                </Router>
         );
 };

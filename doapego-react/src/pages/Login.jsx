@@ -8,7 +8,7 @@ import errorTriangleIcon from '../img/errortriangle-icon.svg';
 export default function Login() {
   const [emailAdmin, setEmailAdmin] = useState('');
   const [senha, setSenha] = useState('');
-  const [lembrarMe, setLembrarMe] = useState(false);
+  const [lembrarMe] = useState(true);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-          'http://localhost:8080/auth/admin/login',
-          { email: emailAdmin, senha }
+        'http://localhost:8080/auth/admin/login',
+        { email: emailAdmin, senha }
       );
 
       // 2. Se quiser implementar "Lembrar-me" com JWT depois:
@@ -29,12 +29,18 @@ export default function Login() {
         localStorage.setItem('token', response.data.token); // Adapte quando tiver JWT
       }
 
+      // Chama a função login do contexto
+      // login(
+      //   response.data.user, // Supondo que a API retorna os dados do usuário
+      //   response.data.token, // Supondo que a API retorna o token JWT
+      //   lembrarMe
+      // );
+
       // 3. Redireciona se sucesso
       navigate('/inicio');
 
     } catch (error) {
-      // 4. Trata erros
-      setError(error.response?.data || 'Erro ao conectar com o servidor');;
+      setError(error.response?.data?.message || 'Erro ao conectar com o servidor');
     } finally {
       setLoading(false);
     }
@@ -78,25 +84,16 @@ export default function Login() {
               />
             </div>
 
-            <div className='form-group form-check'>
-              <input 
-                className="form-check-input" 
-                type="checkbox" 
-                id='remember-me' 
-                checked={lembrarMe}
-                onChange={(e) => setLembrarMe(e.target.checked)}
-                disabled={loading}
-              />
-              <div className="d-flex justify-content-between">
-                <label className='form-check-label' htmlFor='remember-me'>Lembrar-me</label>
+            <div className='form-group form-check ps-1'>
+              <div className="d-flex justify-content-end">
                 <Link to="/esqueci-minha-senha" className='form-link'>Esqueci minha senha</Link>
               </div>
             </div>
 
             <div className="form-group">
-              <button 
-                type="submit" 
-                className="btn btn-custom-filled" 
+              <button
+                type="submit"
+                className="btn btn-custom-filled"
                 disabled={loading}
               >
                 {loading ? 'Carregando...' : 'Entrar'}
