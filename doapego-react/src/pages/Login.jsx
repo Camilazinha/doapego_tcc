@@ -26,8 +26,14 @@ export default function Login() {
 
       // 2. Se quiser implementar "Lembrar-me" com JWT depois:
       if (lembrarMe) {
-        localStorage.setItem('token', response.data.token); // Adapte quando tiver JWT
+        localStorage.setItem('token', response.data); // Adapte quando tiver JWT
       }
+
+      const dadosPayload = JSON.parse(atob(response.data.split('.')[1]));
+
+      localStorage.setItem('id', dadosPayload.id); // Adapte quando tiver JWT
+      localStorage.setItem('tipo', dadosPayload.tipo); // Adapte quando tiver JWT
+      localStorage.setItem('ongId', dadosPayload.ongId); // Adapte quando tiver JWT
 
       // Chama a função login do contexto
       // login(
