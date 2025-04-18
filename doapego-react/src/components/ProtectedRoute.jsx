@@ -1,23 +1,16 @@
-// src/components/ProtectedRoute.jsx
-import { useAuth } from '../context/AuthContext';
-import { Navigate, Outlet } from 'react-router-dom';
+import 
 
 const ProtectedRoute = ({ allowedRoles }) => {
-  const { user, isAuthenticated, loading } = useAuth();
+  const token = localStorage.getItem('token');
+  const tipo = localStorage.getItem('tipo');
 
-  if (loading) {
-    return <div>Carregando...</div>; // Ou um spinner
-  }
-
-  if (!isAuthenticated) {
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 
-  if (!allowedRoles.includes(user?.tipo)) {
-    return <Navigate to="/" replace />;
+  if (allowedRoles && !allowedRoles.includes(tipo)) {
+    return <Navigate to="/inicio" replace />; // Ou para uma página de "Não autorizado"
   }
 
   return <Outlet />;
 };
-
-export default ProtectedRoute;
