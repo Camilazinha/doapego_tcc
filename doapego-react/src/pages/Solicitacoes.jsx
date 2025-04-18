@@ -86,12 +86,13 @@ export default function Solicitacoes() {
                 </div>
 
                 <div className="flex-grow-1">
-                  <h5 className="mb-1">{ong.nome}</h5>
+                  <h5 className="mb-2">{ong.nome}</h5>
+                  <p>{ong.email}</p>
                 </div>
 
                 <div className="ms-auto me-4">
-                  <Link to={`/ong/${ong.id}`} className="btn btn-sm btn-custom-unfilled">
-                    Ver detalhes
+                  <Link to={`/configuracoes/ongs/detalhes/${ong.id}`} className="btn btn-sm btn-custom-unfilled">
+                    Checar
                   </Link>
                 </div>
               </div>

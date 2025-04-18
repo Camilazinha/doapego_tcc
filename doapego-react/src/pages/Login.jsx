@@ -18,6 +18,16 @@ export default function Login() {
     setLoading(true);
     setError('');
 
+    // 1. Validação front-end
+    if (!emailAdmin) {
+      setError('Por favor, informe seu e‑mail.');
+      return;
+    }
+    if (!senha) {
+      setError('Por favor, informe sua senha.');
+      return;
+    }
+
     try {
       const response = await axios.post(
         'http://localhost:8080/auth/admin/login',
@@ -26,27 +36,40 @@ export default function Login() {
 
       // 2. Se quiser implementar "Lembrar-me" com JWT depois:
       if (lembrarMe) {
-        localStorage.setItem('token', response.data); // Adapte quando tiver JWT
+        localStorage.setItem('token', response.data);
       }
 
       const dadosPayload = JSON.parse(atob(response.data.split('.')[1]));
 
-      localStorage.setItem('id', dadosPayload.id); // Adapte quando tiver JWT
-      localStorage.setItem('tipo', dadosPayload.tipo); // Adapte quando tiver JWT
-      localStorage.setItem('ongId', dadosPayload.ongId); // Adapte quando tiver JWT
+      localStorage.setItem('id', dadosPayload.id);
+      localStorage.setItem('tipo', dadosPayload.tipo);
+      localStorage.setItem('ongId', dadosPayload.ongId);
 
-      // Chama a função login do contexto
-      // login(
-      //   response.data.user, // Supondo que a API retorna os dados do usuário
-      //   response.data.token, // Supondo que a API retorna o token JWT
-      //   lembrarMe
-      // );
-
-      // 3. Redireciona se sucesso
       navigate('/inicio');
 
-    } catch (error) {
-      setError(error.response?.data?.message || 'Erro ao conectar com o servidor');
+    } catch (err) {
+      if (err.response) {
+        switch (err.response.status) {
+          case 400:
+            setError('Requisição inválida. Verifique os dados e tente novamente.');
+            break;
+          case 401:
+            setError('E‑mail ou senha incorretos.');
+            break;
+          case 403:
+            setError('Você não tem permissão para acessar este recurso.');
+            break;
+          case 500:
+            setError('Erro interno no servidor. Tente novamente mais tarde.');
+            break;
+          default:
+            setError(err.response.data?.message || `Erro ${err.response.status}.`);
+        }
+      } else if (err.request) {
+        setError('Não foi possível conectar ao servidor. Verifique sua internet.');
+      } else {
+        setError('Ocorreu um erro inesperado.');
+      }
     } finally {
       setLoading(false);
     }
@@ -60,7 +83,7 @@ export default function Login() {
 
           <form onSubmit={handleLogin}>
 
-            {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='24' className='me-2' />{error}</div>}
+            {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='20' className='me-2' />{error}</div>}
 
             <div className="form-group">
               <label htmlFor='email-admin' className='form-label'>E-mail</label>

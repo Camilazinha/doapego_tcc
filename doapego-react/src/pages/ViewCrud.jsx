@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import { crudList } from '../constants/crudList';
+import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
 
 export default function ViewCrud() {
   const { entidade, id } = useParams();
-  const config = crudList[entidade] || null;
+  const config = crudData[entidade] || null;
 
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);

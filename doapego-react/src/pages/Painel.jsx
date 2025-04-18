@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import crianca from "../img/crianca-mao-logo.png";
 import gotoIcon from "../img/goto-icon.svg";
 
 export default function Painel() {
@@ -16,7 +15,7 @@ export default function Painel() {
       id: 'manage-donation',
       title: 'Gerenciar Doações',
       description: 'Aprove ou recuse doações enviadas pelos doadores da plataforma.',
-      src: crianca,
+      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
       link: '/gerenciar-doacoes',
       allowed: ['STAFF', 'FUNCIONARIO']
     },
@@ -24,7 +23,7 @@ export default function Painel() {
       id: 'manage-request',
       title: 'Gerenciar Solicitações',
       description: 'Aprove ou recuse solicitações de novas ONGs que desejam ingressar na plataforma.',
-      src: crianca,
+      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
       link: '/gerenciar-solicitacoes',
       allowed: ['MASTER']
     },
@@ -33,7 +32,7 @@ export default function Painel() {
         id: 'my-ong',
         title: minhaOng ? minhaOng.nome : 'Minha ONG',
         description: 'Visualize ou edite os detalhes da ONG que você administra ou trabalha.',
-        src: minhaOng ? minhaOng.foto : crianca,
+        src: minhaOng ? minhaOng.foto : 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
         link: `/configuracao/ongs/${userOngId}`,
         allowed: ['STAFF', 'FUNCIONARIO']
       }
@@ -42,7 +41,7 @@ export default function Painel() {
       id: 'create-staff',
       title: 'Adicionar Staff',
       description: 'Crie a conta de acesso para o representante da ONG, permitindo que ele gerencie as doações.',
-      src: crianca,
+      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
       link: '/configuracoes/administradores/adicionar',
       allowed: ['MASTER']
     },
@@ -50,7 +49,7 @@ export default function Painel() {
       id: 'check-photo',
       title: 'Revisar doações',
       description: 'Revise as doações antes de enviá-las para as ONGs, garantindo que o conteúdo esteja adequado.',
-      src: crianca,
+      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
       link: '/checar-midia',
       allowed: ['MASTER']
     }

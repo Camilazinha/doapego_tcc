@@ -4,14 +4,14 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import { crudList } from '../constants/crudList';
+import { crudData } from '../constants/crudData';
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function AddCrud() {
 
   const { entidade } = useParams();
-  const config = crudList[entidade] || null;
+  const config = crudData[entidade] || null;
   const userTipo = "MASTER";
 
   const [formData, setFormData] = useState(() => {
