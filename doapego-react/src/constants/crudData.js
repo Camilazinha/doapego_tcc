@@ -56,7 +56,10 @@ export const crudData = {
             { key: 'longitude', label: 'Longitude' },
             { key: 'cep', label: 'CEP' },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
-            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' }
+            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
+            {
+                key: 'ong', label: 'ID da ONG', tipo: 'foreignKey' // 👈 Define como chave estrangeira (para tratamento especial)
+            }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
