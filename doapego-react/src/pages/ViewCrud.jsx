@@ -102,19 +102,33 @@ export default function ViewCrud() {
           <div className='table-responsive'>
             <table className='table table-bordered align-middle mb-0'>
               <tbody>
-                {config.colunas
-                  .filter((col) => !col.temImagem)
+                {[
+                  ...config.colunas,
+                  ...(config.colunasExtras || []) // Adiciona extras se existirem
+                ]
+                  .filter((col) => !col.temImagem) // Mantém o filtro original
                   .map(col => {
                     const valor = itemData[col.key];
-                    const temValor =
-                      valor !== null &&
-                      valor !== undefined &&
-                      String(valor).trim() !== "";
+                    const temValor = valor !== null && valor !== undefined && String(valor).trim() !== "";
 
                     return (
                       <tr key={col.key}>
                         <th scope="row" className="text-nowrap text-secondary fw-semibold" style={{ width: "30%" }}>{col.label}</th>
-                        <td>{temValor ? valor : "Sem informação"}</td>
+                        <td>
+                          {temValor ? (
+                            typeof valor === 'boolean' ? (
+                              col.tipoBooleano === 'ativo-inativo' ? (
+                                valor ? 'Ativo' : 'Inativo'
+                              ) : (
+                                valor ? 'Sim' : 'Não'
+                              )
+                            ) : (
+                              valor
+                            )
+                          ) : (
+                            "Sem informação"
+                          )}
+                        </td>
                       </tr>
                     );
                   })}

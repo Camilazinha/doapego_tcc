@@ -13,11 +13,10 @@ export const crudData = {
             { key: 'nome', label: 'Nome' },
             { key: 'email', label: 'E-mail' },
             { key: 'tipo', label: 'Tipo' },
-
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            { type: 'delete', label: 'Excluir', icon: deleteIcon}
+            { type: 'delete', label: 'Excluir', icon: deleteIcon }
         ]
     },
     'usuarios': {
@@ -30,9 +29,9 @@ export const crudData = {
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            { 
-                type: 'disable', 
-                label: 'Desativar', 
+            {
+                type: 'disable',
+                label: 'Desativar',
                 icon: desativarIcon,
                 activeLabel: 'Desativar',
                 inactiveLabel: 'Reativar'
@@ -49,6 +48,16 @@ export const crudData = {
             { key: 'cidade', label: 'Cidade' },
             { key: 'bairro', label: 'Bairro' }
         ],
+        colunasExtras: [
+            { key: 'logradouro', label: 'Logradouro' },
+            { key: 'numero', label: 'Número' },
+            { key: 'complemento', label: 'Complemento' },
+            { key: 'latitude', label: 'Latitude' },
+            { key: 'longitude', label: 'Longitude' },
+            { key: 'cep', label: 'CEP' },
+            { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
+            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' }
+        ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
         ]
@@ -64,7 +73,7 @@ export const crudData = {
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
             { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: editIcon },
-            { type: 'delete', label: 'Excluir', icon: deleteIcon}
+            { type: 'delete', label: 'Excluir', icon: deleteIcon }
         ]
     },
     'ongs': {
@@ -77,13 +86,13 @@ export const crudData = {
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            { 
-                type: 'disable', 
-                label: 'Desativar', 
+            {
+                type: 'disable',
+                label: 'Desativar',
                 icon: desativarIcon,
                 activeLabel: 'Desativar',  // Novo
                 inactiveLabel: 'Reativar'  // Novo
-            }  
+            }
         ]
     }
 };
