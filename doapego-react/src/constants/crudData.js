@@ -10,6 +10,7 @@ export const crudData = {
         apiEndpoint: 'administradores',
         colunas: [
             { key: 'id', label: 'Código' },
+            { key: 'fotoPerfil', label: 'Foto', temImagem: true },
             { key: 'nome', label: 'Nome' },
             { key: 'email', label: 'E-mail' },
             { key: 'tipo', label: 'Tipo' },
@@ -57,9 +58,7 @@ export const crudData = {
             { key: 'cep', label: 'CEP' },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
-            {
-                key: 'ong', label: 'ID da ONG', tipo: 'foreignKey' // 👈 Define como chave estrangeira (para tratamento especial)
-            }
+            { key: 'ong', label: 'ID da ONG', tipo: 'foreignKey' }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
@@ -84,8 +83,16 @@ export const crudData = {
         apiEndpoint: 'ongs',
         colunas: [
             { key: 'id', label: 'Código' },
-            { key: 'foto', label: 'Foto', temImagem: true },
-            { key: 'nome', label: 'Nome' }
+            { key: 'fotoPerfil', label: 'Foto', temImagem: true },
+            { key: 'nome', label: 'Nome' },
+            { key: 'email', label: 'E-mail' },
+            { key: 'telefone', label: 'Telefone' }
+        ],
+        colunasExtras: [
+            { key: 'whatsapp', label: 'WhatsApp' },
+            { key: 'descricao', label: 'Descrição' },
+            { key: 'fundacao', label: 'Data de fundação' },
+            { key: 'statusOng', label: 'Status' },
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },

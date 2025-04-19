@@ -168,7 +168,7 @@ export default function ListCrud() {
                                         <td key={col.key} className="text-center">
                                             {col.temImagem ? (
                                                 item[col.key] ? (
-                                                    <img src={item[col.key]} alt="" className="com-imagem" style={{ objectFit: 'cover' }} />
+                                                    <img src={item[col.key]} alt="" className="rounded-circle shadow-sm" style={{ width: "80px", height: "80px", objectFit: "cover" }} />
                                                 ) : (
                                                     <div className="d-flex align-items-center justify-content-center">
                                                         <img src={noImageIcon} alt="Sem imagem" width={80} />
