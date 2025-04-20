@@ -72,17 +72,17 @@ export const crudData = {
         apiEndpoint: 'enderecos-ong',
         colunas: [
             { key: 'id', label: 'Código' },
-            { key: 'estado', label: 'Estado' },
-            { key: 'cidade', label: 'Cidade' },
-            { key: 'bairro', label: 'Bairro' }
+            { key: 'estado', label: 'Estado', required: true },
+            { key: 'cidade', label: 'Cidade', required: true },
+            { key: 'bairro', label: 'Bairro', required: true }
         ],
         colunasExtras: [
-            { key: 'logradouro', label: 'Logradouro' },
-            { key: 'numero', label: 'Número' },
+            { key: 'logradouro', label: 'Logradouro', required: true },
+            { key: 'numero', label: 'Número', required: true },
             { key: 'complemento', label: 'Complemento' },
             { key: 'latitude', label: 'Latitude' },
             { key: 'longitude', label: 'Longitude' },
-            { key: 'cep', label: 'CEP' },
+            { key: 'cep', label: 'CEP', required: true },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
             { key: 'ongId', label: 'ID da ONG', tipo: 'foreignKey' }

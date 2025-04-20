@@ -107,7 +107,7 @@ export default function ListCrud() {
         try {
             await axios.delete(`http://localhost:8080/${config.apiEndpoint}/${itemToDelete}`);
             setDados(dados.filter(item => item.id !== itemToDelete));
-            alert(`${config.titulo} excluído com sucesso!`);
+            alert(`Excluído com sucesso!`);
         } catch (err) {
             console.error('Erro ao excluir:', err);
             alert('Erro ao excluir. Tente novamente!');
