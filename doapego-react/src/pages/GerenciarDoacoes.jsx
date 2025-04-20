@@ -119,8 +119,8 @@ export default function GerenciarDoacoes() {
                     <img
                       src={doacao.foto || "/placeholder.svg"}
                       alt={doacao.nome}
-                      className="com-imagem"
-                      style={{ objectFit: "cover" }}
+                      className="rounded-circle shadow-sm"
+                      style={{ width: "80px", height: "80px", objectFit: "cover" }}
                     />
                   ) : (
                     <div className="d-flex align-items-center justify-content-center">
@@ -130,7 +130,7 @@ export default function GerenciarDoacoes() {
                 </div>
 
                 <div className="flex-grow-1">
-                  <h5 className="mb-1">{doacao.nome}</h5>
+                  <h5 className="mb-0 mt-2 doacao-nome">{doacao.nome}</h5>
                   <p className="mb-0">
                     <Link to="/configuracoes/categorias-doacao">
                       <span className="badge tag-categoria">

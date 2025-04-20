@@ -10,16 +10,23 @@ export const crudData = {
         apiEndpoint: 'administradores',
         colunas: [
             { key: 'id', label: 'Código' },
-            { key: 'fotoPerfil', label: 'Foto', temImagem: true },
+            {
+                key: 'fotoPerfil', label: 'Foto', temImagem: true, opcional: true    // ← campo opcional
+            },
             { key: 'nome', label: 'Nome' },
             { key: 'email', label: 'E-mail' },
             { key: 'tipo', label: 'Tipo' },
         ],
         colunasExtras: [
-            { key: 'ongNome', label: 'ONG', tipo: 'foreignKey' },
+            { key: 'ongId', label: 'Código da ONG', tipo: 'foreignKey' },
+
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
 
         ],
+        colunasFormulario: [
+            { key: 'senha', label: 'Senha', tipo: 'password', required: true },
+        ],
+
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
             {

@@ -1,6 +1,6 @@
-//src/pages/AddCrud.jsx
+// src/pages/AddCrud.jsx
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,78 +9,127 @@ import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function AddCrud() {
-
   const { entidade } = useParams();
+  const userOngId = localStorage.getItem('ongId');
+
   const config = crudData[entidade] || null;
-  const userTipo = "MASTER";
 
-  const [formData, setFormData] = useState(() => {
+  // pega tipo do usuário do localStorage
+  const [userType] = useState(localStorage.getItem('tipo') || '');
+  const [ongOptions, setOngOptions] = useState([]);
 
-    if (config) {
-      const initialData = {};
-
-      config.colunas.forEach(col => {
-        if (col.key !== 'id') { // Não precisamos do campo de id na criação
-          initialData[col.key] = "";
-        }
-      });
-
-      return initialData;
+  useEffect(() => {
+    if (userType !== 'STAFF') {
+      axios.get('http://localhost:8080/ongs?statusOng=ATIVO')
+        .then(res => {
+          setOngOptions(res.data.items);
+        })
+        .catch(err => {
+          console.error('Erro ao buscar ONGs:', err);
+          setOngOptions([]);
+        });
     }
-    return {};
+  }, [userType]);
+
+  // no topo do seu componente, logo depois de const allCols:
+  const listaOngs = Array.isArray(ongOptions) ? ongOptions : [];
+
+  // 1) junta todas as colunas
+  const allCols = config
+    ? [...config.colunas, ...(config.colunasExtras || []), ...(config.colunasFormulario || [])]
+    : [];
+
+  // 2) inicializa formData com TODAS as chaves (exceto id)
+  const [formData, setFormData] = useState(() => {
+    const initial = {};
+    allCols.forEach(col => {
+      if (col.key === 'id') return;
+
+      if (col.key === 'ongId') {
+        if (userType === 'STAFF') {
+          // STAFF: auto‑preenche e esconde
+          initial[col.key] = { id: userOngId };
+        } else {
+          // MASTER: começa vazio, o usuário vai escolher
+          initial[col.key] = '';
+        }
+        return;
+      }
+
+      if (col.tipoBooleano === 'ativo-inativo') {
+        initial[col.key] = true;
+      } else {
+        initial[col.key] = '';
+      }
+    });
+    return initial;
   });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [validationError, setValidationError] = useState("");
+  const [validationError, setValidationError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = e => {
+    const { name, value, type } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'radio'
+        // para radio de booleano (value "true"/"false") ou enum (value = string)
+        ? (value === 'true' ? true : value === 'false' ? false : value)
+        : value
+    }));
   };
 
-  const handleSubmit = async (e) => {
-
+  const handleSubmit = async e => {
     e.preventDefault();
-    // Força o valor de tipo com base no userTipo
-    if (entidade === "administradores") {
-      if (userTipo === "MASTER") {
-        formData.tipo = "STAFF";
-      } else if (userTipo === "STAFF") {
-        formData.tipo = "FUNCIONARIO";
-      }
+
+    // Força o valor de tipo baseado no userType
+    if (entidade === 'administradores') {
+      if (userType === 'MASTER') formData.tipo = 'STAFF';
+      else if (userType === 'STAFF') formData.tipo = 'FUNCIONARIO';
     }
+
+    // valida todos os campos (colunas + colunasExtras), exceto id
+    const vazios = allCols.filter(col => {
+      if (col.key === 'id') return false;
+      if (col.key === 'fotoPerfil') return false;
+      if (col.tipoBooleano === 'ativo-inativo') return false;
+      if (col.key === 'ongId' && userType === 'STAFF') return false;
+
+      // Novo: verifica se o campo é obrigatório (default = true se não especificado)
+      const isRequired = col.required !== undefined ? col.required : true;
+
+      const val = formData[col.key];
+      return isRequired && (!val || (typeof val === 'string' && !val.trim()));
+    });
+    if (vazios.length > 0) {
+      setValidationError(
+        `Por favor, preencha: ${vazios.map(c => c.label).join(', ').toLowerCase()}`
+      );
+      return;
+    }
+    // limpa erro anterior
+    setValidationError('');
 
     setLoading(true);
     setError(null);
-    setValidationError("");
-
-    const camposVazios = config.colunas.filter(
-      col => col.key !== 'id' && (!formData[col.key] || !formData[col.key].trim())
-    );
-    if (camposVazios.length > 0) {
-      setValidationError(`Por favor, preencha o(s) campo(s): ${camposVazios.map(col => col.label).join(', ').toLowerCase()}`);
-      setLoading(false);
-      return;
-    }
 
     try {
-      await axios.post(`http://localhost:8080/${config.apiEndpoint}`, formData);
+      await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
+        formData);
       setSuccessMessage(`${config.titulo} adicionado com sucesso!`);
-      alert(`${config.titulo} adicionado com sucesso!`);
-
-      // Reinicia o formulário após a adição
-      const resetData = {};
-      config.colunas.forEach(col => {
-        if (col.key !== 'id') {
-          resetData[col.key] = "";
-        }
+      // reset
+      const reset = {};
+      allCols.forEach(col => {
+        if (col.key === 'id') return;
+        reset[col.key] = (col.tipoBooleano === 'ativo-inativo')
+          ? true
+          : '';
       });
+      setFormData(reset);
 
-      setFormData(resetData);
-    }
-
-    catch (err) {
+    } catch (err) {
       console.error("Erro ao adicionar:", err);
       if (err.response) {
         setError("Erro ao carregar os dados. Tente novamente mais tarde.");
@@ -100,7 +149,7 @@ export default function AddCrud() {
     }
   };
 
-  if (!config)
+  if (!config) {
     return (
       <main className='container my-5 nao-unico-elemento px-5'>
         <div className="alert alert-danger d-flex">
@@ -109,6 +158,7 @@ export default function AddCrud() {
         </div>
       </main>
     );
+  }
 
   return (
     <main>
@@ -124,68 +174,191 @@ export default function AddCrud() {
 
         {successMessage && (
           <div className="alert alert-success d-flex">
-            <img src={successIcon} className="me-2" alt="" />
-            <p className="">{successMessage}</p>
+            <img src={successIcon} className="me-2" alt="sucesso" />
+            <p className="sucesso">{successMessage}</p>
           </div>
         )}
 
         <section className='p-5 form-container'>
           <form onSubmit={handleSubmit}>
 
-            {config.colunas.map(col => {
-              if (col.key === "id") return null;
+            {allCols.map(col => {
+              if (col.key === 'id') return null;
 
-              const isTipoField = col.key === "tipo";
+              // lógica de tipo fixo (MASTER → STAFF / STAFF → FUNCIONARIO)
+              const isTipoField = col.key === 'tipo';
               const isAdminPage = entidade === 'administradores';
+              const tipoFixo = isAdminPage && isTipoField
+                ? (userType === 'MASTER' ? 'STAFF' : userType === 'STAFF' ? 'FUNCIONARIO' : null)
+                : null;
 
-              const tipoFixo =
-                isAdminPage && isTipoField && userTipo === "MASTER"
-                  ? "STAFF"
-                  : isAdminPage && isTipoField && userTipo === "STAFF"
-                    ? "FUNCIONARIO"
-                    : null;
-
-              return (
-                <div key={col.key} className="mb-3">
-                  <div className='form-group'>
+              // 1) foreignKey -> hidden
+              if (col.tipo === 'foreignKey' && col.key === 'ongId') {
+                // STAFF: input hidden
+                if (userType === 'STAFF') {
+                  return (
+                    <input
+                      key={col.key}
+                      type="hidden"
+                      name="ongId.id"
+                      value={formData.ongId.id}
+                    />
+                  );
+                }
+                // MASTER: select para escolher ONG
+                return (
+                  <div key={col.key} className="mb-3 form-group">
                     <label className="form-label">{col.label}:</label>
-                    {tipoFixo ? (
+                    <select
+                      name="ongId"
+                      className="form-control form-select"
+                      value={formData.ongId}
+                      onChange={e => setFormData(prev => ({ ...prev, ongId: e.target.value }))}
+                    >
+                      <option className="text-muted" value="">Selecione</option>
+                      {listaOngs.map(o => (
+                        <option key={o.id} value={o.id}>
+                          {o.id}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                );
+              }
+
+              // 2) tipo fixo (select disabled)
+              if (tipoFixo) {
+                return (
+                  <div className='form-group'>
+
+                    <div key={col.key} className="mb-3">
+
+                      <label className="form-label">{col.label}:</label>
                       <select
                         name={col.key}
                         value={tipoFixo}
                         className="form-control form-select"
-                        aria-readonly="true"
                         disabled
                       >
                         <option value={tipoFixo}>{tipoFixo}</option>
                       </select>
+                    </div>
+                  </div>
+                );
+              }
 
-                    ) : col.selectOptions ? (
+              // 3) radio ativo-inativo (enum ou booleano)
+              if (col.tipoBooleano === 'ativo-inativo') {
+                return (
+                  <div className='form-group'>
+
+                    <div key={col.key} className="mb-3">
+                      <label className="form-label">{col.label}:</label>
+                      <div className="d-flex mb-1">
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            name={col.key}
+                            id={`${col.key}-ativo`}
+                            value="true"
+                            checked={formData[col.key] === true}
+                            onChange={() =>
+                              setFormData(prev => ({ ...prev, [col.key]: true }))
+                            }
+                            className="form-check-input"
+                          />
+                          <label className="form-check-label" htmlFor={`${col.key}-ativo`}>
+                            Ativo
+                          </label>
+                        </div>
+                      </div>
+                      <div className='form-group'>
+
+                        <div className="form-check">
+                          <input
+                            type="radio"
+                            name={col.key}
+                            id={`${col.key}-inativo`}
+                            value="false"
+                            checked={formData[col.key] === false}
+                            onChange={() =>
+                              setFormData(prev => ({ ...prev, [col.key]: false }))
+                            }
+                            className="form-check-input"
+                          />
+                          <label className="form-check-label" htmlFor={`${col.key}-inativo`}>
+                            Inativo
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                );
+              }
+
+              // 4) selectOptions (se existir)
+              if (col.selectOptions) {
+                return (
+                  <div className='form-group'>
+
+                    <div key={col.key} className="mb-3">
+                      <label className="form-label">{col.label}:</label>
                       <select
                         name={col.key}
                         value={formData[col.key]}
                         onChange={handleChange}
                         className='form-control form-select'>
                         <option className='text-muted' value="">Selecione uma opção</option>
-                        {col.selectOptions.map((option, idx) => (
-                          <option key={idx} value={option}>{option}</option>
+                        {col.selectOptions.map((opt, idx) => (
+                          <option key={idx} value={opt}>{opt}</option>
                         ))}
                       </select>
-                    ) : (
-                      <input
-                        type="text"
-                        name={col.key}
-                        value={formData[col.key]}
-                        onChange={handleChange}
-                        className="form-control"
-                      />
-                    )}
+                    </div>
                   </div>
+                );
+              }
+              // 5) campo de senha (password)
+              if (col.tipo === 'password') {
+                return (
+                  <div className='form-group' key={col.key}>
+                    <div className="mb-3">
+                      <label className="form-label">{col.label}:</label>
+                      <input
+                        type="password" // 👈 Tipo password para esconder caracteres
+                        name={col.key}
+                        className="form-control"
+                        value={formData[col.key] || ''}
+                        onChange={handleChange}
+                        autoComplete="new-password"
+                      />
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <div className='form-group'>
+
+                  <div key={col.key} className="mb-3">
+                    <label className="form-label">{col.label}:</label>
+                    <input
+                      type="text"
+                      name={col.key}
+                      className="form-control"
+                      value={formData[col.key]}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                 </div>
               );
             })}
 
-            <button type="submit" className="btn btn-custom-filled" disabled={loading}>
+            <button
+              type="submit"
+              className="btn btn-custom-filled"
+              disabled={loading}
+            >
               {loading ? "Adicionando..." : "Adicionar"}
             </button>
 
