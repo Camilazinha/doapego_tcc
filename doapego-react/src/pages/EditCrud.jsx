@@ -188,6 +188,20 @@ export default function EditCrud() {
                   </div>
                 );
               }
+              if (col.key === 'tipo' && entidade === 'administradores') {
+                return (
+                  <div key={col.key} className="mb-4 form-group">
+                    <label className="form-label">{col.label}:</label>
+                    <input
+                      type="text"
+                      value={formData[col.key]}
+                      className="form-control"
+                      disabled
+                    />
+                  </div>
+                );
+              }
+
               if (col.tipo === 'foreignKey') {
                 return (
                   <input
