@@ -95,7 +95,7 @@ export default function ListCrud() {
                 return item;
             }));
 
-            alert(`${config.titulo} ${newStatus ? 'ativado' : 'desativado'} com sucesso!`);
+            alert(`${newStatus ? 'Ativado' : 'Desativado'} com sucesso!`);
         } catch (err) {
             console.error('Erro ao alterar status:', err);
             alert('Erro ao alterar status. Tente novamente!');
@@ -206,7 +206,7 @@ export default function ListCrud() {
                                             if (acao.type === 'disable') {
                                                 const isActive = entidade === "ongs"
                                                     ? item.statusOng === "ATIVO"
-                                                    : item.ativo;
+                                                    : item.ativo === true || item.ativo === "true"
 
                                                 return (
                                                     <button key={acao.type}

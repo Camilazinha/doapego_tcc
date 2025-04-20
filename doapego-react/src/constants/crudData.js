@@ -15,9 +15,20 @@ export const crudData = {
             { key: 'email', label: 'E-mail' },
             { key: 'tipo', label: 'Tipo' },
         ],
+        colunasExtras: [
+            { key: 'ongNome', label: 'ONG', tipo: 'foreignKey' },
+            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
+
+        ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            { type: 'delete', label: 'Excluir', icon: deleteIcon }
+            {
+                type: 'disable',
+                label: 'Desativar',
+                icon: desativarIcon,
+                activeLabel: 'Desativar',  // Novo
+                inactiveLabel: 'Reativar'  // Novo
+            }
         ]
     },
     'usuarios': {
@@ -25,8 +36,17 @@ export const crudData = {
         apiEndpoint: 'usuarios',
         colunas: [
             { key: 'id', label: 'Código' },
+            { key: 'fotoPerfil', label: 'Foto', temImagem: true },
             { key: 'nome', label: 'Nome' },
-            { key: 'ativo', label: 'Status' }
+            { key: 'email', label: 'E-mail' },
+            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
+        ],
+        colunasExtras: [
+            { key: 'telefone', label: 'Telefone' },
+            { key: 'cep', label: 'CEP' },
+            { key: 'estado', label: 'Estado' },
+            { key: 'cidade', label: 'Cidade' },
+            { key: 'bairro', label: 'Bairro' },
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
@@ -58,7 +78,7 @@ export const crudData = {
             { key: 'cep', label: 'CEP' },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
-            { key: 'ong', label: 'ID da ONG', tipo: 'foreignKey' }
+            { key: 'ongId', label: 'ID da ONG', tipo: 'foreignKey' }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
