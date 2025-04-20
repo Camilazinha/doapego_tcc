@@ -13,14 +13,13 @@ export default function ListCrud() {
     const { entidade } = useParams();
     const config = crudData[entidade] || null;
 
-    const userTipo = "MASTER";
-    const userOngId = 48;
+    const [userType] = useState(localStorage.getItem('tipo') || '');
+    const userOngId = localStorage.getItem('ongId');
 
     const [dados, setDados] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [itemId, setItemId] = useState(null);
     const [itemToDelete, setItemToDelete] = useState(null);
 
 
@@ -30,17 +29,17 @@ export default function ListCrud() {
         const fetchData = async () => {
             try {
                 if (entidade === "administradores") {
-                    if (userTipo === "MASTER") {
+                    if (userType === "MASTER") {
                         const [staffResponse, masterResponse] = await Promise.all([
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&sortDirection=asc`),
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=MASTER&sortDirection=asc`)
                         ]);
                         setDados([...staffResponse.data.items, ...masterResponse.data.items]);
 
-                    } else if (userTipo === "STAFF") {
+                    } else if (userType === "STAFF") {
                         const [staffResponse, funcionarioResponse] = await Promise.all([
-                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&sortDirection=asc`),
-                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=FUNCIONARIO&sortDirection=asc`)
+                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&ongId=${userOngId}&sortDirection=asc`),
+                            axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=FUNCIONARIO&ongId=${userOngId}&sortDirection=asc`)
                         ]);
                         setDados([...staffResponse.data.items, ...funcionarioResponse.data.items]);
                     }
@@ -68,7 +67,7 @@ export default function ListCrud() {
         };
 
         fetchData();
-    }, [config, entidade, userTipo, userOngId]);
+    }, [config, entidade, userType, userOngId]);
 
     const toggleStatus = async (itemId, currentStatus) => {
         try {

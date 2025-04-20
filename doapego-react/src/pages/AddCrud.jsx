@@ -179,7 +179,7 @@ export default function AddCrud() {
           </div>
         )}
 
-        <section className='p-5 form-container'>
+        <section className='container form-container-crud bg-white'>
           <form onSubmit={handleSubmit}>
 
             {allCols.map(col => {
@@ -207,7 +207,7 @@ export default function AddCrud() {
                 }
                 // MASTER: select para escolher ONG
                 return (
-                  <div key={col.key} className="mb-3 form-group">
+                  <div key={col.key} className="mb-4 form-group">
                     <label className="form-label">{col.label}:</label>
                     <select
                       name="ongId"
@@ -229,20 +229,18 @@ export default function AddCrud() {
               // 2) tipo fixo (select disabled)
               if (tipoFixo) {
                 return (
-                  <div className='form-group'>
 
-                    <div key={col.key} className="mb-3">
+                  <div key={col.key} className="mb-4 form-group">
 
-                      <label className="form-label">{col.label}:</label>
-                      <select
-                        name={col.key}
-                        value={tipoFixo}
-                        className="form-control form-select"
-                        disabled
-                      >
-                        <option value={tipoFixo}>{tipoFixo}</option>
-                      </select>
-                    </div>
+                    <label className="form-label">{col.label}:</label>
+                    <select
+                      name={col.key}
+                      value={tipoFixo}
+                      className="form-control form-select"
+                      disabled
+                    >
+                      <option value={tipoFixo}>{tipoFixo}</option>
+                    </select>
                   </div>
                 );
               }
@@ -250,105 +248,97 @@ export default function AddCrud() {
               // 3) radio ativo-inativo (enum ou booleano)
               if (col.tipoBooleano === 'ativo-inativo') {
                 return (
-                  <div className='form-group'>
 
-                    <div key={col.key} className="mb-3">
-                      <label className="form-label">{col.label}:</label>
-                      <div className="d-flex mb-1">
-                        <div className="form-check">
-                          <input
-                            type="radio"
-                            name={col.key}
-                            id={`${col.key}-ativo`}
-                            value="true"
-                            checked={formData[col.key] === true}
-                            onChange={() =>
-                              setFormData(prev => ({ ...prev, [col.key]: true }))
-                            }
-                            className="form-check-input"
-                          />
-                          <label className="form-check-label" htmlFor={`${col.key}-ativo`}>
-                            Ativo
-                          </label>
-                        </div>
-                      </div>
-                      <div className='form-group'>
-
-                        <div className="form-check">
-                          <input
-                            type="radio"
-                            name={col.key}
-                            id={`${col.key}-inativo`}
-                            value="false"
-                            checked={formData[col.key] === false}
-                            onChange={() =>
-                              setFormData(prev => ({ ...prev, [col.key]: false }))
-                            }
-                            className="form-check-input"
-                          />
-                          <label className="form-check-label" htmlFor={`${col.key}-inativo`}>
-                            Inativo
-                          </label>
-                        </div>
+                  <div key={col.key} className="mb-4 form-group">
+                    <label className="form-label">{col.label}:</label>
+                    <div className="d-flex mb-1">
+                      <div className="form-check">
+                        <input
+                          type="radio"
+                          name={col.key}
+                          id={`${col.key}-ativo`}
+                          value="true"
+                          checked={formData[col.key] === true}
+                          onChange={() =>
+                            setFormData(prev => ({ ...prev, [col.key]: true }))
+                          }
+                          className="form-check-input"
+                        />
+                        <label className="form-check-label" htmlFor={`${col.key}-ativo`}>
+                          Ativo
+                        </label>
                       </div>
                     </div>
 
+                    <div className="d-flex mb-0">
+                      <div className="form-check">
+                        <input
+                          type="radio"
+                          name={col.key}
+                          id={`${col.key}-inativo`}
+                          value="false"
+                          checked={formData[col.key] === false}
+                          onChange={() =>
+                            setFormData(prev => ({ ...prev, [col.key]: false }))
+                          }
+                          className="form-check-input"
+                        />
+                        <label className="form-check-label" htmlFor={`${col.key}-inativo`}>
+                          Inativo
+                        </label>
+                      </div>
+                    </div>
                   </div>
+
                 );
               }
 
               // 4) selectOptions (se existir)
               if (col.selectOptions) {
                 return (
-                  <div className='form-group'>
 
-                    <div key={col.key} className="mb-3">
-                      <label className="form-label">{col.label}:</label>
-                      <select
-                        name={col.key}
-                        value={formData[col.key]}
-                        onChange={handleChange}
-                        className='form-control form-select'>
-                        <option className='text-muted' value="">Selecione uma opção</option>
-                        {col.selectOptions.map((opt, idx) => (
-                          <option key={idx} value={opt}>{opt}</option>
-                        ))}
-                      </select>
-                    </div>
+                  <div key={col.key} className="form-group mb-4">
+                    <label className="form-label">{col.label}:</label>
+                    <select
+                      name={col.key}
+                      value={formData[col.key]}
+                      onChange={handleChange}
+                      className='form-control form-select'>
+                      <option className='text-muted' value="">Selecione uma opção</option>
+                      {col.selectOptions.map((opt, idx) => (
+                        <option key={idx} value={opt}>{opt}</option>
+                      ))}
+                    </select>
                   </div>
                 );
               }
               // 5) campo de senha (password)
               if (col.tipo === 'password') {
                 return (
-                  <div className='form-group' key={col.key}>
-                    <div className="mb-3">
-                      <label className="form-label">{col.label}:</label>
-                      <input
-                        type="password" // 👈 Tipo password para esconder caracteres
-                        name={col.key}
-                        className="form-control"
-                        value={formData[col.key] || ''}
-                        onChange={handleChange}
-                        autoComplete="new-password"
-                      />
-                    </div>
+                  <div className='form-group mb-4' key={col.key}>
+                    <label className="form-label">{col.label}:</label>
+                    <input
+                      type="password" // 👈 Tipo password para esconder caracteres
+                      name={col.key}
+                      className="form-control"
+                      value={formData[col.key] || ''}
+                      onChange={handleChange}
+                      autoComplete="new-password"
+                    />
                   </div>
                 );
               }
               return (
-                <div className='form-group'>
 
-                  <div key={col.key} className="mb-3">
-                    <label className="form-label">{col.label}:</label>
-                    <input
-                      type="text"
-                      name={col.key}
-                      className="form-control"
-                      value={formData[col.key]}
-                      onChange={handleChange}
-                    />
-                  </div>
+                <div key={col.key} className="form-group mb-4">
+                  <label className="form-label">{col.label}:</label>
+                  <input
+                    type="text"
+                    name={col.key}
+                    className="form-control"
+                    value={formData[col.key]}
+                    onChange={handleChange}
+                  />
 
                 </div>
               );

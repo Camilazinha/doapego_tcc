@@ -14,6 +14,10 @@ export default function EditCrud() {
   const { entidade, id } = useParams();
   const config = crudData[entidade] || null;
 
+  const [userType] = useState(localStorage.getItem('tipo') || '');
+  const userId = localStorage.getItem('id') || '';
+  const userOngId = localStorage.getItem('ongId');
+
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -22,6 +26,12 @@ export default function EditCrud() {
 
 
   useEffect(() => {
+    if (entidade === 'administradores' && userId !== id) {
+      setError("Você só pode editar seu próprio perfil!");
+      setLoading(false);
+      return;
+    }
+
     const fetchItem = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${id}`);
@@ -159,11 +169,25 @@ export default function EditCrud() {
 
         <section className='container form-container-crud bg-white'>
           <form onSubmit={handleSubmit}>
-            {[...config.colunas, ...(config.colunasExtras || [])].map(col => {
-              // Oculta campos que terminam com 'Id' ou são chaves estrangeiras .id
+            {[...config.colunas, ...(config.colunasExtras || []), ...(config.colunasFormulario || [])].map(col => {              // Oculta campos que terminam com 'Id' ou são chaves estrangeiras .id
               const isOculto = col.key.endsWith('Id') || (col.tipo === 'foreignKey' && col.key === 'ong');
               if (col.key === "id" || isOculto) return null;
 
+              if (col.tipo === 'password') {
+                return (
+                  <div key={col.key} className="mb-4 form-group">
+                    <label className="form-label">{col.label}:</label>
+                    <input
+                      type="password"
+                      name={col.key}
+                      value={formData[col.key] || ''}
+                      onChange={handleChange}
+                      className="form-control"
+                      placeholder="Deixe em branco para manter a atual"
+                    />
+                  </div>
+                );
+              }
               if (col.tipo === 'foreignKey') {
                 return (
                   <input
@@ -189,7 +213,7 @@ export default function EditCrud() {
               const isBoolean = typeof formData[col.key] === 'boolean' || [1, 0].includes(formData[col.key]);
 
               return (
-                <div key={col.key} className="mb-3">
+                <div key={col.key} className="mb-4 form-group">
                   <label className="form-label">{col.label}:</label>
                   {isStatusAtivoInativoString ? (
                     <div className="d-flex gap-3">
