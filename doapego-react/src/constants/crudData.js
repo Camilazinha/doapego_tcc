@@ -13,9 +13,9 @@ export const crudData = {
             {
                 key: 'fotoPerfil', label: 'Foto', temImagem: true, opcional: true    // ← campo opcional
             },
-            { key: 'nome', label: 'Nome' },
-            { key: 'email', label: 'E-mail' },
-            { key: 'tipo', label: 'Tipo' },
+            { key: 'nome', label: 'Nome', required: true },
+            { key: 'email', label: 'E-mail', required: true },
+            { key: 'tipo', label: 'Tipo', required: true },
         ],
         colunasExtras: [
             { key: 'ong', label: 'Código da ONG', tipo: 'foreignKey' },
@@ -111,11 +111,11 @@ export const crudData = {
         colunas: [
             { key: 'id', label: 'Código' },
             { key: 'fotoPerfil', label: 'Foto', temImagem: true },
-            { key: 'nome', label: 'Nome' },
-            { key: 'email', label: 'E-mail' },
-            { key: 'telefone', label: 'Telefone' }
+            { key: 'nome', label: 'Nome', required: true },
+            { key: 'email', label: 'E-mail', required: true },
         ],
         colunasExtras: [
+            { key: 'telefone', label: 'Telefone' },
             { key: 'whatsapp', label: 'WhatsApp' },
             { key: 'descricao', label: 'Descrição' },
             { key: 'fundacao', label: 'Data de fundação' },

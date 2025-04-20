@@ -104,16 +104,22 @@ export default function ViewCrud() {
               <tbody>
                 {[
                   ...config.colunas,
-                  ...(config.colunasExtras || []) // Adiciona extras se existirem
+                  ...(config.colunasExtras || [])
                 ]
-                  .filter((col) => !col.temImagem) // Mantém o filtro original
+                  .filter((col) => !col.temImagem)
                   .map(col => {
-                    const valor = itemData[col.key];
+                    // Ajuste para campos foreignKey
+                    const valor = col.tipo === 'foreignKey'
+                      ? itemData[`${col.key}Id`] // Busca ongId ao invés de ong
+                      : itemData[col.key];
+
                     const temValor = valor !== null && valor !== undefined && String(valor).trim() !== "";
 
                     return (
                       <tr key={col.key}>
-                        <th scope="row" className="text-nowrap text-secondary fw-semibold" style={{ width: "30%" }}>{col.label}</th>
+                        <th scope="row" className="text-nowrap text-secondary fw-semibold" style={{ width: "30%" }}>
+                          {col.label}
+                        </th>
                         <td>
                           {temValor ? (
                             typeof valor === 'boolean' ? (
@@ -126,7 +132,7 @@ export default function ViewCrud() {
                               valor
                             )
                           ) : (
-                            "Sem informação"
+                            <p className='text-muted'>Sem informação</p>
                           )}
                         </td>
                       </tr>

@@ -9,8 +9,23 @@ export default function Configuracoes() {
 
   // Pega os dados do localStorage
   const userType = localStorage.getItem('tipo') || '';
+  const userOngId = localStorage.getItem('ongId') || '';
 
   const sections = [
+    {
+      id: 'my-ngo',
+      title: 'Minha ONG',
+      icon: testIcon,
+      link: `/ongs/ong-${userOngId}`,
+      allowed: ['STAFF', 'FUNCIONARIO']
+    },
+    {
+      id: 'profile',
+      title: 'Meu perfil',
+      icon: testIcon,
+      link: '/configuracoes/meu-perfil',
+      allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
+    },
     {
       id: 'adm',
       title: 'Administradores',
@@ -23,7 +38,7 @@ export default function Configuracoes() {
       title: 'Categorias',
       icon: testIcon,
       link: '/configuracoes/categorias-doacao',
-      allowed: ['MASTER', 'STAFF']
+      allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
     },
     {
       id: 'address',

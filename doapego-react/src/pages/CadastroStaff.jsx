@@ -181,8 +181,8 @@ export default function CadastroStaff() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Descrição <span className="text-danger">*</span></label>
-              <textarea className="form-control" name="descricao" rows="3" value={formData.descricao} onChange={handleChange} required></textarea>
+              <label className="form-label">Descrição</label>
+              <textarea className="form-control" name="descricao" rows="3" value={formData.descricao} onChange={handleChange}></textarea>
             </div>
 
             <div className="form-group">
@@ -221,6 +221,11 @@ export default function CadastroStaff() {
             <div className="form-group">
               <label className="form-label">Número <span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="numero" value={endereco.numero} onChange={handleEnderecoChange} required />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Complemento</label>
+              <input type="text" className="form-control" name="complemento" value={endereco.complemento} onChange={handleEnderecoChange} />
             </div>
 
             <button type="submit" className="btn btn-custom-filled" disabled={loading}>

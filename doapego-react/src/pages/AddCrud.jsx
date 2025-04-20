@@ -39,7 +39,7 @@ export default function AddCrud() {
         return true;
       }
 
-      if (entidade === 'categorias' && userType !== 'MASTER') {
+      if (entidade === 'categorias-doacao' && userType !== 'MASTER') {
         setError("Somente MASTER pode criar categorias");
         return true;
       }
@@ -89,9 +89,14 @@ export default function AddCrud() {
 
       if (col.tipoBooleano === 'ativo-inativo') {
         initial[col.key] = true;
-      } else {
+      }
+      else if (col.tipoBooleano === 'sim-nao') {
+        initial[col.key] = false;
+      }
+      else {
         initial[col.key] = '';
       }
+
     });
     return initial;
   });
@@ -128,10 +133,11 @@ export default function AddCrud() {
       if (col.key === 'id') return false;
       if (col.key === 'fotoPerfil') return false;
       if (col.tipoBooleano === 'ativo-inativo') return false;
+      if (col.tipoBooleano === 'sim-nao') return false;
       if (col.key === 'ong' && userType === 'STAFF') return false;
 
       // Novo: verifica se o campo é obrigatório (default = true se não especificado)
-      const isRequired = col.required !== undefined ? col.required : true;
+      const isRequired = col.required !== undefined ? col.required : false;
 
       const val = col.key === 'ong'
         ? formData[col.key]?.id // 👈 Pega o id do objeto ong
@@ -289,50 +295,47 @@ export default function AddCrud() {
               }
 
               // 3) radio ativo-inativo (enum ou booleano)
-              if (col.tipoBooleano === 'ativo-inativo') {
+              // 1. Modifique a condição que verifica o tipo booleano:
+              if (col.tipoBooleano === 'ativo-inativo' || col.tipoBooleano === 'sim-nao') { // <-- Alterado aqui
                 return (
-
                   <div key={col.key} className="mb-4 form-group">
                     <label className="form-label">{col.label}:</label>
-                    <div className="d-flex mb-1">
+                    <div className="d-flex gap-3 mb-1"> {/* Adicionei gap para espaçamento */}
+
+                      {/* Opção Sim/Ativo */}
                       <div className="form-check">
                         <input
                           type="radio"
                           name={col.key}
-                          id={`${col.key}-ativo`}
+                          id={`${col.key}-sim`}
                           value="true"
                           checked={formData[col.key] === true}
-                          onChange={() =>
-                            setFormData(prev => ({ ...prev, [col.key]: true }))
-                          }
+                          onChange={() => setFormData(prev => ({ ...prev, [col.key]: true }))}
                           className="form-check-input"
                         />
-                        <label className="form-check-label" htmlFor={`${col.key}-ativo`}>
-                          Ativo
+                        <label className="form-check-label" htmlFor={`${col.key}-sim`}>
+                          {col.tipoBooleano === 'sim-nao' ? 'Sim' : 'Ativo'} {/* Label dinâmico */}
                         </label>
                       </div>
-                    </div>
 
-                    <div className="d-flex mb-0">
+                      {/* Opção Não/Inativo */}
                       <div className="form-check">
                         <input
                           type="radio"
                           name={col.key}
-                          id={`${col.key}-inativo`}
+                          id={`${col.key}-nao`}
                           value="false"
                           checked={formData[col.key] === false}
-                          onChange={() =>
-                            setFormData(prev => ({ ...prev, [col.key]: false }))
-                          }
+                          onChange={() => setFormData(prev => ({ ...prev, [col.key]: false }))}
                           className="form-check-input"
                         />
-                        <label className="form-check-label" htmlFor={`${col.key}-inativo`}>
-                          Inativo
+                        <label className="form-check-label" htmlFor={`${col.key}-nao`}>
+                          {col.tipoBooleano === 'sim-nao' ? 'Não' : 'Inativo'} {/* Label dinâmico */}
                         </label>
                       </div>
+
                     </div>
                   </div>
-
                 );
               }
 
