@@ -18,7 +18,7 @@ export const crudData = {
             { key: 'tipo', label: 'Tipo' },
         ],
         colunasExtras: [
-            { key: 'ongId', label: 'Código da ONG', tipo: 'foreignKey' },
+            { key: 'ong', label: 'Código da ONG', tipo: 'foreignKey' },
 
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
 
@@ -85,7 +85,7 @@ export const crudData = {
             { key: 'cep', label: 'CEP', required: true },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
-            { key: 'ongId', label: 'ID da ONG', tipo: 'foreignKey' }
+            { key: 'ong', label: 'ID da ONG', tipo: 'foreignKey' }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },

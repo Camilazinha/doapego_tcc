@@ -31,6 +31,37 @@ export default function AddCrud() {
     }
   }, [userType]);
 
+  useEffect(() => {
+    // Verifica permissões antes de carregar qualquer dado
+    const bloquearAcesso = () => {
+      if (entidade === 'usuarios' || entidade === 'ongs') {
+        setError("Criação não permitida para esta entidade");
+        return true;
+      }
+
+      if (entidade === 'categorias' && userType !== 'MASTER') {
+        setError("Somente MASTER pode criar categorias");
+        return true;
+      }
+
+      if (entidade === 'enderecos-ong' && !['STAFF', 'FUNCIONARIO'].includes(userType)) {
+        setError("Acesso restrito a membros da ONG");
+        return true;
+      }
+
+      if (entidade === 'administradores' && !['MASTER', 'STAFF'].includes(userType)) {
+        setError("Sem permissão para criar administradores");
+        return true;
+      }
+
+      return false;
+    };
+
+    if (bloquearAcesso()) {
+      setLoading(false); // Impede o carregamento
+    }
+  }, [entidade, userType]);
+
   // no topo do seu componente, logo depois de const allCols:
   const listaOngs = Array.isArray(ongOptions) ? ongOptions : [];
 
@@ -45,13 +76,13 @@ export default function AddCrud() {
     allCols.forEach(col => {
       if (col.key === 'id') return;
 
-      if (col.key === 'ongId') {
+      if (col.key === 'ong') {
         if (userType === 'STAFF') {
           // STAFF: auto‑preenche e esconde
-          initial[col.key] = { id: userOngId };
+          initial[col.key] = { id: Number(userOngId) }; // Objeto com id
         } else {
           // MASTER: começa vazio, o usuário vai escolher
-          initial[col.key] = '';
+          initial[col.key] = { id: '' }; // Inicializa como objeto
         }
         return;
       }
@@ -82,6 +113,8 @@ export default function AddCrud() {
   };
 
   const handleSubmit = async e => {
+    console.log('Dados a serem enviados:', formData);
+
     e.preventDefault();
 
     // Força o valor de tipo baseado no userType
@@ -95,13 +128,14 @@ export default function AddCrud() {
       if (col.key === 'id') return false;
       if (col.key === 'fotoPerfil') return false;
       if (col.tipoBooleano === 'ativo-inativo') return false;
-      if (col.key === 'ongId' && userType === 'STAFF') return false;
+      if (col.key === 'ong' && userType === 'STAFF') return false;
 
       // Novo: verifica se o campo é obrigatório (default = true se não especificado)
       const isRequired = col.required !== undefined ? col.required : true;
 
-      const val = formData[col.key];
-      return isRequired && (!val || (typeof val === 'string' && !val.trim()));
+      const val = col.key === 'ong'
+        ? formData[col.key]?.id // 👈 Pega o id do objeto ong
+        : formData[col.key]; return isRequired && (!val || (typeof val === 'string' && !val.trim()));
     });
     if (vazios.length > 0) {
       setValidationError(
@@ -116,8 +150,15 @@ export default function AddCrud() {
     setError(null);
 
     try {
-      await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
-        formData);
+      console.log('Payload final:', {
+        ...formData,
+        ong: { id: formData.ong?.id } // Garante a estrutura correta
+      });
+
+      await axios.post(`http://localhost:8080/${config.apiEndpoint}`, {
+        ...formData,
+        ong: { id: formData.ong?.id }
+      });
       setSuccessMessage(`${config.titulo} adicionado com sucesso!`);
       // reset
       const reset = {};
@@ -193,15 +234,15 @@ export default function AddCrud() {
                 : null;
 
               // 1) foreignKey -> hidden
-              if (col.tipo === 'foreignKey' && col.key === 'ongId') {
+              if (col.tipo === 'foreignKey' && col.key === 'ong') {
                 // STAFF: input hidden
                 if (userType === 'STAFF') {
                   return (
                     <input
                       key={col.key}
                       type="hidden"
-                      name="ongId.id"
-                      value={formData.ongId.id}
+                      name="ong.id"
+                      value={formData.ong?.id || ''}
                     />
                   );
                 }
@@ -210,10 +251,12 @@ export default function AddCrud() {
                   <div key={col.key} className="mb-4 form-group">
                     <label className="form-label">{col.label}:</label>
                     <select
-                      name="ongId"
+                      name="ong.id"
                       className="form-control form-select"
-                      value={formData.ongId}
-                      onChange={e => setFormData(prev => ({ ...prev, ongId: e.target.value }))}
+                      value={formData.ong?.id || ''}
+                      onChange={e => setFormData(prev => ({
+                        ...prev, ong: { id: Number(e.target.value) } // 👈 Atualiza o objeto
+                      }))}
                     >
                       <option className="text-muted" value="">Selecione</option>
                       {listaOngs.map(o => (
