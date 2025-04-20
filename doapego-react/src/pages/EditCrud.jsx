@@ -181,13 +181,53 @@ export default function EditCrud() {
                 ? ['Ativo', 'Inativo']
                 : ['Sim', 'Não'];
 
+              const isStatusAtivoInativoString =
+                col.key === 'statusOng' &&
+                typeof formData[col.key] === 'string' &&
+                ['ATIVO', 'INATIVO'].includes(formData[col.key]);
+
               const isBoolean = typeof formData[col.key] === 'boolean' || [1, 0].includes(formData[col.key]);
 
               return (
                 <div key={col.key} className="mb-3">
                   <label className="form-label">{col.label}:</label>
+                  {isStatusAtivoInativoString ? (
+                    <div className="d-flex gap-3">
+                      <div className="form-check">
+                        <input
+                          type="radio"
+                          name={col.key}
+                          id={`${col.key}-ativo`}
+                          value="ATIVO"
+                          checked={formData[col.key] === 'ATIVO'}
+                          onChange={(e) =>
+                            setFormData({ ...formData, [col.key]: e.target.value })
+                          }
+                          className="form-check-input"
+                        />
+                        <label className="form-check-label" htmlFor={`${col.key}-ativo`}>
+                          Ativo
+                        </label>
+                      </div>
 
-                  {isBoolean ? (
+                      <div className="form-check">
+                        <input
+                          type="radio"
+                          name={col.key}
+                          id={`${col.key}-inativo`}
+                          value="INATIVO"
+                          checked={formData[col.key] === 'INATIVO'}
+                          onChange={(e) =>
+                            setFormData({ ...formData, [col.key]: e.target.value })
+                          }
+                          className="form-check-input"
+                        />
+                        <label className="form-check-label" htmlFor={`${col.key}-inativo`}>
+                          Inativo
+                        </label>
+                      </div>
+                    </div>
+                  ) : isBoolean ? (
                     <div className="d-flex gap-3">
                       <div className="form-check">
                         <input
