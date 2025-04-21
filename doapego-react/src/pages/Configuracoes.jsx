@@ -3,7 +3,7 @@
 import { Link } from 'react-router-dom';
 
 import rightChevronIcon from "../img/rightchevron-icon.svg"
-import testIcon from "../img/test-icon.svg"
+import profileIcon from "../img/test-icon.svg"
 import ngosIcon from "../img/ngos-icon.svg"
 import helpIcon from "../img/confighelp-icon.svg"
 import adminIcon from "../img/admin-icon.svg"
@@ -19,18 +19,19 @@ export default function Configuracoes() {
 
   const sections = [
     {
+      id: 'profile',
+      title: 'Meu perfil',
+      icon: profileIcon,
+      link: '/configuracoes/meu-perfil',
+      allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
+    },
+    {
       id: 'my-ngo',
       title: 'Minha ONG',
       icon: ngosIcon,
-      link: `/ongs/ong-${userOngId}`,
+      // link: `/ongs/ong-${userOngId}`,
+      link: `/configuracoes/ongs/detalhes/${userOngId}`,
       allowed: ['STAFF', 'FUNCIONARIO']
-    },
-    {
-      id: 'profile',
-      title: 'Meu perfil',
-      icon: testIcon,
-      link: '/configuracoes/meu-perfil',
-      allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
     },
     {
       id: 'adm',

@@ -64,15 +64,19 @@ export default function EditCrud() {
       try {
         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${id}`);
         const itemData = response.data;
+        console.log('Resposta do backend (itemData):', itemData);
 
         // Verifica ONG para entidades relacionadas
-        if (entidade === 'enderecos-ong' || entidade === 'ongs') {
-          // Pega ongId do item (se endereco-ong vem de itemData.ong.id)
-          const ongIdItem = entidade === 'ongs' || entidade === 'enderecos-ong'
-            ? itemData.id // ID da ONG é o próprio ID do item
-            : itemData.ong?.id; // Endereco-ong tem relação com ONG
+        if (entidade === 'ongs' || entidade === 'enderecos-ong') {
+          let ongIdItem;
+          if (entidade === 'ongs') {
+            // para ONGs o ID do próprio objeto é o ongId
+            ongIdItem = itemData.id;
+          } else {
+            // para endereços, use itemData.ongId (ou o nome que apareceu no console)
+            ongIdItem = itemData.ongId;
+          }
 
-          // Compara com ongId do usuário logado
           if (ongIdItem?.toString() !== userOngId) {
             setError("Você só pode editar recursos da sua própria ONG!");
             setLoading(false);
@@ -81,7 +85,22 @@ export default function EditCrud() {
         }
 
         const { id: _, ...dadosCompletos } = itemData;
-        setFormData(dadosCompletos);
+
+        if (entidade === 'administradores') {
+          setFormData({
+            ...dadosCompletos,
+            ongId: itemData.ongId // no admin o backend quer só "ongId"
+          });
+        } else if (entidade === 'enderecos-ong') {
+          setFormData({
+            ...dadosCompletos,
+            ong: {
+              id: itemData.ong?.id || '' // no endereco-ong o backend quer "ong": { id: ... }
+            }
+          });
+        } else {
+          setFormData(dadosCompletos);
+        }
       }
 
       catch (err) {
@@ -107,13 +126,12 @@ export default function EditCrud() {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    // 👇 Trata campos aninhados como "ong.id"
     if (name.includes('.')) {
       const [parentKey, childKey] = name.split('.');
       setFormData(prev => ({
         ...prev,
         [parentKey]: {
-          ...prev[parentKey], // Mantém outros campos do objeto
+          ...prev[parentKey],
           [childKey]: type === 'checkbox' ? checked : value
         }
       }));
@@ -127,24 +145,24 @@ export default function EditCrud() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validação dos campos obrigatórios
+    // 1. Validação dos campos obrigatórios
     const camposObrigatorios = [...config.colunas, ...(config.colunasExtras || []), ...(config.formOnlyCols || [])]
       .filter(col => col.required);
 
     const camposFaltantes = camposObrigatorios.filter(col => {
+      // Caso especial para administradores (ongId direto)
+      if (entidade === 'administradores' && col.key === 'ongId') {
+        return !formData.ongId || isNaN(formData.ongId);
+      }
+
+      // Caso especial para enderecos-ong (ong.id)
+      if (entidade === 'enderecos-ong' && col.key === 'ong.id') {
+        return !formData.ong?.id || isNaN(formData.ong.id);
+      }
+
+      // Validação padrão para outros campos
       const valor = formData[col.key];
-
-      // Campos foreignKey (ex: ongId é um objeto { id })
-      if (col.tipo === 'foreignKey') {
-        return !valor?.id;
-      }
-
-      // Campos booleanos são sempre válidos se existirem
-      if (typeof valor === 'boolean') {
-        return false;
-      }
-
-      // Campos de string
+      if (typeof valor === 'boolean') return false; // Booleanos são sempre válidos
       return !valor || (typeof valor === 'string' && !valor.trim());
     });
 
@@ -158,14 +176,24 @@ export default function EditCrud() {
     setError(null);
     setSuccessMessage(null);
 
-    console.log("Dados sendo enviados:", formData); // <--- ADICIONE ISSO
-
-    // Ajusta estrutura dos dados para enviar no formato certo
+    // 2. Ajuste do payload
     const formDataAjustado = { ...formData };
 
-    // Transforma campos "algumaCoisaId" em objetos { algumaCoisa: { id } }
+    // Administradores: envia ongId direto
+    if (entidade === 'administradores') {
+      formDataAjustado.ongId = Number(formData.ongId);
+      delete formDataAjustado.ong; // Remove qualquer objeto ong existente
+    }
+
+    // Enderecos-ong: envia ong: { id }
+    if (entidade === 'enderecos-ong') {
+      formDataAjustado.ong = { id: Number(formData.ong?.id) };
+    }
+
+    // 3. Remove transformação genérica de campos terminados em Id
+    // (Mantido apenas se necessário para outras entidades)
     Object.entries(formData).forEach(([chave, valor]) => {
-      if (chave.endsWith('Id') && chave !== 'id') {
+      if (chave.endsWith('Id') && chave !== 'id' && !['ongId'].includes(chave)) {
         const chaveBase = chave.replace(/Id$/, '');
         formDataAjustado[chaveBase] = { id: valor };
         delete formDataAjustado[chave];
@@ -173,14 +201,10 @@ export default function EditCrud() {
     });
 
     try {
-      await axios.put(`http://localhost:8080/${config.apiEndpoint}/${id}`, formDataAjustado, {
-        headers: {
-          'Content-Type': 'application/json' // Força o envio como JSON
-        }
-      }
-
-      );
+      console.log("Payload final:", formDataAjustado);
+      await axios.put(`http://localhost:8080/${config.apiEndpoint}/${id}`, formDataAjustado);
       setSuccessMessage(`Dados atualizados com sucesso!`);
+
     } catch (err) {
       console.error("Erro ao atualizar:", err);
 
@@ -243,9 +267,37 @@ export default function EditCrud() {
 
         <section className='container form-container-crud bg-white'>
           <form onSubmit={handleSubmit}>
-            {[...config.colunas, ...(config.colunasExtras || []), ...(config.colunasFormulario || [])].map(col => {              // Oculta campos que terminam com 'Id' ou são chaves estrangeiras .id
-              const isOculto = col.key.endsWith('Id') || (col.tipo === 'foreignKey' && col.key === 'ong');
+            {[...config.colunas, ...(config.colunasExtras || []), ...(config.colunasFormulario || [])].map(col => {
+              // Oculta campos específicos
+              const isOculto =
+                col.key.endsWith('Id') ||
+                (col.tipo === 'foreignKey' && col.key === 'ong') ||
+                (entidade === 'enderecos-ong' && col.key === 'ong.id'); // 👈 Nova condição
+
               if (col.key === "id" || isOculto) return null;
+
+              if (col.key === 'ongId' && entidade === 'administradores') {
+                return (
+                  <input
+                    type="hidden"
+                    name="ongId"
+                    key={col.key}
+                    value={formData.ongId || ''}
+                  />
+                );
+              }
+              if (col.key === 'ong.id' && entidade === 'enderecos-ong') {
+                return (
+                  <div key={col.key} className="mb-4 form-group">
+                    <label className="form-label">{col.label}:</label>
+                    <input
+                      type="hidden"
+                      name="ong.id"
+                      value={formData.ong?.id || ''}
+                    />
+                  </div>
+                );
+              }
 
               if (col.tipo === 'password') {
                 return (
@@ -281,7 +333,7 @@ export default function EditCrud() {
                   <input
                     key={col.key}
                     type="hidden"
-                    name={`${col.key}.id`}
+                    name={`${col.key}`}
                     value={formData[col.key]?.id || ''}
                     disabled
                   />

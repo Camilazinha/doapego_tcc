@@ -37,7 +37,7 @@ export default function ViewCrud() {
             if (userType === 'MASTER') {
               hasPermission = data.tipo === 'MASTER' || data.tipo === 'STAFF';
             } else if (userType === 'STAFF') {
-              hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && data.ongId === userOngId;
+              hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && userType === 'STAFF' && Number(userOngId) === data.ongId;
             } else {
               hasPermission = false;
             }
@@ -49,11 +49,17 @@ export default function ViewCrud() {
             if (userType === 'MASTER') {
               hasPermission = true;
             } else {
-              hasPermission = data.ongId === userOngId;
+              hasPermission = Number(userOngId) === data.ong?.id;
             }
             break;
           case 'ongs':
-            hasPermission = userType === 'MASTER' && data.ativa === true;
+            if (userType === 'MASTER') {
+              hasPermission = true;
+            } else if ((userType === 'STAFF' || userType === 'FUNCIONARIO') && Number(userOngId) === data.id) {
+              hasPermission = true;
+            } else {
+              hasPermission = false;
+            }
             break;
           case 'usuarios':
             hasPermission = userType === 'MASTER';
