@@ -16,10 +16,9 @@ export const crudData = {
             { key: 'nome', label: 'Nome', required: true },
             { key: 'email', label: 'E-mail', required: true },
             { key: 'tipo', label: 'Tipo', required: true },
+            { key: 'ongId', label: 'Código da ONG' }
         ],
         colunasExtras: [
-            { key: 'ong', label: 'Código da ONG', tipo: 'foreignKey' },
-
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
 
         ],
@@ -74,7 +73,8 @@ export const crudData = {
             { key: 'id', label: 'Código' },
             { key: 'estado', label: 'Estado', required: true },
             { key: 'cidade', label: 'Cidade', required: true },
-            { key: 'bairro', label: 'Bairro', required: true }
+            { key: 'bairro', label: 'Bairro', required: true },
+            { key: 'ong.id', label: 'Código da ONG' }
         ],
         colunasExtras: [
             { key: 'logradouro', label: 'Logradouro', required: true },
@@ -85,7 +85,6 @@ export const crudData = {
             { key: 'cep', label: 'CEP', required: true },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
-            { key: 'ong', label: 'ID da ONG', tipo: 'foreignKey' }
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },

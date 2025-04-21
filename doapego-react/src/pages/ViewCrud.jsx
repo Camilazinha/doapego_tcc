@@ -11,20 +11,71 @@ export default function ViewCrud() {
   const { entidade, id } = useParams();
   const config = crudData[entidade] || null;
 
+  const userType = localStorage.getItem('tipo') || '';
+  const userId = localStorage.getItem('id') || '';
+  const userOngId = localStorage.getItem('ongId') || null;
+
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const getNestedValue = (obj, path) => {
+    return path.split('.').reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : null), obj);
+  };
+
   useEffect(() => {
+
     const fetchItem = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${id}`);
-        setItemData(response.data);
+        const data = response.data;
 
+        let hasPermission = false;
+
+        switch (entidade) {
+          case 'administradores':
+            if (userType === 'MASTER') {
+              hasPermission = data.tipo === 'MASTER' || data.tipo === 'STAFF';
+            } else if (userType === 'STAFF') {
+              hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && data.ongId === userOngId;
+            } else {
+              hasPermission = false;
+            }
+            break;
+          case 'categorias-doacao':
+            hasPermission = true;
+            break;
+          case 'enderecos-ong':
+            if (userType === 'MASTER') {
+              hasPermission = true;
+            } else {
+              hasPermission = data.ongId === userOngId;
+            }
+            break;
+          case 'ongs':
+            hasPermission = userType === 'MASTER' && data.ativa === true;
+            break;
+          case 'usuarios':
+            hasPermission = userType === 'MASTER';
+            break;
+          default:
+            hasPermission = false;
+        }
+
+        if (!hasPermission) {
+          throw new Error('Sem permissão');
+        }
+
+        setItemData(data);
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
 
-        if (err.response) {
+        if (err.message === 'Sem permissão') {
+          setError("Você não tem permissão para visualizar este item.");
+          alert("Você não tem permissão para visualizar este item.");
+        }
+
+        else if (err.response) {
           setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
           alert("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
 
@@ -42,8 +93,12 @@ export default function ViewCrud() {
       }
     };
 
-    fetchItem();
-  }, [config, id]);
+    if (config) {
+      fetchItem();
+    } else {
+      setLoading(false);
+    }
+  }, [config, id, entidade, userType, userOngId]);
 
   if (loading) return (
     <main className='container my-5 nao-unico-elemento px-5'>
@@ -109,10 +164,7 @@ export default function ViewCrud() {
                   .filter((col) => !col.temImagem)
                   .map(col => {
                     // Ajuste para campos foreignKey
-                    const valor = col.tipo === 'foreignKey'
-                      ? itemData[`${col.key}Id`] // Busca ongId ao invés de ong
-                      : itemData[col.key];
-
+                    const valor = getNestedValue(itemData, col.key);
                     const temValor = valor !== null && valor !== undefined && String(valor).trim() !== "";
 
                     return (

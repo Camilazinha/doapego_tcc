@@ -22,6 +22,9 @@ export default function ListCrud() {
     const [showModal, setShowModal] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
 
+    const getNestedValue = (obj, path) => {
+        return path.split('.').reduce((o, p) => (o || {})[p], obj);
+    };
 
     useEffect(() => {
         if (!config) return;
@@ -166,24 +169,24 @@ export default function ListCrud() {
                                     {config.colunas.map(col => (
                                         <td key={col.key} className="text-center">
                                             {col.temImagem ? (
-                                                item[col.key] ? (
-                                                    <img src={item[col.key]} alt="" className="rounded-circle shadow-sm" style={{ width: "80px", height: "80px", objectFit: "cover" }} />
+                                                getNestedValue(item, col.key) ? (
+                                                    <img src={getNestedValue(item, col.key)} alt="" className="rounded-circle shadow-sm" style={{ width: "80px", height: "80px", objectFit: "cover" }} />
                                                 ) : (
                                                     <div className="d-flex align-items-center justify-content-center">
                                                         <img src={noImageIcon} alt="Sem imagem" width={80} />
                                                     </div>
                                                 )
                                             ) : col.key === 'ativo' || col.key === 'statusOng' ? (
-                                                <span className={`badge ${(item.ativo === true || item.statusOng === 'ATIVO')
+                                                <span className={`badge ${(getNestedValue(item, 'ativo') === true || getNestedValue(item, 'statusOng') === 'ATIVO')
                                                     ? 'bg-success'
                                                     : 'bg-danger'
                                                     }`}>
-                                                    {item.ativo !== undefined
-                                                        ? (item.ativo ? 'Ativo' : 'Suspenso')
-                                                        : (item.statusOng === 'ATIVO' ? 'Ativo' : 'Inativo')}
+                                                    {getNestedValue(item, 'ativo') !== undefined
+                                                        ? (getNestedValue(item, 'ativo') ? 'Ativo' : 'Suspenso')
+                                                        : (getNestedValue(item, 'statusOng') === 'ATIVO' ? 'Ativo' : 'Inativo')}
                                                 </span>
                                             ) : (
-                                                item[col.key]
+                                                getNestedValue(item, col.key)
                                             )}
                                         </td>
                                     ))}
