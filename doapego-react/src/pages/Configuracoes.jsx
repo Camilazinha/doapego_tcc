@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 
 import rightChevronIcon from "../img/rightchevron-icon.svg"
 import testIcon from "../img/test-icon.svg"
+import ngosIcon from "../img/ngos-icon.svg"
+import helpIcon from "../img/confighelp-icon.svg"
+import adminIcon from "../img/admin-icon.svg"
+import addressIcon from "../img/address-icon.svg"
+import userIcon from "../img/user-icon.svg"
+import categoryIcon from "../img/category-icon.svg"
 
 export default function Configuracoes() {
 
@@ -15,7 +21,7 @@ export default function Configuracoes() {
     {
       id: 'my-ngo',
       title: 'Minha ONG',
-      icon: testIcon,
+      icon: ngosIcon,
       link: `/ongs/ong-${userOngId}`,
       allowed: ['STAFF', 'FUNCIONARIO']
     },
@@ -29,42 +35,42 @@ export default function Configuracoes() {
     {
       id: 'adm',
       title: 'Administradores',
-      icon: testIcon,
+      icon: adminIcon,
       link: '/configuracoes/administradores',
       allowed: ['MASTER', 'STAFF']
     },
     {
-      id: 'category',
-      title: 'Categorias',
-      icon: testIcon,
-      link: '/configuracoes/categorias-doacao',
+      id: 'address',
+      title: 'Endereços',
+      icon: addressIcon,
+      link: '/configuracoes/enderecos-ong',
       allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
     },
     {
-      id: 'address',
-      title: 'Endereços',
-      icon: testIcon,
-      link: '/configuracoes/enderecos-ong',
+      id: 'category',
+      title: 'Categorias',
+      icon: categoryIcon,
+      link: '/configuracoes/categorias-doacao',
       allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
     },
     {
       id: 'ngo',
       title: 'ONGs',
-      icon: testIcon,
+      icon: ngosIcon,
       link: '/configuracoes/ongs',
       allowed: ['MASTER']
     },
     {
       id: 'user',
       title: 'Usuários',
-      icon: testIcon,
+      icon: userIcon,
       link: '/configuracoes/usuarios',
       allowed: ['MASTER']
     },
     {
       id: 'help',
       title: 'Ajuda',
-      icon: testIcon,
+      icon: helpIcon,
       link: '/perguntas-frequentes',
       allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
     }

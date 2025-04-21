@@ -119,12 +119,16 @@ export default function ListCrud() {
             setItemToDelete(null);
         }
     };
-    if (!config) return (
-        <main className='container my-5 nao-unico-elemento px-5'>
-            <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
-            <div className="alert alert-danger">Configuração não encontrada para "{entidade}"</div>
-        </main>
-    );
+    if (!config) {
+        return (
+            <main className='container my-5 nao-unico-elemento px-5'>
+                <div className="alert alert-danger d-flex">
+                    <img src={errorTriangleIcon} className="me-2" alt="erro" />
+                    Não foi possível encontrar "{entidade}"
+                </div>
+            </main>
+        );
+    }
 
     if (error) return (
         <main className='container my-5 nao-unico-elemento px-5'>

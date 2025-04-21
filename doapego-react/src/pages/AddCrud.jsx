@@ -201,7 +201,7 @@ export default function AddCrud() {
       <main className='container my-5 nao-unico-elemento px-5'>
         <div className="alert alert-danger d-flex">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
-          Configuração não encontrada para "{entidade}"
+          Não foi possível encontrar "{entidade}"
         </div>
       </main>
     );
