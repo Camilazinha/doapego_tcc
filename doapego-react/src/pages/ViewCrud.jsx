@@ -12,7 +12,6 @@ export default function ViewCrud() {
   const config = crudData[entidade] || null;
 
   const userType = localStorage.getItem('tipo') || '';
-  const userId = localStorage.getItem('id') || '';
   const userOngId = localStorage.getItem('ongId') || null;
 
   const [itemData, setItemData] = useState({});
@@ -37,7 +36,7 @@ export default function ViewCrud() {
             if (userType === 'MASTER') {
               hasPermission = data.tipo === 'MASTER' || data.tipo === 'STAFF';
             } else if (userType === 'STAFF') {
-              hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && userType === 'STAFF' && Number(userOngId) === data.ongId;
+              hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && userType === 'STAFF' && Number(userOngId) === data.ong?.id;
             } else {
               hasPermission = false;
             }

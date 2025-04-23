@@ -16,7 +16,7 @@ export const crudData = {
             { key: 'nome', label: 'Nome', required: true },
             { key: 'email', label: 'E-mail', required: true },
             { key: 'tipo', label: 'Tipo', required: true },
-            { key: 'ongId', label: 'Código da ONG' }
+            { key: 'ong.id', label: 'Código da ONG' }
         ],
         colunasExtras: [
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
