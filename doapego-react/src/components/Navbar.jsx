@@ -26,7 +26,7 @@ export default function Navbar() {
             <Link className="nav-link mt-2 mt-lg-0" to="/">Início</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/sobre">Sobre nós</Link>
+            <Link className="nav-link" to="/sobre-nos">Sobre nós</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/tutorial">Como doar?</Link>

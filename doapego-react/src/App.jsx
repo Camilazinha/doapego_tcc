@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 import Home from './components/Home';
-import Sobre from './components/Sobre';
+import Sobre from './pages/Sobre';
 import Tutorial from './components/Tutorial';
 import AjudaPublico from './pages/AjudaPublico';
 import Privacidade from './pages/Privacidade';
@@ -65,7 +65,7 @@ export default function App() {
                         <Routes>
                                 {/* Rotas públicas */}
                                 <Route path="/" element={<Home />} />
-                                <Route path="/sobre" element={<Sobre />} />
+                                <Route path="/sobre-nos" element={<Sobre />} />
                                 <Route path="/tutorial" element={<Tutorial />} />
                                 <Route path="/politica-de-privacidade" element={<Privacidade />} />
                                 <Route path="/termos-de-uso" element={<Termos />} />
