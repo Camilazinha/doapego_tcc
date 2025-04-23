@@ -41,6 +41,13 @@ export default function Configuracoes() {
       allowed: ['MASTER', 'STAFF']
     },
     {
+      id: 'ngo',
+      title: 'ONGs',
+      icon: ngosIcon,
+      link: '/configuracoes/ongs',
+      allowed: ['MASTER']
+    },
+    {
       id: 'address',
       title: 'Endereços',
       icon: addressIcon,
@@ -53,13 +60,6 @@ export default function Configuracoes() {
       icon: categoryIcon,
       link: '/configuracoes/categorias-doacao',
       allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
-    },
-    {
-      id: 'ngo',
-      title: 'ONGs',
-      icon: ngosIcon,
-      link: '/configuracoes/ongs',
-      allowed: ['MASTER']
     },
     {
       id: 'user',
