@@ -52,6 +52,13 @@ p {
   font-size: 2rem;
 }
 
+.subtitulo-pagina {
+  color: var(--color-secondary);
+  font-weight: 700;
+  text-align: center;
+
+}
+
 .subtitulo {
   font-size: 1.2rem;
   font-weight: 500;
