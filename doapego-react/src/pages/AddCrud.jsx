@@ -76,13 +76,12 @@ export default function AddCrud() {
     allCols.forEach(col => {
       if (col.key === 'id') return;
 
-      if (col.key === 'ong') {
+      // Alterado para tratar 'ong.id' diretamente
+      if (col.key === 'ong.id') {
         if (userType === 'STAFF') {
-          // STAFF: auto‑preenche e esconde
-          initial[col.key] = { id: Number(userOngId) }; // Objeto com id
+          initial[col.key] = Number(userOngId); // Valor direto
         } else {
-          // MASTER: começa vazio, o usuário vai escolher
-          initial[col.key] = { id: '' }; // Inicializa como objeto
+          initial[col.key] = '';
         }
         return;
       }
@@ -129,19 +128,16 @@ export default function AddCrud() {
     }
 
     // valida todos os campos (colunas + colunasExtras), exceto id
+    // No handleSubmit (~linha 94):
     const vazios = allCols.filter(col => {
       if (col.key === 'id') return false;
       if (col.key === 'fotoPerfil') return false;
       if (col.tipoBooleano === 'ativo-inativo') return false;
       if (col.tipoBooleano === 'sim-nao') return false;
-      if (col.key === 'ong' && userType === 'STAFF') return false;
+      if (col.key === 'ong.id' && userType === 'STAFF') return false;
 
-      // Novo: verifica se o campo é obrigatório (default = true se não especificado)
-      const isRequired = col.required !== undefined ? col.required : false;
-
-      const val = col.key === 'ong'
-        ? formData[col.key]?.id // 👈 Pega o id do objeto ong
-        : formData[col.key]; return isRequired && (!val || (typeof val === 'string' && !val.trim()));
+      // Corrigido: Retorna diretamente a verificação
+      return col.required && !formData[col.key];
     });
     if (vazios.length > 0) {
       setValidationError(
@@ -156,16 +152,23 @@ export default function AddCrud() {
     setError(null);
 
     try {
-      console.log('Payload final:', {
-        ...formData,
-        ong: { id: formData.ong?.id } // Garante a estrutura correta
-      });
+      const payload = { ...formData };
+      delete payload.id;
+      payload.rawPassword = payload.senha;
+      delete payload.senha;
+      // Move 'ong.id' para dentro de um objeto 'ong'
+      if (payload['ong.id'] !== undefined) {
+        payload.ong = { id: Number(payload['ong.id']) };
+        delete payload['ong.id']; // Remove a chave antiga
+      }
 
-      await axios.post(`http://localhost:8080/${config.apiEndpoint}`, {
-        ...formData,
-        ong: { id: formData.ong?.id }
-      });
-      setSuccessMessage(`${config.titulo} adicionado com sucesso!`);
+
+      console.log('Payload final:', payload);
+
+      await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
+        payload
+      );
+      setSuccessMessage(`Adicionado com sucesso!`);
       // reset
       const reset = {};
       allCols.forEach(col => {
@@ -240,15 +243,15 @@ export default function AddCrud() {
                 : null;
 
               // 1) foreignKey -> hidden
-              if (col.tipo === 'foreignKey' && col.key === 'ong') {
+              if (col.key === 'ong.id') {
                 // STAFF: input hidden
                 if (userType === 'STAFF') {
                   return (
                     <input
                       key={col.key}
                       type="hidden"
-                      name="ong.id"
-                      value={formData.ong?.id || ''}
+                      name={col.key}
+                      value={formData[col.key] || ''}
                     />
                   );
                 }
@@ -257,12 +260,10 @@ export default function AddCrud() {
                   <div key={col.key} className="mb-4 form-group">
                     <label className="form-label">{col.label}:</label>
                     <select
-                      name="ong.id"
+                      name={col.key}
                       className="form-control form-select"
-                      value={formData.ong?.id || ''}
-                      onChange={e => setFormData(prev => ({
-                        ...prev, ong: { id: Number(e.target.value) } // 👈 Atualiza o objeto
-                      }))}
+                      value={formData[col.key] || ''}
+                      onChange={handleChange}
                     >
                       <option className="text-muted" value="">Selecione</option>
                       {listaOngs.map(o => (

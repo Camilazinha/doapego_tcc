@@ -1,4 +1,3 @@
-import teste from '../img/imagem-teste.jpg';
 import ods10 from '../img/ods10.svg';
 import ods3 from '../img/ods3.svg';
 

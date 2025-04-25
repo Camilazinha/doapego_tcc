@@ -19,7 +19,7 @@ export const crudData = {
             { key: 'ong.id', label: 'Código da ONG' }
         ],
         colunasExtras: [
-            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
+            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo', required: true },
 
         ],
         colunasFormulario: [
@@ -74,7 +74,7 @@ export const crudData = {
             { key: 'estado', label: 'Estado', required: true },
             { key: 'cidade', label: 'Cidade', required: true },
             { key: 'bairro', label: 'Bairro', required: true },
-            { key: 'ong.id', label: 'Código da ONG' }
+            { key: 'ong.id', label: 'Código da ONG', required: true },
         ],
         colunasExtras: [
             { key: 'logradouro', label: 'Logradouro', required: true },
@@ -84,7 +84,7 @@ export const crudData = {
             { key: 'longitude', label: 'Longitude' },
             { key: 'cep', label: 'CEP', required: true },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
-            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
+            { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo', required: true },
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
@@ -96,7 +96,7 @@ export const crudData = {
         colunas: [
             { key: 'id', label: 'Código' },
             { key: 'foto', label: 'Foto', temImagem: true },
-            { key: 'nome', label: 'Nome' }
+            { key: 'nome', label: 'Nome', required: true },
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
@@ -118,7 +118,7 @@ export const crudData = {
             { key: 'whatsapp', label: 'WhatsApp' },
             { key: 'descricao', label: 'Descrição' },
             { key: 'fundacao', label: 'Data de fundação' },
-            { key: 'statusOng', label: 'Status' },
+            { key: 'statusOng', label: 'Status', required: true },
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },

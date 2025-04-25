@@ -66,7 +66,7 @@ export default function Login() {
             setError(err.response.data?.message || `Erro ${err.response.status}.`);
         }
       } else if (err.request) {
-        setError('Não foi possível conectar ao servidor. Verifique sua internet.');
+        setError('Não foi possível conectar ao servidor.');
       } else {
         setError('Ocorreu um erro inesperado.');
       }
