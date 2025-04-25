@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import NotAuthorized from './components/NotAuthorized';
 
 import Home from './components/Home';
 import Sobre from './pages/Sobre';
@@ -51,7 +52,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
         }
 
         if (allowedRoles && !allowedRoles.includes(tipo)) {
-                return <Navigate to="/inicio" replace />; // Ou para uma página de "Não autorizado"
+                return <Navigate to="/pagina-nao-existente" replace />; // Ou para uma página de "Não autorizado"
         }
 
         return <Outlet />;
@@ -75,7 +76,7 @@ export default function App() {
                                 <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
                                 <Route path="/solicitar-cadastro" element={<CadastroStaff />} />
                                 <Route path="/teste" element={<Teste />} />
-
+                                <Route path="/pagina-nao-encontrada" element={<NotAuthorized />} />
                                 {/* Rotas privadas */}
                                 <Route element={<ProtectedRoute />}>
 
@@ -100,7 +101,7 @@ export default function App() {
                                 </Route>
 
                                 {/* Rota de fallback para páginas não encontradas */}
-                                <Route path="*" element={<Navigate to="/" replace />} />
+                                <Route path="*" element={<Navigate to="/pagina-nao-encontrada" replace />} />
                         </Routes>
                         <Footer />
                 </Router>
