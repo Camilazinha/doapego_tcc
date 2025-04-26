@@ -31,6 +31,8 @@ export default function ListCrud() {
 
         const fetchData = async () => {
             try {
+                if (!config) return;
+
                 if (entidade === "administradores") {
                     if (userType === "MASTER") {
                         const [staffResponse, masterResponse] = await Promise.all([
@@ -38,7 +40,6 @@ export default function ListCrud() {
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=MASTER&sortDirection=asc`)
                         ]);
                         setDados([...staffResponse.data.items, ...masterResponse.data.items]);
-
                     } else if (userType === "STAFF") {
                         const [staffResponse, funcionarioResponse] = await Promise.all([
                             axios.get(`http://localhost:8080/${config.apiEndpoint}?tipo=STAFF&ongId=${userOngId}&sortDirection=asc`),
@@ -47,12 +48,31 @@ export default function ListCrud() {
                         setDados([...staffResponse.data.items, ...funcionarioResponse.data.items]);
                     }
                 } else if (entidade === "ongs") {
-                    const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?statusOng=ATIVO`);
-                    setDados(response.data.items);
+                    if (userType === "MASTER") {
+                        const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?statusOng=ATIVO`);
+                        setDados(response.data.items);
+                    } else {
+                        const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${userOngId}`);
+                        setDados([response.data]); // colocar dentro de array porque é um só
+                    }
+                } else if (entidade === "enderecos-ong") {
+                    if (userType === "MASTER") {
+                        const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
+                        setDados(response.data.items);
+                    } else {
+                        const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?ongId=${userOngId}&sortDirection=asc`);
+                        setDados(response.data.items);
+                    }
+                } else if (entidade === "usuarios") {
+                    if (userType === "MASTER") {
+                        const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
+                        setDados(response.data.items);
+                    } else {
+                        setDados([]); // STAFF e FUNCIONÁRIO não podem ver nada
+                    }
                 } else {
-                    const response = await axios.get(
-                        `http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`
-                    );
+                    // Para qualquer outra entidade
+                    const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
                     setDados(response.data.items);
                 }
             } catch (err) {
@@ -71,6 +91,8 @@ export default function ListCrud() {
 
         fetchData();
     }, [config, entidade, userType, userOngId]);
+
+
 
     const toggleStatus = async (itemId, currentStatus) => {
         try {

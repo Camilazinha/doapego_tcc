@@ -88,6 +88,8 @@ export const crudData = {
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: editIcon },
+            { type: 'delete', label: 'Excluir', icon: deleteIcon }
         ]
     },
     'categorias-doacao': {
