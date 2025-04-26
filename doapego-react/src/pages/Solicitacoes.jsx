@@ -13,7 +13,7 @@ export default function Solicitacoes() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const itensPorPagina = 5;
+  const itensPorPagina = 10;
 
   useEffect(() => {
     const fetchOngsPendentes = async () => {
@@ -26,10 +26,16 @@ export default function Solicitacoes() {
 
         if (err.response) {
           setError("Erro ao carregar os dados. Tente novamente mais tarde.")
+          alert("Erro ao carregar os dados. Tente novamente mais tarde.")
+
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+
         } else {
           setError("Ocorreu um erro inesperado.")
+          alert("Ocorreu um erro inesperado.")
+
         }
 
       } finally {
@@ -77,11 +83,31 @@ export default function Solicitacoes() {
           {itensAtuais.length > 0 ? (
             itensAtuais.map((ong) => (
               <div key={ong.id} className="list-group-item d-flex align-items-center">
-                <div className="me-4 p-1">
-                  {ong.foto ? (
-                    <img src={ong.foto} alt={ong.nome} className="com-imagem" style={{ objectFit: "cover" }} />
+                <div className="me-3 p-1">
+                  {ong.fotoPerfil ? (
+                    <img
+                      src={ong.fotoPerfil}
+                      alt={ong.nome}
+                      className="rounded-circle shadow-sm"
+                      style={{
+                        width: "72px",
+                        height: "72px",
+                        objectFit: "cover"
+                      }}
+                    />
                   ) : (
-                    <img src={noImageIcon} alt="Sem imagem" width={80} />
+                    <div className="d-flex align-items-center justify-content-center">
+                      <img
+                        src={noImageIcon}
+                        alt="Sem imagem"
+                        className="rounded-circle"
+                        style={{
+                          width: "72px",
+                          height: "72px",
+                          padding: '0.5rem'
+                        }}
+                      />
+                    </div>
                   )}
                 </div>
 
