@@ -51,7 +51,7 @@ export default function CadastroStaff() {
     setValidationError("");
     setSuccessMessage(null); // Reseta a mensagem de sucesso antes de cada envio
 
-    const camposObrigatorios = ["nome", "email", "descricao", "cep", "estado", "cidade", "bairro", "numero", "logradouro"];
+    const camposObrigatorios = ["nome", "email", "cep", "estado", "cidade", "bairro", "numero", "logradouro"];
     const camposVazios = camposObrigatorios.filter((campo) => !formData[campo]?.trim() && !endereco[campo]?.trim());
 
     if (camposVazios.length > 0) {
