@@ -104,6 +104,7 @@ export const crudData = {
             { type: 'delete', label: 'Excluir', icon: deleteIcon }
         ]
     },
+
     'ongs': {
         titulo: 'ONGS',
         apiEndpoint: 'ongs',

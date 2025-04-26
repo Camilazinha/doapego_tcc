@@ -25,26 +25,29 @@ export default function EditCrud() {
   const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
+
     const validarPermissoes = () => {
-      // 1. Bloqueia totalmente edição de usuários
+      // 1. BLOQUEAR EDIÇÃO DE USUÁRIOS PARA TODOS
       if (entidade === 'usuarios') {
         setError("Edição de usuários não é permitida");
         return false;
       }
 
-      // 2. Categorias só podem ser editadas por MASTER
+      // 2. CATEGORIAS SÓ MASTER (mesmo que sua regra anterior)
       if (entidade === 'categorias-doacao' && userType !== 'MASTER') {
         setError("Somente MASTER pode editar categorias");
         return false;
       }
 
-      // 3. Administradores só podem editar a si próprios
-      if (entidade === 'administradores' && userId !== id) {
-        setError("Você só pode editar seu próprio perfil!");
-        return false;
+      // 3. ADMINISTRADORES: só pode editar o próprio perfil, independente do tipo
+      if (entidade === 'administradores') {
+        if (userId !== id) { // Aplica para MASTER, STAFF, etc
+          setError("Você só pode editar seu próprio perfil!");
+          return false;
+        }
       }
 
-      // 4. Endereço e ONG só por STAFF/FUNCIONARIO da mesma ONG
+      // 4. ONGS/ENDERECOS: apenas STAFF/FUNC da mesma ONG 
       if (entidade === 'enderecos-ong' || entidade === 'ongs') {
         if (!['STAFF', 'FUNCIONARIO'].includes(userType)) {
           setError("Acesso restrito a membros da ONG");
@@ -59,18 +62,18 @@ export default function EditCrud() {
       setLoading(false);
       return;
     }
-
     const fetchItem = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${id}`);
         const itemData = response.data;
-        if (entidade === 'ongs' || entidade === 'enderecos-ong' || entidade === 'administradores') {
-          const ongIdItem = entidade === 'ongs'
-            ? itemData.id // Se for ONG, pega o ID direto
-            : entidade === 'administradores'
-              ? itemData.ong?.id // Se for Administrador, pega ong.id
-              : (itemData.ongId ?? itemData.ong?.id); // Para Enderecos (mantém a lógica original)
 
+        // 👇 REGRAS PARA ONGS/ENDERECOS 
+        if (['ongs', 'enderecos-ong'].includes(entidade)) {
+          const ongIdItem = entidade === 'ongs'
+            ? itemData.id
+            : (itemData.ongId ?? itemData.ong?.id);
+
+          // STAFF/FUNC só podem editar sua própria ONG
           if (ongIdItem !== userOngId) {
             setError("Você só pode editar recursos da sua própria ONG!");
             setLoading(false);
@@ -78,15 +81,15 @@ export default function EditCrud() {
           }
         }
 
-        const { id: _, ...dadosCompletos } = itemData;
-
-        if (entidade === 'enderecos-ong' || entidade === 'administradores') {
+        // 👇 TRATAMENTO DO FORM DATA PARA ADMIN (incluindo MASTER)
+        if (entidade === 'administradores') {
           setFormData({
             ...itemData,
-            ong: { id: itemData.ong.id } // Pega DIRETAMENTE ong.id
+            ong: itemData.ong ? { id: itemData.ong.id } : null // ✅ Seguro
           });
         }
         else {
+          const { id: _, ...dadosCompletos } = itemData;
           setFormData(dadosCompletos);
         }
       }
@@ -133,6 +136,13 @@ export default function EditCrud() {
   // ✅ Código CORRETO
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Se já tiver erro (ex: acesso negado), NÃO deixa salvar
+    if (error) {
+      alert("Você não tem permissão para salvar essas alterações.");
+      return;
+    }
+
     setSaving(true);
 
     // ✅ Payload DIRETO, sem transformações
