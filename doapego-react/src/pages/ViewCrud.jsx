@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+
 import axios from 'axios';
 
 import { crudData } from '../constants/crudData';
@@ -14,9 +15,12 @@ export default function ViewCrud() {
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId') || null;
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
 
   const getNestedValue = (obj, path) => {
     return path.split('.').reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : null), obj);
@@ -105,6 +109,47 @@ export default function ViewCrud() {
     }
   }, [config, id, entidade, userType, userOngId]);
 
+  const handleAccept = async () => {
+    try {
+      await axios.patch(`http://localhost:8080/ongs/${id}`, {
+        statusOng: "ATIVO"
+      });
+
+      alert('ONG aprovada com sucesso!');
+      window.location.reload(); // Recarregar para atualizar o status
+
+    } catch (err) {
+      console.error('Erro ao aprovar ONG:', err);
+      alert('Erro ao aprovar ONG. Tente novamente!');
+    }
+  };
+  const handleReject = async () => {
+    try {
+      // Primeiro buscar todos os endereços da ONG
+      const enderecosResponse = await axios.get(`http://localhost:8080/enderecos-ong?ongId=${id}`);
+      const enderecos = enderecosResponse.data.items;
+
+      // Excluir todos os endereços relacionados
+      await Promise.all(
+        enderecos.map(endereco =>
+          axios.delete(`http://localhost:8080/enderecos-ong/${endereco.id}`)
+        )
+      );
+
+      // Agora excluir a ONG
+      await axios.delete(`http://localhost:8080/ongs/${id}`);
+
+      alert('ONG e endereços relacionados excluídos com sucesso!');
+      window.location.href = '/gerenciar-solicitacoes';
+
+    } catch (err) {
+      console.error('Erro no processo de exclusão:', err);
+      alert(`Erro ao excluir: ${err.response?.data?.message || err.message}`);
+    } finally {
+      setShowDeleteModal(false);
+    }
+  };
+
   if (loading) return (
     <main className='container my-5 nao-unico-elemento px-5'>
       <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
@@ -124,6 +169,7 @@ export default function ViewCrud() {
       </div>
     </main>
   );
+
   if (!config) {
     return (
       <main className='container my-5 nao-unico-elemento px-5'>
@@ -196,8 +242,72 @@ export default function ViewCrud() {
                       </tr>
                     );
                   })}
+                <section className="mt-4 d-flex justify-content-end gap-2">
+                  {entidade === 'ongs' && itemData.statusOng === 'PENDENTE' && userType === 'MASTER' && (
+                    <>
+                      <button
+                        className="btn btn-success"
+                        onClick={handleAccept}
+                      >
+                        Aceitar ONG
+                      </button>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => setShowDeleteModal(true)}
+                      >
+                        Rejeitar ONG
+                      </button>
+                    </>
+                  )}
+
+                  {entidade === 'ongs' && (userType === 'STAFF' || userType === 'FUNCIONARIO') && (
+                    <Link
+                      to={`/configuracoes/ongs/editar/${userOngId}`}
+                      className="btn btn-primary"
+                    >
+                      Editar ONG
+                    </Link>
+                  )}
+                </section>
+
               </tbody>
+
             </table>
+            {showDeleteModal && (
+              <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title text-danger fw-bold">CUIDADO!</h5>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        onClick={() => setShowDeleteModal(false)}
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      Tem certeza que deseja rejeitar e excluir permanentemente esta ONG?
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => setShowDeleteModal(false)}
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={handleReject}
+                      >
+                        Confirmar Exclusão
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </section>
       </div>
