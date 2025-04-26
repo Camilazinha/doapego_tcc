@@ -218,6 +218,48 @@ export default function ListCrud() {
                                     ))}
                                     <td className="text-center">
                                         {config.acoes.map(acao => {
+                                            // Verificar permissões
+                                            const userType = localStorage.getItem('tipo') || '';
+                                            let showAction = false;
+
+                                            switch (entidade) {
+                                                case 'administradores':
+                                                    if (acao.type === 'disable') {
+                                                        if (userType === 'MASTER') {
+                                                            showAction = item.tipo === 'STAFF';
+                                                        } else if (userType === 'STAFF') {
+                                                            showAction = item.tipo === 'FUNCIONARIO';
+                                                        }
+                                                    } else {
+                                                        showAction = true; // Ver sempre permitido
+                                                    }
+                                                    break;
+
+                                                case 'ongs':
+                                                    showAction = acao.type === 'view' || (acao.type === 'disable' && userType === 'MASTER');
+                                                    break;
+
+                                                case 'categorias-doacao':
+                                                    showAction = acao.type === 'view' || (['edit', 'delete'].includes(acao.type) && userType === 'MASTER');
+                                                    break;
+
+                                                case 'enderecos-ong':
+                                                    showAction = acao.type === 'view' ||
+                                                        (['edit', 'delete'].includes(acao.type) &&
+                                                            ['STAFF', 'FUNCIONARIO'].includes(userType));
+                                                    break;
+
+                                                case 'usuarios':
+                                                    showAction = userType === 'MASTER';
+                                                    break;
+
+                                                default:
+                                                    showAction = true;
+                                            }
+
+                                            if (!showAction) return null;
+
+                                            // Renderizar ações
                                             if (acao.type === 'delete') {
                                                 return (
                                                     <button key={acao.type}
@@ -229,30 +271,30 @@ export default function ListCrud() {
                                                         <img src={acao.icon} alt="" className="me-2" />
                                                         {acao.label}
                                                     </button>
-                                                )
-                                            }
-                                            if (acao.type === 'disable') {
+                                                );
+                                            } else if (acao.type === 'disable') {
                                                 const isActive = entidade === "ongs"
                                                     ? item.statusOng === "ATIVO"
-                                                    : item.ativo === true || item.ativo === "true"
+                                                    : item.ativo === true || item.ativo === "true";
 
                                                 return (
                                                     <button key={acao.type}
                                                         className={`btn btn-sm mx-1 btn-danger`}
                                                         onClick={() => toggleStatus(item.id, isActive)}>
                                                         <img src={acao.icon} alt="" className="me-2" />
-                                                        {isActive ? 'Desativar' : 'Ativar'}
+                                                        {isActive ? acao.activeLabel : acao.inactiveLabel}
                                                     </button>
                                                 );
+                                            } else {
+                                                return (
+                                                    <Link key={acao.type} to={`${acao.path}${item.id}`}>
+                                                        <button className={acao.classname}>
+                                                            <img src={acao.icon} alt="" className="me-2" />
+                                                            {acao.label}
+                                                        </button>
+                                                    </Link>
+                                                );
                                             }
-                                            return (
-                                                <Link key={acao.type} to={`${acao.path}${item.id}`}>
-                                                    <button className={acao.classname}>
-                                                        <img src={acao.icon} alt="" className="me-2" />
-                                                        {acao.label}
-                                                    </button>
-                                                </Link>
-                                            );
                                         })}
                                     </td>
                                 </tr>
