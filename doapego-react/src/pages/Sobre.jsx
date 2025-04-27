@@ -7,20 +7,20 @@ export default function Sobre() {
       <div className="container my-5 px-5 d-flex flex-column gap-4">
         <div className="somos">
           <h2 className="titulo-pagina mb-5">QUEM SOMOS?</h2>
-          <p>Somos um time apaixonado por impacto social, movido por empatia e tecnologia. Cada passo do Doapego é guiado pelo desejo de fazer a diferença na vida das crianças e de quem participa dessa corrente. Nosso compromisso é seguir conectanddo histórias, afetos e oportunidades, com um sorriso em cada entrega.</p>
+          <p>Somos um time apaixonado por impacto social, movido por empatia, inovação e tecnologia. Trabalhamos diariamente para transformar a vida das crianças e de todos os envolvidos no Doapego, criando uma rede de solidariedade e afetividade. Cada brinquedo doado é mais que um simples objeto: é uma chance de proporcionar alegria, conforto e dignidade, conectando histórias e corações em uma jornada de transformação social. Nosso trabalho é uma missão, e o sorriso no rosto de cada criança que recebe uma doação é a maior recompensa.</p>
         </div>
 
         <div className="missao mt-5">
           <h3 className="subtitulo-pagina mb-5">NOSSA MISSÃO</h3>
           <p>
-            Conectar brinquedos que não são mais usados a crianças que precisam de carinho, criando laços entre quem doa e quem recebe. Acreditamos que cada brinquedo tem uma história e merece ser parte de outra, trazendo alegria e esperança para aqueles que mais precisam.
+            Nossa missão é conectar brinquedos que não são mais utilizados a crianças que precisam de carinho e atenção, promovendo a doação como uma ferramenta de transformação social. Buscamos criar laços afetivos entre quem doa e quem recebe, promovendo não apenas a troca de brinquedos, mas também de histórias e de afetos. Acreditamos que cada brinquedo carrega uma história única e, por meio dele, podemos espalhar alegria, esperança e oportunidades, ajudando a melhorar a vida das crianças que mais necessitam de atenção e cuidado. Cada doação feita fortalece a nossa missão de gerar um impacto positivo nas comunidades.
           </p>
         </div>
 
         <div className="visao mt-5">
           <h3 className="subtitulo-pagina mb-5">NOSSA VISÃO</h3>
           <p>
-            Ser a plataforma de doação de brinquedos mais confiável e acessível, reconhecida por transformar vidas e comunidades. Queremos inspirar uma cultura de solidariedade, onde cada gesto conta e cada brinquedo tem o poder de mudar o mundo.
+            Nossa visão é ser a plataforma de doação de brinquedos mais confiável e acessível do país, reconhecida por sua capacidade de transformar vidas, comunidades e gerar um impacto social real e duradouro. Queremos criar um movimento de solidariedade que inspire pessoas de todas as idades a contribuir com o bem-estar e a felicidade das crianças em situação de vulnerabilidade social. Sonhamos com uma sociedade mais justa, onde o simples ato de doar um brinquedo possa fazer uma grande diferença na vida de quem recebe, criando uma cultura de empatia e colaboração, onde cada gesto de carinho tem o poder de mudar o mundo.
           </p>
         </div>
 

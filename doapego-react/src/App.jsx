@@ -7,7 +7,7 @@ import NotAuthorized from './components/NotAuthorized';
 
 import Home from './components/Home';
 import Sobre from './pages/Sobre';
-import Tutorial from './components/Tutorial';
+import Tutorial from './pages/Tutorial';
 import AjudaPublico from './pages/AjudaPublico';
 import Privacidade from './pages/Privacidade';
 import Termos from './pages/Termos';
@@ -67,7 +67,7 @@ export default function App() {
                                 {/* Rotas públicas */}
                                 <Route path="/" element={<Home />} />
                                 <Route path="/sobre-nos" element={<Sobre />} />
-                                <Route path="/tutorial" element={<Tutorial />} />
+                                <Route path="/como-doar" element={<Tutorial />} />
                                 <Route path="/politica-de-privacidade" element={<Privacidade />} />
                                 <Route path="/termos-de-uso" element={<Termos />} />
                                 <Route path="/ajuda" element={<AjudaPublico />} />

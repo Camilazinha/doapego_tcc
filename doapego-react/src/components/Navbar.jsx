@@ -29,7 +29,7 @@ export default function Navbar() {
             <Link className="nav-link" to="/sobre-nos">Sobre nós</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/tutorial">Como doar?</Link>
+            <Link className="nav-link" to="/como-doar">Como doar?</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link d-flex align-items-center" to="/login">
