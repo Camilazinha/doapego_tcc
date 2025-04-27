@@ -53,7 +53,7 @@ export default function Painel() {
         id: 'my-ong',
         title: ongData ? ongData.nome : 'Minha ONG',
         description: 'Visualize ou edite os detalhes da ONG que você administra ou trabalha.',
-        src: ongData && ongData.foto ? ongData.foto : 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
+        src: ongData && ongData.fotoPerfil ? ongData.fotoPerfil : 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
         link: `/configuracoes/ongs/detalhes/${userOngId}`,
         allowed: ['STAFF', 'FUNCIONARIO']
       }
@@ -90,7 +90,7 @@ export default function Painel() {
             .filter(section => section.allowed.includes(userType)) // Filtra pelas permissões
             .map((section) => (
               <div key={section.id} className='card'>
-                <img src={section.src} alt='' className="card-img-top" />
+                <img src={section.src} alt='' className="card-img-top" style={{ maxWidth: "320px", maxHeight: "212px", height: "100%" }} />
 
                 <div className='card-body'>
                   <h4 className='card-title mb-4'>{section.title}</h4>
