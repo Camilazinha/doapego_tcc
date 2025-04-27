@@ -11,7 +11,7 @@
   background-color: var(--color-tertiary-hover);
 }
 
-.tag-categoria.badge {
+.badge {
   border-radius: 0.3rem !important;
 }
 

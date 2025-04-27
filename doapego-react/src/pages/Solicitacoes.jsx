@@ -5,15 +5,28 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import noImageIcon from "../img/noimage-icon.svg";
-import errorIcon from "../img/errorexclamation-icon.svg";
+import copyIcon from "../img/copy-icon.svg";
+import viewIcon from "../img/view-icon.svg"
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
+import successIcon from "../img/success-icon.svg"; // Você precisa ter este ícone
 
 export default function Solicitacoes() {
   const [ongs, setOngs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [successMessage, setSuccessMessage] = useState(null);
   const [error, setError] = useState(null);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const itensPorPagina = 10;
+
+  const handleCopyEmail = async (email) => {
+    await navigator.clipboard.writeText(email);
+    setSuccessMessage("E-mail copiado com sucesso!");
+
+    // Remove a mensagem após 3 segundos
+    setTimeout(() => {
+      setSuccessMessage(null);
+    }, 2000);
+  }
 
   useEffect(() => {
     const fetchOngsPendentes = async () => {
@@ -79,74 +92,79 @@ export default function Solicitacoes() {
       <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">GERENCIAR SOLICITAÇÕES</h2>
 
-        <div className="list-group mb-5">
-          {itensAtuais.length > 0 ? (
-            itensAtuais.map((ong) => (
-              <div key={ong.id} className="list-group-item d-flex align-items-center">
-                <div className="me-3 p-1">
-                  {ong.fotoPerfil ? (
-                    <img
-                      src={ong.fotoPerfil}
-                      alt={ong.nome}
-                      className="rounded-circle shadow-sm"
-                      style={{
-                        width: "72px",
-                        height: "72px",
-                        objectFit: "cover"
-                      }}
-                    />
-                  ) : (
-                    <div className="d-flex align-items-center justify-content-center">
-                      <img
-                        src={noImageIcon}
-                        alt="Sem imagem"
-                        className="rounded-circle"
-                        style={{
-                          width: "72px",
-                          height: "72px",
-                          padding: '0.5rem'
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex-grow-1">
-                  <h5 className="mb-2">{ong.nome}</h5>
-                  <p>{ong.email}</p>
-                </div>
-
-                <div className="ms-auto me-4">
-                  <Link to={`/configuracoes/ongs/detalhes/${ong.id}`} className="btn btn-sm btn-custom-unfilled">
-                    Checar
-                  </Link>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="list-group-item text-muted py-3">
-              <img src={errorIcon} className="mx-2" alt="erro" /> Nenhuma ONG pendente encontrada
-            </div>
-          )}
-        </div>
-
-        {ongs.length > 0 && (
-          <nav>
-            <ul className="pagination">
-              <li className={`page-item ${paginaAtual === 1 ? "disabled" : ""}`}>
-                <button className="page-link" onClick={() => setPaginaAtual(paginaAtual - 1)}>Anterior</button>
-              </li>
-              {Array.from({ length: totalPaginas }, (_, i) => (
-                <li key={i} className={`page-item ${paginaAtual === i + 1 ? "active" : ""}`}>
-                  <button className="page-link" onClick={() => setPaginaAtual(i + 1)}>{i + 1}</button>
-                </li>
-              ))}
-              <li className={`page-item ${paginaAtual === totalPaginas ? "disabled" : ""}`}>
-                <button className="page-link" onClick={() => setPaginaAtual(paginaAtual + 1)}>Próxima</button>
-              </li>
-            </ul>
-          </nav>
+        {successMessage && (
+          <div className="alert alert-success d-flex align-items-center mb-4">
+            <img src={successIcon} className="me-2" alt="Sucesso" width="24" />
+            <span>{successMessage}</span>
+          </div>
         )}
+        <section className='p-4'>
+          <table className="table table-bordered table-hover">
+            <thead className='table-light'>
+              <tr className='text-center'>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {itensAtuais.map(ong => (
+                <tr key={ong.id} className='text-center align-middle'>
+                  <td>
+                    {ong.fotoPerfil ? (
+                      <img
+                        src={ong.fotoPerfil}
+                        alt=""
+                        className="rounded-circle shadow-sm"
+                        style={{ width: "80px", height: "80px", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <div className="d-flex align-items-center justify-content-center">
+                        <img src={noImageIcon} alt="Sem imagem" width={80} />
+                      </div>
+                    )}
+                  </td>
+                  <td>{ong.nome}</td>
+                  <td>
+                    {ong.email}
+                  </td>
+                  <td>
+                    <Link
+                      to={`/configuracoes/ongs/detalhes/${ong.id}`}>
+                      <button className="btn btn-sm btn-custom-view mx-1">
+                        <img src={viewIcon} alt="" className="me-1" />
+                        Checar
+                      </button>
+                    </Link>
+                    <button onClick={() => handleCopyEmail(ong.email)} className="btn btn-sm btn-custom-edit mx-1">
+                      <img src={copyIcon} alt="" className="me-1" />Copiar e-mail
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {ongs.length > 0 && (
+            <nav>
+              <ul className="pagination">
+                <li className={`page-item ${paginaAtual === 1 ? "disabled" : ""}`}>
+                  <button className="page-link" onClick={() => setPaginaAtual(paginaAtual - 1)}>Anterior</button>
+                </li>
+                {Array.from({ length: totalPaginas }, (_, i) => (
+                  <li key={i} className={`page-item ${paginaAtual === i + 1 ? "active" : ""}`}>
+                    <button className="page-link" onClick={() => setPaginaAtual(i + 1)}>{i + 1}</button>
+                  </li>
+                ))}
+                <li className={`page-item ${paginaAtual === totalPaginas ? "disabled" : ""}`}>
+                  <button className="page-link" onClick={() => setPaginaAtual(paginaAtual + 1)}>Próxima</button>
+                </li>
+              </ul>
+            </nav>
+          )}
+        </section>
+
       </div>
     </main>
   );
