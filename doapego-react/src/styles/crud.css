@@ -11,8 +11,8 @@
   background-color: var(--color-tertiary-hover);
 }
 
-.nav-tabs {
-  justify-content: center;
+.tag-categoria.badge {
+  border-radius: 0.3rem !important;
 }
 
 .nav-tabs .nav-link {

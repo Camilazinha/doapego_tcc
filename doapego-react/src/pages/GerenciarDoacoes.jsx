@@ -93,7 +93,7 @@ export default function GerenciarDoacoes() {
       <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
-        <ul className="nav nav-tabs mb-4">
+        <ul className="nav nav-tabs mb-4 justify-content-center">
           {["PENDENTE", "COLETADA", "RECUSADA"].map((status) => (
             <li className="nav-item" key={status}>
               <button
@@ -115,9 +115,9 @@ export default function GerenciarDoacoes() {
               <div key={doacao.id} className="list-group-item d-flex align-items-center">
 
                 <div className="me-4 p-1">
-                  {doacao.foto ? (
+                  {doacao.arquivosDoacao?.some(a => a.tipo === 'FOTO') ? (
                     <img
-                      src={doacao.foto || "/placeholder.svg"}
+                      src={doacao.arquivosDoacao.find(a => a.tipo === 'FOTO')?.link || noImageIcon}
                       alt={doacao.nome}
                       className="rounded-circle shadow-sm"
                       style={{ width: "80px", height: "80px", objectFit: "cover" }}
@@ -134,7 +134,7 @@ export default function GerenciarDoacoes() {
                   <p className="mb-0">
                     <Link to="/configuracoes/categorias-doacao">
                       <span className="badge tag-categoria">
-                        {doacao.categoria || "Não especificada"}
+                        {doacao.categoriaDoacao || "Não especificada"}
                       </span>
                     </Link>
                   </p>

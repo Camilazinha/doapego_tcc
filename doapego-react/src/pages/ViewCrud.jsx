@@ -7,7 +7,6 @@ import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
-import editIcon from "../img/edit-icon.svg"
 
 export default function ViewCrud() {
   const { entidade, id } = useParams();
