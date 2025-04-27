@@ -7,6 +7,7 @@ import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
+import editIcon from "../img/edit-icon.svg"
 
 export default function ViewCrud() {
   const { entidade, id } = useParams();
@@ -242,37 +243,38 @@ export default function ViewCrud() {
                       </tr>
                     );
                   })}
-                <section className="mt-4 d-flex justify-content-end gap-2">
-                  {entidade === 'ongs' && itemData.statusOng === 'PENDENTE' && userType === 'MASTER' && (
-                    <>
-                      <button
-                        className="btn btn-success"
-                        onClick={handleAccept}
-                      >
-                        Aceitar ONG
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => setShowDeleteModal(true)}
-                      >
-                        Rejeitar ONG
-                      </button>
-                    </>
-                  )}
-
-                  {entidade === 'ongs' && (userType === 'STAFF' || userType === 'FUNCIONARIO') && (
-                    <Link
-                      to={`/configuracoes/ongs/editar/${userOngId}`}
-                      className="btn btn-primary"
-                    >
-                      Editar ONG
-                    </Link>
-                  )}
-                </section>
 
               </tbody>
 
+
             </table>
+            <section className="mt-4 d-flex gap-2 justify-content-center flex-wrap">
+              {entidade === 'ongs' && itemData.statusOng === 'PENDENTE' && userType === 'MASTER' && (
+                <>
+                  <button
+                    className="btn btn-success"
+                    onClick={handleAccept}
+                  >
+                    Aceitar ONG
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => setShowDeleteModal(true)}
+                  >
+                    Rejeitar ONG
+                  </button>
+                </>
+              )}
+
+              {entidade === 'ongs' && (userType === 'STAFF' || userType === 'FUNCIONARIO') && (
+                <Link
+                  to={`/configuracoes/ongs/editar/${userOngId}`}
+                > <button className="btn btn-custom-unfilled mx-1">
+                    Editar ONG
+                  </button>
+                </Link>
+              )}
+            </section>
             {showDeleteModal && (
               <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
                 <div className="modal-dialog">
