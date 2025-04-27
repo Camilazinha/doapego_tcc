@@ -14,6 +14,7 @@ export default function ViewCrud() {
 
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId') || null;
+  const userId = Number(localStorage.getItem('id')) || null;
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -181,6 +182,13 @@ export default function ViewCrud() {
     );
   }
 
+  console.log("DEBUG:", {
+    entidade,
+    userId,
+    itemDataId: itemData.id,
+    condition: entidade === 'administradores' && (userId === itemData.id)
+  });
+
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
@@ -272,6 +280,16 @@ export default function ViewCrud() {
                     Editar ONG
                   </button>
                 </Link>
+              )}
+
+              {entidade === 'administradores' && (userId === itemData.id) && (
+                <Link
+                  to={`/configuracoes/administradores/editar/${userId}`}
+                > <button className="btn btn-custom-unfilled mx-1">
+                    Editar perfil
+                  </button>
+                </Link>
+
               )}
             </section>
             {showDeleteModal && (

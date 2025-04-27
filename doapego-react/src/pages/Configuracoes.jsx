@@ -16,13 +16,14 @@ export default function Configuracoes() {
   // Pega os dados do localStorage
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId') || '';
+  const userId = localStorage.getItem('id') || '';
 
   const sections = [
     {
       id: 'profile',
       title: 'Meu perfil',
       icon: profileIcon,
-      link: '/configuracoes/meu-perfil',
+      link: `/configuracoes/administradores/detalhes/${userId}`,
       allowed: ['MASTER', 'STAFF', 'FUNCIONARIO']
     },
     {
