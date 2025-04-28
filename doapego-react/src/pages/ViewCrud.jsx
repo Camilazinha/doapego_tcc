@@ -43,7 +43,7 @@ export default function ViewCrud() {
             } else if (userType === 'STAFF') {
               hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && userType === 'STAFF' && Number(userOngId) === data.ong?.id;
             } else {
-              hasPermission = false;
+              hasPermission = Number(userId) === data.id;
             }
             break;
           case 'categorias-doacao':
@@ -108,7 +108,7 @@ export default function ViewCrud() {
     } else {
       setLoading(false);
     }
-  }, [config, id, entidade, userType, userOngId]);
+  }, [config, id, entidade, userType, userOngId, userId]);
 
   const handleAccept = async () => {
     try {

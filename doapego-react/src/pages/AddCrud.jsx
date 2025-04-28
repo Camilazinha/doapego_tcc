@@ -19,7 +19,7 @@ export default function AddCrud() {
   const [ongOptions, setOngOptions] = useState([]);
 
   useEffect(() => {
-    if (userType !== 'STAFF') {
+    if (!['STAFF', 'FUNCIONARIO'].includes(userType)) { // 👈 Corrigido
       axios.get('http://localhost:8080/ongs?statusOng=ATIVO')
         .then(res => {
           setOngOptions(res.data.items);
@@ -78,7 +78,7 @@ export default function AddCrud() {
 
       // Alterado para tratar 'ong.id' diretamente
       if (col.key === 'ong.id') {
-        if (userType === 'STAFF') {
+        if (['STAFF', 'FUNCIONARIO'].includes(userType)) { // 👈 Corrigido
           initial[col.key] = Number(userOngId); // Valor direto
         } else {
           initial[col.key] = '';
@@ -134,7 +134,7 @@ export default function AddCrud() {
       if (col.key === 'fotoPerfil') return false;
       if (col.tipoBooleano === 'ativo-inativo') return false;
       if (col.tipoBooleano === 'sim-nao') return false;
-      if (col.key === 'ong.id' && userType === 'STAFF') return false;
+      if (col.key === 'ong.id' && ['STAFF', 'FUNCIONARIO'].includes(userType)) return false; // 👈 Corrigido
 
       // Corrigido: Retorna diretamente a verificação
       return col.required && !formData[col.key];
@@ -245,7 +245,7 @@ export default function AddCrud() {
               // 1) foreignKey -> hidden
               if (col.key === 'ong.id') {
                 // STAFF: input hidden
-                if (userType === 'STAFF') {
+                if (['STAFF', 'FUNCIONARIO'].includes(userType)) { // 👈 Corrigido
                   return (
                     <input
                       key={col.key}

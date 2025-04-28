@@ -178,9 +178,23 @@ export default function ListCrud() {
     return (
         <main>
             <div className='container my-5 nao-unico-elemento px-5'>
-                <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
+                <h2 className='titulo-pagina mb-4'>{config.titulo}</h2>
+
+
+
                 <section className='p-4'>
-                    <table className="table table-bordered table-hover">
+                    {(
+                        (entidade === "administradores") ||
+                        (entidade === "enderecos-ong" && userType !== "MASTER") ||
+                        (entidade === "categorias-doacao" && userType === "MASTER")
+                    ) && (
+                            <Link to={`/configuracoes/${entidade}/adicionar`}>
+                                <button className="btn btn-custom-filled">
+                                    + Adicionar
+                                </button>
+                            </Link>
+                        )}
+                    <table className="mt-3 table table-bordered table-hover">
                         <thead className='table-light'>
                             <tr className='text-center'>
                                 {config.colunas.map(col => (
