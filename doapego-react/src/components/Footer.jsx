@@ -25,7 +25,7 @@ export default function Footer() {
             <h6 className="mb-4">UTILIDADE</h6>
             <p><Link to="/politica-de-privacidade" className='link-info-footer'><img src={documentIcon} alt='' />Política de privacidade</Link></p>
             <p><Link to="/termos-de-uso" className='link-info-footer'><img src={documentIcon} alt='' />Termos de uso</Link></p>
-            <p><Link to="/tutorial" className='link-info-footer'><img src={giftIcon} alt='' />Como doar</Link></p>
+            <p><Link to="/como-doar" className='link-info-footer'><img src={giftIcon} alt='' />Como doar</Link></p>
             <p><Link to="/ajuda" className='link-info-footer'><img src={faqIcon} alt='' />Ajuda</Link></p>
           </div>
 
