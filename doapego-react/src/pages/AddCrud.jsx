@@ -385,6 +385,7 @@ export default function AddCrud() {
                     className="form-control"
                     value={formData[col.key]}
                     onChange={handleChange}
+                    required={col.required}
                   />
 
                 </div>

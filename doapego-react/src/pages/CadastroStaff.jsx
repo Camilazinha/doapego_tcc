@@ -166,7 +166,7 @@ export default function CadastroStaff() {
             <h4 className="mb-3 mt-1 subtitulo-container">Dados da ONG</h4>
 
             <div className="form-group">
-              <label className="form-label">Nome <span className="text-danger">*</span></label>
+              <label className="form-label">Nome<span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="nome" value={formData.nome} onChange={handleChange} required />
             </div>
 
@@ -194,32 +194,32 @@ export default function CadastroStaff() {
             <h4 className="mb-3 mt-4 subtitulo-container">Endereço da ONG</h4>
 
             <div className="form-group">
-              <label className="form-label">CEP <span className="text-danger">*</span></label>
+              <label className="form-label">CEP<span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="cep" value={endereco.cep} onChange={handleEnderecoChange} required />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Estado <span className="text-danger">*</span></label>
+              <label className="form-label">Estado<span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="estado" value={endereco.estado} onChange={handleEnderecoChange} required />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Cidade <span className="text-danger">*</span></label>
+              <label className="form-label">Cidade<span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="cidade" value={endereco.cidade} onChange={handleEnderecoChange} required />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Bairro <span className="text-danger">*</span></label>
+              <label className="form-label">Bairro<span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="bairro" value={endereco.bairro} onChange={handleEnderecoChange} required />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Logradouro <span className="text-danger">*</span></label>
+              <label className="form-label">Logradouro<span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="logradouro" value={endereco.logradouro} onChange={handleEnderecoChange} required />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Número <span className="text-danger">*</span></label>
+              <label className="form-label">Número<span className="text-danger">*</span></label>
               <input type="text" className="form-control" name="numero" value={endereco.numero} onChange={handleEnderecoChange} required />
             </div>
 
