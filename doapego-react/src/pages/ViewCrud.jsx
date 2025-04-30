@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { formatarTelefone, formatarCEP } from '../helpers/masks'; // Ajuste o caminho
 
 import axios from 'axios';
 
@@ -241,7 +242,10 @@ export default function ViewCrud() {
                                 valor ? 'Sim' : 'Não'
                               )
                             ) : (
-                              valor
+                              // Adicione as formatações aqui
+                              col.key === 'telefone' || col.key === 'whatsapp' ? formatarTelefone(valor) :
+                                col.key === 'cep' ? formatarCEP(valor) :
+                                  valor
                             )
                           ) : (
                             <p className='text-muted'>Sem informação</p>

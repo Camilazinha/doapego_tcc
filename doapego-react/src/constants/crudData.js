@@ -1,3 +1,5 @@
+import { formatarTelefone, formatarCEP } from '../helpers/masks'; // Ajuste o caminho
+
 import deleteIcon from "../img/delete-icon.svg"
 import desativarIcon from "../img/desativar-icon.svg"
 
@@ -48,8 +50,8 @@ export const crudData = {
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo' },
         ],
         colunasExtras: [
-            { key: 'telefone', label: 'Telefone' },
-            { key: 'cep', label: 'CEP' },
+            { key: 'telefone', label: 'Telefone', formatar: formatarTelefone },
+            { key: 'cep', label: 'CEP', formatar: formatarCEP },
             { key: 'estado', label: 'Estado' },
             { key: 'cidade', label: 'Cidade' },
             { key: 'bairro', label: 'Bairro' },
@@ -82,7 +84,7 @@ export const crudData = {
             { key: 'complemento', label: 'Complemento' },
             { key: 'latitude', label: 'Latitude' },
             { key: 'longitude', label: 'Longitude' },
-            { key: 'cep', label: 'CEP', required: true },
+            { key: 'cep', label: 'CEP', required: true, formatar: formatarCEP },
             { key: 'principal', label: 'Principal', tipoBooleano: 'sim-nao' },
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo', required: true },
         ],
@@ -117,8 +119,8 @@ export const crudData = {
             { key: 'email', label: 'E-mail', required: true },
         ],
         colunasExtras: [
-            { key: 'telefone', label: 'Telefone' },
-            { key: 'whatsapp', label: 'WhatsApp' },
+            { key: 'telefone', label: 'Telefone', formatar: formatarTelefone },
+            { key: 'whatsapp', label: 'WhatsApp', formatar: formatarTelefone },
             { key: 'descricao', label: 'Descrição' },
             { key: 'fundacao', label: 'Data de fundação' },
             { key: 'statusOng', label: 'Status', required: true },
