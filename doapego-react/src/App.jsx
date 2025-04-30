@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import NotAuthorized from './components/NotAuthorized';
 
-import Home from './components/Home';
+import Home from './pages/Home';
 import Sobre from './pages/Sobre';
 import Tutorial from './pages/Tutorial';
 import AjudaPublico from './pages/AjudaPublico';
