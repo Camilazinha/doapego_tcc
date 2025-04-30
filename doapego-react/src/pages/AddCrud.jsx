@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import { formatarTelefone, formatarCEP, removerMascara } from '../helpers/masks';
+import { buscarCEP } from '../helpers/cepService';
 import { crudData } from '../constants/crudData';
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
@@ -105,14 +106,60 @@ export default function AddCrud() {
   const [validationError, setValidationError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+  const [buscandoCEP, setBuscandoCEP] = useState(false);
+
+  const handleCEPChange = async (e) => {
+    const { value } = e.target;
+    const cepLimpo = removerMascara(value);
+
+    // Aplica máscara
+    const cepFormatado = formatarCEP(value);
+    setFormData(prev => ({ ...prev, cep: cepFormatado }));
+
+    // Busca automática quando tiver 8 dígitos
+    if (cepLimpo.length === 8) {
+      setBuscandoCEP(true);
+      try {
+        const endereco = await buscarCEP(cepLimpo);
+
+        if (endereco) {
+          setFormData(prev => ({
+            ...prev,
+            logradouro: endereco.logradouro,
+            bairro: endereco.bairro,
+            cidade: endereco.cidade,
+            estado: endereco.estado
+          }));
+        }
+      } catch (error) {
+        alert('CEP não encontrado!');
+      } finally {
+        setBuscandoCEP(false);
+      }
+    }
+  };
+
+
   const handleChange = e => {
     const { name, value, type } = e.target;
+
+    let valorFormatado = value;
+
+    if (name === "telefone" || name === "whatsapp") {
+      valorFormatado = formatarTelefone(value);
+    }
+    else if (name === 'cep') {
+      valorFormatado = formatarCEP(value);
+    }
+
+
     setFormData(prev => ({
       ...prev,
       [name]: type === 'radio'
         // para radio de booleano (value "true"/"false") ou enum (value = string)
         ? (value === 'true' ? true : value === 'false' ? false : value)
-        : value
+        : valorFormatado
+
     }));
   };
 
@@ -120,11 +167,16 @@ export default function AddCrud() {
     console.log('Dados a serem enviados:', formData);
 
     e.preventDefault();
-
+    const dadosLimpos = {
+      ...formData,
+      telefone: removerMascara(formData.telefone),
+      whatsapp: removerMascara(formData.whatsapp),
+      cep: removerMascara(formData.cep)
+    };
     // Força o valor de tipo baseado no userType
     if (entidade === 'administradores') {
-      if (userType === 'MASTER') formData.tipo = 'STAFF';
-      else if (userType === 'STAFF') formData.tipo = 'FUNCIONARIO';
+      if (userType === 'MASTER') dadosLimpos.tipo = 'STAFF';
+      else if (userType === 'STAFF') dadosLimpos.tipo = 'FUNCIONARIO';
     }
 
     // valida todos os campos (colunas + colunasExtras), exceto id
@@ -152,7 +204,7 @@ export default function AddCrud() {
     setError(null);
 
     try {
-      const payload = { ...formData };
+      const payload = { ...dadosLimpos };
       delete payload.id;
       payload.rawPassword = payload.senha;
       delete payload.senha;
@@ -359,6 +411,51 @@ export default function AddCrud() {
                   </div>
                 );
               }
+
+
+              ['telefone', 'whatsapp'].includes(col.key) && (
+                <div className="form-group mb-4" key={col.key}>
+                  <label className="form-label">{col.label}:</label>
+                  <input
+                    type="text"
+                    name={col.key}
+                    className="form-control"
+                    value={formData[col.key] || ''}
+                    onChange={handleChange}
+                    inputMode="numeric"
+                    placeholder={col.key === 'cep' ? '00000-000' : '(00) 00000-0000'}
+                  />
+                </div>
+              )
+
+
+
+              col.key === 'cep' && (
+                <div className="form-group mb-4" key={col.key}>
+                  <label className="form-label">{col.label}:</label>
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      name={col.key}
+                      className="form-control"
+                      value={formData[col.key] || ''}
+                      onChange={handleCEPChange}
+                      inputMode="numeric"
+                      disabled={buscandoCEP}
+                      placeholder="00000-000"
+                    />
+                    {buscandoCEP && (
+                      <span className="input-group-text">
+                        <div className="spinner-border spinner-border-sm text-secondary" role="status">
+                          <span className="visually-hidden">Carregando...</span>
+                        </div>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )
+
+
               // 5) campo de senha (password)
               if (col.tipo === 'password') {
                 return (

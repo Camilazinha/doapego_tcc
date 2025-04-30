@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import { crudData } from '../constants/crudData';
+import { formatarTelefone, formatarCEP, removerMascara } from '../helpers/masks';
+import { buscarCEP } from '../helpers/cepService';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
@@ -15,7 +17,7 @@ export default function EditCrud() {
   const config = crudData[entidade] || null;
 
   const [userType] = useState(localStorage.getItem('tipo') || '');
-  const userId = localStorage.getItem('id') || '';
+  const userId = Number(localStorage.getItem('id')) || '';
   const userOngId = Number(localStorage.getItem('ongId'));
 
   const [formData, setFormData] = useState({});
@@ -117,25 +119,60 @@ export default function EditCrud() {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
+    let valorFormatado = value;
+
+    // Aplica máscaras
+    if (name === 'telefone' || name === 'whatsapp') {
+      valorFormatado = formatarTelefone(value);
+    } else if (name === 'cep') {
+      valorFormatado = formatarCEP(value);
+      handleBuscaCEP(value); // Adiciona a busca automática aqui
+    }
+
     if (name.includes('.')) {
       const [parentKey, childKey] = name.split('.');
       setFormData(prev => ({
         ...prev,
         [parentKey]: {
           ...prev[parentKey],
-          [childKey]: type === 'checkbox' ? checked : value
+          [childKey]: type === 'checkbox' ? checked : valorFormatado
         }
       }));
     } else {
-      const newValue = type === 'checkbox' ? checked : value;
+      const newValue = type === 'checkbox' ? checked : valorFormatado;
       setFormData(prev => ({ ...prev, [name]: newValue }));
     }
   };
 
+  const handleBuscaCEP = async (cep) => {
+    const cepLimpo = removerMascara(cep);
+
+    if (cepLimpo.length === 8) {
+      try {
+        const endereco = await buscarCEP(cepLimpo);
+        if (endereco) {
+          setFormData(prev => ({
+            ...prev,
+            ...endereco,
+            cep: formatarCEP(cepLimpo) // Mantém a formatação
+          }));
+        }
+      } catch (error) {
+        alert('CEP não encontrado!');
+      }
+    }
+  };
 
   // ✅ Código CORRETO
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const dadosLimpos = {
+      ...formData,
+      telefone: removerMascara(formData.telefone),
+      whatsapp: removerMascara(formData.whatsapp),
+      cep: removerMascara(formData.cep)
+    };
 
     // Se já tiver erro (ex: acesso negado), NÃO deixa salvar
     if (error) {
@@ -143,10 +180,9 @@ export default function EditCrud() {
       return;
     }
 
-    setSaving(true);
-
     // ✅ Payload DIRETO, sem transformações
-    const payload = { ...formData };
+    const payload = dadosLimpos;
+    setSaving(true);
 
 
     console.log("Payload REAL:", payload);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { formatarTelefone, formatarCEP } from '../helpers/masks'; // Ajuste o caminho
+import { formatarTelefone, formatarCEP } from '../helpers/masks';
 
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ export default function ViewCrud() {
   const config = crudData[entidade] || null;
 
   const userType = localStorage.getItem('tipo') || '';
-  const userOngId = localStorage.getItem('ongId') || null;
+  const userOngId = Number(localStorage.getItem('ongId')) || null;
   const userId = Number(localStorage.getItem('id')) || null;
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -42,9 +42,9 @@ export default function ViewCrud() {
             if (userType === 'MASTER') {
               hasPermission = data.tipo === 'MASTER' || data.tipo === 'STAFF';
             } else if (userType === 'STAFF') {
-              hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && userType === 'STAFF' && Number(userOngId) === data.ong?.id;
+              hasPermission = (data.tipo === 'STAFF' || data.tipo === 'FUNCIONARIO') && userType === 'STAFF' && userOngId === data.ong?.id;
             } else {
-              hasPermission = Number(userId) === data.id;
+              hasPermission = userId === data.id;
             }
             break;
           case 'categorias-doacao':
@@ -54,13 +54,13 @@ export default function ViewCrud() {
             if (userType === 'MASTER') {
               hasPermission = true;
             } else {
-              hasPermission = Number(userOngId) === data.ong?.id;
+              hasPermission = userOngId === data.ong?.id;
             }
             break;
           case 'ongs':
             if (userType === 'MASTER') {
               hasPermission = true;
-            } else if ((userType === 'STAFF' || userType === 'FUNCIONARIO') && Number(userOngId) === data.id) {
+            } else if ((userType === 'STAFF' || userType === 'FUNCIONARIO') && userOngId === data.id) {
               hasPermission = true;
             } else {
               hasPermission = false;
@@ -183,12 +183,6 @@ export default function ViewCrud() {
     );
   }
 
-  console.log("DEBUG:", {
-    entidade,
-    userId,
-    itemDataId: itemData.id,
-    condition: entidade === 'administradores' && (userId === itemData.id)
-  });
 
   return (
     <main>
@@ -228,6 +222,23 @@ export default function ViewCrud() {
                     const valor = getNestedValue(itemData, col.key);
                     const temValor = valor !== null && valor !== undefined && String(valor).trim() !== "";
 
+                    const formatarValor = (col, valor) => {
+                      if (typeof valor === 'boolean') {
+                        return col.tipoBooleano === 'ativo-inativo'
+                          ? (valor ? 'Ativo' : 'Inativo')
+                          : (valor ? 'Sim' : 'Não');
+                      }
+
+                      switch (col.key) {
+                        case 'telefone':
+                        case 'whatsapp':
+                          return formatarTelefone(valor);
+                        case 'cep':
+                          return formatarCEP(valor);
+                        default:
+                          return valor;
+                      }
+                    };
                     return (
                       <tr key={col.key}>
                         <th scope="row" className="text-nowrap text-secondary fw-semibold" style={{ width: "30%" }}>
@@ -235,18 +246,7 @@ export default function ViewCrud() {
                         </th>
                         <td>
                           {temValor ? (
-                            typeof valor === 'boolean' ? (
-                              col.tipoBooleano === 'ativo-inativo' ? (
-                                valor ? 'Ativo' : 'Inativo'
-                              ) : (
-                                valor ? 'Sim' : 'Não'
-                              )
-                            ) : (
-                              // Adicione as formatações aqui
-                              col.key === 'telefone' || col.key === 'whatsapp' ? formatarTelefone(valor) :
-                                col.key === 'cep' ? formatarCEP(valor) :
-                                  valor
-                            )
+                            formatarValor(col, valor)
                           ) : (
                             <p className='text-muted'>Sem informação</p>
                           )}
