@@ -216,8 +216,38 @@ export default function EditCrud() {
     const hasCEPField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'cep');
     if (hasCEPField) {
       const cepNumerico = removerMascara(formData.cep);
-      if (cepNumerico.length !== 8) {
+      if (cepNumerico && cepNumerico.length !== 8) { // ✅ Agora só valida se houver valor
         setError("CEP inválido! Deve conter 8 dígitos");
+        return;
+      }
+    }
+
+    // 👇 Nova validação para telefone
+    const hasTelefoneField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'telefone');
+    if (hasTelefoneField && formData.telefone) {
+      const telefoneLimpo = removerMascara(formData.telefone);
+      if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
+        setError("Telefone deve ter 10 ou 11 dígitos (com DDD)");
+        return;
+      }
+    }
+
+    // 👇 Nova validação para WhatsApp
+    const hasWhatsappField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'whatsapp');
+    if (hasWhatsappField && formData.whatsapp) {
+      const whatsappLimpo = removerMascara(formData.whatsapp);
+      if (whatsappLimpo.length < 10 || whatsappLimpo.length > 11) { // Exige DDD + 9 dígitos
+        setError("WhatsApp deve ter 11 dígitos (com DDD)");
+        return;
+      }
+    }
+
+    // Validação da data (opcional, se necessário)
+    if (formData.fundacao) {
+      const dataAtual = new Date();
+      const dataFundacao = new Date(formData.fundacao);
+      if (dataFundacao > dataAtual) {
+        setError("Data de fundação não pode ser futura!");
         return;
       }
     }
