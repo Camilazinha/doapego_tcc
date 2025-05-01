@@ -15,4 +15,7 @@ export const formatarCEP = (valor) => {
   return numeros.replace(/(\d{5})(\d{0,3})/, '$1-$2');
 };
 
-export const removerMascara = (valor) => valor.replace(/\D/g, '');
+export const removerMascara = (valor) => {
+  return (valor || '')
+    .replace(/\D/g, '');
+};

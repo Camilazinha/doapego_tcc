@@ -27,6 +27,15 @@ export default function EditCrud() {
   const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setError(null);
+      setSuccessMessage(null);
+    }, 4000);
+
+    return () => clearTimeout(timer); // Limpa o timer se o componente desmontar
+  }, [error, successMessage]);
+
+  useEffect(() => {
 
     const validarPermissoes = () => {
       // 1. BLOQUEAR EDIÇÃO DE USUÁRIOS PARA TODOS
@@ -43,7 +52,7 @@ export default function EditCrud() {
 
       // 3. ADMINISTRADORES: só pode editar o próprio perfil, independente do tipo
       if (entidade === 'administradores') {
-        if (userId !== id) { // Aplica para MASTER, STAFF, etc
+        if (userId !== Number(id)) { // Aplica para MASTER, STAFF, etc
           setError("Você só pode editar seu próprio perfil!");
           return false;
         }
@@ -68,6 +77,18 @@ export default function EditCrud() {
       try {
         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${id}`);
         const itemData = response.data;
+
+        if (itemData.cep) {
+          itemData.cep = formatarCEP(itemData.cep);
+        }
+
+        if (itemData.telefone) {
+          itemData.telefone = formatarTelefone(itemData.telefone);
+        }
+
+        if (itemData.whatsapp) {
+          itemData.whatsapp = formatarTelefone(itemData.whatsapp);
+        }
 
         // 👇 REGRAS PARA ONGS/ENDERECOS 
         if (['ongs', 'enderecos-ong'].includes(entidade)) {
@@ -150,15 +171,39 @@ export default function EditCrud() {
     if (cepLimpo.length === 8) {
       try {
         const endereco = await buscarCEP(cepLimpo);
-        if (endereco) {
+
+        // Se o CEP não for encontrado, a API retorna { erro: true }
+        if (endereco.erro) {
+          alert('CEP não encontrado!');
+          // Limpa os campos de endereço
           setFormData(prev => ({
             ...prev,
-            ...endereco,
-            cep: formatarCEP(cepLimpo) // Mantém a formatação
+            logradouro: '',
+            bairro: '',
+            cidade: '',
+            estado: '',
+            cep: formatarCEP(cepLimpo) // Mantém o CEP formatado
           }));
+          return;
         }
+
+        // Atualiza todos os campos de endereço
+        setFormData(prev => ({
+          ...prev,
+          ...endereco,
+          cep: endereco.cep // Usa o CEP formatado retornado
+        }));
       } catch (error) {
-        alert('CEP não encontrado!');
+        alert('Erro ao buscar CEP!');
+        // Limpa os campos em caso de erro
+        setFormData(prev => ({
+          ...prev,
+          logradouro: '',
+          bairro: '',
+          cidade: '',
+          estado: '',
+          cep: formatarCEP(cepLimpo)
+        }));
       }
     }
   };
@@ -167,11 +212,32 @@ export default function EditCrud() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // ✅ Valida CEP APENAS se a entidade tiver o campo
+    const hasCEPField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'cep');
+    if (hasCEPField) {
+      const cepNumerico = removerMascara(formData.cep);
+      if (cepNumerico.length !== 8) {
+        setError("CEP inválido! Deve conter 8 dígitos");
+        return;
+      }
+    }
+
+    if (entidade === 'enderecos-ong' && (!formData.logradouro || !formData.bairro || !formData.cidade || !formData.estado)) {
+      setError("Preencha todos os campos do endereço corretamente");
+
+      return;
+    }
+
+    // 👇 Agora seguro mesmo se campos estiverem undefined
     const dadosLimpos = {
       ...formData,
+      fundacao: formData.fundacao
+        ? new Date(formData.fundacao + 'T00:00:00-03:00').toISOString().split('T')[0] // Fixa UTC-3
+        : null,
       telefone: removerMascara(formData.telefone),
       whatsapp: removerMascara(formData.whatsapp),
       cep: removerMascara(formData.cep)
+      // Nota: logradouro, bairro, etc., não precisam de tratamento
     };
 
     // Se já tiver erro (ex: acesso negado), NÃO deixa salvar
@@ -274,6 +340,35 @@ export default function EditCrud() {
 
               if (col.key === "id" || isOculto) return null;
 
+              if (col.tipo === 'date') {
+                return (
+                  <div key={col.key} className="mb-4 form-group">
+                    <label className="form-label">{col.label}:</label>
+                    <input type='date'
+                      name={col.key}
+                      value={formData[col.key] || ''}
+                      onChange={handleChange}
+                      className="form-control"
+                    />
+                  </div>
+                )
+              }
+
+              if (col.tipo === 'textarea') {
+                return (
+                  <div key={col.key} className="mb-4 form-group">
+                    <label className="form-label">{col.label}:</label>
+                    <textarea
+                      name={col.key}
+                      value={formData[col.key] || ''}
+                      onChange={handleChange}
+                      className="form-control"
+                      rows="4"
+                      required={col.required}
+                    />
+                  </div>
+                )
+              }
 
 
               if (col.tipo === 'password') {

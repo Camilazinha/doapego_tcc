@@ -119,8 +119,8 @@ export const crudData = {
         colunasExtras: [
             { key: 'telefone', label: 'Telefone', mask: 'telefone' },
             { key: 'whatsapp', label: 'WhatsApp', mask: 'telefone' },
-            { key: 'descricao', label: 'Descrição' },
-            { key: 'fundacao', label: 'Data de fundação' },
+            { key: 'descricao', label: 'Descrição', tipo: 'textarea' },
+            { key: 'fundacao', label: 'Data de fundação', tipo: 'date' },
             { key: 'statusOng', label: 'Status', required: true },
         ],
         acoes: [
