@@ -74,7 +74,8 @@
 }
 
 .btn-custom-view:hover {
-  background-color: var(--color-primary-hover); ;
+  background-color: var(--color-primary-hover);
+  ;
   color: var(--color-white);
 }
 
@@ -84,3 +85,65 @@
   color: var(--color-white) !important;
 }
 
+
+.btn-hidden-fill {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: .5rem;
+  border: .12rem solid transparent;
+  /* Adiciona a borda invisível no estado normal */
+}
+
+.btn-hidden-unfill {
+  color: var(--color-white);
+  border: .12rem solid var(--color-white);
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: .5rem;
+}
+
+/* 
+.btn-hidden-fill:hover {
+  background-color: #e0f2f1;
+  color: var(--color-primary);
+}
+
+.btn-hidden-fill:active,
+.btn-hidden-fil:focus-visible {
+  background-color: #f1fafa !important;
+  color: var(--color-primary) !important;
+}
+*/
+
+.btn-hidden-fill:hover {
+  color: var(--color-white);
+  border: .12rem solid var(--color-white);
+  background-color: transparent;
+}
+
+.btn-hidden-fill:active,
+.btn-hidden-fil:focus-visible {
+  background-color: #f1fafa !important;
+  color: var(--color-primary) !important;
+  border: .12rem solid transparent;
+  /* Adiciona a borda invisível no estado normal */
+}
+
+
+.btn-hidden-unfill:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary) !important;
+  border: .12rem solid transparent;
+  /* Adiciona a borda invisível no estado normal */
+}
+
+.btn-hidden-unfill:active,
+.btn-hidden-unfill:focus-visible {
+  background-color: #f1fafa !important;
+  color: var(--color-primary) !important;
+  border: .12rem solid transparent;
+  /* Adiciona a borda invisível no estado normal */
+}

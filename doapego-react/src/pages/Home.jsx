@@ -4,7 +4,15 @@ export default function Home() {
   return (
     <main>
       <div className='container my-5 nao-unico-elemento'>
-        <h2 className="titulo-pagina mb-5">CONHEÇA MAIS SOBRE O DOAPEGO</h2>
+
+        <div className="container-fluid home-big p-5 mb-5">
+          <h2 className="col-12 col-sm-12 col-md-9 col-lg-5 my-3">UMA PONTE DE AFETO: DE DOADORES PARA INFÂNCIAS QUE MERECEM SORRIR</h2>
+
+          <div className="mt-5 mb-3 d-flex gap-3">
+            <button className="btn btn-hidden-fill">Baixe o aplicativo</button>
+            <button className="btn btn-hidden-unfill">Saiba como funciona</button>
+          </div>
+        </div>
 
         <div className="mb-5">
           <h4 className="subtitulo-pagina mb-3">POR QUE DOAR?</h4>
@@ -12,6 +20,14 @@ export default function Home() {
             Doar um brinquedo é muito mais do que dar algo material – é compartilhar momentos de felicidade e criar memórias afetivas que fazem a diferença na vida de uma criança. Ao doar, você oferece a chance de transformação e crescimento. Cada brinquedo que passa das suas mãos para a de outra criança traz não apenas diversão, mas também a oportunidade de aprendizado, imaginação e, principalmente, afeto.
             Em um mundo onde tantas crianças ainda carecem do direito de brincar, um simples gesto de carinho pode mudar completamente o dia delas. Um brinquedo é muito mais do que um objeto; ele pode ser o ponto de partida para novas descobertas, para a construção de amizades e para o fortalecimento de uma infância saudável e cheia de imaginação.
           </p>
+        </div>
+
+        <div className="container">
+          <h5>Dê um novo destino ao que fez parte da sua infância</h5>
+          <h6>Uma plataforma que conecta o seu carinho a quem mais precisa dele agora.</h6>
+
+          <p>Leve carinho a quem mais precisa fcom a nossa rede de doadores e ONGs</p>
+          <p>Juntos, podemos espalhar afeto e dar uma nova vida a brinquedos esquecidos.</p>
         </div>
 
         <div className="row text-center border rounded py-4 bg-light mb-5">
