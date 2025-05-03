@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -35,6 +35,15 @@ export default function CadastroStaff() {
   const [error, setError] = useState(null);
   const [cepValido, setCepValido] = useState(true); // <- aqui
   const [successMessage, setSuccessMessage] = useState(null); // Novo estado para mensagem de sucesso
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setError(null);
+      setSuccessMessage(null);
+    }, 4000);
+
+    return () => clearTimeout(timer); // Limpa o timer se o componente desmontar
+  }, [error, successMessage]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
