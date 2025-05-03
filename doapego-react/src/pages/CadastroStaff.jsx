@@ -2,77 +2,206 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import { formatarTelefone, formatarCEP, removerMascara } from "../helpers/masks";
+import { buscarCEP } from "../helpers/cepService";
+
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function CadastroStaff() {
   const [formData, setFormData] = useState({
-    nome: null,
-    email: null,
-    telefone: null,
-    whatsapp: null,
-    fundacao: null,
-    descricao: null,
-    fotoPerfil: null,
+    nome: "",
+    email: "",
+    telefone: "",
+    whatsapp: "",
+    fundacao: "",
+    descricao: "",
+    fotoPerfil: "",
   });
 
   const [endereco, setEndereco] = useState({
-    cep: null,
-    estado: null,
-    cidade: null,
-    bairro: null,
-    numero: null,
-    logradouro: null,
-    complemento: null,
+    cep: "",
+    estado: "",
+    cidade: "",
+    bairro: "",
+    numero: "",
+    logradouro: "",
+    complemento: "",
     principal: true,
     ativo: true,
   });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [validationError, setValidationError] = useState("");
+  const [cepValido, setCepValido] = useState(true); // <- aqui
   const [successMessage, setSuccessMessage] = useState(null); // Novo estado para mensagem de sucesso
 
-  // Atualiza os campos da ONG
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    let valorFormatado = value;
+
+    // Aplica máscaras
+    if (name === 'telefone' || name === 'whatsapp') {
+      valorFormatado = formatarTelefone(value);
+    }
+
+    setFormData(prev => ({ ...prev, [name]: valorFormatado }));
   };
 
   // Atualiza os campos do endereço
-  const handleEnderecoChange = (e) => {
-    setEndereco({ ...endereco, [e.target.name]: e.target.value });
+  const handleEnderecoChange = async (e) => {
+    const { name, value } = e.target;
+    let valorFormatado = value;
+
+    if (name === 'cep') {
+      valorFormatado = formatarCEP(value);
+      handleBuscaCEP(valorFormatado);
+    }
+
+    setEndereco(prev => ({ ...prev, [name]: valorFormatado }));
+  };
+
+  const handleBuscaCEP = async (cep) => {
+    const cepLimpo = removerMascara(cep);
+
+    if (cepLimpo.length === 8) {
+      try {
+        const enderecoCompleto = await buscarCEP(cepLimpo);
+
+        if (enderecoCompleto.erro) {
+          setError('CEP não encontrado!');
+          alert('CEP não encontrado!');
+          setCepValido(false); // <- aqui
+
+          setEndereco(prev => ({
+            ...prev,
+            logradouro: '',
+            bairro: '',
+            cidade: '',
+            estado: ''
+          }));
+        } else {
+          setCepValido(true); // <- aqui
+          setEndereco(prev => ({
+            ...prev,
+            ...enderecoCompleto,
+            cep: formatarCEP(cepLimpo)
+          }));
+        }
+      } catch (error) {
+        setError('Erro ao buscar CEP!');
+        setEndereco(prev => ({
+          ...prev,
+          logradouro: '',
+          bairro: '',
+          cidade: '',
+          estado: ''
+        }));
+      }
+    }
+  };
+
+  const validarCampos = () => {
+
+    // Validação de campos obrigatórios
+    const camposObrigatorios = [
+      { key: 'nome', value: formData.nome },
+      { key: 'email', value: formData.email },
+      { key: 'numero', value: endereco.numero },
+      { key: 'cep', value: endereco.cep }
+    ];
+
+    const camposVazios = camposObrigatorios.filter(campo => !campo.value.trim());
+    if (camposVazios.length > 0) {
+      setError("Preencha todos os campos obrigatórios");
+      alert("Preencha todos os campos obrigatórios");
+
+      return false;
+    }
+
+    // Validação de CEP
+    const cepLimpo = removerMascara(endereco.cep);
+    if (cepLimpo.length !== 8) {
+      setError("CEP inválido! Deve conter 8 dígitos");
+      alert("CEP inválido! Deve conter 8 dígitos");
+      return false;
+    }
+
+    // Validação de telefone
+    if (formData.telefone) {
+      const telefoneLimpo = removerMascara(formData.telefone);
+      if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
+        setError("Telefone inválido! Deve conter 10 ou 11 dígitos com DDD");
+        alert("Telefone inválido! Deve conter 10 ou 11 dígitos com DDD");
+
+        return false;
+      }
+    }
+
+    // Validação de WhatsApp
+    if (formData.whatsapp) {
+      const whatsappLimpo = removerMascara(formData.whatsapp);
+      if (whatsappLimpo.length !== 11) {
+        setError("WhatsApp inválido! Deve conter 11 dígitos com DDD");
+        alert("WhatsApp inválido! Deve conter 11 dígitos com DDD");
+        return false;
+      }
+    }
+
+    // Validação de data
+    if (formData.fundacao) {
+      const dataAtual = new Date();
+      const dataFundacao = new Date(formData.fundacao);
+      if (dataFundacao > dataAtual) {
+        setError("Data de fundação não pode ser futura!");
+        return false;
+      }
+    }
+
+    if (!cepValido) {
+      setError("CEP inválido! Por favor, corrija o CEP antes de continuar.");
+      alert("CEP inválido! Por favor, corrija o CEP antes de continuar.");
+      return false;
+    }
+
+    // Validação de campos de endereço
+    if (!endereco.logradouro || !endereco.bairro || !endereco.cidade || !endereco.estado) {
+      setError("Preencha todos os campos do endereço corretamente");
+      alert("Preencha todos os campos do endereço corretamente");
+
+      return false;
+    }
+
+    return true;
   };
 
   // Envia a solicitação para criar a ONG e o endereço
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
-    setValidationError("");
     setSuccessMessage(null); // Reseta a mensagem de sucesso antes de cada envio
 
-    const camposObrigatorios = ["nome", "email", "cep", "estado", "cidade", "bairro", "numero", "logradouro"];
-    const camposVazios = camposObrigatorios.filter((campo) => !formData[campo]?.trim() && !endereco[campo]?.trim());
+    if (!validarCampos()) return;
 
-    if (camposVazios.length > 0) {
-      setValidationError(`Preencha os campos obrigatórios: ${camposVazios.join(", ")}`);
-      setLoading(false);
-      return;
-    }
+    setLoading(true);
 
     try {
-      // 1️⃣ Cadastra a ONG
-      const responseOng = await axios.post("http://localhost:8080/ongs", {
+      const dadosOng = {
         ...formData,
-        statusOng: "PENDENTE",
-      });
+        telefone: removerMascara(formData.telefone),
+        whatsapp: removerMascara(formData.whatsapp),
+        statusOng: "PENDENTE"
+      };
 
+      // 1️⃣ Cadastra a ONG
+      const responseOng = await axios.post("http://localhost:8080/ongs", dadosOng);
       const ongId = responseOng.data.id; // Obtém o ID da ONG recém-criada
 
       // 2️⃣ Cadastra o endereço da ONG
       await axios.post("http://localhost:8080/enderecos-ong", {
         ...endereco,
-        ong: { id: ongId }, // Vincula o endereço à ONG criada
+        cep: removerMascara(endereco.cep),
+        ong: { id: ongId }
       });
 
       alert("Solicitação enviada com sucesso! Aguarde aprovação.");
@@ -87,7 +216,6 @@ export default function CadastroStaff() {
         descricao: "",
         fotoPerfil: "",
       });
-
       setEndereco({
         cep: "",
         estado: "",
@@ -99,6 +227,7 @@ export default function CadastroStaff() {
         principal: true,
         ativo: true,
       });
+
     } catch (err) {
       console.error("Erro ao enviar o cadastro:", err);
 
@@ -119,7 +248,6 @@ export default function CadastroStaff() {
         } else {
           setError("Erro ao processar a solicitação. Tente novamente.");
           alert("Erro ao processar a solicitação. Tente novamente.");
-
         }
       }
       // Captura erros de requisição (ex: problemas de rede ou timeout)
@@ -144,10 +272,10 @@ export default function CadastroStaff() {
         <p className="subtitulo mb-4">Preencha os campos com as informações da sua ONG. Após análise, entraremos em contato por e-mail com os dados de acesso ao sistema, caso seu cadastro seja aprovado.</p>
 
         {/* Exibir mensagens de erro */}
-        {(error || validationError) && (
+        {error && (
           <div className="alert alert-danger d-flex align-items-center">
             <img src={errorTriangleIcon} className="me-2" alt="Erro" />
-            <p className="m-0">{error || validationError}</p>
+            <p className="m-0">{error}</p>
           </div>
         )}
 
@@ -181,14 +309,25 @@ export default function CadastroStaff() {
             </div>
 
             <div className="form-group">
+              <label className="form-label">WhatsApp</label>
+              <input type="text" className="form-control" name="whatsapp" value={formData.whatsapp} onChange={handleChange} />
+            </div>
+
+            <div className="form-group">
               <label className="form-label">Descrição</label>
               <textarea className="form-control" name="descricao" rows="3" value={formData.descricao} onChange={handleChange}></textarea>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Data de Fundação</label>
+              <input type="date" className="form-control" name="fundacao" value={formData.fundacao} onChange={handleChange} />
             </div>
 
             <div className="form-group">
               <label className="form-label">Foto (URL)</label>
               <input type="url" className="form-control" name="fotoPerfil" value={formData.fotoPerfil} onChange={handleChange} />
             </div>
+
 
             {/* Endereço da ONG */}
             <h4 className="mb-3 mt-4 subtitulo-container">Endereço da ONG</h4>
