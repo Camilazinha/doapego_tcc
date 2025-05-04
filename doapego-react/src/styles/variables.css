@@ -64,14 +64,26 @@
   /* Laranja escuro queimado */
 }
 
-.custom-color-primary {
+.ccolor-primary {
   color: var(--color-primary) !important;
 }
 
-.custom-color-secondary {
+.ccolor-secondary {
   color: var(--color-secondary) !important;
 }
 
-.custom-color-tertiary {
+.ccolor-tertiary {
   color: var(--color-tertiary) !important;
+}
+
+.cbg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.cbg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+.cbg-tertiary {
+  background-color: var(--color-tertiary) !important;
 }

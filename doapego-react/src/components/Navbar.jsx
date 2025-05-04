@@ -112,14 +112,9 @@ export default function Navbar() {
               {renderMenu()}
             </ul>
             <div className="d-flex ms-auto">
-              <a
-                href="https://www.figma.com/proto/bmqmNIZJerSPvmC0WHdVQm/TCC---Prot%C3%B3tipo-Mobile---Doapego?node-id=4-2&t=gtSMir502SSKgJ1x-1&starting-point-node-id=4%3A2&scaling=scale-down content-scaling=fixed"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-auto btn btn-custom-filled"
-              >
+              <Link to="" className="ml-auto btn btn-custom-filled">
                 Baixe o App!
-              </a>
+              </Link>
             </div>
           </div>
         </div>

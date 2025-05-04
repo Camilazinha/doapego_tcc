@@ -1,4 +1,5 @@
 // src/pages/Home.jsx
+import { Link } from "react-router-dom";
 
 import boy1 from "../img/boy1.jpg"
 import boy2 from "../img/boy2.jpg"
@@ -15,8 +16,8 @@ export default function Home() {
           <h2 className="col-12 col-sm-12 col-md-9 col-lg-5 my-3">UMA PONTE DE AFETO: DE DOADORES PARA INFÂNCIAS QUE MERECEM SORRIR</h2>
 
           <div className="mt-5 mb-3 d-flex gap-3">
-            <button className="btn btn-hidden-fill">Baixe o aplicativo</button>
-            <button className="btn btn-hidden-unfill">Saiba como funciona</button>
+            <Link to=""><button className="btn btn-hidden-fill">Baixe o aplicativo</button></Link>
+            <Link to="/como-doar"><button className="btn btn-hidden-unfill">Saiba como funciona</button></Link>
           </div>
         </div>
 
@@ -27,24 +28,43 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="row text-center border rounded py-4 mb-5 shadow">
-          <div className="col-md-3 px-3">
-            <h6 className="fw-bold">Doação feita.</h6>
+
+        <div className="row row-cols-1 row-cols-md-4 text-center g-4 align-items-start mb-5">
+
+          <div className="col d-flex flex-column align-items-center">
+            <div className="rounded-circle cbg-tertiary text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+              1
+            </div>
+            <h6 className="fw-bold mt-3">Doação feita</h6>
             <p className="small mb-0">Você escolhe a ONG e faz a doação.</p>
           </div>
-          <div className="col-md-3 px-3 border-start border-end">
-            <h6 className="fw-bold">ONG aceita.</h6>
+
+          <div className="col d-flex flex-column align-items-center">
+            <div className="rounded-circle cbg-tertiary text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+              2
+            </div>
+            <h6 className="fw-bold mt-3">ONG aceita</h6>
             <p className="small mb-0">A ONG avalia sua doação e aceita.</p>
           </div>
-          <div className="col-md-3 px-3">
-            <h6 className="fw-bold">Entrega combinada.</h6>
+
+          <div className="col d-flex flex-column align-items-center">
+            <div className="rounded-circle cbg-tertiary text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+              3
+            </div>
+            <h6 className="fw-bold mt-3">Entrega combinada</h6>
             <p className="small mb-0">Você e a ONG combinam o ponto de entrega.</p>
           </div>
-          <div className="col-md-3 px-3 border-start">
-            <h6 className="fw-bold">Alegria compartilhada.</h6>
+
+          <div className="col d-flex flex-column align-items-center">
+            <div className="rounded-circle cbg-tertiary text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+              4
+            </div>
+            <h6 className="fw-bold mt-3">Alegria compartilhada</h6>
             <p className="small mb-0">O brinquedo chega e a felicidade é compartilhada!</p>
           </div>
+
         </div>
+
 
         <div className="mb-5">
           <h3 className="subtitulo-pagina mb-4">POR QUE DOAR?</h3>
