@@ -27,7 +27,7 @@ export default function Sobre() {
         <div className="valores mt-5">
           <h3 className="subtitulo-pagina mb-5">NOSSAS ODS</h3>
 
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-stretch gap-4">
+          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-stretch gap-4">
 
 
             <div className="card shadow-sm border-0 p-3 d-flex flex-column align-items-center h-100">

@@ -1,4 +1,10 @@
-// src/pages/Inicio.js
+// src/pages/Home.jsx
+
+import boy1 from "../img/boy1.jpg"
+import boy2 from "../img/boy2.jpg"
+import boy3 from "../img/boy3.jpg"
+
+
 export default function Home() {
 
   return (
@@ -15,22 +21,13 @@ export default function Home() {
         </div>
 
         <div className="mb-5">
-          <h4 className="subtitulo-pagina mb-3">POR QUE DOAR?</h4>
+          <h3 className="subtitulo-pagina mb-4">COMO FUNCIONA?</h3>
           <p>
-            Doar um brinquedo é muito mais do que dar algo material – é compartilhar momentos de felicidade e criar memórias afetivas que fazem a diferença na vida de uma criança. Ao doar, você oferece a chance de transformação e crescimento. Cada brinquedo que passa das suas mãos para a de outra criança traz não apenas diversão, mas também a oportunidade de aprendizado, imaginação e, principalmente, afeto.
-            Em um mundo onde tantas crianças ainda carecem do direito de brincar, um simples gesto de carinho pode mudar completamente o dia delas. Um brinquedo é muito mais do que um objeto; ele pode ser o ponto de partida para novas descobertas, para a construção de amizades e para o fortalecimento de uma infância saudável e cheia de imaginação.
+            O Doapego é a coligação entre quem quer doar e quem acolhe. Por meio da nossa plataforma, conectamos doadores a ONGs que precisam de brinquedos para transformar a infância de muitas crianças. De forma simples, você escolhe a ONG, cadastra a doação e, após a aprovação, combina o ponto de entrega (para saber mais sobre como contribuir, acesse a aba "Como Doar?" e descubra outras formas de apoiar essa causa). Tudo pensado para que o carinho chegue a quem mais precisa.
           </p>
         </div>
 
-        <div className="container">
-          <h5>Dê um novo destino ao que fez parte da sua infância</h5>
-          <h6>Uma plataforma que conecta o seu carinho a quem mais precisa dele agora.</h6>
-
-          <p>Leve carinho a quem mais precisa fcom a nossa rede de doadores e ONGs</p>
-          <p>Juntos, podemos espalhar afeto e dar uma nova vida a brinquedos esquecidos.</p>
-        </div>
-
-        <div className="row text-center border rounded py-4 bg-light mb-5">
+        <div className="row text-center border rounded py-4 mb-5 shadow">
           <div className="col-md-3 px-3">
             <h6 className="fw-bold">Doação feita.</h6>
             <p className="small mb-0">Você escolhe a ONG e faz a doação.</p>
@@ -50,12 +47,51 @@ export default function Home() {
         </div>
 
         <div className="mb-5">
-          <h4 className="subtitulo-pagina mb-3">COMO FUNCIONA?</h4>
+          <h3 className="subtitulo-pagina mb-4">POR QUE DOAR?</h3>
           <p>
-            O Doapego é a coligação entre quem quer doar e quem acolhe. Por meio da nossa plataforma, conectamos doadores a ONGs que precisam de brinquedos para transformar a infância de muitas crianças. De forma simples, você escolhe a ONG, cadastra a doação e, após a aprovação, combina o ponto de entrega (Para saber mais sobre como contribuir, acesse nossa página Como Doar? e descubra outras formas de apoiar essa causa). Tudo pensado para que o carinho chegue a quem mais precisa.
+            Doar um brinquedo é muito mais do que dar algo material – é compartilhar momentos de felicidade e criar memórias afetivas que fazem a diferença na vida de uma criança. Ao doar, você oferece a chance de transformação e crescimento. Cada brinquedo que passa das suas mãos para a de outra criança traz não apenas diversão, mas também a oportunidade de aprendizado, imaginação e, principalmente, afeto.
+            Em um mundo onde tantas crianças ainda carecem do direito de brincar, um simples gesto de carinho pode mudar completamente o dia delas. Um brinquedo é muito mais do que um objeto; ele pode ser o ponto de partida para novas descobertas, para a construção de amizades e para o fortalecimento de uma infância saudável e cheia de imaginação.
           </p>
         </div>
 
+        <div className="valores mt-5">
+          <h3 className="subtitulo-pagina mb-4">BENEFÍCIOS DE DOAR</h3>
+
+          <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center align-items-lg-stretch gap-4">
+
+            <div className="card shadow-sm border-0 p-3 d-flex flex-column align-items-center h-100">
+              <img src={boy2} className="card-img-top" alt="ODS 10" />
+              <div className="card-body">
+                <h5 className="card-title text-center">Renova o valor do brinquedo</h5>
+                <p className="card-text">
+                  O brinquedo que você já não usa pode ter uma nova vida, trazendo alegria e emoção a quem mais precisa.
+                </p>
+              </div>
+            </div>
+
+            <div className="card shadow-sm border-0 p-3 d-flex flex-column align-items-center h-100">
+              <img src={boy3} className="card-img-top" alt="ODS 10" style={{ maxHeight: "192px" }} />
+              <div className="card-body">
+                <h5 className="card-title text-center">Transforma o dia de uma criança</h5>
+                <p className="card-text">
+                  Doar é mais do que entregar um item; é levar um sorriso e criar memórias felizes.
+                </p>
+              </div>
+            </div>
+
+
+            <div className="card shadow-sm border-0 p-3 d-flex flex-column align-items-center h-100">
+              <img src={boy1} className="card-img-top" alt="ODS 3" />
+              <div className="card-body">
+                <h5 className="card-title text-center">Constrói um futuro <br />mais solidário</h5>
+                <p className="card-text">
+                  Cada brinquedo doado contribui para a criação de um mundo mais empático e amoroso.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div>
     </main>
