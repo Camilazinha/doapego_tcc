@@ -237,7 +237,7 @@ export default function EditCrud() {
     if (hasWhatsappField && formData.whatsapp) {
       const whatsappLimpo = removerMascara(formData.whatsapp);
       if (whatsappLimpo.length < 10 || whatsappLimpo.length > 11) { // Exige DDD + 9 dígitos
-        setError("WhatsApp deve ter 11 dígitos (com DDD)");
+        setError("WhatsApp deve ter 10 ou 11 dígitos (com DDD)");
         return;
       }
     }

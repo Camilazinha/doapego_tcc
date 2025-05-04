@@ -150,9 +150,9 @@ export default function CadastroStaff() {
     // Validação de WhatsApp
     if (formData.whatsapp) {
       const whatsappLimpo = removerMascara(formData.whatsapp);
-      if (whatsappLimpo.length !== 11) {
-        setError("WhatsApp inválido! Deve conter 11 dígitos com DDD");
-        alert("WhatsApp inválido! Deve conter 11 dígitos com DDD");
+      if (whatsappLimpo.length < 10 || whatsappLimpo.length > 11) {
+        setError("WhatsApp inválido! Deve conter 10 ou 11 dígitos com DDD");
+        alert("WhatsApp inválido! Deve conter 10 ou 11 dígitos com DDD");
         return false;
       }
     }
