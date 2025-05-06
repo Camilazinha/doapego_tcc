@@ -6,8 +6,6 @@
   text-align: center;
 }
 
-
-
 /*estrutura homepage*/
 .grid-home {
   display: grid;
@@ -96,6 +94,6 @@
 
 .home-big h2 {
   color: var(--color-white);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.4;
 }

@@ -76,6 +76,18 @@
   color: var(--color-tertiary) !important;
 }
 
+.cbg-gray-light{
+  background-color: var(--color-gray-light) !important;
+}
+
+.cbg-gray-medium{
+  background-color: var(--color-gray-medium) !important;
+}
+
+.cbg-gray-dark{
+  background-color: var(--color-gray-dark) !important;
+}
+
 .cbg-primary {
   background-color: var(--color-primary) !important;
 }

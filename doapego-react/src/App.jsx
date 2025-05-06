@@ -78,7 +78,7 @@ export default function App() {
                                 <Route path="/teste" element={<Teste />} />
                                 <Route path="/pagina-nao-encontrada" element={<NotAuthorized />} />
                                 {/* Rotas privadas */}
-                                {/* <Route element={<ProtectedRoute />}> */}
+                                <Route element={<ProtectedRoute />}>
 
                                 <Route path="/inicio" element={<Inicio />} />
                                 <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
@@ -88,7 +88,7 @@ export default function App() {
                                 <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
                                 <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
                                 <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
-                                {/* </Route> */}
+                                </Route>
 
                                 <Route element={<ProtectedRoute allowedRoles={['STAFF', 'FUNCIONARIO']} />}>
                                         <Route path="/painel-de-controle" element={<Painel />} />
