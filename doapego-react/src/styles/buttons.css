@@ -96,6 +96,7 @@
   /* Adiciona a borda invisível no estado normal */
 }
 
+
 .btn-hidden-unfill {
   color: var(--color-white);
   border: .12rem solid var(--color-white);
@@ -105,19 +106,6 @@
   border-radius: .5rem;
 }
 
-/* 
-.btn-hidden-fill:hover {
-  background-color: #e0f2f1;
-  color: var(--color-primary);
-}
-
-.btn-hidden-fill:active,
-.btn-hidden-fil:focus-visible {
-  background-color: #f1fafa !important;
-  color: var(--color-primary) !important;
-}
-*/
-
 .btn-hidden-fill:hover {
   color: var(--color-white);
   border: .12rem solid var(--color-white);
@@ -129,7 +117,6 @@
   background-color: #f1fafa !important;
   color: var(--color-primary) !important;
   border: .12rem solid transparent;
-  /* Adiciona a borda invisível no estado normal */
 }
 
 
@@ -137,7 +124,6 @@
   background-color: var(--color-white);
   color: var(--color-primary) !important;
   border: .12rem solid transparent;
-  /* Adiciona a borda invisível no estado normal */
 }
 
 .btn-hidden-unfill:active,
@@ -145,5 +131,24 @@
   background-color: #f1fafa !important;
   color: var(--color-primary) !important;
   border: .12rem solid transparent;
-  /* Adiciona a borda invisível no estado normal */
+}
+
+.btn-custom-notfound {
+  background-color: var(--color-gray-medium);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 400;
+  border-radius: .5rem;
+  border: .12rem solid transparent;
+}
+
+.btn-custom-notfound:hover {
+  background-color: var(--color-gray-dark);
+  color: var(--color-white);
+}
+
+.btn-custom-notfound:active,
+.btn-custom-notfound:focus-visible {
+  background-color: var(--color-gray-light) !important;
+  color: var(--color-white) !important;
 }
