@@ -49,8 +49,9 @@ export default function Inicio() {
         const PENDENTES = doacoesFiltradas.filter(doacao => doacao.status === "PENDENTE").length;
         const COLETADAS = doacoesFiltradas.filter(doacao => doacao.status === "COLETADA").length;
         const RECUSADAS = doacoesFiltradas.filter(doacao => doacao.status === "RECUSADA").length;
+        const ANALISE = doacoesFiltradas.filter(doacao => doacao.status === "ANALISE").length;
 
-        setDoacoesStats({ PENDENTES, COLETADAS, RECUSADAS });
+        setDoacoesStats({ PENDENTES, COLETADAS, RECUSADAS, ANALISE });
       })
       .catch(error => {
         console.error("Erro ao buscar doações:", error);
@@ -77,14 +78,25 @@ export default function Inicio() {
                   <img src={coletadaIcon} alt="" className='me-2' />
                   Aceitas: <strong>{doacoesStats.COLETADAS}</strong>
                 </li>
-                <li className="list-group-item">
-                  <img src={pendenteIcon} alt="" className='me-2' />
-                  Pendentes: <strong>{doacoesStats.PENDENTES}</strong>
-                </li>
+
+                {['FUNCIONARIO', 'STAFF'].includes(userType) && (
+                  <li className="list-group-item">
+                    <img src={pendenteIcon} alt="" className='me-2' />
+                    Pendentes: <strong>{doacoesStats.PENDENTES}</strong>
+                  </li>
+                )}
+
                 <li className="list-group-item">
                   <img src={recusadaIcon} alt="" className='me-2' />
                   Recusadas: <strong>{doacoesStats.RECUSADAS}</strong>
                 </li>
+
+                {userType === "MASTER" && (
+                  <li className="list-group-item">
+                    <img src={pendenteIcon} alt="" className='me-2' />
+                    Pendentes: <strong>{doacoesStats.ANALISE}</strong>
+                  </li>
+                )}
               </ul>
             </div>
           </section>
