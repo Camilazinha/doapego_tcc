@@ -67,11 +67,11 @@ export default function Painel() {
       allowed: ['MASTER']
     },
     {
-      id: 'check-photo',
+      id: 'check-donation',
       title: 'Revisar doações',
       description: 'Revise as doações antes de enviá-las para as ONGs, garantindo que o conteúdo esteja adequado.',
       src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
-      link: '/checar-midia',
+      link: '/gerenciar-doacoes',
       allowed: ['MASTER']
     }
   ];

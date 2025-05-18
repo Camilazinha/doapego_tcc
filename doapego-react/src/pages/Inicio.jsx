@@ -63,7 +63,7 @@ export default function Inicio() {
         <div className='grid-home'>
           <section className='name-container mb-1'>
             <span className='titulo-name'>Olá, {adminName || 'visitante'}!</span>
-            <Link className='link-name' to="/perfil">
+            <Link className='link-name' to={`/configuracoes/administradores/detalhes/${adminId}`}>
               <img src={goToIcon} alt='Perfil' /> Ir para meu perfil
             </Link>
           </section>
@@ -103,6 +103,6 @@ export default function Inicio() {
           </section>
         </div>
       </div>
-    </main>
+    </main >
   );
 }

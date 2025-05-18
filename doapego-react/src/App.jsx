@@ -84,17 +84,15 @@ export default function App() {
                                         <Route path="/inicio" element={<Inicio />} />
                                         <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
                                         <Route path="/painel-de-controle" element={<Painel />} />
+
+                                        <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
+                                        <Route path="/gerenciar-doacoes/:id" element={<Doacoes />} />
+
                                         <Route path="/configuracoes" element={<Configuracoes />} />
                                         <Route path="/configuracoes/:entidade" element={<ListCrud />} />
                                         <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
                                         <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
                                         <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
-                                </Route>
-
-                                <Route element={<ProtectedRoute allowedRoles={['STAFF', 'FUNCIONARIO']} />}>
-                                        <Route path="/painel-de-controle" element={<Painel />} />
-                                        <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
-                                        <Route path="/gerenciar-doacoes/:id" element={<Doacoes />} />
                                 </Route>
 
                                 {/* Rotas específicas para master */}

@@ -187,8 +187,12 @@ export default function ViewCrud() {
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
-        <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
-
+        {userId !== itemData.id ? (
+          <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
+        ) : (
+          <h2 className='titulo-pagina mb-5'>MEU PERFIL</h2>
+        )
+        }
         <section className='container form-container-crud bg-white'>
           {config.colunas
             .filter((col) => col.temImagem)
@@ -301,7 +305,7 @@ export default function ViewCrud() {
                 <div className="modal-dialog">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <h5 className="modal-title text-danger fw-bold">CUIDADO!</h5>
+                      <h5 className="modal-title fw-semibold">Atenção!</h5>
                       <button
                         type="button"
                         className="btn-close"
