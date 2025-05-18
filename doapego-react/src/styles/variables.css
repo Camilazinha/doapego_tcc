@@ -76,15 +76,27 @@
   color: var(--color-tertiary) !important;
 }
 
-.cbg-gray-light{
+.ccolor-gray-light {
+  color: var(--color-gray-light) !important;
+}
+
+.ccolor-gray-medium {
+  color: var(--color-gray-medium) !important;
+}
+
+.ccolor-gray-dark {
+  color: var(--color-gray-dark) !important;
+}
+
+.cbg-gray-light {
   background-color: var(--color-gray-light) !important;
 }
 
-.cbg-gray-medium{
+.cbg-gray-medium {
   background-color: var(--color-gray-medium) !important;
 }
 
-.cbg-gray-dark{
+.cbg-gray-dark {
   background-color: var(--color-gray-dark) !important;
 }
 

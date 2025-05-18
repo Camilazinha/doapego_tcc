@@ -12,6 +12,9 @@ export default function Doacoes() {
   const userOngId = Number(localStorage.getItem('ongId')) || null;
   const userId = Number(localStorage.getItem('id')) || null;
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showImageModal, setShowImageModal] = useState(false);
+
   const [showRefuseModal, setShowRefuseModal] = useState(false);
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -32,6 +35,18 @@ export default function Doacoes() {
       console.error("Erro ao atualizar status:", err);
       setError('Erro ao atualizar. Tente novamente.');
     }
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex(prev =>
+      prev === itemData.arquivosDoacao.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex(prev =>
+      prev === 0 ? itemData.arquivosDoacao.length - 1 : prev - 1
+    );
   };
 
   useEffect(() => {
@@ -88,18 +103,66 @@ export default function Doacoes() {
 
         <section className='container form-container-crud bg-white'>
           {/* Galeria de imagens */}
-          <div className="row mb-4">
+          <div className="row mb-4 position-relative">
             {itemData.arquivosDoacao?.length > 0 ? (
-              itemData.arquivosDoacao.map((arquivo, index) => (
-                <div key={index} className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center align-items-center">
+                {/* Botão anterior */}
+                {itemData.arquivosDoacao.length > 1 && (
+                  <button
+                    onClick={handlePrevImage}
+                    className="btn btn-link position-absolute start-0 top-50 translate-middle-y"
+                    style={{ zIndex: 1, left: '20px' }}
+                  >
+                    <i className="bi bi-chevron-left fs-1 text-secondary"></i>
+                  </button>
+                )}
+
+                {/* Imagem atual */}
+                <div className="position-relative" style={{ maxWidth: '400px' }}>
                   <img
-                    src={arquivo.link}
-                    alt={`Doação ${index + 1}`}
-                    className="img-fluid rounded shadow-sm"
-                    style={{ height: '200px', objectFit: 'cover' }}
+                    src={itemData.arquivosDoacao[currentImageIndex].link}
+                    alt={`Doação ${currentImageIndex + 1}`}
+                    className="img-fluid rounded shadow-sm cursor-pointer"
+                    style={{
+                      height: '232px',
+                      width: '100%',
+                      objectFit: 'cover',
+                      cursor: 'pointer' // Adiciona cursor pointer
+                    }}
+                    onClick={() => setShowImageModal(true)} // Abre o modal ao clicar
                   />
+
+                  {/* Bullets (indicadores) */}
+                  {itemData.arquivosDoacao.length > 1 && (
+                    <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3 d-flex gap-2">
+                      {itemData.arquivosDoacao.map((arquivo, index) => (
+                        <button
+                          key={arquivo.id}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`btn p-0 rounded-circle bullet-gallery ${index === currentImageIndex ? 'cbg-tertiary' : 'bg-secondary'}`}
+                          style={{
+                            width: '10px',
+                            height: '10px',
+                            border: 'none'
+                          }}
+                          aria-label={`Ir para imagem ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
-              ))
+
+                {/* Botão próximo */}
+                {itemData.arquivosDoacao.length > 1 && (
+                  <button
+                    onClick={handleNextImage}
+                    className="btn btn-link position-absolute end-0 top-50 translate-middle-y"
+                    style={{ zIndex: 1, right: '20px' }}
+                  >
+                    <i className="bi bi-chevron-right fs-1 text-secondary"></i>
+                  </button>
+                )}
+              </div>
             ) : (
               <div className="col-12 text-center">
                 <img
@@ -229,6 +292,71 @@ export default function Doacoes() {
           </div>
         </div>
       )}
+
+      {/* Modal para Ampliação da Imagem */}
+      {showImageModal && (
+        <div
+          className="modal fade show"
+          style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.9)' }}
+          onClick={() => setShowImageModal(false)}
+        >
+          <div className="modal-dialog modal-dialog-centered modal-xl">
+            <div className="modal-content bg-transparent border-0">
+              <div className="modal-body p-0 position-relative">
+
+                {/* Botão de fechar */}
+                <button
+                  type="button"
+                  className="btn btn-light position-absolute rounded-circle border-0 top-0 end-0 m-3"
+                  onClick={() => setShowImageModal(false)}
+                  style={{ zIndex: 2, backgroundColor: "#444" }}
+                >
+                  <i className="bi bi-x-lg fs-6 text-white"></i>
+                </button>
+
+                {/* Imagem Ampliada */}
+                <div className="position-relative">
+                  <img
+                    src={itemData.arquivosDoacao[currentImageIndex].link}
+                    alt={`Ampliação - Doação ${currentImageIndex + 1}`}
+                    className="img-fluid"
+                    style={{ maxHeight: '90vh', width: '100%', objectFit: 'contain', borderRadius: '0.5rem' }}
+                  />
+
+                  {/* Controles de navegação */}
+                  {itemData.arquivosDoacao.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePrevImage();
+                        }}
+                        className="btn btn-light position-absolute start-0 top-50 border-0 rounded-circle translate-middle-y"
+                        style={{ left: '20px', backgroundColor: '#666' }}
+                      >
+                        <i className="bi bi-chevron-left fs-2 text-white"></i>
+                      </button>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleNextImage();
+                        }}
+                        className="btn btn-light position-absolute end-0 top-50 border-0 rounded-circle translate-middle-y"
+                        style={{ right: '20px', backgroundColor: '#666' }}
+                      >
+                        <i className="bi bi-chevron-right fs-2 text-white"></i>
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+      }
+
     </main >
   );
 }
