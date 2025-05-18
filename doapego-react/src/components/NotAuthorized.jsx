@@ -1,12 +1,11 @@
 //src/components/NotAuthorized.jsx
 
-import { useState } from "react";
 import brokenHeart from "../img/brokenHeart.png"
 import { Link } from "react-router-dom"
 
 
 export default function NotAuthorized() {
-  const [userType] = useState(localStorage.getItem('tipo') || '');
+  const userType = localStorage.getItem('tipo') || '';
 
   return (
     <main>
