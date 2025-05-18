@@ -1,20 +1,38 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
 
 export default function Doacoes() {
   const { id } = useParams();
+  const navigate = useNavigate(); // Passo 2: Inicializar o hook
 
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = Number(localStorage.getItem('ongId')) || null;
   const userId = Number(localStorage.getItem('id')) || null;
 
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showRefuseModal, setShowRefuseModal] = useState(false);
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const atualizarStatus = async (novoStatus) => {
+    try {
+      await axios.patch(`http://localhost:8080/doacoes/${id}`, {
+        status: novoStatus
+      });
+
+      setItemData(prev => ({ ...prev, status: novoStatus }));
+
+      // Passo 3: Redirecionar após sucesso
+      navigate('/gerenciar-doacoes'); // Altere a rota conforme necessário
+
+    } catch (err) {
+      console.error("Erro ao atualizar status:", err);
+      setError('Erro ao atualizar. Tente novamente.');
+    }
+  };
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -42,16 +60,6 @@ export default function Doacoes() {
 
     fetchItem();
   }, [id, userType, userOngId, userId]);
-
-  const formatStatus = (status) => {
-    const statusStyles = {
-      PENDENTE: 'bg-warning text-dark',
-      APROVADO: 'bg-success',
-      RECUSADO: 'bg-danger',
-      FINALIZADO: 'bg-secondary'
-    };
-    return <span className={`badge ${statusStyles[status]}`}>{status}</span>;
-  };
 
   if (loading) return (
     <main className='container my-5 nao-unico-elemento px-5'>
@@ -108,56 +116,119 @@ export default function Doacoes() {
               <tbody>
                 <tr>
                   <th scope="row" className="text-nowrap text-secondary fw-semibold" style={{ width: "30%" }}>
-                    Nome do Item
+                    Nome do item
                   </th>
                   <td>{itemData.nome || 'Sem informação'}</td>
                 </tr>
 
                 <tr>
-                  <th>Status</th>
-                  <td>{formatStatus(itemData.status)}</td>
-                </tr>
-
-                <tr>
-                  <th>Categoria</th>
+                  <th className='text-nowrap text-secondary fw-semibold'>Categoria</th>
                   <td>{itemData.categoriaDoacao || 'Não especificada'}</td>
                 </tr>
 
                 <tr>
-                  <th>ONG Beneficiada</th>
+                  <th className='text-nowrap text-secondary fw-semibold'>Doador</th>
+                  <td>{itemData.usuarioNome}</td>
+                </tr>
+
+                {userType === 'MASTER' && (
+                  <tr>
+                    <th className='text-nowrap text-secondary fw-semibold'>ONG</th>
+                    <td><Link to={`/configuracoes/ongs/detalhes/${itemData.ongId}`} className='ccolor-tertiary'>{itemData.ongNome}</Link></td>
+                  </tr>
+                )}
+
+                <tr>
+                  <th className='text-nowrap text-secondary fw-semibold'>Status</th>
                   <td>
-                    {itemData.ongNome ? (
-                      <Link to={`/ongs/${itemData.ongId}`}>{itemData.ongNome}</Link>
-                    ) : 'Não especificada'}
+                    {itemData.status === 'ANALISE'
+                      ? 'Em análise'
+                      : `${itemData.status[0]?.toUpperCase() ?? ''}${itemData.status.slice(1).toLowerCase()}`
+                    }
                   </td>
                 </tr>
 
-                <tr>
-                  <th>Doador</th>
-                  <td>{itemData.usuarioNome || 'Anônimo'}</td>
-                </tr>
               </tbody>
             </table>
-
-            {/* Ações */}
             <section className="mt-4 d-flex gap-2 justify-content-center flex-wrap">
-              {(userType === 'MASTER' || userType === 'STAFF') && (
+
+              {/* Botões para MASTER */}
+              {userType === 'MASTER' && (
                 <>
-                  <button className="btn btn-success">
-                    Marcar como Recebido
+                  <button
+                    className="btn btn-success"
+                    onClick={() => atualizarStatus('PENDENTE')} // MASTER aceita → PENDENTE
+                  >
+                    Aceitar
                   </button>
                   <button
                     className="btn btn-danger"
-                    onClick={() => setShowDeleteModal(true)}
+                    onClick={() => setShowRefuseModal(true)} // Só abre o modal
                   >
-                    Cancelar Doação
+                    Recusar
+                  </button>
+                </>
+              )}
+
+              {/* Botões para FUNCIONARIO/STAFF */}
+              {(userType === 'FUNCIONARIO' || userType === 'STAFF') && (
+                <>
+                  <button
+                    className="btn btn-success"
+                    onClick={() => atualizarStatus('COLETADA')} // Aceitar → COLETADA
+                  >
+                    Aceitar
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => setShowRefuseModal(true)} // Só abre o modal
+                  >
+                    Recusar
                   </button>
                 </>
               )}
             </section>
+
           </div>
         </section>
-      </div>
-    </main>
+      </div >
+      {/* Modal de Confirmação para Recusar */}
+      {showRefuseModal && (
+        <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title fw-semibold">Atenção!</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setShowRefuseModal(false)}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>Tem certeza que deseja recusar esta doação?</p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setShowRefuseModal(false)}
+                >
+                  Cancelar
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => {
+                    atualizarStatus('RECUSADA');
+                    setShowRefuseModal(false);
+                  }}
+                >
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </main >
   );
 }
