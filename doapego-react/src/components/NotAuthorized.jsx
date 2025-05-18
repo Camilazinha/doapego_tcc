@@ -1,9 +1,13 @@
 //src/components/NotAuthorized.jsx
 
+import { useState } from "react";
 import brokenHeart from "../img/brokenHeart.png"
 import { Link } from "react-router-dom"
 
+
 export default function NotAuthorized() {
+  const [userType] = useState(localStorage.getItem('tipo') || '');
+
   return (
     <main>
       <div className="container my-5">
@@ -11,9 +15,17 @@ export default function NotAuthorized() {
           <img src={brokenHeart} style={{ width: "104px", height: "104px" }} alt="coração partido" />
           <h3 className="text-muted fw-bold">Desculpe! Tela não encontrada.</h3>
           <p className="fs-5 text-muted">Se o problema persistir, entre em contato conosco.</p>
-          <Link to="/"><button className="mt-3 btn btn-custom-notfound">
-            Voltar ao início
-          </button></Link>
+
+          {userType ? (
+            <Link to="/inicio">
+              <button className="mt-3 btn btn-custom-notfound">Voltar ao início</button>
+            </Link>
+          ) : (
+            <Link to="/">
+              <button className="mt-3 btn btn-custom-notfound">Voltar ao início</button>
+            </Link>
+          )}
+
         </div>
       </div>
     </main>

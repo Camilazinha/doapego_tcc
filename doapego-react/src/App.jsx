@@ -29,6 +29,7 @@ import ListCrud from "./pages/ListCrud";
 import AddCrud from "./pages/AddCrud";
 import EditCrud from "./pages/EditCrud";
 import ViewCrud from "./pages/ViewCrud";
+import Doacoes from "./pages/Doacoes";
 
 import Teste from './pages/Teste';
 
@@ -80,19 +81,20 @@ export default function App() {
                                 {/* Rotas privadas */}
                                 <Route element={<ProtectedRoute />}>
 
-                                <Route path="/inicio" element={<Inicio />} />
-                                <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
-                                <Route path="/painel-de-controle" element={<Painel />} />
-                                <Route path="/configuracoes" element={<Configuracoes />} />
-                                <Route path="/configuracoes/:entidade" element={<ListCrud />} />
-                                <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
-                                <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
-                                <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
+                                        <Route path="/inicio" element={<Inicio />} />
+                                        <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
+                                        <Route path="/painel-de-controle" element={<Painel />} />
+                                        <Route path="/configuracoes" element={<Configuracoes />} />
+                                        <Route path="/configuracoes/:entidade" element={<ListCrud />} />
+                                        <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
+                                        <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
+                                        <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
                                 </Route>
 
                                 <Route element={<ProtectedRoute allowedRoles={['STAFF', 'FUNCIONARIO']} />}>
                                         <Route path="/painel-de-controle" element={<Painel />} />
                                         <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
+                                        <Route path="/gerenciar-doacoes/:id" element={<Doacoes />} />
                                 </Route>
 
                                 {/* Rotas específicas para master */}
