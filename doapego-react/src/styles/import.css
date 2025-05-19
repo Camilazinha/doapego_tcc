@@ -94,6 +94,10 @@ button.btn.p-0.rounded-circle.bullet-gallery.bg-secondary:hover {
   background-color: var(--color-gray-medium) !important;
 }
 
+button.btn.p-0.rounded-circle.border-0.cbg-gray-dark:hover {
+  background-color: var(--color-black) !important;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

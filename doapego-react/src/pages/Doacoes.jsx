@@ -67,7 +67,25 @@ export default function Doacoes() {
         setItemData(data);
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
-        // Tratamento de erros similar ao original
+
+        if (err.message === 'Sem permissão') {
+          setError("Você não tem permissão para visualizar este item.");
+          alert("Você não tem permissão para visualizar este item.");
+        }
+
+        else if (err.response) {
+          setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
+          alert("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
+
+        } else if (err.request) {
+          setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+
+        } else {
+          setError("Ocorreu um erro inesperado.");
+          alert("Ocorreu um erro inesperado.");
+
+        }
       } finally {
         setLoading(false);
       }
@@ -78,7 +96,7 @@ export default function Doacoes() {
 
   if (loading) return (
     <main className='container my-5 nao-unico-elemento px-5'>
-      <h2 className='titulo-pagina mb-5'>DETALHES DA DOAÇÃO</h2>
+      <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
       <section className='p-5 d-flex justify-content-center align-items-center flex-column'>
         <div className='spinner-border text-secondary m-3' role='status' style={{ width: '3rem', height: '3rem' }}></div>
         <p className='loading-text'>Carregando...</p>
@@ -88,7 +106,7 @@ export default function Doacoes() {
 
   if (error) return (
     <main className='container my-5 nao-unico-elemento px-5'>
-      <h2 className='titulo-pagina mb-5'>DETALHES DA DOAÇÃO</h2>
+      <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
       <div className="alert alert-danger d-flex">
         <img src={errorTriangleIcon} className="me-2" alt="erro" />
         <p className="erro">{error}</p>
@@ -99,7 +117,7 @@ export default function Doacoes() {
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
-        <h2 className='titulo-pagina mb-5'>DETALHES DA DOAÇÃO</h2>
+        <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
 
         <section className='container form-container-crud bg-white'>
           {/* Galeria de imagens */}
@@ -294,24 +312,37 @@ export default function Doacoes() {
       )}
 
       {/* Modal para Ampliação da Imagem */}
+      {/* Modal para Ampliação da Imagem */}
       {showImageModal && (
         <div
           className="modal fade show"
-          style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.9)' }}
+          style={{
+            display: 'block',
+            backgroundColor: 'rgba(0,0,0,0.97)',
+            backdropFilter: 'blur(3px)'
+          }}
           onClick={() => setShowImageModal(false)}
         >
           <div className="modal-dialog modal-dialog-centered modal-xl">
             <div className="modal-content bg-transparent border-0">
               <div className="modal-body p-0 position-relative">
 
-                {/* Botão de fechar */}
+                {/* Botão de fechar - Estilo OLX */}
                 <button
                   type="button"
-                  className="btn btn-light position-absolute rounded-circle border-0 top-0 end-0 m-3"
+                  className="btn position-absolute rounded-circle border-0 top-0 end-0 m-3 d-flex align-items-center justify-content-center"
                   onClick={() => setShowImageModal(false)}
-                  style={{ zIndex: 2, backgroundColor: "#444" }}
+                  style={{
+                    zIndex: 2,
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    width: '40px',
+                    height: '40px',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.9)'}
                 >
-                  <i className="bi bi-x-lg fs-6 text-white"></i>
+                  <i className="bi bi-x-lg fs-5 text-dark"></i>
                 </button>
 
                 {/* Imagem Ampliada */}
@@ -320,10 +351,40 @@ export default function Doacoes() {
                     src={itemData.arquivosDoacao[currentImageIndex].link}
                     alt={`Ampliação - Doação ${currentImageIndex + 1}`}
                     className="img-fluid"
-                    style={{ maxHeight: '90vh', width: '100%', objectFit: 'contain', borderRadius: '0.5rem' }}
+                    style={{
+                      maxHeight: '90vh',
+                      width: '100%',
+                      objectFit: 'contain',
+                      borderRadius: '8px',
+                    }}
                   />
 
-                  {/* Controles de navegação */}
+                  {/* Bullets de navegação */}
+                  {itemData.arquivosDoacao.length > 1 && (
+                    <div className="position-absolute bottom-0 start-50 translate-middle-x mb-4 d-flex gap-2"
+                      style={{ zIndex: 2 }}>
+                      {itemData.arquivosDoacao.map((arquivo, index) => (
+                        <button
+                          key={arquivo.id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex(index);
+                          }}
+                          className={`btn p-0 rounded-circle border-0 ${index === currentImageIndex ? 'bg-white' : 'cbg-gray-dark'}`}
+                          style={{
+                            width: '10px',
+                            height: '10px',
+                            transition: 'all 0.2s',
+                            opacity: index === currentImageIndex ? 1 : 0.7
+                          }}
+                          aria-label={`Ir para imagem ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+
+                  {/* Controles de navegação - Estilo OLX */}
                   {itemData.arquivosDoacao.length > 1 && (
                     <>
                       <button
@@ -331,8 +392,16 @@ export default function Doacoes() {
                           e.stopPropagation();
                           handlePrevImage();
                         }}
-                        className="btn btn-light position-absolute start-0 top-50 border-0 rounded-circle translate-middle-y"
-                        style={{ left: '20px', backgroundColor: '#666' }}
+                        className="btn position-absolute start-0 top-50 border-0 rounded-circle translate-middle-y d-flex align-items-center justify-content-center"
+                        style={{
+                          left: '20px',
+                          backgroundColor: 'rgba(0,0,0,0.5)',
+                          width: '48px',
+                          height: '48px',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.7)'}
+                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}
                       >
                         <i className="bi bi-chevron-left fs-2 text-white"></i>
                       </button>
@@ -342,8 +411,16 @@ export default function Doacoes() {
                           e.stopPropagation();
                           handleNextImage();
                         }}
-                        className="btn btn-light position-absolute end-0 top-50 border-0 rounded-circle translate-middle-y"
-                        style={{ right: '20px', backgroundColor: '#666' }}
+                        className="btn position-absolute end-0 top-50 border-0 rounded-circle translate-middle-y d-flex align-items-center justify-content-center"
+                        style={{
+                          right: '20px',
+                          backgroundColor: 'rgba(0,0,0,0.5)',
+                          width: '48px',
+                          height: '48px',
+                          transition: 'all 0.2s'
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.7)'}
+                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}
                       >
                         <i className="bi bi-chevron-right fs-2 text-white"></i>
                       </button>
@@ -354,9 +431,7 @@ export default function Doacoes() {
             </div>
           </div>
         </div>
-      )
-      }
-
+      )}
     </main >
   );
 }
