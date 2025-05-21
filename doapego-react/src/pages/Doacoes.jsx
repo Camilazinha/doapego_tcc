@@ -215,7 +215,7 @@ export default function Doacoes() {
                 {userType === 'MASTER' && (
                   <tr>
                     <th className='text-nowrap text-secondary fw-semibold'>ONG</th>
-                    <td><Link to={`/configuracoes/ongs/detalhes/${itemData.ongId}`} className='ccolor-secondary'>{itemData.ongNome}</Link></td>
+                    <td><Link to={`/configuracoes/ongs/detalhes/${itemData.ongId}`} className='ccolor-gray-medium'>{itemData.ongNome}</Link></td>
                   </tr>
                 )}
 
