@@ -33,6 +33,7 @@ export default function Inicio() {
     PENDENTES: 0,
     COLETADAS: 0,
     RECUSADAS: 0,
+    ANALISE: 0,
   });
 
   useEffect(() => {
