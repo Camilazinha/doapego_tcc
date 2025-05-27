@@ -37,23 +37,23 @@ export default function ResetPassword() {
 
           <form onSubmit={handleSubmit}>
 
-              {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='20' className='me-2' />{error}</div>}
+            {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='20' className='me-2' />{error}</div>}
 
             <div className="form-group">
               <label htmlFor='new-password' className='form-label'>Nova senha</label>
-              <input id='new-password' type="password" className='form-control' placeholder="Digite sua nova senha" minLength="8" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              <input id='new-password' type="password" className='form-control' placeholder="Digite sua nova senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
 
             <div className="form-group">
               <label htmlFor='confirm-password' className='form-label'>Confirme a nova senha</label>
-              <input id='confirm-password' type="password" className='form-control' placeholder="Confirme sua nova senha"  minLength="8" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+              <input id='confirm-password' type="password" className='form-control' placeholder="Confirme sua nova senha" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
             </div>
 
             <div className="form-group">
               <p className='texto-obs mb-4'>
                 Sua senha deve conter no mínimo 8 caracteres (alfanumérico ou especial).
               </p>
-              
+
               <button type="submit" className="btn btn-custom-filled">Confirmar</button>
             </div>
 

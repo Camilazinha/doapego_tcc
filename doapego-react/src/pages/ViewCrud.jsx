@@ -187,11 +187,14 @@ export default function ViewCrud() {
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
-        {userId !== itemData.id ? (
-          <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
-        ) : (
+        {userId === itemData.id ? (
           <h2 className='titulo-pagina mb-5'>MEU PERFIL</h2>
-        )
+        ) : userOngId === itemData.id ?
+          (
+            <h2 className='titulo-pagina mb-5'>MINHA ONG</h2>
+          ) : (
+            <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
+          )
         }
         <section className='container form-container-crud bg-white'>
           {config.colunas
