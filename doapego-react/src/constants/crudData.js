@@ -37,6 +37,7 @@ export const crudData = {
             }
         ]
     },
+    
     'usuarios': {
         titulo: 'USUÁRIOS',
         apiEndpoint: 'usuarios',
@@ -92,6 +93,7 @@ export const crudData = {
             { type: 'delete', label: 'Excluir', icon: deleteIcon }
         ]
     },
+
     'categorias-doacao': {
         titulo: 'CATEGORIAS',
         apiEndpoint: 'categorias-doacao',
