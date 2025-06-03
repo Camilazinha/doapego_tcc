@@ -12,7 +12,7 @@ import goToIcon from '../img/goto-icon.svg';
 
 export default function Inicio() {
 
-  const [userType] = useState(localStorage.getItem('tipo') || '');
+  const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId');
   const adminId = localStorage.getItem('id');
   const [adminName, setAdminName] = useState('');

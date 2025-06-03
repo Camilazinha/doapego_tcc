@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import gotoIcon from "../img/goto-icon.svg";
 
 export default function Painel() {
-  // Pega os dados do localStorage
-  const [userType] = useState(localStorage.getItem('tipo') || '');
+  
+  const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId');
   const [ongData, setOngData] = useState(null);
   const [loading, setLoading] = useState(null);

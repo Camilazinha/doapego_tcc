@@ -16,7 +16,7 @@ export default function EditCrud() {
   const { entidade, id } = useParams();
   const config = crudData[entidade] || null;
 
-  const [userType] = useState(localStorage.getItem('tipo') || '');
+  const userType = localStorage.getItem('tipo') || '';
   const userId = Number(localStorage.getItem('id')) || '';
   const userOngId = Number(localStorage.getItem('ongId'));
 
@@ -276,12 +276,8 @@ export default function EditCrud() {
       return;
     }
 
-    // ✅ Payload DIRETO, sem transformações
     const payload = dadosLimpos;
     setSaving(true);
-
-
-    console.log("Payload REAL:", payload);
 
     try {
       await axios.put(`http://localhost:8080/${config.apiEndpoint}/${id}`, payload);

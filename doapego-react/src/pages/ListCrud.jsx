@@ -13,7 +13,7 @@ export default function ListCrud() {
     const { entidade } = useParams();
     const config = crudData[entidade] || null;
 
-    const [userType] = useState(localStorage.getItem('tipo') || '');
+    const userType = localStorage.getItem('tipo') || '';
     const userOngId = localStorage.getItem('ongId');
 
     const [dados, setDados] = useState([]);

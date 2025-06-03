@@ -3,24 +3,27 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 import { formatarTelefone, formatarCEP, removerMascara } from '../helpers/masks';
 import { buscarCEP } from '../helpers/cepService';
 import { crudData } from '../constants/crudData';
+
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function AddCrud() {
-  const { entidade } = useParams();
-  const userOngId = localStorage.getItem('ongId');
 
+  const { entidade } = useParams();
   const config = crudData[entidade] || null;
 
-  // pega tipo do usuário do localStorage
-  const [userType] = useState(localStorage.getItem('tipo') || '');
+  const userType = localStorage.getItem('tipo') || '';
+  const userOngId = localStorage.getItem('ongId');
+
   const [ongOptions, setOngOptions] = useState([]);
 
   useEffect(() => {
-    if (!['STAFF', 'FUNCIONARIO'].includes(userType)) { // 👈 Corrigido
+
+    if (userType === 'MASTER') { 
       axios.get('http://localhost:8080/ongs?statusOng=ATIVO')
         .then(res => {
           setOngOptions(res.data.items);
@@ -33,8 +36,8 @@ export default function AddCrud() {
   }, [userType]);
 
   useEffect(() => {
-    // Verifica permissões antes de carregar qualquer dado
     const bloquearAcesso = () => {
+      
       if (entidade === 'usuarios' || entidade === 'ongs') {
         setError("Criação não permitida para esta entidade");
         return true;
@@ -59,33 +62,21 @@ export default function AddCrud() {
     };
 
     if (bloquearAcesso()) {
-      setLoading(false); // Impede o carregamento
+      setLoading(false);
     }
   }, [entidade, userType]);
 
-  // no topo do seu componente, logo depois de const allCols:
+  // * o que isso faz?
   const listaOngs = Array.isArray(ongOptions) ? ongOptions : [];
 
-  // 1) junta todas as colunas
   const allCols = config
     ? [...config.colunas, ...(config.colunasExtras || []), ...(config.colunasFormulario || [])]
     : [];
 
-  // 2) inicializa formData com TODAS as chaves (exceto id)
   const [formData, setFormData] = useState(() => {
     const initial = {};
     allCols.forEach(col => {
       if (col.key === 'id') return;
-
-      // Alterado para tratar 'ong.id' diretamente
-      if (col.key === 'ong.id') {
-        if (['STAFF', 'FUNCIONARIO'].includes(userType)) { // 👈 Corrigido
-          initial[col.key] = Number(userOngId); // Valor direto
-        } else {
-          initial[col.key] = '';
-        }
-        return;
-      }
 
       if (col.tipoBooleano === 'ativo-inativo') {
         initial[col.key] = true;
@@ -97,6 +88,14 @@ export default function AddCrud() {
         initial[col.key] = '';
       }
 
+      if (col.key === 'ong.id') {
+        if (['STAFF', 'FUNCIONARIO'].includes(userType)) {
+          initial[col.key] = Number(userOngId);
+        } else {
+          initial[col.key] = '';
+        }
+        return;
+      }
     });
     return initial;
   });
@@ -105,18 +104,15 @@ export default function AddCrud() {
   const [error, setError] = useState(null);
   const [validationError, setValidationError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-
   const [buscandoCEP, setBuscandoCEP] = useState(false);
 
   const handleCEPChange = async (e) => {
     const { value } = e.target;
     const cepLimpo = removerMascara(value);
 
-    // Aplica máscara
     const cepFormatado = formatarCEP(value);
     setFormData(prev => ({ ...prev, cep: cepFormatado }));
 
-    // Busca automática quando tiver 8 dígitos
     if (cepLimpo.length === 8) {
       setBuscandoCEP(true);
       try {
@@ -139,7 +135,6 @@ export default function AddCrud() {
     }
   };
 
-
   const handleChange = e => {
     const { name, value, type } = e.target;
 
@@ -152,11 +147,9 @@ export default function AddCrud() {
       valorFormatado = formatarCEP(value);
     }
 
-
     setFormData(prev => ({
       ...prev,
       [name]: type === 'radio'
-        // para radio de booleano (value "true"/"false") ou enum (value = string)
         ? (value === 'true' ? true : value === 'false' ? false : value)
         : valorFormatado
 
@@ -164,7 +157,6 @@ export default function AddCrud() {
   };
 
   const handleSubmit = async e => {
-    console.log('Dados a serem enviados:', formData);
 
     e.preventDefault();
     const dadosLimpos = {
@@ -173,33 +165,28 @@ export default function AddCrud() {
       whatsapp: removerMascara(formData.whatsapp),
       cep: removerMascara(formData.cep)
     };
-    // Força o valor de tipo baseado no userType
+
     if (entidade === 'administradores') {
       if (userType === 'MASTER') dadosLimpos.tipo = 'STAFF';
       else if (userType === 'STAFF') dadosLimpos.tipo = 'FUNCIONARIO';
     }
 
-    // valida todos os campos (colunas + colunasExtras), exceto id
-    // No handleSubmit (~linha 94):
     const vazios = allCols.filter(col => {
       if (col.key === 'id') return false;
       if (col.key === 'fotoPerfil') return false;
       if (col.tipoBooleano === 'ativo-inativo') return false;
       if (col.tipoBooleano === 'sim-nao') return false;
-      if (col.key === 'ong.id' && ['STAFF', 'FUNCIONARIO'].includes(userType)) return false; // 👈 Corrigido
-
-      // Corrigido: Retorna diretamente a verificação
+      if (col.key === 'ong.id' && ['STAFF', 'FUNCIONARIO'].includes(userType)) return false;
       return col.required && !formData[col.key];
     });
+
     if (vazios.length > 0) {
       setValidationError(
         `Por favor, preencha: ${vazios.map(c => c.label).join(', ').toLowerCase()}`
       );
       return;
     }
-    // limpa erro anterior
     setValidationError('');
-
     setLoading(true);
     setError(null);
 
@@ -208,20 +195,17 @@ export default function AddCrud() {
       delete payload.id;
       payload.rawPassword = payload.senha;
       delete payload.senha;
-      // Move 'ong.id' para dentro de um objeto 'ong'
+      
       if (payload['ong.id'] !== undefined) {
         payload.ong = { id: Number(payload['ong.id']) };
         delete payload['ong.id']; // Remove a chave antiga
       }
 
-
-      console.log('Payload final:', payload);
-
       await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
         payload
       );
       setSuccessMessage(`Adicionado com sucesso!`);
-      // reset
+      
       const reset = {};
       allCols.forEach(col => {
         if (col.key === 'id') return;
@@ -245,7 +229,6 @@ export default function AddCrud() {
         alert("Ocorreu um erro inesperado.");
       }
     }
-
     finally {
       setLoading(false);
     }
