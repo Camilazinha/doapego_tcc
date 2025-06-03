@@ -270,17 +270,15 @@ export default function AddCrud() {
             {allCols.map(col => {
               if (col.key === 'id') return null;
 
-              // lógica de tipo fixo (MASTER → STAFF / STAFF → FUNCIONARIO)
               const isTipoField = col.key === 'tipo';
               const isAdminPage = entidade === 'administradores';
               const tipoFixo = isAdminPage && isTipoField
                 ? (userType === 'MASTER' ? 'STAFF' : userType === 'STAFF' ? 'FUNCIONARIO' : null)
                 : null;
 
-              // 1) foreignKey -> hidden
+              // CHAVE ESTRANGEIRA
               if (col.key === 'ong.id') {
-                // STAFF: input hidden
-                if (['STAFF', 'FUNCIONARIO'].includes(userType)) { // 👈 Corrigido
+                if (['STAFF', 'FUNCIONARIO'].includes(userType)) {
                   return (
                     <input
                       key={col.key}
@@ -290,7 +288,8 @@ export default function AddCrud() {
                     />
                   );
                 }
-                // MASTER: select para escolher ONG
+
+                // MASTER: SELECT ONG
                 return (
                   <div key={col.key} className="mb-4 form-group">
                     <label className="form-label">{col.label}:</label>
@@ -311,12 +310,10 @@ export default function AddCrud() {
                 );
               }
 
-              // 2) tipo fixo (select disabled)
+              // DISABLED
               if (tipoFixo) {
                 return (
-
                   <div key={col.key} className="mb-4 form-group">
-
                     <label className="form-label">{col.label}:</label>
                     <select
                       name={col.key}
@@ -330,15 +327,14 @@ export default function AddCrud() {
                 );
               }
 
-              // 3) radio ativo-inativo (enum ou booleano)
-              // 1. Modifique a condição que verifica o tipo booleano:
+              // ENUM OU BOOLEANO
               if (col.tipoBooleano === 'ativo-inativo' || col.tipoBooleano === 'sim-nao') { // <-- Alterado aqui
                 return (
                   <div key={col.key} className="mb-4 form-group">
                     <label className="form-label">{col.label}:</label>
                     <div className="d-flex gap-3 mb-1"> {/* Adicionei gap para espaçamento */}
 
-                      {/* Opção Sim/Ativo */}
+                      {/* SIM/ATIVO */}
                       <div className="form-check">
                         <input
                           type="radio"
@@ -354,7 +350,7 @@ export default function AddCrud() {
                         </label>
                       </div>
 
-                      {/* Opção Não/Inativo */}
+                      {/* NAO/INATIVO */}
                       <div className="form-check">
                         <input
                           type="radio"
@@ -375,7 +371,7 @@ export default function AddCrud() {
                 );
               }
 
-              // 4) selectOptions (se existir)
+              // SELECT
               if (col.selectOptions) {
                 return (
 
@@ -395,7 +391,6 @@ export default function AddCrud() {
                 );
               }
 
-
               ['telefone', 'whatsapp'].includes(col.key) && (
                 <div className="form-group mb-4" key={col.key}>
                   <label className="form-label">{col.label}:</label>
@@ -410,8 +405,6 @@ export default function AddCrud() {
                   />
                 </div>
               )
-
-
 
               col.key === 'cep' && (
                 <div className="form-group mb-4" key={col.key}>
