@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
+import gotoIcon from "../img/gotogray-icon.svg";
 
 export default function Doacoes() {
   const { id } = useParams();
@@ -215,7 +216,12 @@ export default function Doacoes() {
                 {userType === 'MASTER' && (
                   <tr>
                     <th className='text-nowrap text-secondary fw-semibold'>ONG</th>
-                    <td><Link to={`/configuracoes/ongs/detalhes/${itemData.ongId}`} className='ccolor-gray-medium'>{itemData.ongNome}</Link></td>
+                    <td>
+                      <Link to={`/configuracoes/ongs/detalhes/${itemData.ongId}`} className='text-black text-decoration-none d-flex text-align-center'>
+                        {itemData.ongNome}
+                        <img src={gotoIcon} alt="Ir para ONG" className='ms-2' style={{ verticalAlign: 'middle' }} />
+                      </Link>
+                    </td>
                   </tr>
                 )}
 
