@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 
 import gotoIcon from "../img/goto-icon.svg";
 
+import no4Photo from "../img-teste/no4.png";
+import no2Photo from "../img-teste/no2.png";
+import half1Photo from "../img-teste/half1.png";
+
 export default function Painel() {
-  
+
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId');
   const [ongData, setOngData] = useState(null);
@@ -44,7 +48,7 @@ export default function Painel() {
       id: 'manage-request',
       title: 'Gerenciar Solicitações',
       description: 'Aprove ou recuse solicitações de novas ONGs que desejam ingressar na plataforma.',
-      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
+      src: no2Photo,
       link: '/gerenciar-solicitacoes',
       allowed: ['MASTER']
     },
@@ -62,7 +66,7 @@ export default function Painel() {
       id: 'create-staff',
       title: 'Adicionar Staff',
       description: 'Crie a conta de acesso para o representante da ONG, permitindo que ele gerencie as doações.',
-      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
+      src: no4Photo,
       link: '/configuracoes/administradores/adicionar',
       allowed: ['MASTER']
     },
@@ -70,7 +74,7 @@ export default function Painel() {
       id: 'check-donation',
       title: 'Revisar doações',
       description: 'Revise as doações antes de enviá-las para as ONGs, garantindo que o conteúdo esteja adequado.',
-      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
+      src: half1Photo,
       link: '/gerenciar-doacoes',
       allowed: ['MASTER']
     }
@@ -87,10 +91,14 @@ export default function Painel() {
 
         <div className='card-one mt-5 mx-3'>
           {sections
-            .filter(section => section.allowed.includes(userType)) // Filtra pelas permissões
+            .filter(section => section.allowed.includes(userType))
             .map((section) => (
               <div key={section.id} className='card'>
-                <img src={section.src} alt='' className="card-img-top" style={{ maxWidth: "320px", maxHeight: "212px", height: "100%" }} />
+                <img src={section.src}
+                  alt='' className="card-img-top px-3" style={{
+                    width: "100%", maxHeight: "200px", objectFit: "cover"
+                  }}
+                />
 
                 <div className='card-body'>
                   <h4 className='card-title mb-4'>{section.title}</h4>
