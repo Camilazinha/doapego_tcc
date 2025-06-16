@@ -29,7 +29,7 @@ export default function AjudaPublico() {
         </div>
       </div>
 
-      <section className="still-questions mb-5">
+      <section className="tira-duvidas mb-5">
         <p>Ainda tem dúvidas? Entre em contato conosco:</p>
         <p>Email: doapegoitb@gmail.com</p>
         <p>Telefone: (11) 92078-7810</p>

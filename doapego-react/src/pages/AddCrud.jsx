@@ -16,45 +16,44 @@ export default function AddCrud() {
   const { entidade } = useParams();
   const config = crudData[entidade] || null;
 
-  const userType = localStorage.getItem('tipo') || '';
-  const userOngId = localStorage.getItem('ongId');
+  const tipo = localStorage.getItem('tipo') || '';
+  const userOngId = Number(localStorage.getItem('ongId'));
 
-  const [ongOptions, setOngOptions] = useState([]);
+  const [opcaoOngs, setOpcaoOngs] = useState([]);
 
   useEffect(() => {
-
-    if (userType === 'MASTER') { 
+    if (tipo === 'MASTER') {
       axios.get('http://localhost:8080/ongs?statusOng=ATIVO')
         .then(res => {
-          setOngOptions(res.data.items);
+          setOpcaoOngs(res.data.items);
         })
         .catch(err => {
           console.error('Erro ao buscar ONGs:', err);
-          setOngOptions([]);
+          setOpcaoOngs([]);
         });
     }
-  }, [userType]);
+  }, [tipo]);
 
   useEffect(() => {
     const bloquearAcesso = () => {
-      
+
       if (entidade === 'usuarios' || entidade === 'ongs') {
-        setError("Criação não permitida para esta entidade");
+        setErro("Criação não permitida para esta entidade");
         return true;
       }
 
-      if (entidade === 'categorias-doacao' && userType !== 'MASTER') {
-        setError("Somente MASTER pode criar categorias");
+      if (entidade === 'categorias-doacao' && tipo !== 'MASTER') {
+        setErro("Somente MASTER pode criar categorias");
         return true;
       }
 
-      if (entidade === 'enderecos-ong' && !['STAFF', 'FUNCIONARIO'].includes(userType)) {
-        setError("Acesso restrito a membros da ONG");
+      if (entidade === 'enderecos-ong' && !['STAFF', 'FUNCIONARIO'].includes(tipo)) {
+        setErro("Acesso restrito a membros da ONG");
         return true;
       }
 
-      if (entidade === 'administradores' && !['MASTER', 'STAFF'].includes(userType)) {
-        setError("Sem permissão para criar administradores");
+      if (entidade === 'administradores' && !['MASTER', 'STAFF'].includes(tipo)) {
+        setErro("Sem permissão para criar administradores");
         return true;
       }
 
@@ -62,37 +61,36 @@ export default function AddCrud() {
     };
 
     if (bloquearAcesso()) {
-      setLoading(false);
+      setCarregando(false);
     }
-  }, [entidade, userType]);
+  }, [entidade, tipo]);
 
-  // * o que isso faz?
-  const listaOngs = Array.isArray(ongOptions) ? ongOptions : [];
+  const listaOngs = Array.isArray(opcaoOngs) ? opcaoOngs : [];
 
-  const allCols = config
+  const todasColunas = config
     ? [...config.colunas, ...(config.colunasExtras || []), ...(config.colunasFormulario || [])]
     : [];
 
   const [formData, setFormData] = useState(() => {
     const initial = {};
-    allCols.forEach(col => {
-      if (col.key === 'id') return;
+    todasColunas.forEach(coluna => {
+      if (coluna.key === 'id') return;
 
-      if (col.tipoBooleano === 'ativo-inativo') {
-        initial[col.key] = true;
+      if (coluna.tipoBooleano === 'ativo-inativo') {
+        initial[coluna.key] = true;
       }
-      else if (col.tipoBooleano === 'sim-nao') {
-        initial[col.key] = false;
+      else if (coluna.tipoBooleano === 'sim-nao') {
+        initial[coluna.key] = false;
       }
       else {
-        initial[col.key] = '';
+        initial[coluna.key] = '';
       }
 
-      if (col.key === 'ong.id') {
-        if (['STAFF', 'FUNCIONARIO'].includes(userType)) {
-          initial[col.key] = Number(userOngId);
+      if (coluna.key === 'ong.id') {
+        if (['STAFF', 'FUNCIONARIO'].includes(tipo)) {
+          initial[coluna.key] = Number(userOngId);
         } else {
-          initial[col.key] = '';
+          initial[coluna.key] = '';
         }
         return;
       }
@@ -100,10 +98,10 @@ export default function AddCrud() {
     return initial;
   });
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [validationError, setValidationError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState(null);
+  const [erroValidacao, setErroValidacao] = useState('');
+  const [mensagemSucesso, setMensagemSucesso] = useState('');
   const [buscandoCEP, setBuscandoCEP] = useState(false);
 
   const handleCEPChange = async (e) => {
@@ -127,7 +125,7 @@ export default function AddCrud() {
             estado: endereco.estado
           }));
         }
-      } catch (error) {
+      } catch (erro) {
         alert('CEP não encontrado!');
       } finally {
         setBuscandoCEP(false);
@@ -137,7 +135,6 @@ export default function AddCrud() {
 
   const handleChange = e => {
     const { name, value, type } = e.target;
-
     let valorFormatado = value;
 
     if (name === "telefone" || name === "whatsapp") {
@@ -152,7 +149,6 @@ export default function AddCrud() {
       [name]: type === 'radio'
         ? (value === 'true' ? true : value === 'false' ? false : value)
         : valorFormatado
-
     }));
   };
 
@@ -167,49 +163,49 @@ export default function AddCrud() {
     };
 
     if (entidade === 'administradores') {
-      if (userType === 'MASTER') dadosLimpos.tipo = 'STAFF';
-      else if (userType === 'STAFF') dadosLimpos.tipo = 'FUNCIONARIO';
+      if (tipo === 'MASTER') dadosLimpos.tipo = 'STAFF';
+      else if (tipo === 'STAFF') dadosLimpos.tipo = 'FUNCIONARIO';
     }
 
-    const vazios = allCols.filter(col => {
-      if (col.key === 'id') return false;
-      if (col.key === 'fotoPerfil') return false;
-      if (col.tipoBooleano === 'ativo-inativo') return false;
-      if (col.tipoBooleano === 'sim-nao') return false;
-      if (col.key === 'ong.id' && ['STAFF', 'FUNCIONARIO'].includes(userType)) return false;
-      return col.required && !formData[col.key];
+    const vazios = todasColunas.filter(coluna => {
+      if (coluna.key === 'id') return false;
+      if (coluna.key === 'fotoPerfil') return false;
+      if (coluna.tipoBooleano === 'ativo-inativo') return false;
+      if (coluna.tipoBooleano === 'sim-nao') return false;
+      if (coluna.key === 'ong.id' && ['STAFF', 'FUNCIONARIO'].includes(tipo)) return false;
+      return coluna.required && !formData[coluna.key];
     });
 
     if (vazios.length > 0) {
-      setValidationError(
+      setErroValidacao(
         `Por favor, preencha: ${vazios.map(c => c.label).join(', ').toLowerCase()}`
       );
       return;
     }
-    setValidationError('');
-    setLoading(true);
-    setError(null);
+    setErroValidacao('');
+    setCarregando(true);
+    setErro(null);
 
     try {
       const payload = { ...dadosLimpos };
       delete payload.id;
       payload.rawPassword = payload.senha;
       delete payload.senha;
-      
+
       if (payload['ong.id'] !== undefined) {
         payload.ong = { id: Number(payload['ong.id']) };
-        delete payload['ong.id']; // Remove a chave antiga
+        delete payload['ong.id'];
       }
 
       await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
         payload
       );
-      setSuccessMessage(`Adicionado com sucesso!`);
-      
+      setMensagemSucesso(`Adicionado com sucesso!`);
+
       const reset = {};
-      allCols.forEach(col => {
-        if (col.key === 'id') return;
-        reset[col.key] = (col.tipoBooleano === 'ativo-inativo')
+      todasColunas.forEach(coluna => {
+        if (coluna.key === 'id') return;
+        reset[coluna.key] = (coluna.tipoBooleano === 'ativo-inativo')
           ? true
           : '';
       });
@@ -218,19 +214,20 @@ export default function AddCrud() {
     } catch (err) {
       console.error("Erro ao adicionar:", err);
       if (err.response) {
-        setError("Erro ao carregar os dados. Tente novamente mais tarde.");
+        setErro("Erro ao carregar os dados. Tente novamente mais tarde.");
         alert("Erro ao carregar os dados. Tente novamente mais tarde.");
       }
       else if (err.request) {
-        setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+        setErro("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
         alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
-      } else {
-        setError("Ocorreu um erro inesperado.");
+      }
+      else {
+        setErro("Ocorreu um erro inesperado.");
         alert("Ocorreu um erro inesperado.");
       }
     }
     finally {
-      setLoading(false);
+      setCarregando(false);
     }
   };
 
@@ -250,53 +247,53 @@ export default function AddCrud() {
       <div className='container my-5 nao-unico-elemento px-5'>
         <h2 className='titulo-pagina mb-5'>CRIAR {config.titulo}</h2>
 
-        {(error || validationError) && (
+        {(erro || erroValidacao) && (
           <div className="alert alert-danger d-flex">
             <img src={errorTriangleIcon} className="me-2" alt="erro" />
-            <p className="erro">{error || validationError}</p>
+            <p className="erro">{erro || erroValidacao}</p>
           </div>
         )}
 
-        {successMessage && (
+        {mensagemSucesso && (
           <div className="alert alert-success d-flex">
             <img src={successIcon} className="me-2" alt="sucesso" />
-            <p className="sucesso">{successMessage}</p>
+            <p className="sucesso">{mensagemSucesso}</p>
           </div>
         )}
 
         <section className='container form-container-crud bg-white'>
           <form onSubmit={handleSubmit}>
 
-            {allCols.map(col => {
-              if (col.key === 'id') return null;
+            {todasColunas.map(coluna => {
+              if (coluna.key === 'id') return null;
 
-              const isTipoField = col.key === 'tipo';
-              const isAdminPage = entidade === 'administradores';
-              const tipoFixo = isAdminPage && isTipoField
-                ? (userType === 'MASTER' ? 'STAFF' : userType === 'STAFF' ? 'FUNCIONARIO' : null)
+              const isCampoTipo = coluna.key === 'tipo';
+              const isPaginaAdmin = entidade === 'administradores';
+              const tipoFixo = isPaginaAdmin && isCampoTipo
+                ? (tipo === 'MASTER' ? 'STAFF' : tipo === 'STAFF' ? 'FUNCIONARIO' : null)
                 : null;
 
               // CHAVE ESTRANGEIRA
-              if (col.key === 'ong.id') {
-                if (['STAFF', 'FUNCIONARIO'].includes(userType)) {
+              if (coluna.key === 'ong.id') {
+                if (['STAFF', 'FUNCIONARIO'].includes(tipo)) {
                   return (
                     <input
-                      key={col.key}
+                      key={coluna.key}
                       type="hidden"
-                      name={col.key}
-                      value={formData[col.key] || ''}
+                      name={coluna.key}
+                      value={formData[coluna.key] || ''}
                     />
                   );
                 }
 
                 // MASTER: SELECT ONG
                 return (
-                  <div key={col.key} className="mb-4 form-group">
-                    <label className="form-label">{col.label}:</label>
+                  <div key={coluna.key} className="mb-4 form-group">
+                    <label className="form-label">{coluna.label}:</label>
                     <select
-                      name={col.key}
-                      className="form-control form-select"
-                      value={formData[col.key] || ''}
+                      name={coluna.key}
+                      className="form-select"
+                      value={formData[coluna.key] || ''}
                       onChange={handleChange}
                     >
                       <option className="text-muted" value="">Selecione</option>
@@ -313,12 +310,12 @@ export default function AddCrud() {
               // DISABLED
               if (tipoFixo) {
                 return (
-                  <div key={col.key} className="mb-4 form-group">
-                    <label className="form-label">{col.label}:</label>
+                  <div key={coluna.key} className="mb-4 form-group">
+                    <label className="form-label">{coluna.label}:</label>
                     <select
-                      name={col.key}
+                      name={coluna.key}
                       value={tipoFixo}
-                      className="form-control form-select"
+                      className="form-select"
                       disabled
                     >
                       <option value={tipoFixo}>{tipoFixo}</option>
@@ -328,25 +325,25 @@ export default function AddCrud() {
               }
 
               // ENUM OU BOOLEANO
-              if (col.tipoBooleano === 'ativo-inativo' || col.tipoBooleano === 'sim-nao') { // <-- Alterado aqui
+              if (coluna.tipoBooleano === 'ativo-inativo' || coluna.tipoBooleano === 'sim-nao') {
                 return (
-                  <div key={col.key} className="mb-4 form-group">
-                    <label className="form-label">{col.label}:</label>
-                    <div className="d-flex gap-3 mb-1"> {/* Adicionei gap para espaçamento */}
+                  <div key={coluna.key} className="mb-4 form-group">
+                    <label className="form-label">{coluna.label}:</label>
+                    <div className="d-flex gap-3 mb-1">
 
                       {/* SIM/ATIVO */}
                       <div className="form-check">
                         <input
                           type="radio"
-                          name={col.key}
-                          id={`${col.key}-sim`}
+                          name={coluna.key}
+                          id={`${coluna.key}-sim`}
                           value="true"
-                          checked={formData[col.key] === true}
-                          onChange={() => setFormData(prev => ({ ...prev, [col.key]: true }))}
+                          checked={formData[coluna.key] === true}
+                          onChange={() => setFormData(prev => ({ ...prev, [coluna.key]: true }))}
                           className="form-check-input"
                         />
-                        <label className="form-check-label" htmlFor={`${col.key}-sim`}>
-                          {col.tipoBooleano === 'sim-nao' ? 'Sim' : 'Ativo'} {/* Label dinâmico */}
+                        <label className="form-check-label" htmlFor={`${coluna.key}-sim`}>
+                          {coluna.tipoBooleano === 'sim-nao' ? 'Sim' : 'Ativo'}
                         </label>
                       </div>
 
@@ -354,15 +351,15 @@ export default function AddCrud() {
                       <div className="form-check">
                         <input
                           type="radio"
-                          name={col.key}
-                          id={`${col.key}-nao`}
+                          name={coluna.key}
+                          id={`${coluna.key}-nao`}
                           value="false"
-                          checked={formData[col.key] === false}
-                          onChange={() => setFormData(prev => ({ ...prev, [col.key]: false }))}
+                          checked={formData[coluna.key] === false}
+                          onChange={() => setFormData(prev => ({ ...prev, [coluna.key]: false }))}
                           className="form-check-input"
                         />
-                        <label className="form-check-label" htmlFor={`${col.key}-nao`}>
-                          {col.tipoBooleano === 'sim-nao' ? 'Não' : 'Inativo'} {/* Label dinâmico */}
+                        <label className="form-check-label" htmlFor={`${coluna.key}-nao`}>
+                          {coluna.tipoBooleano === 'sim-nao' ? 'Não' : 'Inativo'}
                         </label>
                       </div>
 
@@ -372,18 +369,18 @@ export default function AddCrud() {
               }
 
               // SELECT
-              if (col.selectOptions) {
+              if (coluna.opcoesSelect) {
                 return (
 
-                  <div key={col.key} className="form-group mb-4">
-                    <label className="form-label">{col.label}:</label>
+                  <div key={coluna.key} className="form-group mb-4">
+                    <label className="form-label">{coluna.label}:</label>
                     <select
-                      name={col.key}
-                      value={formData[col.key]}
+                      name={coluna.key}
+                      value={formData[coluna.key]}
                       onChange={handleChange}
                       className='form-control form-select'>
                       <option className='text-muted' value="">Selecione uma opção</option>
-                      {col.selectOptions.map((opt, idx) => (
+                      {coluna.opcoesSelect.map((opt, idx) => (
                         <option key={idx} value={opt}>{opt}</option>
                       ))}
                     </select>
@@ -391,30 +388,32 @@ export default function AddCrud() {
                 );
               }
 
-              ['telefone', 'whatsapp'].includes(col.key) && (
-                <div className="form-group mb-4" key={col.key}>
-                  <label className="form-label">{col.label}:</label>
+              // FORMATAR NUMERO
+              ['telefone', 'whatsapp'].includes(coluna.key) && (
+                <div className="form-group mb-4" key={coluna.key}>
+                  <label className="form-label">{coluna.label}:</label>
                   <input
                     type="text"
-                    name={col.key}
+                    name={coluna.key}
                     className="form-control"
-                    value={formData[col.key] || ''}
+                    value={formData[coluna.key] || ''}
                     onChange={handleChange}
                     inputMode="numeric"
-                    placeholder={col.key === 'cep' ? '00000-000' : '(00) 00000-0000'}
+                    placeholder={coluna.key === 'cep' ? '00000-000' : '(00) 00000-0000'}
                   />
                 </div>
               )
 
-              col.key === 'cep' && (
-                <div className="form-group mb-4" key={col.key}>
-                  <label className="form-label">{col.label}:</label>
+              // FORMATAR CEP
+              coluna.key === 'cep' && (
+                <div className="form-group mb-4" key={coluna.key}>
+                  <label className="form-label">{coluna.label}:</label>
                   <div className="input-group">
                     <input
                       type="text"
-                      name={col.key}
+                      name={coluna.key}
                       className="form-control"
-                      value={formData[col.key] || ''}
+                      value={formData[coluna.key] || ''}
                       onChange={handleCEPChange}
                       inputMode="numeric"
                       disabled={buscandoCEP}
@@ -427,50 +426,46 @@ export default function AddCrud() {
                         </div>
                       </span>
                     )}
+                    {/* VER ESSE TRECHO FUNCIONAR NA PRÁTICA */}
                   </div>
                 </div>
               )
 
-
-              // 5) campo de senha (password)
-              if (col.tipo === 'password') {
+              // SENHA
+              if (coluna.tipo === 'password') {
                 return (
-                  <div className='form-group mb-4' key={col.key}>
-                    <label className="form-label">{col.label}:</label>
+                  <div className='form-group mb-4' key={coluna.key}>
+                    <label className="form-label">{coluna.label}:</label>
                     <input
-                      type="password" // 👈 Tipo password para esconder caracteres
-                      name={col.key}
+                      type="password"
+                      name={coluna.key}
                       className="form-control"
-                      value={formData[col.key] || ''}
+                      value={formData[coluna.key] || ''}
                       onChange={handleChange}
                       autoComplete="new-password"
                     />
                   </div>
                 );
               }
-              return (
 
-                <div key={col.key} className="form-group mb-4">
-                  <label className="form-label">{col.label}:</label>
+              // PADRAO (TEXTO)
+              return (
+                <div key={coluna.key} className="form-group mb-4">
+                  <label className="form-label">{coluna.label}:</label>
                   <input
                     type="text"
-                    name={col.key}
+                    name={coluna.key}
                     className="form-control"
-                    value={formData[col.key]}
+                    value={formData[coluna.key]}
                     onChange={handleChange}
-                    required={col.required}
+                    required={coluna.required}
                   />
-
                 </div>
               );
             })}
 
-            <button
-              type="submit"
-              className="btn btn-custom-filled"
-              disabled={loading}
-            >
-              {loading ? "Adicionando..." : "Adicionar"}
+            <button type="submit" className="btn btn-custom-filled" disabled={carregando}>
+              {carregando ? "Adicionando..." : "Adicionar"}
             </button>
 
           </form>
