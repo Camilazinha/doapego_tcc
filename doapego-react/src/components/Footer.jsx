@@ -31,8 +31,8 @@ export default function Footer() {
 
           <div className='col-md-4 mx-auto mb-md-0 mb-4'>
             <h6 className='mb-4'>CONTATO</h6>
-            <p><img src={locationIcon} alt='' />Av. Grupo Bandeirantes 138, 06420-150</p>
-            <p><img src={mailIcon} alt='' /> doapegoitb@gmail.com</p>
+            <p><a href='https://g.co/kgs/Qcfd6Zx' className='link-info-footer'><img src={locationIcon} alt='' />Av. Grupo Bandeirantes 138, 06420-150</a></p>
+            <p><a href='mailto:doapegoitb@gmail.com' className='link-info-footer'><img src={mailIcon} alt='' /> doapegoitb@gmail.com</a></p>
             <p><img src={phoneIcon} alt='' />+55 (11) 92078-7810</p>
             <p><img src={phoneIcon} alt='' />+55 (11) 91234-5678</p>
           </div>

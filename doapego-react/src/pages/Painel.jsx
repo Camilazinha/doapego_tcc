@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 import gotoIcon from "../img/goto-icon.svg";
 
-import no4Photo from "../img-teste/no4.png";
-import no2Photo from "../img-teste/no2.png";
-import half1Photo from "../img-teste/half1.png";
+import no5Photo from "../img-teste/no5.png";
+import no1Photo from "../img-teste/no1.png";
+import no6Photo from "../img-teste/no6.png";
+import half4Photo from "../img-teste/half4.png";
 
 export default function Painel() {
 
@@ -40,7 +41,7 @@ export default function Painel() {
       id: 'manage-donation',
       title: 'Gerenciar Doações',
       description: 'Aprove ou recuse doações enviadas pelos doadores da plataforma.',
-      src: 'https://placehold.co/600x400?text?font=poppins&text=Sem+foto',
+      src: no5Photo,
       link: '/gerenciar-doacoes',
       allowed: ['STAFF', 'FUNCIONARIO']
     },
@@ -48,7 +49,7 @@ export default function Painel() {
       id: 'manage-request',
       title: 'Gerenciar Solicitações',
       description: 'Aprove ou recuse solicitações de novas ONGs que desejam ingressar na plataforma.',
-      src: no2Photo,
+      src: no1Photo,
       link: '/gerenciar-solicitacoes',
       allowed: ['MASTER']
     },
@@ -66,7 +67,7 @@ export default function Painel() {
       id: 'create-staff',
       title: 'Adicionar Staff',
       description: 'Crie a conta de acesso para o representante da ONG, permitindo que ele gerencie as doações.',
-      src: no4Photo,
+      src: no6Photo,
       link: '/configuracoes/administradores/adicionar',
       allowed: ['MASTER']
     },
@@ -74,7 +75,7 @@ export default function Painel() {
       id: 'check-donation',
       title: 'Revisar doações',
       description: 'Revise as doações antes de enviá-las para as ONGs, garantindo que o conteúdo esteja adequado.',
-      src: half1Photo,
+      src: half4Photo,
       link: '/gerenciar-doacoes',
       allowed: ['MASTER']
     }
@@ -91,14 +92,12 @@ export default function Painel() {
 
         <div className='card-one mt-5 mx-3'>
           {sections
-            .filter(section => section.allowed.includes(userType))
+            // .filter(section => section.allowed.includes(userType))
             .map((section) => (
               <div key={section.id} className='card'>
                 <img src={section.src}
-                  alt='' className="card-img-top px-3" style={{
-                    width: "100%", maxHeight: "200px", objectFit: "cover"
-                  }}
-                />
+                  alt='' className="card-img-top mt-1"
+                  style={{ maxWidth: "320px", maxHeight: "212px", height: "100%" }} />
 
                 <div className='card-body'>
                   <h4 className='card-title mb-4'>{section.title}</h4>
