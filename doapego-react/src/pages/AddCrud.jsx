@@ -8,8 +8,8 @@ import { formatarTelefone, formatarCEP, removerMascara } from '../helpers/masks'
 import { buscarCEP } from '../helpers/cepService';
 import { crudData } from '../constants/crudData';
 
-import errorTriangleIcon from "../img/errortriangle-icon.svg";
-import successIcon from "../img/success-icon.svg";
+import iconeErro from "../img/icone-erro.svg";
+import iconeSucesso from "../img/icone-sucesso.svg";
 
 export default function AddCrud() {
 
@@ -235,7 +235,7 @@ export default function AddCrud() {
     return (
       <main className='container my-5 nao-unico-elemento px-5'>
         <div className="alert alert-danger d-flex">
-          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+          <img src={iconeErro} className="me-2" alt="erro" />
           Não foi possível encontrar "{entidade}"
         </div>
       </main>
@@ -249,14 +249,14 @@ export default function AddCrud() {
 
         {(erro || erroValidacao) && (
           <div className="alert alert-danger d-flex">
-            <img src={errorTriangleIcon} className="me-2" alt="erro" />
+            <img src={iconeErro} className="me-2" alt="erro" />
             <p className="erro">{erro || erroValidacao}</p>
           </div>
         )}
 
         {mensagemSucesso && (
           <div className="alert alert-success d-flex">
-            <img src={successIcon} className="me-2" alt="sucesso" />
+            <img src={iconeSucesso} className="me-2" alt="sucesso" />
             <p className="sucesso">{mensagemSucesso}</p>
           </div>
         )}

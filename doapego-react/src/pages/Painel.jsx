@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import gotoIcon from "../img/goto-icon.svg";
+import iconeIrParaRosa from "../img/icone-irpararosa.svg";
 
-import no5Photo from "../img-teste/no5.png";
-import no1Photo from "../img-teste/no1.png";
-import no6Photo from "../img-teste/no6.png";
-import half4Photo from "../img-teste/half4.png";
+import fotoCriancaAzul from "../img/foto-criancaazul.png";
+import fotoCriancaTorre from "../img/foto-criancatorre.png";
+import fotoCriancaMassinha from "../img/foto-criancamassinha.png";
+import fotoCriancaEscondida from "../img/foto-criancaescondida.png";
 
 export default function Painel() {
 
@@ -41,7 +41,7 @@ export default function Painel() {
       id: 'manage-donation',
       title: 'Gerenciar Doações',
       description: 'Aprove ou recuse doações enviadas pelos doadores da plataforma.',
-      src: no5Photo,
+      src: fotoCriancaAzul,
       link: '/gerenciar-doacoes',
       allowed: ['STAFF', 'FUNCIONARIO']
     },
@@ -49,7 +49,7 @@ export default function Painel() {
       id: 'manage-request',
       title: 'Gerenciar Solicitações',
       description: 'Aprove ou recuse solicitações de novas ONGs que desejam ingressar na plataforma.',
-      src: no1Photo,
+      src: fotoCriancaTorre,
       link: '/gerenciar-solicitacoes',
       allowed: ['MASTER']
     },
@@ -67,7 +67,7 @@ export default function Painel() {
       id: 'create-staff',
       title: 'Adicionar Staff',
       description: 'Crie a conta de acesso para o representante da ONG, permitindo que ele gerencie as doações.',
-      src: no6Photo,
+      src: fotoCriancaMassinha,
       link: '/configuracoes/administradores/adicionar',
       allowed: ['MASTER']
     },
@@ -75,7 +75,7 @@ export default function Painel() {
       id: 'check-donation',
       title: 'Revisar doações',
       description: 'Revise as doações antes de enviá-las para as ONGs, garantindo que o conteúdo esteja adequado.',
-      src: half4Photo,
+      src: fotoCriancaEscondida,
       link: '/gerenciar-doacoes',
       allowed: ['MASTER']
     }
@@ -92,7 +92,7 @@ export default function Painel() {
 
         <div className='card-one mt-5 mx-3'>
           {sections
-            // .filter(section => section.allowed.includes(userType))
+            .filter(section => section.allowed.includes(userType))
             .map((section) => (
               <div key={section.id} className='card'>
                 <img src={section.src}
@@ -106,7 +106,7 @@ export default function Painel() {
 
                 <div className='card-body'>
                   <Link to={section.link} className="btn btn-custom-filled">
-                    Acessar <img src={gotoIcon} alt='' />
+                    Acessar <img src={iconeIrParaRosa} alt='' />
                   </Link>
                 </div>
               </div>
