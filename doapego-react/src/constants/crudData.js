@@ -1,8 +1,8 @@
-import deleteIcon from "../img/delete-icon.svg"
-import desativarIcon from "../img/desativar-icon.svg"
+import iconeDeletar from "../img/icone-deletar.svg"
+import iconeDesativar from "../img/icone-desativar.svg"
 
-import editIcon from "../img/edit-icon.svg"
-import viewIcon from "../img/view-icon.svg"
+import iconeEditar from "../img/icone-editar.svg"
+import iconeVer from "../img/icone-ver.svg"
 
 export const crudData = {
     'administradores': {
@@ -10,9 +10,7 @@ export const crudData = {
         apiEndpoint: 'administradores',
         colunas: [
             { key: 'id', label: 'Código' },
-            {
-                key: 'fotoPerfil', label: 'Foto', temImagem: true, opcional: true    // ← campo opcional
-            },
+            { key: 'fotoPerfil', label: 'Foto', temImagem: true, opcional: true },
             { key: 'nome', label: 'Nome', required: true },
             { key: 'email', label: 'E-mail', required: true },
             { key: 'tipo', label: 'Tipo', required: true },
@@ -20,24 +18,22 @@ export const crudData = {
         ],
         colunasExtras: [
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo', required: true },
-
         ],
         colunasFormulario: [
             { key: 'senha', label: 'Senha', tipo: 'password', required: true },
         ],
-
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: iconeVer },
             {
                 type: 'disable',
                 label: 'Desativar',
-                icon: desativarIcon,
-                activeLabel: 'Desativar',  // Novo
-                inactiveLabel: 'Reativar'  // Novo
+                icon: iconeDesativar,
+                activeLabel: 'Desativar',
+                inactiveLabel: 'Reativar'
             }
         ]
     },
-    
+
     'usuarios': {
         titulo: 'USUÁRIOS',
         apiEndpoint: 'usuarios',
@@ -56,11 +52,11 @@ export const crudData = {
             { key: 'bairro', label: 'Bairro' },
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: iconeVer },
             {
                 type: 'disable',
                 label: 'Desativar',
-                icon: desativarIcon,
+                icon: iconeDesativar,
                 activeLabel: 'Desativar',
                 inactiveLabel: 'Reativar'
             }
@@ -88,9 +84,9 @@ export const crudData = {
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo', required: true },
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: editIcon },
-            { type: 'delete', label: 'Excluir', icon: deleteIcon }
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: iconeVer },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: iconeEditar },
+            { type: 'delete', label: 'Excluir', icon: iconeDeletar }
         ]
     },
 
@@ -103,9 +99,9 @@ export const crudData = {
             { key: 'nome', label: 'Nome', required: true },
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: editIcon },
-            { type: 'delete', label: 'Excluir', icon: deleteIcon }
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: iconeVer },
+            { type: 'edit', label: 'Editar', path: 'editar/', classname: 'btn btn-sm btn-custom-edit mx-1', icon: iconeEditar },
+            { type: 'delete', label: 'Excluir', icon: iconeDeletar }
         ]
     },
 
@@ -126,13 +122,13 @@ export const crudData = {
             { key: 'statusOng', label: 'Status', required: true },
         ],
         acoes: [
-            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
+            { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: iconeVer },
             {
                 type: 'disable',
                 label: 'Desativar',
-                icon: desativarIcon,
-                activeLabel: 'Desativar',  // Novo
-                inactiveLabel: 'Reativar'  // Novo
+                icon: iconeDesativar,
+                activeLabel: 'Desativar',
+                inactiveLabel: 'Reativar'
             }
         ]
     }
