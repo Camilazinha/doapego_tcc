@@ -92,7 +92,7 @@ export default function Painel() {
 
         <div className='card-one mt-5 mx-3'>
           {sections
-            // .filter(section => section.allowed.includes(userType))
+            .filter(section => section.allowed.includes(userType))
             .map((section) => (
               <div key={section.id} className='card'>
                 <img src={section.src}

@@ -42,7 +42,7 @@ export default function Login() {
       const dadosPayload = JSON.parse(atob(response.data.split('.')[1]));
 
       localStorage.setItem('id', dadosPayload.id);
-      localStorage.setItem('userType', dadosPayload.tipo);
+      localStorage.setItem('tipo', dadosPayload.tipo);
       localStorage.setItem('ongId', dadosPayload.ongId);
 
       navigate('/inicio');

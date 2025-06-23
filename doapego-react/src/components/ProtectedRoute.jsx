@@ -1,7 +1,7 @@
 //src/components/ProtectedRoute.jsx
 const ProtectedRoute = ({ allowedRoles }) => {
   const token = localStorage.getItem('token');
-  const userType = localStorage.getItem('userType');
+  const userType = localStorage.getItem('tipo');
 
   if (!token) {
     return <Navigate to="/login" replace />;

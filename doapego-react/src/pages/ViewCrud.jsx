@@ -187,7 +187,7 @@ export default function ViewCrud() {
   return (
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
-        {userId === itemData.id ? (
+        {(userId === itemData.id && entidade === "administradores") ? (
           <h2 className='titulo-pagina mb-5'>MEU PERFIL</h2>
         ) : userOngId === itemData.id ?
           (

@@ -5,12 +5,12 @@ import logoutIcon from "../img/logout-icon.svg";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const userType = localStorage.getItem('userType');
+  const userType = localStorage.getItem('tipo') || '';
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
-    localStorage.removeItem('userType');
+    localStorage.removeItem('tipo');
     localStorage.removeItem('ongId');
     navigate('/login');
   };
