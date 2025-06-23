@@ -8,7 +8,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(userType)) {
-    return <Navigate to="/inicio" replace />; // Ou para uma página de "Não autorizado"
+    return <Navigate to="/inicio" replace />;
   }
 
   return <Outlet />;

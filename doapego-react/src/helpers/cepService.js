@@ -1,5 +1,4 @@
 // src/helpers/cepService.js
-
 import axios from 'axios';
 import { formatarCEP, removerMascara } from './masks';
 
@@ -29,7 +28,7 @@ export const buscarCEP = async (cep) => {
 
   } catch (error) {
     console.error("Erro ao buscar CEP:", error);
-    
+
     return {
       erro: true,
       logradouro: '',

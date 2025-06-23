@@ -1,6 +1,5 @@
 // src/components/Navbar.js
 import { Link } from 'react-router-dom';
-
 import documentIcon from '../img/document-icon.svg';
 import giftIcon from '../img/gift-icon.svg';
 import faqIcon from '../img/faq-icon.svg';
@@ -11,9 +10,7 @@ import phoneIcon from '../img/phone-icon.svg';
 export default function Footer() {
   return (
     <footer className='container-fluid text-center pt-3'>
-
       <div className='container text-md-start mt-5'>
-
         <div className='row mt-3'>
 
           <div className='col-md-3 mx-auto mb-4'>
@@ -38,7 +35,6 @@ export default function Footer() {
           </div>
 
         </div>
-
       </div>
 
       <p className='p-4 mb-0'>© 2025 Doapego - Todos os direitos reservados</p>

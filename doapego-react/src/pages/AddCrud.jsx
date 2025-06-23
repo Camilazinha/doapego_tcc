@@ -23,7 +23,7 @@ export default function AddCrud() {
 
   useEffect(() => {
 
-    if (userType === 'MASTER') { 
+    if (userType === 'MASTER') {
       axios.get('http://localhost:8080/ongs?statusOng=ATIVO')
         .then(res => {
           setOngOptions(res.data.items);
@@ -37,7 +37,7 @@ export default function AddCrud() {
 
   useEffect(() => {
     const bloquearAcesso = () => {
-      
+
       if (entidade === 'usuarios' || entidade === 'ongs') {
         setError("Criação não permitida para esta entidade");
         return true;
@@ -195,7 +195,7 @@ export default function AddCrud() {
       delete payload.id;
       payload.rawPassword = payload.senha;
       delete payload.senha;
-      
+
       if (payload['ong.id'] !== undefined) {
         payload.ong = { id: Number(payload['ong.id']) };
         delete payload['ong.id']; // Remove a chave antiga
@@ -205,7 +205,7 @@ export default function AddCrud() {
         payload
       );
       setSuccessMessage(`Adicionado com sucesso!`);
-      
+
       const reset = {};
       allCols.forEach(col => {
         if (col.key === 'id') return;

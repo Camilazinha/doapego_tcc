@@ -94,7 +94,6 @@ export default function Navbar() {
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
-
         <div className="container-fluid">
 
           <Link to="/">
@@ -106,7 +105,6 @@ export default function Navbar() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">
-
             <ul className="navbar-nav mb-2 mb-lg-0">
               {renderMenu()}
             </ul>
@@ -116,11 +114,9 @@ export default function Navbar() {
                 Baixe o App!
               </Link>
             </div>
-
           </div>
 
         </div>
-        
       </nav>
     </header>
   );

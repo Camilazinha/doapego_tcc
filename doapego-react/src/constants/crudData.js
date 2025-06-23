@@ -1,6 +1,5 @@
 import deleteIcon from "../img/delete-icon.svg"
 import desativarIcon from "../img/desativar-icon.svg"
-
 import editIcon from "../img/edit-icon.svg"
 import viewIcon from "../img/view-icon.svg"
 
@@ -10,9 +9,7 @@ export const crudData = {
         apiEndpoint: 'administradores',
         colunas: [
             { key: 'id', label: 'Código' },
-            {
-                key: 'fotoPerfil', label: 'Foto', temImagem: true, opcional: true    // ← campo opcional
-            },
+            { key: 'fotoPerfil', label: 'Foto', temImagem: true, opcional: true },
             { key: 'nome', label: 'Nome', required: true },
             { key: 'email', label: 'E-mail', required: true },
             { key: 'tipo', label: 'Tipo', required: true },
@@ -20,24 +17,16 @@ export const crudData = {
         ],
         colunasExtras: [
             { key: 'ativo', label: 'Status', tipoBooleano: 'ativo-inativo', required: true },
-
         ],
         colunasFormulario: [
             { key: 'senha', label: 'Senha', tipo: 'password', required: true },
         ],
-
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            {
-                type: 'disable',
-                label: 'Desativar',
-                icon: desativarIcon,
-                activeLabel: 'Desativar',  // Novo
-                inactiveLabel: 'Reativar'  // Novo
-            }
+            { type: 'disable', label: 'Desativar', icon: desativarIcon, activeLabel: 'Desativar', inactiveLabel: 'Reativar' }
         ]
     },
-    
+
     'usuarios': {
         titulo: 'USUÁRIOS',
         apiEndpoint: 'usuarios',
@@ -57,13 +46,7 @@ export const crudData = {
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            {
-                type: 'disable',
-                label: 'Desativar',
-                icon: desativarIcon,
-                activeLabel: 'Desativar',
-                inactiveLabel: 'Reativar'
-            }
+            { type: 'disable', label: 'Desativar', icon: desativarIcon, activeLabel: 'Desativar', inactiveLabel: 'Reativar' }
         ]
     },
 
@@ -127,13 +110,7 @@ export const crudData = {
         ],
         acoes: [
             { type: 'view', label: 'Ver', path: 'detalhes/', classname: 'btn btn-sm btn-custom-view mx-1', icon: viewIcon },
-            {
-                type: 'disable',
-                label: 'Desativar',
-                icon: desativarIcon,
-                activeLabel: 'Desativar',  // Novo
-                inactiveLabel: 'Reativar'  // Novo
-            }
+            { type: 'disable', label: 'Desativar', icon: desativarIcon, activeLabel: 'Desativar', inactiveLabel: 'Reativar' }
         ]
     }
 };
