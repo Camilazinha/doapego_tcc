@@ -53,7 +53,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
         }
 
         if (allowedRoles && !allowedRoles.includes(tipo)) {
-                return <Navigate to="/pagina-nao-existente" replace />;
+                return <Navigate to="/pagina-nao-existente" replace />; // Ou para uma página de "Não autorizado"
         }
 
         return <Outlet />;
