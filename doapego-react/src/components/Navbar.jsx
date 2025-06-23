@@ -1,22 +1,22 @@
-// src/components/Navbar.jsx
+// src/components/Navbar.js
 import { Link, useNavigate } from 'react-router-dom';
-import iconeCadeado from "../img/icone-cadeado.svg";
-import iconeSair from "../img/icone-sair.svg";
+import lockIcon from "../img/lock-icon.svg";
+import logoutIcon from "../img/logout-icon.svg";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const tipo = localStorage.getItem('tipo');
+  const userType = localStorage.getItem('userType');
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
-    localStorage.removeItem('tipo');
+    localStorage.removeItem('userType');
     localStorage.removeItem('ongId');
     navigate('/login');
   };
 
   const renderMenu = () => {
-    if (!tipo) {
+    if (!userType) {
       return (
         <>
           <li className="nav-item">
@@ -33,14 +33,14 @@ export default function Navbar() {
 
           <li className="nav-item">
             <Link className="nav-link d-flex align-items-center" to="/login">
-              <img src={iconeCadeado} alt="Apenas para administradores" />Entrar
+              <img src={lockIcon} alt="Apenas para administradores" />Entrar
             </Link>
           </li>
         </>
       );
     }
 
-    if (tipo === 'STAFF' || tipo === 'FUNCIONARIO') {
+    if (userType === 'STAFF' || userType === 'FUNCIONARIO') {
       return (
         <>
           <li className="nav-item">
@@ -57,14 +57,14 @@ export default function Navbar() {
 
           <li className="nav-item">
             <button className="nav-link d-flex align-items-center" onClick={handleLogout}>
-              <img src={iconeSair} alt="Sair" /><strong>Sair</strong>
+              <img src={logoutIcon} alt="Sair" /><strong>Sair</strong>
             </button>
           </li>
         </>
       );
     }
 
-    if (tipo === 'MASTER') {
+    if (userType === 'MASTER') {
       return (
         <>
           <li className="nav-item">
@@ -81,7 +81,7 @@ export default function Navbar() {
 
           <li className="nav-item">
             <button className="nav-link d-flex align-items-center" onClick={handleLogout}>
-              <img src={iconeSair} alt="Sair" /><strong>Sair</strong>
+              <img src={logoutIcon} alt="Sair" /><strong>Sair</strong>
             </button>
           </li>
         </>
@@ -106,6 +106,7 @@ export default function Navbar() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">
+
             <ul className="navbar-nav mb-2 mb-lg-0">
               {renderMenu()}
             </ul>
@@ -117,7 +118,9 @@ export default function Navbar() {
             </div>
 
           </div>
+
         </div>
+        
       </nav>
     </header>
   );

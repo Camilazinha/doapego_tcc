@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import NotFound from './components/NotFound';
+import NotAuthorized from './components/NotAuthorized';
 
 import Home from './pages/Home';
 import Sobre from './pages/Sobre';
@@ -43,6 +43,7 @@ import "./styles/buttons.css";
 import "./styles/footer.css";
 import "./styles/crud.css";
 
+// Componente para verificar autenticação e permissões
 const ProtectedRoute = ({ allowedRoles }) => {
         const token = localStorage.getItem('token');
         const tipo = localStorage.getItem('tipo');
@@ -76,24 +77,25 @@ export default function App() {
                                 <Route path="/esqueci-minha-senha" element={<ForgotPassword />} />
                                 <Route path="/solicitar-cadastro" element={<CadastroStaff />} />
                                 <Route path="/teste" element={<Teste />} />
-                                <Route path="/pagina-nao-encontrada" element={<NotFound />} />
+                                <Route path="/pagina-nao-encontrada" element={<NotAuthorized />} />
                                 {/* Rotas privadas */}
-                                <Route element={<ProtectedRoute />}>
+                                {/* <Route element={<ProtectedRoute />}> */}
 
-                                        <Route path="/inicio" element={<Inicio />} />
-                                        <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
-                                        <Route path="/painel-de-controle" element={<Painel />} />
+                                <Route path="/inicio" element={<Inicio />} />
+                                <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
+                                <Route path="/painel-de-controle" element={<Painel />} />
 
-                                        <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
-                                        <Route path="/gerenciar-doacoes/:id" element={<Doacoes />} />
+                                <Route path="/gerenciar-doacoes" element={<GerenciarDoacoes />} />
+                                <Route path="/gerenciar-doacoes/:id" element={<Doacoes />} />
 
-                                        <Route path="/configuracoes" element={<Configuracoes />} />
-                                        <Route path="/configuracoes/:entidade" element={<ListCrud />} />
-                                        <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
-                                        <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
-                                        <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
-                                </Route>
+                                <Route path="/configuracoes" element={<Configuracoes />} />
+                                <Route path="/configuracoes/:entidade" element={<ListCrud />} />
+                                <Route path="/configuracoes/:entidade/adicionar" element={<AddCrud />} />
+                                <Route path="/configuracoes/:entidade/editar/:id" element={<EditCrud />} />
+                                <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
+                                {/* </Route> */}
 
+                                {/* Rotas específicas para master */}
                                 <Route element={<ProtectedRoute allowedRoles={['MASTER']} />}>
                                         <Route path="/gerenciar-solicitacoes" element={<Solicitacoes />} />
                                 </Route>
