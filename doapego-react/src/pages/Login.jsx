@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+
 import axios from 'axios';
 
 import errorTriangleIcon from '../img/errortriangle-icon.svg';
@@ -8,22 +9,22 @@ export default function Login() {
   const [emailAdmin, setEmailAdmin] = useState('');
   const [senha, setSenha] = useState('');
   const [lembrarMe] = useState(true);
-  const [erro, setErro] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setErro('');
+    setError('');
 
     // 1. Validação front-end
     if (!emailAdmin) {
-      setErro('Por favor, informe seu e‑mail.');
+      setError('Por favor, informe seu e‑mail.');
       return;
     }
     if (!senha) {
-      setErro('Por favor, informe sua senha.');
+      setError('Por favor, informe sua senha.');
       return;
     }
 
@@ -41,7 +42,7 @@ export default function Login() {
       const dadosPayload = JSON.parse(atob(response.data.split('.')[1]));
 
       localStorage.setItem('id', dadosPayload.id);
-      localStorage.setItem('tipo', dadosPayload.tipo);
+      localStorage.setItem('userType', dadosPayload.tipo);
       localStorage.setItem('ongId', dadosPayload.ongId);
 
       navigate('/inicio');
@@ -50,24 +51,24 @@ export default function Login() {
       if (err.response) {
         switch (err.response.status) {
           case 400:
-            setErro('Requisição inválida. Verifique os dados e tente novamente.');
+            setError('Requisição inválida. Verifique os dados e tente novamente.');
             break;
           case 401:
-            setErro('E‑mail ou senha incorretos.');
+            setError('E‑mail ou senha incorretos.');
             break;
           case 403:
-            setErro('Você não tem permissão para acessar este recurso.');
+            setError('Você não tem permissão para acessar este recurso.');
             break;
           case 500:
-            setErro('Erro interno no servidor. Tente novamente mais tarde.');
+            setError('Erro interno no servidor. Tente novamente mais tarde.');
             break;
           default:
-            setErro(err.response.data?.message || `Erro ${err.response.status}.`);
+            setError(err.response.data?.message || `Erro ${err.response.status}.`);
         }
       } else if (err.request) {
-        setErro('Não foi possível conectar ao servidor.');
+        setError('Não foi possível conectar ao servidor.');
       } else {
-        setErro('Ocorreu um erro inesperado.');
+        setError('Ocorreu um erro inesperado.');
       }
     } finally {
       setLoading(false);
@@ -82,7 +83,7 @@ export default function Login() {
 
           <form onSubmit={handleLogin}>
 
-            {erro && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='20' className='me-2' />{erro}</div>}
+            {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='20' className='me-2' />{error}</div>}
 
             <div className="form-group">
               <label htmlFor='email-admin' className='form-label'>E-mail</label>

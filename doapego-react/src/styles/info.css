@@ -61,7 +61,7 @@
   box-shadow: 0 0 0 0.2rem rgba(181, 181, 181, 0.25);
 }
 
-.tira-duvidas p {
+.still-questions p {
   color: var(--color-gray-medium);
   text-align: center;
 }
