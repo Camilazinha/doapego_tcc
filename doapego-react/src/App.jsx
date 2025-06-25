@@ -48,13 +48,9 @@ const ProtectedRoute = ({ allowedRoles }) => {
         const token = localStorage.getItem('token');
         const tipo = localStorage.getItem('tipo');
 
-        if (!token) {
-                return <Navigate to="/login" replace />;
-        }
+        if (!token) return <Navigate to="/login" replace />;
 
-        if (allowedRoles && !allowedRoles.includes(tipo)) {
-                return <Navigate to="/pagina-nao-existente" replace />; // Ou para uma página de "Não autorizado"
-        }
+        if (allowedRoles && !allowedRoles.includes(tipo)) return <Navigate to="/pagina-nao-existente" replace />;
 
         return <Outlet />;
 };
@@ -78,9 +74,9 @@ export default function App() {
                                 <Route path="/solicitar-cadastro" element={<CadastroStaff />} />
                                 <Route path="/teste" element={<Teste />} />
                                 <Route path="/pagina-nao-encontrada" element={<NotAuthorized />} />
+
                                 {/* Rotas privadas */}
                                 <Route element={<ProtectedRoute />}>
-
                                         <Route path="/inicio" element={<Inicio />} />
                                         <Route path="/perguntas-frequentes" element={<AjudaPrivado />} />
                                         <Route path="/painel-de-controle" element={<Painel />} />
@@ -95,12 +91,10 @@ export default function App() {
                                         <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
                                 </Route>
 
-                                {/* Rotas específicas para master */}
                                 <Route element={<ProtectedRoute allowedRoles={['MASTER']} />}>
                                         <Route path="/gerenciar-solicitacoes" element={<Solicitacoes />} />
                                 </Route>
 
-                                {/* Rota de fallback para páginas não encontradas */}
                                 <Route path="*" element={<Navigate to="/pagina-nao-encontrada" replace />} />
                         </Routes>
                         <Footer />

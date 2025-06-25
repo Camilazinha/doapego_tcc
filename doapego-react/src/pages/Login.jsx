@@ -1,7 +1,7 @@
+// src/pages/Login.jsx
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-
-import axios from 'axios';
 
 import errorTriangleIcon from '../img/errortriangle-icon.svg';
 
@@ -18,7 +18,6 @@ export default function Login() {
     setLoading(true);
     setError('');
 
-    // 1. Validação front-end
     if (!emailAdmin) {
       setError('Por favor, informe seu e‑mail.');
       return;
@@ -34,23 +33,21 @@ export default function Login() {
         { email: emailAdmin, senha }
       );
 
-      // 2. Se quiser implementar "Lembrar-me" com JWT depois:
       if (lembrarMe) {
         localStorage.setItem('token', response.data);
       }
 
       const dadosPayload = JSON.parse(atob(response.data.split('.')[1]));
-
-      localStorage.setItem('id', dadosPayload.id);
+      Number(ocalStorage.setItem('id', dadosPayload.id));
       localStorage.setItem('tipo', dadosPayload.tipo);
-      localStorage.setItem('ongId', dadosPayload.ongId);
+      Number(localStorage.setItem('ongId', dadosPayload.ongId));
 
       navigate('/inicio');
 
     } catch (err) {
       if (err.response) {
         switch (err.response.status) {
-          case 400:
+          case 400: //mensagem erro
             setError('Requisição inválida. Verifique os dados e tente novamente.');
             break;
           case 401:
@@ -120,11 +117,7 @@ export default function Login() {
             </div>
 
             <div className="form-group">
-              <button
-                type="submit"
-                className="btn btn-custom-filled"
-                disabled={loading}
-              >
+              <button type="submit" className="btn btn-custom-filled" disabled={loading} >
                 {loading ? 'Carregando...' : 'Entrar'}
               </button>
             </div>
@@ -132,6 +125,7 @@ export default function Login() {
             <section className="form-group">
               <p>Ainda não cadastrado? <Link to="/solicitar-cadastro" className='form-link'>Solicitar cadastro</Link></p>
             </section>
+
           </form>
         </div>
       </div>

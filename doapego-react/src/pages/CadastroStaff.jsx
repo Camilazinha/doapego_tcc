@@ -1,6 +1,7 @@
+// src/pages/CadastroStaff.jsx
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import { formatarTelefone, formatarCEP, removerMascara } from "../helpers/masks";
 import { buscarCEP } from "../helpers/cepService";
@@ -33,8 +34,8 @@ export default function CadastroStaff() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [cepValido, setCepValido] = useState(true); // <- aqui
-  const [successMessage, setSuccessMessage] = useState(null); // Novo estado para mensagem de sucesso
+  const [cepValido, setCepValido] = useState(true);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -42,14 +43,13 @@ export default function CadastroStaff() {
       setSuccessMessage(null);
     }, 4000);
 
-    return () => clearTimeout(timer); // Limpa o timer se o componente desmontar
+    return () => clearTimeout(timer);
   }, [error, successMessage]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     let valorFormatado = value;
 
-    // Aplica máscaras
     if (name === 'telefone' || name === 'whatsapp') {
       valorFormatado = formatarTelefone(value);
     }
@@ -57,7 +57,6 @@ export default function CadastroStaff() {
     setFormData(prev => ({ ...prev, [name]: valorFormatado }));
   };
 
-  // Atualiza os campos do endereço
   const handleEnderecoChange = async (e) => {
     const { name, value } = e.target;
     let valorFormatado = value;
@@ -80,7 +79,7 @@ export default function CadastroStaff() {
         if (enderecoCompleto.erro) {
           setError('CEP não encontrado!');
           alert('CEP não encontrado!');
-          setCepValido(false); // <- aqui
+          setCepValido(false);
 
           setEndereco(prev => ({
             ...prev,
@@ -90,7 +89,7 @@ export default function CadastroStaff() {
             estado: ''
           }));
         } else {
-          setCepValido(true); // <- aqui
+          setCepValido(true);
           setEndereco(prev => ({
             ...prev,
             ...enderecoCompleto,
@@ -184,11 +183,10 @@ export default function CadastroStaff() {
     return true;
   };
 
-  // Envia a solicitação para criar a ONG e o endereço
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setSuccessMessage(null); // Reseta a mensagem de sucesso antes de cada envio
+    setSuccessMessage(null);
 
     if (!validarCampos()) return;
 
@@ -202,11 +200,9 @@ export default function CadastroStaff() {
         statusOng: "PENDENTE"
       };
 
-      // 1️⃣ Cadastra a ONG
       const responseOng = await axios.post("http://localhost:8080/ongs", dadosOng);
-      const ongId = responseOng.data.id; // Obtém o ID da ONG recém-criada
+      const ongId = responseOng.data.id;
 
-      // 2️⃣ Cadastra o endereço da ONG
       await axios.post("http://localhost:8080/enderecos-ong", {
         ...endereco,
         cep: removerMascara(endereco.cep),
@@ -215,7 +211,6 @@ export default function CadastroStaff() {
 
       alert("Solicitação enviada com sucesso! Aguarde aprovação.");
 
-      // Reseta os formulários
       setFormData({
         nome: "",
         email: "",
@@ -240,7 +235,7 @@ export default function CadastroStaff() {
     } catch (err) {
       console.error("Erro ao enviar o cadastro:", err);
 
-      // Captura erros de resposta do servidor
+      // mensagem de erro
       if (err.response) {
         if (err.response.status === 400) {
           setError("Erro de validação: " + err.response.data.message);
@@ -280,7 +275,7 @@ export default function CadastroStaff() {
         <h2 className="titulo-pagina mb-4">SOLICITAR CADASTRO</h2>
         <p className="subtitulo mb-4">Preencha os campos com as informações da sua ONG. Após análise, entraremos em contato por e-mail com os dados de acesso ao sistema, caso seu cadastro seja aprovado.</p>
 
-        {/* Exibir mensagens de erro */}
+        {/*Ver o que é validation e qual a diferneca com o error */}
         {error && (
           <div className="alert alert-danger d-flex align-items-center">
             <img src={errorTriangleIcon} className="me-2" alt="Erro" />
@@ -288,7 +283,6 @@ export default function CadastroStaff() {
           </div>
         )}
 
-        {/* Exibir mensagem de sucesso */}
         {successMessage && (
           <div className="alert alert-success d-flex align-items-center">
             <img src={successIcon} className="me-2" alt="Erro" />
@@ -299,7 +293,6 @@ export default function CadastroStaff() {
         <div className="mt-4 form-container-cadastro">
           <form onSubmit={handleSubmit}>
 
-            {/* Dados da ONG */}
             <h4 className="mb-3 mt-1 subtitulo-container">Dados da ONG</h4>
 
             <div className="form-group">
@@ -337,8 +330,6 @@ export default function CadastroStaff() {
               <input type="url" className="form-control" name="fotoPerfil" value={formData.fotoPerfil} onChange={handleChange} />
             </div>
 
-
-            {/* Endereço da ONG */}
             <h4 className="mb-3 mt-4 subtitulo-container">Endereço da ONG</h4>
 
             <div className="form-group">

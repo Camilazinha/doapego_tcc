@@ -1,3 +1,4 @@
+// src/pages/Sobre.jsx
 import ods10 from '../img/ods10.svg';
 import ods3 from '../img/ods3.svg';
 
@@ -29,7 +30,6 @@ export default function Sobre() {
 
           <div className="d-flex flex-column flex-md-row justify-content-center align-items-center align-items-md-stretch gap-4">
 
-
             <div className="card shadow-sm border-0 p-3 d-flex flex-column align-items-center h-100">
               <img src={ods3} className="card-img-top" alt="ODS 3" />
               <div className="card-body">
@@ -53,7 +53,6 @@ export default function Sobre() {
           </div>
         </div>
       </div>
-
     </main >
   );
 };

@@ -1,8 +1,8 @@
+// src/pages/Painel.jsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import gotoIcon from "../img/goto-icon.svg";
-
 import no5Photo from "../img-teste/no5.png";
 import no1Photo from "../img-teste/no1.png";
 import no6Photo from "../img-teste/no6.png";
@@ -11,7 +11,7 @@ import half4Photo from "../img-teste/half4.png";
 export default function Painel() {
 
   const userType = localStorage.getItem('tipo') || '';
-  const userOngId = localStorage.getItem('ongId');
+  const userOngId = Number(localStorage.getItem('ongId'));
   const [ongData, setOngData] = useState(null);
   const [loading, setLoading] = useState(null);
 
@@ -83,7 +83,7 @@ export default function Painel() {
 
   if (loading) {
     return <p>Carregando...</p>;
-  }
+  } //COLOCAR LOADING NESSE
 
   return (
     <main>

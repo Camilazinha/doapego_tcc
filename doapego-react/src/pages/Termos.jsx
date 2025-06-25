@@ -1,5 +1,4 @@
 //src/pages/Termos.jsx
-
 export default function Termos() {
   return (
     <main>

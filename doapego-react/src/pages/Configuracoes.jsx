@@ -1,5 +1,4 @@
 // src/pages/Configuracoes.jsx
-
 import { Link } from 'react-router-dom';
 
 import rightChevronIcon from "../img/rightchevron-icon.svg"
@@ -12,8 +11,6 @@ import userIcon from "../img/user-icon.svg"
 import categoryIcon from "../img/category-icon.svg"
 
 export default function Configuracoes() {
-
-  // Pega os dados do localStorage
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId') || '';
   const userId = localStorage.getItem('id') || '';
@@ -30,7 +27,6 @@ export default function Configuracoes() {
       id: 'my-ngo',
       title: 'Minha ONG',
       icon: ngosIcon,
-      // link: `/ongs/ong-${userOngId}`,
       link: `/configuracoes/ongs/detalhes/${userOngId}`,
       allowed: ['STAFF', 'FUNCIONARIO']
     },
@@ -94,11 +90,9 @@ export default function Configuracoes() {
               <img src={rightChevronIcon} alt='' />
             </Link>
           </div>
-
         ))}
+
       </div>
-
     </main>
-
   );
 };

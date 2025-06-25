@@ -1,9 +1,9 @@
+// src/pages/ViewCrud.jsx
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+
 import { formatarTelefone, formatarCEP } from '../helpers/masks';
-
-import axios from 'axios';
-
 import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
@@ -18,11 +18,9 @@ export default function ViewCrud() {
   const userId = Number(localStorage.getItem('id')) || null;
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   const getNestedValue = (obj, path) => {
     return path.split('.').reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : null), obj);
@@ -36,7 +34,6 @@ export default function ViewCrud() {
         const data = response.data;
 
         let hasPermission = false;
-
         switch (entidade) {
           case 'administradores':
             if (userType === 'MASTER') {
@@ -118,27 +115,25 @@ export default function ViewCrud() {
       });
 
       alert('ONG aprovada com sucesso!');
-      window.location.reload(); // Recarregar para atualizar o status
+      window.location.reload();
 
     } catch (err) {
       console.error('Erro ao aprovar ONG:', err);
       alert('Erro ao aprovar ONG. Tente novamente!');
     }
   };
+
   const handleReject = async () => {
     try {
-      // Primeiro buscar todos os endereços da ONG
       const enderecosResponse = await axios.get(`http://localhost:8080/enderecos-ong?ongId=${id}`);
       const enderecos = enderecosResponse.data.items;
 
-      // Excluir todos os endereços relacionados
       await Promise.all(
         enderecos.map(endereco =>
           axios.delete(`http://localhost:8080/enderecos-ong/${endereco.id}`)
         )
       );
 
-      // Agora excluir a ONG
       await axios.delete(`http://localhost:8080/ongs/${id}`);
 
       alert('ONG e endereços relacionados excluídos com sucesso!');
@@ -172,17 +167,14 @@ export default function ViewCrud() {
     </main>
   );
 
-  if (!config) {
-    return (
-      <main className='container my-5 nao-unico-elemento px-5'>
-        <div className="alert alert-danger d-flex">
-          <img src={errorTriangleIcon} className="me-2" alt="erro" />
-          Não foi possível encontrar "{entidade}"
-        </div>
-      </main>
-    );
-  }
-
+  if (!config) return (
+    <main className='container my-5 nao-unico-elemento px-5'>
+      <div className="alert alert-danger d-flex">
+        <img src={errorTriangleIcon} className="me-2" alt="erro" />
+        Não foi possível encontrar "{entidade}"
+      </div>
+    </main>
+  );
 
   return (
     <main>
@@ -225,7 +217,6 @@ export default function ViewCrud() {
                 ]
                   .filter((col) => !col.temImagem)
                   .map(col => {
-                    // Ajuste para campos foreignKey
                     const valor = getNestedValue(itemData, col.key);
                     const temValor = valor !== null && valor !== undefined && String(valor).trim() !== "";
 
@@ -261,78 +252,48 @@ export default function ViewCrud() {
                       </tr>
                     );
                   })}
-
               </tbody>
-
 
             </table>
             <section className="mt-4 d-flex gap-2 justify-content-center flex-wrap">
               {entidade === 'ongs' && itemData.statusOng === 'PENDENTE' && userType === 'MASTER' && (
                 <>
-                  <button
-                    className="btn btn-success"
-                    onClick={handleAccept}
-                  >
-                    Aceitar ONG
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => setShowDeleteModal(true)}
-                  >
-                    Rejeitar ONG
-                  </button>
+                  <button className="btn btn-success" onClick={handleAccept}>Aceitar ONG</button>
+                  <button className="btn btn-danger" onClick={() => setShowDeleteModal(true)}>Rejeitar ONG</button>
                 </>
               )}
 
               {entidade === 'ongs' && (userType === 'STAFF' || userType === 'FUNCIONARIO') && (
-                <Link
-                  to={`/configuracoes/ongs/editar/${userOngId}`}
-                > <button className="btn btn-custom-unfilled mx-1">
+                <Link to={`/configuracoes/ongs/editar/${userOngId}`}>
+                  <button className="btn btn-custom-unfilled mx-1">
                     Editar ONG
                   </button>
                 </Link>
               )}
 
               {entidade === 'administradores' && (userId === itemData.id) && (
-                <Link
-                  to={`/configuracoes/administradores/editar/${userId}`}
-                > <button className="btn btn-custom-unfilled mx-1">
+                <Link to={`/configuracoes/administradores/editar/${userId}`}>
+                  <button className="btn btn-custom-unfilled mx-1">
                     Editar perfil
                   </button>
                 </Link>
-
               )}
             </section>
+
             {showDeleteModal && (
               <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
                 <div className="modal-dialog">
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title fw-semibold">Atenção!</h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        onClick={() => setShowDeleteModal(false)}
-                      ></button>
+                      <button type="button" className="btn-close" onClick={() => setShowDeleteModal(false)}></button>
                     </div>
                     <div className="modal-body">
                       Tem certeza que deseja rejeitar e excluir permanentemente esta ONG?
                     </div>
                     <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={() => setShowDeleteModal(false)}
-                      >
-                        Cancelar
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-danger"
-                        onClick={handleReject}
-                      >
-                        Confirmar Exclusão
-                      </button>
+                      <button type="button" className="btn btn-secondary" onClick={() => setShowDeleteModal(false)}>Cancelar</button>
+                      <button type="button" className="btn btn-danger" onClick={handleReject}>Confirmar Exclusão</button>
                     </div>
                   </div>
                 </div>

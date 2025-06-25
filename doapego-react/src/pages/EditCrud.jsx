@@ -1,8 +1,7 @@
-//src/pages/EditCrud.jsx
-
+// src/pages/EditCrud.jsx
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 import { crudData } from '../constants/crudData';
 import { formatarTelefone, formatarCEP, removerMascara } from '../helpers/masks';
@@ -12,7 +11,6 @@ import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function EditCrud() {
-
   const { entidade, id } = useParams();
   const config = crudData[entidade] || null;
 
@@ -32,33 +30,29 @@ export default function EditCrud() {
       setSuccessMessage(null);
     }, 4000);
 
-    return () => clearTimeout(timer); // Limpa o timer se o componente desmontar
+    return () => clearTimeout(timer);
   }, [error, successMessage]);
 
   useEffect(() => {
 
     const validarPermissoes = () => {
-      // 1. BLOQUEAR EDIÇÃO DE USUÁRIOS PARA TODOS
       if (entidade === 'usuarios') {
         setError("Edição de usuários não é permitida");
         return false;
       }
 
-      // 2. CATEGORIAS SÓ MASTER (mesmo que sua regra anterior)
       if (entidade === 'categorias-doacao' && userType !== 'MASTER') {
         setError("Somente MASTER pode editar categorias");
         return false;
       }
 
-      // 3. ADMINISTRADORES: só pode editar o próprio perfil, independente do tipo
       if (entidade === 'administradores') {
-        if (userId !== Number(id)) { // Aplica para MASTER, STAFF, etc
+        if (userId !== Number(id)) {
           setError("Você só pode editar seu próprio perfil!");
           return false;
         }
       }
 
-      // 4. ONGS/ENDERECOS: apenas STAFF/FUNC da mesma ONG 
       if (entidade === 'enderecos-ong' || entidade === 'ongs') {
         if (!['STAFF', 'FUNCIONARIO'].includes(userType)) {
           setError("Acesso restrito a membros da ONG");
@@ -90,13 +84,11 @@ export default function EditCrud() {
           itemData.whatsapp = formatarTelefone(itemData.whatsapp);
         }
 
-        // 👇 REGRAS PARA ONGS/ENDERECOS 
         if (['ongs', 'enderecos-ong'].includes(entidade)) {
           const ongIdItem = entidade === 'ongs'
             ? itemData.id
             : (itemData.ongId ?? itemData.ong?.id);
 
-          // STAFF/FUNC só podem editar sua própria ONG
           if (ongIdItem !== userOngId) {
             setError("Você só pode editar recursos da sua própria ONG!");
             setLoading(false);
@@ -104,11 +96,10 @@ export default function EditCrud() {
           }
         }
 
-        // 👇 TRATAMENTO DO FORM DATA PARA ADMIN (incluindo MASTER)
         if (entidade === 'administradores') {
           setFormData({
             ...itemData,
-            ong: itemData.ong ? { id: itemData.ong.id } : null // ✅ Seguro
+            ong: itemData.ong ? { id: itemData.ong.id } : null
           });
         }
         else {
@@ -116,7 +107,7 @@ export default function EditCrud() {
           setFormData(dadosCompletos);
         }
       }
-
+      // mensagem de erro
       catch (err) {
         console.error("Erro ao buscar os dados:", err);
         if (err.response) {
@@ -142,12 +133,11 @@ export default function EditCrud() {
 
     let valorFormatado = value;
 
-    // Aplica máscaras
     if (name === 'telefone' || name === 'whatsapp') {
       valorFormatado = formatarTelefone(value);
     } else if (name === 'cep') {
       valorFormatado = formatarCEP(value);
-      handleBuscaCEP(value); // Adiciona a busca automática aqui
+      handleBuscaCEP(value);
     }
 
     if (name.includes('.')) {
@@ -172,30 +162,26 @@ export default function EditCrud() {
       try {
         const endereco = await buscarCEP(cepLimpo);
 
-        // Se o CEP não for encontrado, a API retorna { erro: true }
         if (endereco.erro) {
           alert('CEP não encontrado!');
-          // Limpa os campos de endereço
           setFormData(prev => ({
             ...prev,
             logradouro: '',
             bairro: '',
             cidade: '',
             estado: '',
-            cep: formatarCEP(cepLimpo) // Mantém o CEP formatado
+            cep: formatarCEP(cepLimpo)
           }));
           return;
         }
 
-        // Atualiza todos os campos de endereço
         setFormData(prev => ({
           ...prev,
           ...endereco,
-          cep: endereco.cep // Usa o CEP formatado retornado
+          cep: endereco.cep
         }));
       } catch (error) {
         alert('Erro ao buscar CEP!');
-        // Limpa os campos em caso de erro
         setFormData(prev => ({
           ...prev,
           logradouro: '',
@@ -208,21 +194,20 @@ export default function EditCrud() {
     }
   };
 
-  // ✅ Código CORRETO
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Valida CEP APENAS se a entidade tiver o campo
+    // VALIDAR CEP
     const hasCEPField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'cep');
     if (hasCEPField) {
       const cepNumerico = removerMascara(formData.cep);
-      if (cepNumerico && cepNumerico.length !== 8) { // ✅ Agora só valida se houver valor
+      if (cepNumerico && cepNumerico.length !== 8) {
         setError("CEP inválido! Deve conter 8 dígitos");
         return;
       }
     }
 
-    // 👇 Nova validação para telefone
+    // VALIDAR TELEFONE
     const hasTelefoneField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'telefone');
     if (hasTelefoneField && formData.telefone) {
       const telefoneLimpo = removerMascara(formData.telefone);
@@ -232,7 +217,7 @@ export default function EditCrud() {
       }
     }
 
-    // 👇 Nova validação para WhatsApp
+    // VALIDAR WHATSAPP
     const hasWhatsappField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'whatsapp');
     if (hasWhatsappField && formData.whatsapp) {
       const whatsappLimpo = removerMascara(formData.whatsapp);
@@ -242,7 +227,7 @@ export default function EditCrud() {
       }
     }
 
-    // Validação da data (opcional, se necessário)
+    // VALIDAR DATA
     if (formData.fundacao) {
       const dataAtual = new Date();
       const dataFundacao = new Date(formData.fundacao);
@@ -254,11 +239,9 @@ export default function EditCrud() {
 
     if (entidade === 'enderecos-ong' && (!formData.logradouro || !formData.bairro || !formData.cidade || !formData.estado)) {
       setError("Preencha todos os campos do endereço corretamente");
-
       return;
     }
 
-    // 👇 Agora seguro mesmo se campos estiverem undefined
     const dadosLimpos = {
       ...formData,
       fundacao: formData.fundacao
@@ -267,7 +250,6 @@ export default function EditCrud() {
       telefone: removerMascara(formData.telefone),
       whatsapp: removerMascara(formData.whatsapp),
       cep: removerMascara(formData.cep)
-      // Nota: logradouro, bairro, etc., não precisam de tratamento
     };
 
     // Se já tiver erro (ex: acesso negado), NÃO deixa salvar
@@ -279,7 +261,7 @@ export default function EditCrud() {
     const payload = dadosLimpos;
     setSaving(true);
 
-    try {
+    try { //MENSAGEM DE ERRO
       await axios.put(`http://localhost:8080/${config.apiEndpoint}/${id}`, payload);
       setSuccessMessage("Salvo com sucesso!");
     } catch (err) {
@@ -313,6 +295,7 @@ export default function EditCrud() {
       </main>
     );
   }
+
   if (loading) return (
     <main className='container my-5 nao-unico-elemento px-5'>
       <h2 className='titulo-pagina mb-5'>{config.titulo}</h2>
@@ -345,24 +328,20 @@ export default function EditCrud() {
         <section className='container form-container-crud bg-white'>
           <form onSubmit={handleSubmit}>
 
+            {entidade === 'administradores' && (
+              <input type="hidden" name="ong.id" value={formData.ong?.id || ''} />
+            )}
 
+            {entidade === 'enderecos-ong' && (
+              <input type="hidden" name="ong.id" value={formData.ong?.id || ''} />
+            )}
 
-            {
-              entidade === 'administradores' && (
-                <input type="hidden" name="ong.id" value={formData.ong?.id || ''} />
-              )
-            }
-            {
-              entidade === 'enderecos-ong' && (
-                <input type="hidden" name="ong.id" value={formData.ong?.id || ''} />
-              )
-            }
             {[...config.colunas, ...(config.colunasExtras || []), ...(config.colunasFormulario || [])].map(col => {
-              // Oculta campos específicos
+
               const isOculto =
                 col.key.endsWith('Id') ||
                 (col.tipo === 'foreignKey' && col.key === 'ong') ||
-                ((entidade === 'enderecos-ong' || entidade === 'administradores') && col.key === 'ong.id'); // 👈 Modificado
+                ((entidade === 'enderecos-ong' || entidade === 'administradores') && col.key === 'ong.id');
 
               if (col.key === "id" || isOculto) return null;
 
@@ -395,7 +374,6 @@ export default function EditCrud() {
                   </div>
                 )
               }
-
 
               if (col.tipo === 'password') {
                 return (
@@ -463,9 +441,7 @@ export default function EditCrud() {
                           id={`${col.key}-ativo`}
                           value="ATIVO"
                           checked={formData[col.key] === 'ATIVO'}
-                          onChange={(e) =>
-                            setFormData({ ...formData, [col.key]: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, [col.key]: e.target.value })}
                           className="form-check-input"
                         />
                         <label className="form-check-label" htmlFor={`${col.key}-ativo`}>
@@ -480,9 +456,7 @@ export default function EditCrud() {
                           id={`${col.key}-inativo`}
                           value="INATIVO"
                           checked={formData[col.key] === 'INATIVO'}
-                          onChange={(e) =>
-                            setFormData({ ...formData, [col.key]: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, [col.key]: e.target.value })}
                           className="form-check-input"
                         />
                         <label className="form-check-label" htmlFor={`${col.key}-inativo`}>
@@ -499,10 +473,7 @@ export default function EditCrud() {
                           id={`${col.key}-true`}
                           value="true"
                           checked={!!formData[col.key]}
-                          onChange={(e) => setFormData({
-                            ...formData,
-                            [col.key]: e.target.value === 'true'
-                          })}
+                          onChange={(e) => setFormData({ ...formData, [col.key]: e.target.value === 'true' })}
                           className="form-check-input"
                         />
                         <label className="form-check-label" htmlFor={`${col.key}-true`}>
@@ -517,10 +488,7 @@ export default function EditCrud() {
                           id={`${col.key}-false`}
                           value="false"
                           checked={!formData[col.key]}
-                          onChange={(e) => setFormData({
-                            ...formData,
-                            [col.key]: e.target.value === 'true'
-                          })}
+                          onChange={(e) => setFormData({ ...formData, [col.key]: e.target.value === 'true' })}
                           className="form-check-input"
                         />
                         <label className="form-check-label" htmlFor={`${col.key}-false`}>
@@ -536,7 +504,6 @@ export default function EditCrud() {
                       onChange={handleChange}
                       className="form-control"
                       required={col.required}
-
                     />
                   )}
                 </div>
@@ -546,6 +513,7 @@ export default function EditCrud() {
             <button type="submit" className="btn btn-custom-filled" disabled={saving}>
               {saving ? "Salvando..." : "Salvar Alterações"}
             </button>
+
           </form>
         </section>
       </div>

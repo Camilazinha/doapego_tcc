@@ -1,5 +1,4 @@
 //src/pages/Tutorial.jsx
-
 import React from "react"
 
 export default function Tutorial() {
@@ -9,7 +8,6 @@ export default function Tutorial() {
         <div className="d-flex flex-column gap-4">
           <h2 className="titulo-pagina">COMO DOAR</h2>
           <h2 className="subtitulo mb-4">Confira nosso passo a passo para doar e fazer a diferença!</h2>
-
 
           <div className="list-group">
             {[

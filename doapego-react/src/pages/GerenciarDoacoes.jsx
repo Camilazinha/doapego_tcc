@@ -1,8 +1,7 @@
 //src/pages/GerenciarDoacoes.jsx
-
+import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
 
 import noImageIcon from "../img/noimage-icon.svg"
 import errorIcon from "../img/errorexclamation-icon.svg"
@@ -12,6 +11,7 @@ export default function GerenciarDoacoes() {
 
   const userType = localStorage.getItem('tipo') || ''
   const userOngId = Number(localStorage.getItem('ongId')) || null
+
   const [doacoes, setDoacoes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -22,18 +22,17 @@ export default function GerenciarDoacoes() {
   useEffect(() => {
 
     const fetchDoacoes = async () => {
-
       try {
         if (userType === "MASTER") {
           const response = await axios.get("http://localhost:8080/doacoes?sortDirection=asc&status=ANALISE")
-          setDoacoes(response.data.items || response.data) // Ajuste conforme a estrutura da sua API
+          setDoacoes(response.data.items || response.data)
         }
         else {
           const response = await axios.get(`http://localhost:8080/doacoes?sortDirection=asc&ongId=${userOngId}`)
-          setDoacoes(response.data.items || response.data) // Ajuste conforme a estrutura da sua API
+          setDoacoes(response.data.items || response.data)
         }
         setLoading(false)
-      }
+      } // mensagem de erro
       catch (err) {
         console.error("Erro ao buscar doações:", err)
 
@@ -60,7 +59,7 @@ export default function GerenciarDoacoes() {
   }, [userOngId, userType])
 
   const doacoesFiltradas = userType === "MASTER"
-    ? doacoes // mostra todas as doações para master (já estão filtradas por status=ANALISE na API)
+    ? doacoes
     : doacoes.filter((d) => d["status"] === abaAtiva)
 
   // Paginação
@@ -68,35 +67,32 @@ export default function GerenciarDoacoes() {
   const indiceInicial = (paginaAtual - 1) * itensPorPagina
   const itensAtuais = doacoesFiltradas.slice(indiceInicial, indiceInicial + itensPorPagina)
 
-
-  if (loading)
-    return (
-      <main>
-        <div className="container my-5 nao-unico-elemento">
-          <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
-          <div className="d-flex justify-content-center align-items-center flex-column">
-            <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
-            <p className="loading-text">Carregando...</p>
-          </div>
+  if (loading) return (
+    <main>
+      <div className="container my-5 nao-unico-elemento">
+        <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
+        <div className="d-flex justify-content-center align-items-center flex-column">
+          <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
+          <p className="loading-text">Carregando...</p>
         </div>
-      </main>
-    )
+      </div>
+    </main>
+  )
 
-  if (error)
-    return (
-      <main>
-        <div className="container my-5 nao-unico-elemento">
-          <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
+  if (error) return (
+    <main>
+      <div className="container my-5 nao-unico-elemento">
+        <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
 
-          <div className="alert alert-danger d-flex">
-            <img src={errorTriangleIcon} className="me-2" alt="" />
-            {error
-              ? <p className="erro">{error}</p>
-              : null}
-          </div>
+        <div className="alert alert-danger d-flex">
+          <img src={errorTriangleIcon} className="me-2" alt="" />
+          {error
+            ? <p className="erro">{error}</p>
+            : null}
         </div>
-      </main>
-    )
+      </div>
+    </main>
+  )
 
   return (
     <main>
@@ -107,13 +103,7 @@ export default function GerenciarDoacoes() {
           <ul className="nav nav-tabs mb-4 justify-content-center">
             {["PENDENTE", "COLETADA", "RECUSADA"].map((status) => (
               <li className="nav-item" key={status}>
-                <button
-                  className={`nav-link ${abaAtiva === status ? "active" : ""}`}
-                  onClick={() => {
-                    setAbaAtiva(status)
-                    setPaginaAtual(1) // Resetar a página ao trocar de aba
-                  }}
-                >
+                <button className={`nav-link ${abaAtiva === status ? "active" : ""}`} onClick={() => { setAbaAtiva(status); setPaginaAtual(1) }}>
                   {status}
                 </button>
               </li>
@@ -189,8 +179,6 @@ export default function GerenciarDoacoes() {
             </nav>
           )
         }
-
-
       </div>
     </main>
   )

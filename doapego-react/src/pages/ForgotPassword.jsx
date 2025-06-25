@@ -1,10 +1,9 @@
-//src/pages/ForgotPassword.jsx
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+// src/pages/ForgotPassword.jsx
 import axios from 'axios';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ForgotPassword() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [erro, setErro] = useState('');
@@ -16,7 +15,6 @@ export default function ForgotPassword() {
     setErro('');
 
     try {
-      // CORREÇÃO: Enviar apenas o email como string (text/plain)
       await axios.post(
         'http://localhost:8080/redefinir-senha/solicitar',
         email,
@@ -29,8 +27,7 @@ export default function ForgotPassword() {
 
       setMensagem('Link enviado com sucesso. Verifique seu e-mail.');
       localStorage.setItem('resetEmail', email);
-    } catch (error) {
-      // Tratamento aprimorado de erros
+    } catch (error) { // MENSAGEM DE ERRO
       if (error.response && error.response.status === 400) {
         setErro('E-mail não encontrado');
       } else {
@@ -55,24 +52,11 @@ export default function ForgotPassword() {
 
             <div className='form-group'>
               <label htmlFor='email' className='form-label'>E-mail</label>
-              <input
-                id='email'
-                type="email"
-                className='form-control'
-                placeholder="Digite seu e-mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoFocus
-              />
+              <input id='email' type="email" className='form-control' placeholder="Digite seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required autoFocus />
             </div>
 
             <div className="form-group">
-              <button
-                type="submit"
-                className="btn btn-custom-filled"
-                disabled={loading}
-              >
+              <button type="submit" className="btn btn-custom-filled" disabled={loading} >
                 {loading ? 'Enviando...' : 'Enviar link'}
               </button>
             </div>

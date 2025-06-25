@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import errorTriangleIcon from '../img/errortriangle-icon.svg';
+// src/pages/ResetPassword.jsx
 import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import errorTriangleIcon from '../img/errortriangle-icon.svg';
 
 export default function ResetPassword() {
-
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [token, setToken] = useState('');
@@ -21,7 +22,6 @@ export default function ResetPassword() {
     e.preventDefault();
     setError('');
 
-    // Validações
     if (!email) {
       setError('E-mail não encontrado na URL');
       return;
@@ -50,10 +50,10 @@ export default function ResetPassword() {
       );
 
       setSuccess('Senha redefinida com sucesso!');
-      localStorage.removeItem('resetEmail'); // Limpa APÓS sucesso
+      localStorage.removeItem('resetEmail');
       setTimeout(() => navigate('/login'), 3000);
     } catch (err) {
-      // Tratamento detalhado de erros
+      // mensagem de erro
       if (err.response) {
         if (err.response.status === 400) {
           setError('Token inválido ou expirado');
@@ -77,11 +77,7 @@ export default function ResetPassword() {
           <h2 className='titulo-pagina-container'>REDEFINIR SENHA</h2>
 
           <form onSubmit={handleSubmit}>
-            {success && (
-              <div className="alert alert-success">
-                {success} Redirecionando para login...
-              </div>
-            )}
+            {success && (<div className="alert alert-success">{success} Redirecionando para login... </div>)}
 
             {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='20' className='me-2' />{error}</div>}
 
@@ -129,13 +125,10 @@ export default function ResetPassword() {
                 Sua senha deve conter no mínimo 8 caracteres (alfanumérico ou especial).
               </p>
 
-              <button
-                type="submit"
-                className="btn btn-custom-filled"
-                disabled={loading}
-              >
+              <button type="submit" className="btn btn-custom-filled" disabled={loading} >
                 {loading ? 'Processando...' : 'Confirmar'}
               </button>
+
             </div>
           </form>
         </div>

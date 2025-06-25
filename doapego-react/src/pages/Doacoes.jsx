@@ -1,13 +1,15 @@
+// src/pages/Doacoes.jsx
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
 import gotoIcon from "../img/gotogray-icon.svg";
 
 export default function Doacoes() {
   const { id } = useParams();
-  const navigate = useNavigate(); // Passo 2: Inicializar o hook
+  const navigate = useNavigate();
 
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = Number(localStorage.getItem('ongId')) || null;
@@ -28,9 +30,7 @@ export default function Doacoes() {
       });
 
       setItemData(prev => ({ ...prev, status: novoStatus }));
-
-      // Passo 3: Redirecionar após sucesso
-      navigate('/gerenciar-doacoes'); // Altere a rota conforme necessário
+      navigate('/gerenciar-doacoes');
 
     } catch (err) {
       console.error("Erro ao atualizar status:", err);
@@ -56,7 +56,6 @@ export default function Doacoes() {
         const response = await axios.get(`http://localhost:8080/doacoes/${id}`);
         const data = response.data;
 
-        // Verificar permissões
         const isAdmin = userType === 'MASTER' || userType === 'STAFF';
         const isOwner = userId === data.usuarioId;
         const isOngRelated = userOngId === data.ongId;
@@ -64,8 +63,10 @@ export default function Doacoes() {
         if (!isAdmin && !isOwner && !isOngRelated) {
           throw new Error('Sem permissão');
         }
+        // entender essa lógica de permissão *
 
         setItemData(data);
+        // mensagem de erro
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
 
@@ -73,7 +74,6 @@ export default function Doacoes() {
           setError("Você não tem permissão para visualizar este item.");
           alert("Você não tem permissão para visualizar este item.");
         }
-
         else if (err.response) {
           setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
           alert("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
@@ -130,8 +130,7 @@ export default function Doacoes() {
                   <button
                     onClick={handlePrevImage}
                     className="btn btn-link position-absolute start-0 top-50 translate-middle-y"
-                    style={{ zIndex: 1, left: '20px' }}
-                  >
+                    style={{ zIndex: 1, left: '20px' }} >
                     <i className="bi bi-chevron-left fs-1 text-secondary"></i>
                   </button>
                 )}
@@ -146,9 +145,9 @@ export default function Doacoes() {
                       height: '232px',
                       width: '100%',
                       objectFit: 'cover',
-                      cursor: 'pointer' // Adiciona cursor pointer
+                      cursor: 'pointer'
                     }}
-                    onClick={() => setShowImageModal(true)} // Abre o modal ao clicar
+                    onClick={() => setShowImageModal(true)}
                   />
 
                   {/* Bullets (indicadores) */}
@@ -242,16 +241,10 @@ export default function Doacoes() {
               {/* Botões para MASTER */}
               {userType === 'MASTER' && (
                 <>
-                  <button
-                    className="btn btn-success"
-                    onClick={() => atualizarStatus('PENDENTE')} // MASTER aceita → PENDENTE
-                  >
+                  <button className="btn btn-success" onClick={() => atualizarStatus('PENDENTE')}>
                     Aceitar
                   </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => setShowRefuseModal(true)} // Só abre o modal
-                  >
+                  <button className="btn btn-danger" onClick={() => setShowRefuseModal(true)}>
                     Recusar
                   </button>
                 </>
@@ -260,16 +253,10 @@ export default function Doacoes() {
               {/* Botões para FUNCIONARIO/STAFF */}
               {(userType === 'FUNCIONARIO' || userType === 'STAFF') && (
                 <>
-                  <button
-                    className="btn btn-success"
-                    onClick={() => atualizarStatus('COLETADA')} // Aceitar → COLETADA
-                  >
+                  <button className="btn btn-success" onClick={() => atualizarStatus('COLETADA')}>
                     Aceitar
                   </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => setShowRefuseModal(true)} // Só abre o modal
-                  >
+                  <button className="btn btn-danger" onClick={() => setShowRefuseModal(true)}>
                     Recusar
                   </button>
                 </>
@@ -279,61 +266,52 @@ export default function Doacoes() {
           </div>
         </section>
       </div >
+
       {/* Modal de Confirmação para Recusar */}
       {showRefuseModal && (
         <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog">
             <div className="modal-content">
+
               <div className="modal-header">
                 <h5 className="modal-title fw-semibold">Atenção!</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setShowRefuseModal(false)}
-                ></button>
+                <button type="button" className="btn-close" onClick={() => setShowRefuseModal(false)}></button>
               </div>
+
               <div className="modal-body">
                 <p>Tem certeza que deseja recusar esta doação?</p>
               </div>
+
               <div className="modal-footer">
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => setShowRefuseModal(false)}
-                >
+                <button className="btn btn-secondary" onClick={() => setShowRefuseModal(false)}>
                   Cancelar
                 </button>
+
                 <button
-                  className="btn btn-danger"
-                  onClick={() => {
-                    atualizarStatus('RECUSADA');
-                    setShowRefuseModal(false);
-                  }}
-                >
+                  className="btn btn-danger" onClick={() => { atualizarStatus('RECUSADA'); setShowRefuseModal(false); }}>
                   Confirmar
                 </button>
               </div>
+
             </div>
           </div>
         </div>
       )}
 
       {/* Modal para Ampliação da Imagem */}
-      {/* Modal para Ampliação da Imagem */}
       {showImageModal && (
-        <div
-          className="modal fade show"
+        <div className="modal fade show"
           style={{
             display: 'block',
             backgroundColor: 'rgba(0,0,0,0.97)',
             backdropFilter: 'blur(3px)'
           }}
-          onClick={() => setShowImageModal(false)}
-        >
+          onClick={() => setShowImageModal(false)}>
           <div className="modal-dialog modal-dialog-centered modal-xl">
             <div className="modal-content bg-transparent border-0">
               <div className="modal-body p-0 position-relative">
 
-                {/* Botão de fechar - Estilo OLX */}
+                {/* Botão de fechar*/}
                 <button
                   type="button"
                   className="btn position-absolute rounded-circle border-0 top-0 end-0 m-3 d-flex align-items-center justify-content-center"
@@ -346,8 +324,7 @@ export default function Doacoes() {
                     transition: 'all 0.2s'
                   }}
                   onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'white'}
-                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.9)'}
-                >
+                  onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.9)'}>
                   <i className="bi bi-x-lg fs-5 text-dark"></i>
                 </button>
 
@@ -372,33 +349,25 @@ export default function Doacoes() {
                       {itemData.arquivosDoacao.map((arquivo, index) => (
                         <button
                           key={arquivo.id}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrentImageIndex(index);
-                          }}
+                          onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(index); }}
                           className={`btn p-0 rounded-circle border-0 ${index === currentImageIndex ? 'bg-white' : 'cbg-gray-dark'}`}
+                          aria-label={`Ir para imagem ${index + 1}`}
                           style={{
                             width: '10px',
                             height: '10px',
                             transition: 'all 0.2s',
                             opacity: index === currentImageIndex ? 1 : 0.7
                           }}
-                          aria-label={`Ir para imagem ${index + 1}`}
                         />
                       ))}
                     </div>
                   )}
 
-
-                  {/* Controles de navegação - Estilo OLX */}
+                  {/* Controles de navegação*/}
                   {itemData.arquivosDoacao.length > 1 && (
                     <>
                       <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handlePrevImage();
-                        }}
-                        className="btn position-absolute start-0 top-50 border-0 rounded-circle translate-middle-y d-flex align-items-center justify-content-center"
+                        onClick={(e) => { e.stopPropagation(); handlePrevImage(); }} className="btn position-absolute start-0 top-50 border-0 rounded-circle translate-middle-y d-flex align-items-center justify-content-center"
                         style={{
                           left: '20px',
                           backgroundColor: 'rgba(0,0,0,0.5)',
@@ -407,17 +376,11 @@ export default function Doacoes() {
                           transition: 'all 0.2s'
                         }}
                         onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.7)'}
-                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}
-                      >
+                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}>
                         <i className="bi bi-chevron-left fs-2 text-white"></i>
                       </button>
 
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleNextImage();
-                        }}
-                        className="btn position-absolute end-0 top-50 border-0 rounded-circle translate-middle-y d-flex align-items-center justify-content-center"
+                      <button onClick={(e) => { e.stopPropagation(); handleNextImage(); }} className="btn position-absolute end-0 top-50 border-0 rounded-circle translate-middle-y d-flex align-items-center justify-content-center"
                         style={{
                           right: '20px',
                           backgroundColor: 'rgba(0,0,0,0.5)',
@@ -426,8 +389,7 @@ export default function Doacoes() {
                           transition: 'all 0.2s'
                         }}
                         onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.7)'}
-                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}
-                      >
+                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}>
                         <i className="bi bi-chevron-right fs-2 text-white"></i>
                       </button>
                     </>

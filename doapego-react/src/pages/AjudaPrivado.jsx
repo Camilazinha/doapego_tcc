@@ -1,3 +1,4 @@
+// src/pages/AjudaPrivado.jsx
 import { faqPrivado } from "../constants/questionsFaq";
 
 export default function AjudaPrivado() {

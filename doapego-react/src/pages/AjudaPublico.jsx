@@ -1,5 +1,4 @@
-//src/pages/AjudaPublico.jsx
-
+// src/pages/AjudaPublico.jsx
 import { faqPublico } from "../constants/questionsFaq";
 
 export default function AjudaPublico() {

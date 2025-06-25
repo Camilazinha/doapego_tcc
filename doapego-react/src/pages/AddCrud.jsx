@@ -1,24 +1,19 @@
 // src/pages/AddCrud.jsx
-
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-
 import { formatarTelefone, formatarCEP, removerMascara } from '../helpers/masks';
 import { buscarCEP } from '../helpers/cepService';
 import { crudData } from '../constants/crudData';
-
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import successIcon from "../img/success-icon.svg";
 
 export default function AddCrud() {
-
   const { entidade } = useParams();
   const config = crudData[entidade] || null;
 
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId');
-
   const [ongOptions, setOngOptions] = useState([]);
 
   useEffect(() => {
@@ -66,7 +61,6 @@ export default function AddCrud() {
     }
   }, [entidade, userType]);
 
-  // * o que isso faz?
   const listaOngs = Array.isArray(ongOptions) ? ongOptions : [];
 
   const allCols = config
@@ -198,7 +192,7 @@ export default function AddCrud() {
 
       if (payload['ong.id'] !== undefined) {
         payload.ong = { id: Number(payload['ong.id']) };
-        delete payload['ong.id']; // Remove a chave antiga
+        delete payload['ong.id'];
       }
 
       await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
@@ -217,6 +211,7 @@ export default function AddCrud() {
 
     } catch (err) {
       console.error("Erro ao adicionar:", err);
+      //mensagens de erro
       if (err.response) {
         setError("Erro ao carregar os dados. Tente novamente mais tarde.");
         alert("Erro ao carregar os dados. Tente novamente mais tarde.");
@@ -234,16 +229,14 @@ export default function AddCrud() {
     }
   };
 
-  if (!config) {
-    return (
-      <main className='container my-5 nao-unico-elemento px-5'>
-        <div className="alert alert-danger d-flex">
-          <img src={errorTriangleIcon} className="me-2" alt="erro" />
-          Não foi possível encontrar "{entidade}"
-        </div>
-      </main>
-    );
-  }
+  if (!config) return (
+    <main className='container my-5 nao-unico-elemento px-5'>
+      <div className="alert alert-danger d-flex">
+        <img src={errorTriangleIcon} className="me-2" alt="erro" />
+        Não foi possível encontrar "{entidade}"
+      </div>
+    </main>
+  );
 
   return (
     <main>
@@ -328,11 +321,11 @@ export default function AddCrud() {
               }
 
               // ENUM OU BOOLEANO
-              if (col.tipoBooleano === 'ativo-inativo' || col.tipoBooleano === 'sim-nao') { // <-- Alterado aqui
+              if (col.tipoBooleano === 'ativo-inativo' || col.tipoBooleano === 'sim-nao') {
                 return (
                   <div key={col.key} className="mb-4 form-group">
                     <label className="form-label">{col.label}:</label>
-                    <div className="d-flex gap-3 mb-1"> {/* Adicionei gap para espaçamento */}
+                    <div className="d-flex gap-3 mb-1">
 
                       {/* SIM/ATIVO */}
                       <div className="form-check">
@@ -346,7 +339,7 @@ export default function AddCrud() {
                           className="form-check-input"
                         />
                         <label className="form-check-label" htmlFor={`${col.key}-sim`}>
-                          {col.tipoBooleano === 'sim-nao' ? 'Sim' : 'Ativo'} {/* Label dinâmico */}
+                          {col.tipoBooleano === 'sim-nao' ? 'Sim' : 'Ativo'}
                         </label>
                       </div>
 
@@ -362,7 +355,7 @@ export default function AddCrud() {
                           className="form-check-input"
                         />
                         <label className="form-check-label" htmlFor={`${col.key}-nao`}>
-                          {col.tipoBooleano === 'sim-nao' ? 'Não' : 'Inativo'} {/* Label dinâmico */}
+                          {col.tipoBooleano === 'sim-nao' ? 'Não' : 'Inativo'}
                         </label>
                       </div>
 
@@ -374,7 +367,6 @@ export default function AddCrud() {
               // SELECT
               if (col.selectOptions) {
                 return (
-
                   <div key={col.key} className="form-group mb-4">
                     <label className="form-label">{col.label}:</label>
                     <select
@@ -391,6 +383,7 @@ export default function AddCrud() {
                 );
               }
 
+              // FORMATAR NUMEROS
               ['telefone', 'whatsapp'].includes(col.key) && (
                 <div className="form-group mb-4" key={col.key}>
                   <label className="form-label">{col.label}:</label>
@@ -406,6 +399,7 @@ export default function AddCrud() {
                 </div>
               )
 
+              // FORMATAR CEP
               col.key === 'cep' && (
                 <div className="form-group mb-4" key={col.key}>
                   <label className="form-label">{col.label}:</label>
@@ -431,14 +425,13 @@ export default function AddCrud() {
                 </div>
               )
 
-
-              // 5) campo de senha (password)
+              // SENHA
               if (col.tipo === 'password') {
                 return (
                   <div className='form-group mb-4' key={col.key}>
                     <label className="form-label">{col.label}:</label>
                     <input
-                      type="password" // 👈 Tipo password para esconder caracteres
+                      type="password"
                       name={col.key}
                       className="form-control"
                       value={formData[col.key] || ''}
@@ -448,8 +441,9 @@ export default function AddCrud() {
                   </div>
                 );
               }
-              return (
 
+              // NORMAL
+              return (
                 <div key={col.key} className="form-group mb-4">
                   <label className="form-label">{col.label}:</label>
                   <input
@@ -460,16 +454,11 @@ export default function AddCrud() {
                     onChange={handleChange}
                     required={col.required}
                   />
-
                 </div>
               );
             })}
 
-            <button
-              type="submit"
-              className="btn btn-custom-filled"
-              disabled={loading}
-            >
+            <button type="submit" className="btn btn-custom-filled" disabled={loading}>
               {loading ? "Adicionando..." : "Adicionar"}
             </button>
 

@@ -1,8 +1,8 @@
 // src/pages/Inicio.js
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Calendar from 'react-calendar';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
 
 import pendenteIcon from "../img/pendente-icon.svg";
@@ -10,8 +10,8 @@ import recusadaIcon from "../img/recusada-icon.svg";
 import coletadaIcon from "../img/coletada-icon.svg";
 import goToIcon from '../img/goto-icon.svg';
 
-export default function Inicio() {
 
+export default function Inicio() {
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId');
   const adminId = localStorage.getItem('id');
@@ -21,7 +21,7 @@ export default function Inicio() {
     if (adminId) {
       axios.get(`http://localhost:8080/administradores/${adminId}`)
         .then(response => {
-          setAdminName(response.data.nome); // ou "nomeCompleto", dependendo da API
+          setAdminName(response.data.nome);
         })
         .catch(error => {
           console.error("Erro ao buscar nome do administrador:", error);
@@ -70,7 +70,6 @@ export default function Inicio() {
             </Link>
           </section>
 
-          {/* Seção de Estatísticas (Lista de Doações) */}
           <section className="estatisticas-container me-1">
             <div className="borda-teste p-4">
               <h3 className="fw-bold">Lista de doações</h3>
@@ -102,7 +101,6 @@ export default function Inicio() {
             </div>
           </section>
 
-          {/* Seção de Relatório de Erros */}
           <section className="report-container">
             <div className="borda-teste ms-1 p-4">
               <h3 className="fw-bold">Encontrou um erro?</h3>

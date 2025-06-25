@@ -1,20 +1,18 @@
 //src/pages/ListCrud.jsx
-
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
 import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
 
 export default function ListCrud() {
-
     const { entidade } = useParams();
     const config = crudData[entidade] || null;
 
     const userType = localStorage.getItem('tipo') || '';
-    const userOngId = localStorage.getItem('ongId');
+    const userOngId = Number(localStorage.getItem('ongId'));
 
     const [dados, setDados] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -47,14 +45,16 @@ export default function ListCrud() {
                         ]);
                         setDados([...staffResponse.data.items, ...funcionarioResponse.data.items]);
                     }
+
                 } else if (entidade === "ongs") {
                     if (userType === "MASTER") {
                         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?statusOng=ATIVO`);
                         setDados(response.data.items);
                     } else {
                         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${userOngId}`);
-                        setDados([response.data]); // colocar dentro de array porque é um só
+                        setDados([response.data]);
                     }
+
                 } else if (entidade === "enderecos-ong") {
                     if (userType === "MASTER") {
                         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
@@ -63,15 +63,16 @@ export default function ListCrud() {
                         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?ongId=${userOngId}&sortDirection=asc`);
                         setDados(response.data.items);
                     }
+
                 } else if (entidade === "usuarios") {
                     if (userType === "MASTER") {
                         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
                         setDados(response.data.items);
                     } else {
-                        setDados([]); // STAFF e FUNCIONÁRIO não podem ver nada
+                        setDados([]);
                     }
+
                 } else {
-                    // Para qualquer outra entidade
                     const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortDirection=asc`);
                     setDados(response.data.items);
                 }
@@ -91,8 +92,6 @@ export default function ListCrud() {
 
         fetchData();
     }, [config, entidade, userType, userOngId]);
-
-
 
     const toggleStatus = async (itemId, currentStatus) => {
         try {
@@ -141,16 +140,14 @@ export default function ListCrud() {
             setItemToDelete(null);
         }
     };
-    if (!config) {
-        return (
-            <main className='container my-5 nao-unico-elemento px-5'>
-                <div className="alert alert-danger d-flex">
-                    <img src={errorTriangleIcon} className="me-2" alt="erro" />
-                    Não foi possível encontrar "{entidade}"
-                </div>
-            </main>
-        );
-    }
+    if (!config) return (
+        <main className='container my-5 nao-unico-elemento px-5'>
+            <div className="alert alert-danger d-flex">
+                <img src={errorTriangleIcon} className="me-2" alt="erro" />
+                Não foi possível encontrar "{entidade}"
+            </div>
+        </main>
+    );
 
     if (error) return (
         <main className='container my-5 nao-unico-elemento px-5'>
@@ -180,8 +177,6 @@ export default function ListCrud() {
             <div className='container my-5 nao-unico-elemento px-5'>
                 <h2 className='titulo-pagina mb-4'>{config.titulo}</h2>
 
-
-
                 <section className='p-4'>
                     {(
                         (entidade === "administradores") ||
@@ -194,6 +189,7 @@ export default function ListCrud() {
                                 </button>
                             </Link>
                         )}
+
                     <table className="mt-3 table table-bordered table-hover">
                         <thead className='table-light'>
                             <tr className='text-center'>
@@ -232,7 +228,6 @@ export default function ListCrud() {
                                     ))}
                                     <td className="text-center">
                                         {config.acoes.map(acao => {
-                                            // Verificar permissões
                                             const userType = localStorage.getItem('tipo') || '';
                                             let showAction = false;
 
@@ -245,7 +240,7 @@ export default function ListCrud() {
                                                             showAction = item.tipo === 'FUNCIONARIO';
                                                         }
                                                     } else {
-                                                        showAction = true; // Ver sempre permitido
+                                                        showAction = true;
                                                     }
                                                     break;
 
@@ -273,7 +268,6 @@ export default function ListCrud() {
 
                                             if (!showAction) return null;
 
-                                            // Renderizar ações
                                             if (acao.type === 'delete') {
                                                 return (
                                                     <button key={acao.type}

@@ -5,13 +5,10 @@ import boy1 from "../img/boy1.jpg"
 import boy2 from "../img/boy2.jpg"
 import boy3 from "../img/boy3.jpg"
 
-
 export default function Home() {
-
   return (
     <main>
       <div className='container my-5 nao-unico-elemento'>
-
         <div className="container-fluid home-big p-5 mb-5">
           <h2 className="col-12 col-sm-12 col-md-9 col-lg-5 my-3">UMA PONTE DE AFETO: DE DOADORES PARA INFÂNCIAS QUE MERECEM SORRIR</h2>
 
@@ -27,7 +24,6 @@ export default function Home() {
             O Doapego é a coligação entre quem quer doar e quem acolhe. Por meio da nossa plataforma, conectamos doadores a ONGs que precisam de brinquedos para transformar a infância de muitas crianças. De forma simples, você escolhe a ONG, cadastra a doação e, após a aprovação, combina o ponto de entrega (para saber mais sobre como contribuir, acesse a aba "Como Doar?" e descubra outras formas de apoiar essa causa). Tudo pensado para que o carinho chegue a quem mais precisa.
           </p>
         </div>
-
 
         <div className="row row-cols-1 row-cols-md-4 text-center g-4 align-items-start mb-5">
 

@@ -1,14 +1,13 @@
 //src/pages/Solicitacoes.jsx
-
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 import noImageIcon from "../img/noimage-icon.svg";
 import copyIcon from "../img/copy-icon.svg";
 import viewIcon from "../img/view-icon.svg"
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
-import successIcon from "../img/success-icon.svg"; // Você precisa ter este ícone
+import successIcon from "../img/success-icon.svg";
 
 export default function Solicitacoes() {
   const [ongs, setOngs] = useState([]);
@@ -22,7 +21,6 @@ export default function Solicitacoes() {
     await navigator.clipboard.writeText(email);
     setSuccessMessage("E-mail copiado com sucesso!");
 
-    // Remove a mensagem após 3 segundos
     setTimeout(() => {
       setSuccessMessage(null);
     }, 2000);
@@ -34,7 +32,7 @@ export default function Solicitacoes() {
         const response = await axios.get("http://localhost:8080/ongs?statusOng=PENDENTE");
         setOngs(response.data.items || response.data);
         setLoading(false);
-      } catch (err) {
+      } catch (err) { //mensagem erro
         console.error("Erro ao buscar ONGs pendentes:", err);
 
         if (err.response) {
@@ -48,7 +46,6 @@ export default function Solicitacoes() {
         } else {
           setError("Ocorreu um erro inesperado.")
           alert("Ocorreu um erro inesperado.")
-
         }
 
       } finally {
@@ -62,30 +59,27 @@ export default function Solicitacoes() {
   const indiceInicial = (paginaAtual - 1) * itensPorPagina;
   const itensAtuais = ongs.slice(indiceInicial, indiceInicial + itensPorPagina);
 
-  if (loading)
-    return (
-      <div className="container my-5 nao-unico-elemento">
-        <h2 className="titulo-pagina mb-5">GERENCIAR SOLICITAÇÕES</h2>
-        <div className="d-flex justify-content-center align-items-center flex-column">
-          <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
-          <p className="loading-text">Carregando...</p>
-        </div>
+  if (loading) return (
+    <div className="container my-5 nao-unico-elemento">
+      <h2 className="titulo-pagina mb-5">GERENCIAR SOLICITAÇÕES</h2>
+      <div className="d-flex justify-content-center align-items-center flex-column">
+        <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
+        <p className="loading-text">Carregando...</p>
       </div>
-    )
+    </div>
+  )
 
-  if (error)
-    return (
-      <div className="container my-5 nao-unico-elemento">
-        <h2 className="titulo-pagina mb-5">GERENCIAR SOLICITAÇÕES</h2>
-
-        <div className="alert alert-danger d-flex">
-          <img src={errorTriangleIcon} className="me-2" alt="" />
-          {error
-            ? <p className="erro">{error}</p>
-            : null}
-        </div>
+  if (error) return (
+    <div className="container my-5 nao-unico-elemento">
+      <h2 className="titulo-pagina mb-5">GERENCIAR SOLICITAÇÕES</h2>
+      <div className="alert alert-danger d-flex">
+        <img src={errorTriangleIcon} className="me-2" alt="" />
+        {error
+          ? <p className="erro">{error}</p>
+          : null}
       </div>
-    )
+    </div>
+  )
 
   return (
     <main>
@@ -98,6 +92,9 @@ export default function Solicitacoes() {
             <span>{successMessage}</span>
           </div>
         )}
+
+        {/*se der erro ???? */}
+
         <section className='p-4'>
           <table className="table table-bordered table-hover">
             <thead className='table-light'>
@@ -164,7 +161,6 @@ export default function Solicitacoes() {
             </nav>
           )}
         </section>
-
       </div>
     </main>
   );
