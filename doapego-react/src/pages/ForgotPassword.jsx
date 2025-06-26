@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [mensagem, setMensagem] = useState('');
-  const [erro, setErro] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setErro('');
+    setError('');
 
     try {
       await axios.post(
@@ -27,11 +27,11 @@ export default function ForgotPassword() {
 
       setMensagem('Link enviado com sucesso. Verifique seu e-mail.');
       localStorage.setItem('resetEmail', email);
-    } catch (error) { // MENSAGEM DE ERRO
-      if (error.response && error.response.status === 400) {
-        setErro('E-mail não encontrado');
+    } catch (err) { // MENSAGEM DE ERRO
+      if (err.response && err.response.status === 400) {
+        setError('E-mail não encontrado');
       } else {
-        setErro('Erro ao enviar o link. Tente novamente mais tarde.');
+        setError('Erro ao enviar o link. Tente novamente mais tarde.');
       }
     } finally {
       setLoading(false);
@@ -48,7 +48,7 @@ export default function ForgotPassword() {
             <p className='texto-obs'>Insira o e-mail cadastrado para receber o link.</p>
 
             {mensagem && <div className="alert alert-success">{mensagem}</div>}
-            {erro && <div className="alert alert-danger">{erro}</div>}
+            {error && <div className="alert alert-danger">{error}</div>}
 
             <div className='form-group'>
               <label htmlFor='email' className='form-label'>E-mail</label>

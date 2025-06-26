@@ -13,7 +13,7 @@ export default function AddCrud() {
   const config = crudData[entidade] || null;
 
   const userType = localStorage.getItem('tipo') || '';
-  const userOngId = localStorage.getItem('ongId');
+  const userOngId = Number(localStorage.getItem('ongId'));
   const [ongOptions, setOngOptions] = useState([]);
 
   useEffect(() => {
