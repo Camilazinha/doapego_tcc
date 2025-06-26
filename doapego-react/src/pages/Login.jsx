@@ -38,7 +38,7 @@ export default function Login() {
       }
 
       const dadosPayload = JSON.parse(atob(response.data.split('.')[1]));
-      Number(ocalStorage.setItem('id', dadosPayload.id));
+      Number(localStorage.setItem('id', dadosPayload.id));
       localStorage.setItem('tipo', dadosPayload.tipo);
       Number(localStorage.setItem('ongId', dadosPayload.ongId));
 

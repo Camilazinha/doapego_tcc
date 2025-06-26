@@ -114,8 +114,10 @@ export default function GerenciarDoacoes() {
         <div className="list-group mb-5">
           {itensAtuais.length > 0 ? (
             itensAtuais.map((doacao) => (
+              
               <div key={doacao.id} className="list-group-item d-flex align-items-center">
 
+                <Link to={`/gerenciar-doacoes/${doacao.id}`}> {/*ver se funciona*/}
                 <div className="me-4 p-1">
                   {doacao.arquivosDoacao?.some(a => a.tipo === 'FOTO') ? (
                     <img
@@ -141,6 +143,7 @@ export default function GerenciarDoacoes() {
                     </Link>
                   </p>
                 </div>
+                </Link>
 
                 <div className="ms-auto me-4">
                   <Link to={`/gerenciar-doacoes/${doacao.id}`} className="btn btn-sm btn-custom-unfilled">Checar</Link>
