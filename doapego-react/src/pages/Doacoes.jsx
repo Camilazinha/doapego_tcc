@@ -209,7 +209,7 @@ export default function Doacoes() {
 
                 <tr>
                   <th className='text-nowrap text-secondary fw-semibold'>Doador</th>
-                  <td>{itemData.usuarioNome}</td>
+                  <td>{itemData.usuarioNome} <span className='text-muted'>({itemData.usuarioEmail})</span></td>
                 </tr>
 
                 {userType === 'MASTER' && (
