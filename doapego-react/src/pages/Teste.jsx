@@ -39,6 +39,7 @@ export default function Teste() {
   const atualizarStatus = (novoStatus) => {
     console.log(`Status atualizado para: ${novoStatus}`);
     setItemData(prev => ({ ...prev, status: novoStatus }));
+    setError("Por favor, tente novamente mais tarde.");
   };
 
   const handleNextImage = () => {
@@ -53,22 +54,23 @@ export default function Teste() {
     );
   };
 
-  if (error) return (
-    <main className='container my-5 px-5'>
-      <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
-      <div className="alert alert-danger d-flex">
+  return (
+    <main>
+      <div className="alert alert-danger d-flex popup-alert">
         <img src={errorTriangleIcon} className="me-2" alt="erro" />
         <p className="erro">{error}</p>
       </div>
-    </main>
-  );
 
-  return (
-    <main>
       <div className='container my-5 px-5'>
+
+
+
+
         <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
 
         <section className='container form-container-crud bg-white'>
+
+
 
           {/* Galeria de Imagens */}
           <div className="row mb-4 position-relative">

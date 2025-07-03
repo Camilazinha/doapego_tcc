@@ -47,7 +47,7 @@ export default function Login() {
     } catch (err) {
       if (err.response) {
         switch (err.response.status) {
-          case 400: //mensagem erro
+          case 400:
             setError('Requisição inválida. Verifique os dados e tente novamente.');
             break;
           case 401:
@@ -65,7 +65,7 @@ export default function Login() {
       } else if (err.request) {
         setError('Não foi possível conectar ao servidor.');
       } else {
-        setError('Ocorreu um erro inesperado.');
+        setError('Ocorreu um erro inesperado. Tente novamente.');
       }
     } finally {
       setLoading(false);
