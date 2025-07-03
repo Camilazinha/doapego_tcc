@@ -114,10 +114,9 @@ export default function GerenciarDoacoes() {
         <div className="list-group mb-5">
           {itensAtuais.length > 0 ? (
             itensAtuais.map((doacao) => (
-              
+
               <div key={doacao.id} className="list-group-item d-flex align-items-center">
 
-                <Link to={`/gerenciar-doacoes/${doacao.id}`}> {/*ver se funciona*/}
                 <div className="me-4 p-1">
                   {doacao.arquivosDoacao?.some(a => a.tipo === 'FOTO') ? (
                     <img
@@ -133,16 +132,18 @@ export default function GerenciarDoacoes() {
                   )}
                 </div>
 
-                <div className="flex-grow-1">
-                  <h5 className="mb-0 mt-2 doacao-nome">{doacao.nome}</h5>
-                  <p className="mb-0">
-                    <Link to="/configuracoes/categorias-doacao">
-                      <span className="badge tag-categoria">
-                        {doacao.categoriaDoacao || "Não especificada"}
-                      </span>
-                    </Link>
-                  </p>
-                </div>
+                <Link to={`/gerenciar-doacoes/${doacao.id}`} className="text-decoration-none">
+
+                  <div className="flex-grow-1">
+                    <p className="mb-2 h6 text-dark">{doacao.nome}</p>
+                    <p className="mb-0">
+                      <Link to="/configuracoes/categorias-doacao">
+                        <span className="badge tag-categoria m-0">
+                          {doacao.categoriaDoacao || "Não especificada"}
+                        </span>
+                      </Link>
+                    </p>
+                  </div>
                 </Link>
 
                 <div className="ms-auto me-4">
