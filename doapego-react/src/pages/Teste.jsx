@@ -56,21 +56,14 @@ export default function Teste() {
 
   return (
     <main>
-      <div className="alert alert-danger d-flex popup-alert">
+      <div className="alert alert-danger d-flex popup-alert w-75">
         <img src={errorTriangleIcon} className="me-2" alt="erro" />
         <p className="erro">{error}</p>
       </div>
 
       <div className='container my-5 px-5'>
-
-
-
-
         <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
-
         <section className='container form-container-crud bg-white'>
-
-
 
           {/* Galeria de Imagens */}
           <div className="row mb-4 position-relative">
