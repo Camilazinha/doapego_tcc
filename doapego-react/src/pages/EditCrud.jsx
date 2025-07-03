@@ -25,13 +25,16 @@ export default function EditCrud() {
   const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setError(null);
-      setSuccessMessage(null);
-    }, 4000);
-
+    let timer;
+    if (error || successMessage) {
+      timer = setTimeout(() => {
+        setError(null);
+        setSuccessMessage('');
+      }, 4000);
+    }
     return () => clearTimeout(timer);
   }, [error, successMessage]);
+
 
   useEffect(() => {
 

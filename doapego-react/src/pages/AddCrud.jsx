@@ -99,6 +99,17 @@ export default function AddCrud() {
   const [successMessage, setSuccessMessage] = useState('');
   const [buscandoCEP, setBuscandoCEP] = useState(false);
 
+  useEffect(() => {
+    let timer;
+    if (error || successMessage) {
+      timer = setTimeout(() => {
+        setError(null);
+        setSuccessMessage('');
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [error, successMessage]);
+
   const handleCEPChange = async (e) => {
     const { value } = e.target;
     const cepLimpo = removerMascara(value);
@@ -121,7 +132,8 @@ export default function AddCrud() {
           }));
         }
       } catch (error) {
-        alert('CEP não encontrado!');
+        alert('CEP não encontrado');
+        setError('CEP não encontrado');
       } finally {
         setBuscandoCEP(false);
       }
@@ -211,14 +223,11 @@ export default function AddCrud() {
       console.error("Erro ao adicionar:", err);
       if (err.response) {
         setError("Erro ao carregar os dados. Tente novamente mais tarde.");
-        alert("Erro ao carregar os dados. Tente novamente mais tarde.");
       }
       else if (err.request) {
         setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
-        alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
       } else {
         setError("Ocorreu um erro inesperado.");
-        alert("Ocorreu um erro inesperado.");
       }
     }
     finally {
@@ -240,15 +249,15 @@ export default function AddCrud() {
       <div className='container my-5 nao-unico-elemento px-5'>
         <h2 className='titulo-pagina mb-5'>CRIAR {config.titulo}</h2>
 
-        {(error || validationError) && (
-          <div className="alert alert-danger d-flex">
+        {error && (
+          <div className="alert alert-danger d-flex popup-alert w-75">
             <img src={errorTriangleIcon} className="me-2" alt="erro" />
-            <p className="erro">{error || validationError}</p>
+            <p className="erro">{error}</p>
           </div>
         )}
 
         {successMessage && (
-          <div className="alert alert-success d-flex">
+          <div className="alert alert-success d-flex popup-alert w-75">
             <img src={successIcon} className="me-2" alt="sucesso" />
             <p className="sucesso">{successMessage}</p>
           </div>

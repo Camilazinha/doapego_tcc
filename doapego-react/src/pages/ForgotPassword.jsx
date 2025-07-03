@@ -9,6 +9,19 @@ export default function ForgotPassword() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+
+  // useEffect(() => {
+  //   let timer;
+  //   if (error || successMessage) {
+  //     timer = setTimeout(() => {
+  //       setError(null);
+  //       setSuccessMessage('');
+  //     }, 4000);
+  //   }
+  //   return () => clearTimeout(timer);
+  // }, [error, successMessage]);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

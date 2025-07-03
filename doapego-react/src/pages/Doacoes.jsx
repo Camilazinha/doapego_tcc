@@ -23,6 +23,19 @@ export default function Doacoes() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
+  // useEffect(() => {
+  //   let timer;
+  //   if (error || successMessage) {
+  //     timer = setTimeout(() => {
+  //       setError(null);
+  //       setSuccessMessage('');
+  //     }, 4000);
+  //   }
+  //   return () => clearTimeout(timer);
+  // }, [error, successMessage]);
+
+
   const atualizarStatus = async (novoStatus) => {
     try {
       await axios.patch(`http://localhost:8080/doacoes/${id}`, {

@@ -37,14 +37,18 @@ export default function CadastroStaff() {
   const [cepValido, setCepValido] = useState(true);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setError(null);
-      setSuccessMessage(null);
-    }, 4000);
 
+  useEffect(() => {
+    let timer;
+    if (error || successMessage) {
+      timer = setTimeout(() => {
+        setError(null);
+        setSuccessMessage('');
+      }, 4000);
+    }
     return () => clearTimeout(timer);
   }, [error, successMessage]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

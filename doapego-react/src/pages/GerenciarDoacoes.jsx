@@ -19,6 +19,18 @@ export default function GerenciarDoacoes() {
   const [paginaAtual, setPaginaAtual] = useState(1)
   const itensPorPagina = 5
 
+// useEffect(() => {
+//   let timer;
+//   if (error || successMessage) {
+//     timer = setTimeout(() => {
+//       setError(null);
+//       setSuccessMessage('');
+//     }, 4000);
+//   }
+//   return () => clearTimeout(timer);
+// }, [error, successMessage]);
+
+
   useEffect(() => {
 
     const fetchDoacoes = async () => {
