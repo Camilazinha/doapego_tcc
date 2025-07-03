@@ -39,17 +39,17 @@ export default function AddCrud() {
       }
 
       if (entidade === 'categorias-doacao' && userType !== 'MASTER') {
-        setError("Somente MASTER pode criar categorias");
+        setError("Acesso não autorizado");
         return true;
       }
 
       if (entidade === 'enderecos-ong' && !['STAFF', 'FUNCIONARIO'].includes(userType)) {
-        setError("Acesso restrito a membros da ONG");
+        setError("Acesso não autorizado");
         return true;
       }
 
       if (entidade === 'administradores' && !['MASTER', 'STAFF'].includes(userType)) {
-        setError("Sem permissão para criar administradores");
+        setError("Acesso não autorizado");
         return true;
       }
 
@@ -96,7 +96,6 @@ export default function AddCrud() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [validationError, setValidationError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [buscandoCEP, setBuscandoCEP] = useState(false);
 
@@ -175,12 +174,11 @@ export default function AddCrud() {
     });
 
     if (vazios.length > 0) {
-      setValidationError(
+      setError(
         `Por favor, preencha: ${vazios.map(c => c.label).join(', ').toLowerCase()}`
       );
       return;
     }
-    setValidationError('');
     setLoading(true);
     setError(null);
 
@@ -198,7 +196,7 @@ export default function AddCrud() {
       await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
         payload
       );
-      setSuccessMessage(`Adicionado com sucesso!`);
+      setSuccessMessage(`Registro adicionado com sucesso!`);
 
       const reset = {};
       allCols.forEach(col => {
@@ -211,7 +209,6 @@ export default function AddCrud() {
 
     } catch (err) {
       console.error("Erro ao adicionar:", err);
-      //mensagens de erro
       if (err.response) {
         setError("Erro ao carregar os dados. Tente novamente mais tarde.");
         alert("Erro ao carregar os dados. Tente novamente mais tarde.");
