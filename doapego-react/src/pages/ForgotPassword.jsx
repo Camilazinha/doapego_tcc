@@ -1,25 +1,24 @@
 // src/pages/ForgotPassword.jsx
 import axios from 'axios';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import errorTriangleIcon from "../img/errortriangle-icon.svg";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
-  const [mensagem, setMensagem] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-
-  // useEffect(() => {
-  //   let timer;
-  //   if (error || successMessage) {
-  //     timer = setTimeout(() => {
-  //       setError(null);
-  //       setSuccessMessage('');
-  //     }, 4000);
-  //   }
-  //   return () => clearTimeout(timer);
-  // }, [error, successMessage]);
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => {
+        setError(null);
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
 
   const handleSubmit = async (e) => {
@@ -38,9 +37,9 @@ export default function ForgotPassword() {
         }
       );
 
-      setMensagem('Link enviado com sucesso. Verifique seu e-mail.');
       localStorage.setItem('resetEmail', email);
-    } catch (err) { // MENSAGEM DE ERRO
+      navigate('/redefinir-senha');
+    } catch (err) {
       if (err.response && err.response.status === 400) {
         setError('E-mail não encontrado');
       } else {
@@ -60,8 +59,11 @@ export default function ForgotPassword() {
           <form onSubmit={handleSubmit}>
             <p className='texto-obs'>Insira o e-mail cadastrado para receber o link.</p>
 
-            {mensagem && <div className="alert alert-success">{mensagem}</div>}
-            {error && <div className="alert alert-danger">{error}</div>}
+            {error &&
+              <div className="alert alert-danger d-flex popup-alert w-75">
+                <img src={errorTriangleIcon} className="me-2" alt="erro" />
+                <p className="erro">{error}</p>
+              </div>}
 
             <div className='form-group'>
               <label htmlFor='email' className='form-label'>E-mail</label>
