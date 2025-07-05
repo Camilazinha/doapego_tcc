@@ -32,7 +32,7 @@ export default function ForgotPassword() {
         email,
         {
           headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'application/json'
           }
         }
       );
@@ -40,7 +40,7 @@ export default function ForgotPassword() {
       localStorage.setItem('resetEmail', email);
       navigate('/redefinir-senha');
     } catch (err) {
-      if (err.response && err.response.status === 400) {
+      if (err.response && err.response.status === 404) {
         setError('E-mail não encontrado');
       } else {
         setError('Erro ao enviar o link. Tente novamente mais tarde.');
