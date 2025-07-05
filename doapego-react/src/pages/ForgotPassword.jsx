@@ -41,7 +41,7 @@ export default function ForgotPassword() {
       navigate('/redefinir-senha');
     } catch (err) {
       if (err.response && err.response.status === 404) {
-        setError('E-mail não encontrado');
+        setError('E-mail não encontrado.');
       } else {
         setError('Erro ao enviar o link. Tente novamente mais tarde.');
       }
@@ -60,10 +60,15 @@ export default function ForgotPassword() {
             <p className='texto-obs'>Insira o e-mail cadastrado para receber o link.</p>
 
             {error &&
-              <div className="alert alert-danger d-flex popup-alert w-75">
+              <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
                 <img src={errorTriangleIcon} className="me-2" alt="erro" />
-                <p className="erro">{error}</p>
-              </div>}
+
+                <div className='ms-1'>
+                  <p className="fw-semibold alert-heading">Erro!</p>
+                  <p className="mb-0 erro">{error}</p>
+                </div>
+              </div>
+            }
 
             <div className='form-group'>
               <label htmlFor='email' className='form-label'>E-mail</label>
