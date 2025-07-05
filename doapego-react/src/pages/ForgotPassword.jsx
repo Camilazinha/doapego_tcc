@@ -32,7 +32,7 @@ export default function ForgotPassword() {
         email,
         {
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'text/plain'
           }
         }
       );
@@ -52,23 +52,23 @@ export default function ForgotPassword() {
 
   return (
     <main>
+
+      {error &&
+        <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Erro!</p>
+            <p className="mb-0 erro">{error}</p>
+          </div>
+        </div>}
+
       <div className="container my-5">
         <div className='form-container'>
           <h2 className='titulo-pagina-container'>RECUPERAR SENHA</h2>
 
           <form onSubmit={handleSubmit}>
             <p className='texto-obs'>Insira o e-mail cadastrado para receber o link.</p>
-
-            {error &&
-              <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
-                <img src={errorTriangleIcon} className="me-2" alt="erro" />
-
-                <div className='ms-1'>
-                  <p className="fw-semibold alert-heading">Erro!</p>
-                  <p className="mb-0 erro">{error}</p>
-                </div>
-              </div>
-            }
 
             <div className='form-group'>
               <label htmlFor='email' className='form-label'>E-mail</label>

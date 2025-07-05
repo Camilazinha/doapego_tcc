@@ -7,7 +7,7 @@ export const buscarCEP = async (cep) => {
     const cepNumerico = removerMascara(cep);
     const response = await axios.get(`https://viacep.com.br/ws/${cepNumerico}/json/`);
 
-    if (response.data.erro) {
+    if (response.data.erro) { //da onde vem esse erro
       return {
         erro: true,
         logradouro: '',
