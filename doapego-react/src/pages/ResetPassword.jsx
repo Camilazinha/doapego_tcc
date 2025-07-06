@@ -88,7 +88,7 @@ export default function ResetPassword() {
 
           <div className='ms-1'>
             <p className="fw-semibold alert-heading">Erro!</p>
-            <p className="mb-0 erro">{error}</p>
+            <p className="mb-0">{error}</p>
           </div>
         </div>}
 
@@ -98,7 +98,7 @@ export default function ResetPassword() {
 
           <div className='ms-1'>
             <p className="fw-semibold alert-heading">Sucesso!</p>
-            <p className="mb-0 sucesso">{success}</p>
+            <p className="mb-0">{success}</p>
           </div>
         </div>}
 

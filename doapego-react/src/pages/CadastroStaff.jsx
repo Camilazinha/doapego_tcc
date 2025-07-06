@@ -35,19 +35,18 @@ export default function CadastroStaff() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [cepValido, setCepValido] = useState(true);
-  const [successMessage, setSuccessMessage] = useState(null);
-
+  const [success, setSuccess] = useState(null);
 
   useEffect(() => {
     let timer;
-    if (error || successMessage) {
+    if (error || success) {
       timer = setTimeout(() => {
         setError(null);
-        setSuccessMessage('');
+        setSuccess('');
       }, 4000);
     }
     return () => clearTimeout(timer);
-  }, [error, successMessage]);
+  }, [error, success]);
 
 
   const handleChange = (e) => {
@@ -82,7 +81,6 @@ export default function CadastroStaff() {
 
         if (enderecoCompleto.erro) {
           setError('CEP não encontrado!');
-          alert('CEP não encontrado!');
           setCepValido(false);
 
           setEndereco(prev => ({
@@ -126,7 +124,6 @@ export default function CadastroStaff() {
     const camposVazios = camposObrigatorios.filter(campo => !campo.value.trim());
     if (camposVazios.length > 0) {
       setError("Preencha todos os campos obrigatórios");
-      alert("Preencha todos os campos obrigatórios");
 
       return false;
     }
@@ -135,7 +132,6 @@ export default function CadastroStaff() {
     const cepLimpo = removerMascara(endereco.cep);
     if (cepLimpo.length !== 8) {
       setError("CEP inválido! Deve conter 8 dígitos");
-      alert("CEP inválido! Deve conter 8 dígitos");
       return false;
     }
 
@@ -144,7 +140,6 @@ export default function CadastroStaff() {
       const telefoneLimpo = removerMascara(formData.telefone);
       if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
         setError("Telefone inválido! Deve conter 10 ou 11 dígitos com DDD");
-        alert("Telefone inválido! Deve conter 10 ou 11 dígitos com DDD");
 
         return false;
       }
@@ -155,7 +150,6 @@ export default function CadastroStaff() {
       const whatsappLimpo = removerMascara(formData.whatsapp);
       if (whatsappLimpo.length < 10 || whatsappLimpo.length > 11) {
         setError("WhatsApp inválido! Deve conter 10 ou 11 dígitos com DDD");
-        alert("WhatsApp inválido! Deve conter 10 ou 11 dígitos com DDD");
         return false;
       }
     }
@@ -172,15 +166,12 @@ export default function CadastroStaff() {
 
     if (!cepValido) {
       setError("CEP inválido! Por favor, corrija o CEP antes de continuar.");
-      alert("CEP inválido! Por favor, corrija o CEP antes de continuar.");
       return false;
     }
 
     // Validação de campos de endereço
     if (!endereco.logradouro || !endereco.bairro || !endereco.cidade || !endereco.estado) {
       setError("Preencha todos os campos do endereço corretamente");
-      alert("Preencha todos os campos do endereço corretamente");
-
       return false;
     }
 
@@ -190,7 +181,7 @@ export default function CadastroStaff() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setSuccessMessage(null);
+    setSuccess(null);
 
     if (!validarCampos()) return;
 
@@ -213,7 +204,7 @@ export default function CadastroStaff() {
         ong: { id: ongId }
       });
 
-      alert("Solicitação enviada com sucesso! Aguarde aprovação.");
+      setSuccess("Solicitação enviada com sucesso! Aguarde aprovação.");
 
       setFormData({
         nome: "",
@@ -243,30 +234,21 @@ export default function CadastroStaff() {
       if (err.response) {
         if (err.response.status === 400) {
           setError("Erro de validação: " + err.response.data.message);
-          alert("Erro de validação: " + err.response.data.message);
-
         } else if (err.response.status === 409) {
           setError("E-mail já cadastrado.");
-          alert("E-mail já cadastrado.");
-
         } else if (err.response.status >= 500) {
           setError("Erro no servidor. Tente novamente mais tarde.");
-          alert("Erro no servidor. Tente novamente mais tarde.");
-
         } else {
           setError("Erro ao processar a solicitação. Tente novamente.");
-          alert("Erro ao processar a solicitação. Tente novamente.");
         }
       }
       // Captura erros de requisição (ex: problemas de rede ou timeout)
       else if (err.request) {
-        setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
-        alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+        setError("Não foi possível conectar ao servidor. Tente novamente mais tarde.");
       }
       // Captura erros desconhecidos
       else {
         setError("Ocorreu um erro inesperado.");
-        alert("Ocorreu um erro inesperado.");
       }
     } finally {
       setLoading(false);
@@ -275,24 +257,29 @@ export default function CadastroStaff() {
 
   return (
     <main>
+      {error &&
+        <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Erro!</p>
+            <p className="mb-0">{error}</p>
+          </div>
+        </div>}
+
+      {success &&
+        <div className="alert alert-success d-flex align-items-center popup-alert w-25">
+          <img src={successIcon} className="me-2" alt="sucesso" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Sucesso!</p>
+            <p className="mb-0">{success}</p>
+          </div>
+        </div>}
+
       <div className="container my-5">
         <h2 className="titulo-pagina mb-4">SOLICITAR CADASTRO</h2>
         <p className="subtitulo mb-4">Preencha os campos com as informações da sua ONG. Após análise, entraremos em contato por e-mail com os dados de acesso ao sistema, caso seu cadastro seja aprovado.</p>
-
-        {/*Ver o que é validation e qual a diferneca com o error */}
-        {error && (
-          <div className="alert alert-danger d-flex align-items-center">
-            <img src={errorTriangleIcon} className="me-2" alt="Erro" />
-            <p className="m-0">{error}</p>
-          </div>
-        )}
-
-        {successMessage && (
-          <div className="alert alert-success d-flex align-items-center">
-            <img src={successIcon} className="me-2" alt="Erro" />
-            <p className="m-0">{successMessage}</p>
-          </div>
-        )}
 
         <div className="mt-4 form-container-cadastro">
           <form onSubmit={handleSubmit}>
@@ -375,7 +362,7 @@ export default function CadastroStaff() {
               {loading ? "Enviando..." : "Enviar solicitação"}
             </button>
 
-            <Link to='/login' className='form-link d-grid justify-content-center'>Voltar para login</Link >
+            <Link to='/login' className='form-link d-grid justify-content-center'>Voltar para login</Link>
 
           </form>
         </div>
