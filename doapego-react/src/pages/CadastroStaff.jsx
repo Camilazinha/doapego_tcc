@@ -236,13 +236,13 @@ export default function CadastroStaff() {
         } else if (err.response.status === 409) {
           setError("E-mail já cadastrado.");
         } else if (err.response.status >= 500) {
-          setError("Erro no servidor. Tente novamente mais tarde.");
+          setError("Erro no servidor. Tente novamente.");
         } else {
-          setError("Erro ao processar a solicitação. Tente novamente.");
+          setError("Falha ao processar a solicitação. Tente novamente.");
         }
       }
       else if (err.request) {
-        setError("Não foi possível conectar ao servidor. Tente novamente mais tarde.");
+        setError("Não foi possível conectar ao servidor. Tente novamente.");
       }
       else {
         setError("Ocorreu um erro inesperado.");

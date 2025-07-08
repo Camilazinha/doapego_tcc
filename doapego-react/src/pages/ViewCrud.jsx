@@ -86,10 +86,10 @@ export default function ViewCrud() {
         }
 
         else if (err.response) {
-          setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
+          setError("Falha ao carregar os dados do servidor. Tente novamente.");
 
         } else if (err.request) {
-          setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+          setError("Não foi possível conectar ao servidor. Tente novamente.");
 
         } else {
           setError("Ocorreu um erro inesperado.");
