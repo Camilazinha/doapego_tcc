@@ -2,12 +2,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-
 import { formatarTelefone, formatarCEP } from '../helpers/masks';
 import { crudData } from '../constants/crudData';
 
-import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
+import errorTriangleIcon from '../img/errortriangle-icon.svg';
+import successIcon from '../img/success-icon.svg';
 
 export default function ViewCrud() {
   const { entidade, id } = useParams();
@@ -21,6 +21,7 @@ export default function ViewCrud() {
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const getNestedValue = (obj, path) => {
     return path.split('.').reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : null), obj);
@@ -71,7 +72,9 @@ export default function ViewCrud() {
         }
 
         if (!hasPermission) {
-          throw new Error('Sem permissão');
+          setError('Sem permissão');
+          setLoading(false);
+          return;
         }
 
         setItemData(data);
@@ -80,20 +83,16 @@ export default function ViewCrud() {
 
         if (err.message === 'Sem permissão') {
           setError("Você não tem permissão para visualizar este item.");
-          alert("Você não tem permissão para visualizar este item.");
         }
 
         else if (err.response) {
           setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
-          alert("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
 
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
-          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
 
         } else {
           setError("Ocorreu um erro inesperado.");
-          alert("Ocorreu um erro inesperado.");
 
         }
       } finally {
@@ -114,12 +113,12 @@ export default function ViewCrud() {
         statusOng: "ATIVO"
       });
 
-      alert('ONG aprovada com sucesso!');
+      setSuccess('ONG aprovada com sucesso!');
       window.location.reload();
 
     } catch (err) {
       console.error('Erro ao aprovar ONG:', err);
-      alert('Erro ao aprovar ONG. Tente novamente!');
+      setError('Erro ao aprovar ONG. Tente novamente!');
     }
   };
 
@@ -136,12 +135,12 @@ export default function ViewCrud() {
 
       await axios.delete(`http://localhost:8080/ongs/${id}`);
 
-      alert('ONG e endereços relacionados excluídos com sucesso!');
+      setSuccess('ONG e endereços relacionados excluídos com sucesso!');
       window.location.href = '/gerenciar-solicitacoes';
 
     } catch (err) {
       console.error('Erro no processo de exclusão:', err);
-      alert(`Erro ao excluir: ${err.response?.data?.message || err.message}`);
+      setError(`Erro ao excluir: ${err.response?.data?.message || err.message}`);
     } finally {
       setShowDeleteModal(false);
     }
@@ -158,14 +157,14 @@ export default function ViewCrud() {
   );
 
   if (error) return (
-    <main className='container my-5 nao-unico-elemento px-5'>
-      <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
-      <div className="alert alert-danger d-flex">
-        <img src={errorTriangleIcon} className="me-2" alt="erro" />
-        <p className="erro">{error}</p>
-      </div>
-    </main>
-  );
+        <main className='container my-5 nao-unico-elemento px-5'>
+              <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
+                    <div className="alert alert-danger d-flex">
+                            <img src={errorTriangleIcon} className="me-2" alt="erro" />
+                                    <p className="erro">{error}</p>
+                                          </div>
+                                              </main>
+                                                );
 
   if (!config) return (
     <main className='container my-5 nao-unico-elemento px-5'>
@@ -178,6 +177,27 @@ export default function ViewCrud() {
 
   return (
     <main>
+
+{error &&
+        <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Erro!</p>
+            <p className="mb-0">{error}</p>
+          </div>
+        </div>}
+
+      {success &&
+        <div className="alert alert-success d-flex align-items-center popup-alert w-25">
+          <img src={successIcon} className="me-2" alt="sucesso" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Sucesso!</p>
+            <p className="mb-0">{success}</p>
+          </div>
+        </div>}
+      
       <div className='container my-5 nao-unico-elemento px-5'>
         {(userId === itemData.id && entidade === "administradores") ? (
           <h2 className='titulo-pagina mb-5'>MEU PERFIL</h2>
