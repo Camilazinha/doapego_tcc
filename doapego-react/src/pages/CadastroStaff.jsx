@@ -255,7 +255,7 @@ export default function CadastroStaff() {
   return (
     <main>
       {error &&
-        <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
 
           <div className='ms-1'>
@@ -265,7 +265,7 @@ export default function CadastroStaff() {
         </div>}
 
       {success &&
-        <div className="alert alert-success d-flex align-items-center popup-alert w-25">
+        <div className="alert alert-success d-flex align-items-start popup-alert w-25">
           <img src={successIcon} className="me-2" alt="sucesso" />
 
           <div className='ms-1'>

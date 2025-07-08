@@ -64,15 +64,18 @@ export default function ResetPassword() {
       setSuccess('Senha redefinida com sucesso. Redirecionando para login...');
       localStorage.removeItem('resetEmail');
       setTimeout(() => navigate('/login'), 3000);
+
     } catch (err) {
       if (err.response) {
         if (err.response.status === 404) {
           setError('Token inválido ou expirado.');
         } else {
-          setError('Falha no servidor. Tente novamente mais tarde.');
+          setError('Falha no servidor. Tente novamente.');
         }
+      } else if (err.request) {
+        setError('Não foi possível conectar ao servidor. Tente novamente.');
       } else {
-        setError('Falha na conexão com o servidor. Tente novamente mais tarde.');
+        setError('Ocorreu um erro inesperado.');
       }
     } finally {
       setLoading(false);
@@ -83,7 +86,7 @@ export default function ResetPassword() {
     <main>
 
       {error &&
-        <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
 
           <div className='ms-1'>
@@ -93,7 +96,7 @@ export default function ResetPassword() {
         </div>}
 
       {success &&
-        <div className="alert alert-success d-flex align-items-center popup-alert w-25">
+        <div className="alert alert-success d-flex align-items-start popup-alert w-25">
           <img src={successIcon} className="me-2" alt="sucesso" />
 
           <div className='ms-1'>

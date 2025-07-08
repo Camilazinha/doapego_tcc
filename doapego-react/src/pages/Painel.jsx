@@ -8,6 +8,7 @@ import fotoCriancaMonta from "../img/foto-criancamonta.png";
 import fotoCriancaMassinha from "../img/foto-criancamassinha.png";
 import fotoCriancaEscondida from "../img/foto-criancaescondida.png";
 
+
 export default function Painel() {
 
   const userType = localStorage.getItem('tipo') || '';
@@ -81,9 +82,17 @@ export default function Painel() {
     }
   ];
 
-  if (loading) {
-    return <p>Carregando...</p>;
-  } //COLOCAR LOADING NESSE
+  if (loading) return (
+    <main>
+      <div className="container my-5 nao-unico-elemento">
+        <h2 className="titulo-pagina mb-5">GERENCIAR DOAÇÕES</h2>
+        <div className="d-flex justify-content-center align-items-center flex-column">
+          <div className="spinner-border text-secondary m-3" role="status" style={{ width: "3rem", height: "3rem" }}></div>
+          <p className="loading-text">Carregando...</p>
+        </div>
+      </div>
+    </main>
+  )
 
   return (
     <main>

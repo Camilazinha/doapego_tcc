@@ -6,6 +6,7 @@ import { crudData } from '../constants/crudData';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
+import successIcon from "../img/success-icon.svg";
 
 export default function ListCrud() {
     const { entidade } = useParams();
@@ -17,6 +18,7 @@ export default function ListCrud() {
     const [dados, setDados] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
 
@@ -79,9 +81,9 @@ export default function ListCrud() {
             } catch (err) {
                 console.error("Erro ao buscar dados:", err);
                 if (err.response) {
-                    setError("Erro ao carregar os dados. Tente novamente mais tarde.");
+                    setError("Falha ao carregar os dados. Tente novamente.");
                 } else if (err.request) {
-                    setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+                    setError("Não foi possível conectar ao servidor. Tente novamente.");
                 } else {
                     setError("Ocorreu um erro inesperado.");
                 }
@@ -118,10 +120,9 @@ export default function ListCrud() {
                 return item;
             }));
 
-            alert(`${newStatus ? 'Ativado' : 'Desativado'} com sucesso!`);
+            setSuccess(`${newStatus ? 'Ativado' : 'Desativado'} com sucesso!`);
         } catch (err) {
-            console.error('Erro ao alterar status:', err);
-            alert('Erro ao alterar status. Tente novamente!');
+            setError('Erro ao alterar status. Tente novamente!');
         }
     };
 
@@ -131,15 +132,16 @@ export default function ListCrud() {
         try {
             await axios.delete(`http://localhost:8080/${config.apiEndpoint}/${itemToDelete}`);
             setDados(dados.filter(item => item.id !== itemToDelete));
-            alert(`Excluído com sucesso!`);
+            setSuccess(`Excluído com sucesso!`);
         } catch (err) {
             console.error('Erro ao excluir:', err);
-            alert('Erro ao excluir. Tente novamente!');
+            setError('Erro ao excluir. Tente novamente!');
         } finally {
             setShowModal(false);
             setItemToDelete(null);
         }
     };
+
     if (!config) return (
         <main className='container my-5 nao-unico-elemento px-5'>
             <div className="alert alert-danger d-flex">
@@ -174,6 +176,26 @@ export default function ListCrud() {
 
     return (
         <main>
+            {error && (
+                <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+                    <img src={errorTriangleIcon} className="me-2" alt="erro" />
+                    <div className='ms-1'>
+                        <p className="fw-semibold alert-heading">Erro!</p>
+                        <p className="mb-0">{error}</p>
+                    </div>
+                </div>
+            )}
+
+            {success && (
+                <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+                    <img src={successIcon} className="me-2" alt="sucesso" />
+                    <div className='ms-1'>
+                        <p className="fw-semibold alert-heading">Sucesso!</p>
+                        <p className="mb-0">{success}</p>
+                    </div>
+                </div>
+            )}
+
             <div className='container my-5 nao-unico-elemento px-5'>
                 <h2 className='titulo-pagina mb-4'>{config.titulo}</h2>
 

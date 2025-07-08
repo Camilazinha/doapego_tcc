@@ -157,14 +157,14 @@ export default function ViewCrud() {
   );
 
   if (error) return (
-        <main className='container my-5 nao-unico-elemento px-5'>
-              <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
-                    <div className="alert alert-danger d-flex">
-                            <img src={errorTriangleIcon} className="me-2" alt="erro" />
-                                    <p className="erro">{error}</p>
-                                          </div>
-                                              </main>
-                                                );
+    <main className='container my-5 nao-unico-elemento px-5'>
+      <h2 className='titulo-pagina mb-5'>DETALHES DE {config.titulo}</h2>
+      <div className="alert alert-danger d-flex">
+        <img src={errorTriangleIcon} className="me-2" alt="erro" />
+        <p className="erro">{error}</p>
+      </div>
+    </main>
+  );
 
   if (!config) return (
     <main className='container my-5 nao-unico-elemento px-5'>
@@ -178,8 +178,8 @@ export default function ViewCrud() {
   return (
     <main>
 
-{error &&
-        <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
+      {error &&
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
 
           <div className='ms-1'>
@@ -189,7 +189,7 @@ export default function ViewCrud() {
         </div>}
 
       {success &&
-        <div className="alert alert-success d-flex align-items-center popup-alert w-25">
+        <div className="alert alert-success d-flex align-items-start popup-alert w-25">
           <img src={successIcon} className="me-2" alt="sucesso" />
 
           <div className='ms-1'>
@@ -197,7 +197,7 @@ export default function ViewCrud() {
             <p className="mb-0">{success}</p>
           </div>
         </div>}
-      
+
       <div className='container my-5 nao-unico-elemento px-5'>
         {(userId === itemData.id && entidade === "administradores") ? (
           <h2 className='titulo-pagina mb-5'>MEU PERFIL</h2>

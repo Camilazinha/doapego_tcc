@@ -22,43 +22,43 @@ export default function EditCrud() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   useEffect(() => {
     let timer;
-    if (error || successMessage) {
+    if (error || success) {
       timer = setTimeout(() => {
         setError(null);
-        setSuccessMessage('');
+        setSuccess('');
       }, 4000);
     }
     return () => clearTimeout(timer);
-  }, [error, successMessage]);
+  }, [error, success]);
 
 
   useEffect(() => {
 
     const validarPermissoes = () => {
       if (entidade === 'usuarios') {
-        setError("Edição de usuários não é permitida");
+        setError("Edição não permitida.");
         return false;
       }
 
       if (entidade === 'categorias-doacao' && userType !== 'MASTER') {
-        setError("Somente MASTER pode editar categorias");
+        setError("Edição não permitida.");
         return false;
       }
 
       if (entidade === 'administradores') {
         if (userId !== Number(id)) {
-          setError("Você só pode editar seu próprio perfil!");
+          setError("Você só pode editar seu próprio perfil.");
           return false;
         }
       }
 
       if (entidade === 'enderecos-ong' || entidade === 'ongs') {
         if (!['STAFF', 'FUNCIONARIO'].includes(userType)) {
-          setError("Acesso restrito a membros da ONG");
+          setError("Acesso restrito a membros da ONG.");
           return false;
         }
       }
@@ -93,7 +93,7 @@ export default function EditCrud() {
             : (itemData.ongId ?? itemData.ong?.id);
 
           if (ongIdItem !== userOngId) {
-            setError("Você só pode editar recursos da sua própria ONG!");
+            setError("Você só pode editar recursos da sua própria ONG.");
             setLoading(false);
             return;
           }
@@ -110,18 +110,14 @@ export default function EditCrud() {
           setFormData(dadosCompletos);
         }
       }
-      // mensagem de erro
       catch (err) {
         console.error("Erro ao buscar os dados:", err);
         if (err.response) {
-          setError("Erro ao carregar os dados. Tente novamente mais tarde.");
-          alert("Erro ao carregar os dados. Tente novamente mais tarde.");
+          setError("Erro ao carregar os dados. Tente novamente.");
         } else if (err.request) {
-          setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
-          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+          setError("Não foi possível conectar ao servidor. Tente novamente.");
         } else {
           setError("Ocorreu um erro inesperado.");
-          alert("Ocorreu um erro inesperado.");
         }
       } finally {
         setLoading(false);
@@ -166,7 +162,7 @@ export default function EditCrud() {
         const endereco = await buscarCEP(cepLimpo);
 
         if (endereco.erro) {
-          alert('CEP não encontrado!');
+          setError('CEP não encontrado.');
           setFormData(prev => ({
             ...prev,
             logradouro: '',
@@ -184,7 +180,7 @@ export default function EditCrud() {
           cep: endereco.cep
         }));
       } catch (error) {
-        alert('Erro ao buscar CEP!');
+        setError('Erro ao buscar CEP.');
         setFormData(prev => ({
           ...prev,
           logradouro: '',
@@ -215,7 +211,7 @@ export default function EditCrud() {
     if (hasTelefoneField && formData.telefone) {
       const telefoneLimpo = removerMascara(formData.telefone);
       if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
-        setError("Telefone deve ter 10 ou 11 dígitos (com DDD)");
+        setError("Telefone deve ter 10 ou 11 dígitos (com DDD).");
         return;
       }
     }
@@ -224,8 +220,8 @@ export default function EditCrud() {
     const hasWhatsappField = [...config.colunas, ...(config.colunasExtras || [])].some(col => col.key === 'whatsapp');
     if (hasWhatsappField && formData.whatsapp) {
       const whatsappLimpo = removerMascara(formData.whatsapp);
-      if (whatsappLimpo.length < 10 || whatsappLimpo.length > 11) { // Exige DDD + 9 dígitos
-        setError("WhatsApp deve ter 10 ou 11 dígitos (com DDD)");
+      if (whatsappLimpo.length < 10 || whatsappLimpo.length > 11) {
+        setError("WhatsApp deve ter 10 ou 11 dígitos (com DDD).");
         return;
       }
     }
@@ -235,52 +231,46 @@ export default function EditCrud() {
       const dataAtual = new Date();
       const dataFundacao = new Date(formData.fundacao);
       if (dataFundacao > dataAtual) {
-        setError("Data de fundação não pode ser futura!");
+        setError("Data de fundação não pode ser futura.");
         return;
       }
     }
 
     if (entidade === 'enderecos-ong' && (!formData.logradouro || !formData.bairro || !formData.cidade || !formData.estado)) {
-      setError("Preencha todos os campos do endereço corretamente");
+      setError("Preencha todos os campos do endereço corretamente.");
       return;
     }
 
     const dadosLimpos = {
       ...formData,
       fundacao: formData.fundacao
-        ? new Date(formData.fundacao + 'T00:00:00-03:00').toISOString().split('T')[0] // Fixa UTC-3
+        ? new Date(formData.fundacao + 'T00:00:00-03:00').toISOString().split('T')[0]
         : null,
       telefone: removerMascara(formData.telefone),
       whatsapp: removerMascara(formData.whatsapp),
       cep: removerMascara(formData.cep)
     };
 
-    // Se já tiver erro (ex: acesso negado), NÃO deixa salvar
     if (error) {
-      alert("Você não tem permissão para salvar essas alterações.");
+      setError("Você não tem permissão para salvar essas alterações.");
       return;
     }
 
     const payload = dadosLimpos;
     setSaving(true);
 
-    try { //MENSAGEM DE ERRO
+    try {
       await axios.put(`http://localhost:8080/${config.apiEndpoint}/${id}`, payload);
-      setSuccessMessage("Salvo com sucesso!");
+      setSuccess("Salvo com sucesso!");
     } catch (err) {
       console.error("Erro ao atualizar:", err);
 
       if (err.response) {
-        setError("Erro ao atualizar os dados. Tente novamente mais tarde.");
-        alert("Erro ao atualizar os dados. Tente novamente mais tarde.");
-
+        setError("Falha ao atualizar os dados. Tente novamente.");
       } else if (err.request) {
-        setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
-        alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
-
+        setError("Não foi possível conectar ao servidor. Tente novamente.");
       } else {
         setError("Ocorreu um erro inesperado.");
-        alert("Ocorreu um erro inesperado.");
       }
 
     } finally {
@@ -314,19 +304,25 @@ export default function EditCrud() {
       <div className='container my-5 nao-unico-elemento px-5'>
         <h2 className='titulo-pagina mb-5'>EDITAR {config.titulo}</h2>
 
-        {error && (
-          <div className="alert alert-danger d-flex">
+        {error &&
+          <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
             <img src={errorTriangleIcon} className="me-2" alt="erro" />
-            <p className="erro">{error}</p>
-          </div>
-        )}
 
-        {successMessage && (
-          <div className="alert alert-success d-flex">
+            <div className='ms-1'>
+              <p className="fw-semibold alert-heading">Erro!</p>
+              <p className="mb-0">{error}</p>
+            </div>
+          </div>}
+
+        {success &&
+          <div className="alert alert-success d-flex align-items-start popup-alert w-25">
             <img src={successIcon} className="me-2" alt="sucesso" />
-            <p className="sucesso">{successMessage}</p>
-          </div>
-        )}
+
+            <div className='ms-1'>
+              <p className="fw-semibold alert-heading">Sucesso!</p>
+              <p className="mb-0">{success}</p>
+            </div>
+          </div>}
 
         <section className='container form-container-crud bg-white'>
           <form onSubmit={handleSubmit}>
@@ -346,8 +342,10 @@ export default function EditCrud() {
                 (col.tipo === 'foreignKey' && col.key === 'ong') ||
                 ((entidade === 'enderecos-ong' || entidade === 'administradores') && col.key === 'ong.id');
 
+              // ID
               if (col.key === "id" || isOculto) return null;
 
+              // DATA
               if (col.tipo === 'date') {
                 return (
                   <div key={col.key} className="mb-4 form-group">
@@ -362,6 +360,7 @@ export default function EditCrud() {
                 )
               }
 
+              // TEXTAREA
               if (col.tipo === 'textarea') {
                 return (
                   <div key={col.key} className="mb-4 form-group">
@@ -378,6 +377,7 @@ export default function EditCrud() {
                 )
               }
 
+              // SENHA
               if (col.tipo === 'password') {
                 return (
                   <div key={col.key} className="mb-4 form-group">
@@ -394,6 +394,7 @@ export default function EditCrud() {
                 );
               }
 
+              // STAFF OU MASTER
               if (col.key === 'tipo' && entidade === 'administradores') {
                 return (
                   <div key={col.key} className="mb-4 form-group">
@@ -408,6 +409,7 @@ export default function EditCrud() {
                 );
               }
 
+              //CHAVE ESTRANGEIRA
               if (col.tipo === 'foreignKey') {
                 return (
                   <input

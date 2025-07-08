@@ -12,19 +12,27 @@ import successIcon from "../img/success-icon.svg";
 export default function Solicitacoes() {
   const [ongs, setOngs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const itensPorPagina = 10;
 
   const handleCopyEmail = async (email) => {
     await navigator.clipboard.writeText(email);
-    setSuccessMessage("E-mail copiado com sucesso!");
-
-    setTimeout(() => {
-      setSuccessMessage(null);
-    }, 2000);
+    setSuccess("E-mail copiado com sucesso!");
   }
+
+  useEffect(() => {
+    let timer;
+    if (error || success) {
+      timer = setTimeout(() => {
+        setError(null);
+        setSuccess('');
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [error, success]);
+
 
   useEffect(() => {
     const fetchOngsPendentes = async () => {
@@ -32,22 +40,16 @@ export default function Solicitacoes() {
         const response = await axios.get("http://localhost:8080/ongs?statusOng=PENDENTE");
         setOngs(response.data.items || response.data);
         setLoading(false);
-      } catch (err) { //mensagem erro
+      } catch (err) {
         console.error("Erro ao buscar ONGs pendentes:", err);
 
         if (err.response) {
           setError("Erro ao carregar os dados. Tente novamente mais tarde.")
-          alert("Erro ao carregar os dados. Tente novamente mais tarde.")
-
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
-          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
-
         } else {
           setError("Ocorreu um erro inesperado.")
-          alert("Ocorreu um erro inesperado.")
         }
-
       } finally {
         setLoading(false);
       }
@@ -83,17 +85,26 @@ export default function Solicitacoes() {
 
   return (
     <main>
+      {error &&
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Erro!</p>
+            <p className="mb-0">{error}</p>
+          </div>
+        </div>}
+
+      {success &&
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+          <img src={successIcon} className="me-2" alt="sucesso" />
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Sucesso!</p>
+            <p className="mb-0">{success}</p>
+          </div>
+        </div>}
+
       <div className="container my-5 nao-unico-elemento">
         <h2 className="titulo-pagina mb-5">GERENCIAR SOLICITAÇÕES</h2>
-
-        {successMessage && (
-          <div className="alert alert-success d-flex align-items-center mb-4">
-            <img src={successIcon} className="me-2" alt="Sucesso" width="24" />
-            <span>{successMessage}</span>
-          </div>
-        )}
-
-        {/*se der erro ???? */}
 
         <section className='p-4'>
           <table className="table table-bordered table-hover">

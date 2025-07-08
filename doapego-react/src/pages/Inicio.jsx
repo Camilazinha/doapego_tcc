@@ -10,7 +10,6 @@ import recusadaIcon from "../img/recusada-icon.svg";
 import coletadaIcon from "../img/coletada-icon.svg";
 import goToIcon from '../img/goto-icon.svg';
 
-
 export default function Inicio() {
   const userType = localStorage.getItem('tipo') || '';
   const userOngId = localStorage.getItem('ongId');

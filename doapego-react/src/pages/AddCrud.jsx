@@ -34,22 +34,22 @@ export default function AddCrud() {
     const bloquearAcesso = () => {
 
       if (entidade === 'usuarios' || entidade === 'ongs') {
-        setError("Criação não permitida para esta entidade");
+        setError("Criação não permitida para esta entidade.");
         return true;
       }
 
       if (entidade === 'categorias-doacao' && userType !== 'MASTER') {
-        setError("Acesso não autorizado");
+        setError("Acesso não autorizado.");
         return true;
       }
 
       if (entidade === 'enderecos-ong' && !['STAFF', 'FUNCIONARIO'].includes(userType)) {
-        setError("Acesso não autorizado");
+        setError("Acesso não autorizado.");
         return true;
       }
 
       if (entidade === 'administradores' && !['MASTER', 'STAFF'].includes(userType)) {
-        setError("Acesso não autorizado");
+        setError("Acesso não autorizado.");
         return true;
       }
 
@@ -96,19 +96,19 @@ export default function AddCrud() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [success, setSuccess] = useState('');
   const [buscandoCEP, setBuscandoCEP] = useState(false);
 
   useEffect(() => {
     let timer;
-    if (error || successMessage) {
+    if (error || success) {
       timer = setTimeout(() => {
         setError(null);
-        setSuccessMessage('');
+        setSuccess('');
       }, 4000);
     }
     return () => clearTimeout(timer);
-  }, [error, successMessage]);
+  }, [error, success]);
 
   const handleCEPChange = async (e) => {
     const { value } = e.target;
@@ -132,8 +132,7 @@ export default function AddCrud() {
           }));
         }
       } catch (error) {
-        alert('CEP não encontrado');
-        setError('CEP não encontrado');
+        setError('CEP não encontrado.');
       } finally {
         setBuscandoCEP(false);
       }
@@ -208,7 +207,7 @@ export default function AddCrud() {
       await axios.post(`http://localhost:8080/${config.apiEndpoint}`,
         payload
       );
-      setSuccessMessage(`Registro adicionado com sucesso!`);
+      setSuccess(`Registro adicionado com sucesso.`);
 
       const reset = {};
       allCols.forEach(col => {
@@ -222,10 +221,9 @@ export default function AddCrud() {
     } catch (err) {
       console.error("Erro ao adicionar:", err);
       if (err.response) {
-        setError("Erro ao carregar os dados. Tente novamente mais tarde.");
-      }
-      else if (err.request) {
-        setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+        setError("Falha ao carregar os dados. Tente novamente.");
+      } else if (err.request) {
+        setError("Não foi possível conectar ao servidor. Tente novamente.");
       } else {
         setError("Ocorreu um erro inesperado.");
       }
@@ -246,22 +244,28 @@ export default function AddCrud() {
 
   return (
     <main>
+      {error &&
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Erro!</p>
+            <p className="mb-0">{error}</p>
+          </div>
+        </div>}
+
+      {success &&
+        <div className="alert alert-success d-flex align-items-center popup-alert w-25">
+          <img src={successIcon} className="me-2" alt="sucesso" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Sucesso!</p>
+            <p className="mb-0">{success}</p>
+          </div>
+        </div>}
+
       <div className='container my-5 nao-unico-elemento px-5'>
         <h2 className='titulo-pagina mb-5'>CRIAR {config.titulo}</h2>
-
-        {error && (
-          <div className="alert alert-danger d-flex popup-alert w-75">
-            <img src={errorTriangleIcon} className="me-2" alt="erro" />
-            <p className="erro">{error}</p>
-          </div>
-        )}
-
-        {successMessage && (
-          <div className="alert alert-success d-flex popup-alert w-75">
-            <img src={successIcon} className="me-2" alt="sucesso" />
-            <p className="sucesso">{successMessage}</p>
-          </div>
-        )}
 
         <section className='container form-container-crud bg-white'>
           <form onSubmit={handleSubmit}>
@@ -390,21 +394,22 @@ export default function AddCrud() {
               }
 
               // FORMATAR NUMEROS
-              ['telefone', 'whatsapp'].includes(col.key) && (
-                <div className="form-group mb-4" key={col.key}>
-                  <label className="form-label">{col.label}:</label>
-                  <input
-                    type="text"
-                    name={col.key}
-                    className="form-control"
-                    value={formData[col.key] || ''}
-                    onChange={handleChange}
-                    inputMode="numeric"
-                    placeholder={col.key === 'cep' ? '00000-000' : '(00) 00000-0000'}
-                  />
-                </div>
-              )
-
+              if (['telefone', 'whatsapp'].includes(col.key)) {
+                return (
+                  <div className="form-group mb-4" key={col.key}>
+                    <label className="form-label">{col.label}:</label>
+                    <input
+                      type="text"
+                      name={col.key}
+                      className="form-control"
+                      value={formData[col.key] || ''}
+                      onChange={handleChange}
+                      inputMode="numeric"
+                      placeholder={col.key === 'telefone' ? '(00) 0000-0000' : '(00) 00000-0000'}
+                    />
+                  </div>
+                );
+              }
               // FORMATAR CEP
               col.key === 'cep' && (
                 <div className="form-group mb-4" key={col.key}>
@@ -425,8 +430,8 @@ export default function AddCrud() {
                         <div className="spinner-border spinner-border-sm text-secondary" role="status">
                           <span className="visually-hidden">Carregando...</span>
                         </div>
-                      </span>
-                    )}
+                      </span>)}
+                    {/* //  o que é isso deepseek? eu nao to vendo nada rodando, era pra ser visivel? */}
                   </div>
                 </div>
               )
@@ -441,6 +446,7 @@ export default function AddCrud() {
                       name={col.key}
                       className="form-control"
                       value={formData[col.key] || ''}
+                      minLength={6}
                       onChange={handleChange}
                       autoComplete="new-password"
                     />

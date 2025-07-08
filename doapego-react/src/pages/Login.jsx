@@ -85,14 +85,14 @@ export default function Login() {
   return (
     <main>
       {error &&
-              <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
-                <img src={errorTriangleIcon} className="me-2" alt="erro" />
-      
-                <div className='ms-1'>
-                  <p className="fw-semibold alert-heading">Erro!</p>
-                  <p className="mb-0">{error}</p>
-                </div>
-              </div>}
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Erro!</p>
+            <p className="mb-0">{error}</p>
+          </div>
+        </div>}
 
       <div className="container my-5">
         <div className="form-container">

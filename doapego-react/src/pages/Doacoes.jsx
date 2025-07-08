@@ -5,7 +5,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
-import gotoIcon from "../img/gotogray-icon.svg";
+// import successIcon from "../img/success-icon.svg";
+// import gotoIcon from "../img/gotogray-icon.svg";
 
 export default function Doacoes() {
   const { id } = useParams();
@@ -23,18 +24,15 @@ export default function Doacoes() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-  // useEffect(() => {
-  //   let timer;
-  //   if (error || successMessage) {
-  //     timer = setTimeout(() => {
-  //       setError(null);
-  //       setSuccessMessage('');
-  //     }, 4000);
-  //   }
-  //   return () => clearTimeout(timer);
-  // }, [error, successMessage]);
-
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => {
+        setError(null);
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
   const atualizarStatus = async (novoStatus) => {
     try {
@@ -47,7 +45,7 @@ export default function Doacoes() {
 
     } catch (err) {
       console.error("Erro ao atualizar status:", err);
-      setError('Erro ao atualizar. Tente novamente.');
+      setError('Falha ao atualizar. Tente novamente.');
     }
   };
 
@@ -74,7 +72,7 @@ export default function Doacoes() {
         const isOngRelated = userOngId === data.ongId;
 
         if (!isAdmin && !isOwner && !isOngRelated) {
-          setError('Sem permissão');
+          setError('Sem permissão.');
           setLoading(false);
           return;
         }
@@ -83,13 +81,13 @@ export default function Doacoes() {
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
 
-        if (err.message === 'Sem permissão') {
-          setError("Você não tem permissão para visualizar este item.");
+        if (err.message === 'Sem permissão.') {
+          setError("Você não tem permissão para visualizar este item."); // ver isso aqui
         }
         else if (err.response) {
-          setError("Erro ao carregar os dados do servidor. Tente novamente mais tarde.");
+          setError("Falha ao carregar os dados do servidor. Tente novamente.");
         } else if (err.request) {
-          setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.");
+          setError("Não foi possível conectar ao servidor. Tente novamente.");
         } else {
           setError("Ocorreu um erro inesperado.");
         }
@@ -125,6 +123,26 @@ export default function Doacoes() {
     <main>
       <div className='container my-5 nao-unico-elemento px-5'>
         <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
+
+        {error &&
+          <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+            <img src={errorTriangleIcon} className="me-2" alt="erro" />
+            <div className='ms-1'>
+              <p className="fw-semibold alert-heading">Erro!</p>
+              <p className="mb-0">{error}</p>
+            </div>
+          </div>}
+
+        {/* ver se funciona */}
+
+        {/* {success &&
+          <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+            <img src={successIcon} className="me-2" alt="sucesso" />
+            <div className='ms-1'>
+              <p className="fw-semibold alert-heading">Sucesso!</p>
+              <p className="mb-0">{success}</p>
+            </div>
+          </div>} */}
 
         <section className='container form-container-crud bg-white'>
           {/* Galeria de imagens */}

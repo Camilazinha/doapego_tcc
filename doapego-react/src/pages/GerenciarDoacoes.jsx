@@ -19,16 +19,15 @@ export default function GerenciarDoacoes() {
   const [paginaAtual, setPaginaAtual] = useState(1)
   const itensPorPagina = 5
 
-// useEffect(() => {
-//   let timer;
-//   if (error || successMessage) {
-//     timer = setTimeout(() => {
-//       setError(null);
-//       setSuccessMessage('');
-//     }, 4000);
-//   }
-//   return () => clearTimeout(timer);
-// }, [error, successMessage]);
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => {
+        setError(null);
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
 
   useEffect(() => {
@@ -44,24 +43,17 @@ export default function GerenciarDoacoes() {
           setDoacoes(response.data.items || response.data)
         }
         setLoading(false)
-      } // mensagem de erro
+      }
       catch (err) {
         console.error("Erro ao buscar doações:", err)
 
         if (err.response) {
           setError("Erro ao carregar os dados. Tente novamente mais tarde.")
-          alert("Erro ao carregar os dados. Tente novamente mais tarde.")
-
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
-          alert("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
-
         } else {
           setError("Ocorreu um erro inesperado.")
-          alert("Ocorreu um erro inesperado.")
-
         }
-
       } finally {
         setLoading(false);
       }
