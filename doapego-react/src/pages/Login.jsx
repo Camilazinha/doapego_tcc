@@ -1,6 +1,6 @@
 // src/pages/Login.jsx
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import errorTriangleIcon from '../img/errortriangle-icon.svg';
@@ -12,6 +12,16 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let timer;
+    if (error) {
+      timer = setTimeout(() => {
+        setError(null);
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [error]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -74,13 +84,21 @@ export default function Login() {
 
   return (
     <main>
+      {error &&
+              <div className="alert alert-danger d-flex align-items-center popup-alert w-25">
+                <img src={errorTriangleIcon} className="me-2" alt="erro" />
+      
+                <div className='ms-1'>
+                  <p className="fw-semibold alert-heading">Erro!</p>
+                  <p className="mb-0">{error}</p>
+                </div>
+              </div>}
+
       <div className="container my-5">
         <div className="form-container">
           <h2 className='titulo-pagina-container'>LOGIN</h2>
 
           <form onSubmit={handleLogin}>
-
-            {error && <div className="d-flex p-2 alert alert-danger"><img src={errorTriangleIcon} alt='' width='20' className='me-2' />{error}</div>}
 
             <div className="form-group">
               <label htmlFor='email-admin' className='form-label'>E-mail</label>

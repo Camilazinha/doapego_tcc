@@ -80,7 +80,7 @@ export default function CadastroStaff() {
         const enderecoCompleto = await buscarCEP(cepLimpo);
 
         if (enderecoCompleto.erro) {
-          setError('CEP não encontrado!');
+          setError('CEP não encontrado.');
           setCepValido(false);
 
           setEndereco(prev => ({
@@ -99,7 +99,7 @@ export default function CadastroStaff() {
           }));
         }
       } catch (error) {
-        setError('Erro ao buscar CEP!');
+        setError('Erro ao buscar CEP.');
         setEndereco(prev => ({
           ...prev,
           logradouro: '',
@@ -123,7 +123,7 @@ export default function CadastroStaff() {
 
     const camposVazios = camposObrigatorios.filter(campo => !campo.value.trim());
     if (camposVazios.length > 0) {
-      setError("Preencha todos os campos obrigatórios");
+      setError("Preencha todos os campos obrigatórios.");
 
       return false;
     }
@@ -131,7 +131,7 @@ export default function CadastroStaff() {
     // Validação de CEP
     const cepLimpo = removerMascara(endereco.cep);
     if (cepLimpo.length !== 8) {
-      setError("CEP inválido! Deve conter 8 dígitos");
+      setError("CEP inválido (deve conter 8 dígitos).");
       return false;
     }
 
@@ -139,7 +139,7 @@ export default function CadastroStaff() {
     if (formData.telefone) {
       const telefoneLimpo = removerMascara(formData.telefone);
       if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
-        setError("Telefone inválido! Deve conter 10 ou 11 dígitos com DDD");
+        setError("Telefone inválido (deve conter 10 ou 11 dígitos com DDD).");
 
         return false;
       }
@@ -149,7 +149,7 @@ export default function CadastroStaff() {
     if (formData.whatsapp) {
       const whatsappLimpo = removerMascara(formData.whatsapp);
       if (whatsappLimpo.length < 10 || whatsappLimpo.length > 11) {
-        setError("WhatsApp inválido! Deve conter 10 ou 11 dígitos com DDD");
+        setError("WhatsApp inválido (deve conter 10 ou 11 dígitos com DDD).");
         return false;
       }
     }
@@ -159,19 +159,19 @@ export default function CadastroStaff() {
       const dataAtual = new Date();
       const dataFundacao = new Date(formData.fundacao);
       if (dataFundacao > dataAtual) {
-        setError("Data de fundação não pode ser futura!");
+        setError("Data de fundação não pode ser futura.");
         return false;
       }
     }
 
     if (!cepValido) {
-      setError("CEP inválido! Por favor, corrija o CEP antes de continuar.");
+      setError("CEP inválido. Por favor, corrija o CEP antes de continuar.");
       return false;
     }
 
     // Validação de campos de endereço
     if (!endereco.logradouro || !endereco.bairro || !endereco.cidade || !endereco.estado) {
-      setError("Preencha todos os campos do endereço corretamente");
+      setError("Preencha todos os campos do endereço corretamente.");
       return false;
     }
 
@@ -230,7 +230,6 @@ export default function CadastroStaff() {
     } catch (err) {
       console.error("Erro ao enviar o cadastro:", err);
 
-      // mensagem de erro
       if (err.response) {
         if (err.response.status === 400) {
           setError("Erro de validação: " + err.response.data.message);
@@ -242,11 +241,9 @@ export default function CadastroStaff() {
           setError("Erro ao processar a solicitação. Tente novamente.");
         }
       }
-      // Captura erros de requisição (ex: problemas de rede ou timeout)
       else if (err.request) {
         setError("Não foi possível conectar ao servidor. Tente novamente mais tarde.");
       }
-      // Captura erros desconhecidos
       else {
         setError("Ocorreu um erro inesperado.");
       }
