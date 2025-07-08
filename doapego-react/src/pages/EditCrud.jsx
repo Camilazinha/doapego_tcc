@@ -230,9 +230,18 @@ export default function EditCrud() {
     if (formData.fundacao) {
       const dataAtual = new Date();
       const dataFundacao = new Date(formData.fundacao);
+
+      if (isNaN(dataFundacao.getTime())) {
+        setError("Data de fundação inválida.");
+        return false;
+      }
       if (dataFundacao > dataAtual) {
         setError("Data de fundação não pode ser futura.");
-        return;
+        return false;
+      }
+      if (dataFundacao.getFullYear() < 1900) {
+        setError("Data de fundação inválida. Deve ser a partir de 1900.");
+        return false;
       }
     }
 
