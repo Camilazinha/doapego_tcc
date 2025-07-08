@@ -387,6 +387,8 @@ export default function EditCrud() {
                       name={col.key}
                       value={formData[col.key] || ''}
                       onChange={handleChange}
+                      minLength={6}
+                      maxLength={20}
                       className="form-control"
                       placeholder="Deixe em branco para manter a atual"
                     />

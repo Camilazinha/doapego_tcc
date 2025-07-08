@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { formatarTelefone, formatarCEP, removerMascara } from '../helpers/masks';
+import { formatarCEP, removerMascara } from '../helpers/masks';
 import { buscarCEP } from '../helpers/cepService';
 import { crudData } from '../constants/crudData';
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
@@ -142,21 +142,15 @@ export default function AddCrud() {
   const handleChange = e => {
     const { name, value, type } = e.target;
 
-    let valorFormatado = value;
-
-    if (name === "telefone" || name === "whatsapp") {
-      valorFormatado = formatarTelefone(value);
-    }
-    else if (name === 'cep') {
-      valorFormatado = formatarCEP(value);
-    }
+    const valorFormatado = name === 'cep'
+      ? formatarCEP(value)
+      : value;
 
     setFormData(prev => ({
       ...prev,
       [name]: type === 'radio'
         ? (value === 'true' ? true : value === 'false' ? false : value)
         : valorFormatado
-
     }));
   };
 
@@ -165,8 +159,6 @@ export default function AddCrud() {
     e.preventDefault();
     const dadosLimpos = {
       ...formData,
-      telefone: removerMascara(formData.telefone),
-      whatsapp: removerMascara(formData.whatsapp),
       cep: removerMascara(formData.cep)
     };
 
@@ -393,48 +385,33 @@ export default function AddCrud() {
                 );
               }
 
-              // FORMATAR NUMEROS
-              if (['telefone', 'whatsapp'].includes(col.key)) {
+              // FORMATAR CEP
+              if (col.key === 'cep') {
                 return (
                   <div className="form-group mb-4" key={col.key}>
                     <label className="form-label">{col.label}:</label>
-                    <input
-                      type="text"
-                      name={col.key}
-                      className="form-control"
-                      value={formData[col.key] || ''}
-                      onChange={handleChange}
-                      inputMode="numeric"
-                      placeholder={col.key === 'telefone' ? '(00) 0000-0000' : '(00) 00000-0000'}
-                    />
+                    <div className="input-group">
+                      <input
+                        type="text"
+                        name={col.key}
+                        className="form-control"
+                        value={formData[col.key] || ''}
+                        onChange={handleCEPChange}
+                        inputMode="numeric"
+                        disabled={buscandoCEP}
+                        placeholder="00000-000"
+                      />
+                      {buscandoCEP && (
+                        <span className="input-group-text">
+                          <div className="spinner-border spinner-border-sm text-secondary" role="status">
+                            <span className="visually-hidden">Carregando...</span>
+                          </div>
+                        </span>
+                      )}
+                    </div>
                   </div>
                 );
               }
-              // FORMATAR CEP
-              col.key === 'cep' && (
-                <div className="form-group mb-4" key={col.key}>
-                  <label className="form-label">{col.label}:</label>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      name={col.key}
-                      className="form-control"
-                      value={formData[col.key] || ''}
-                      onChange={handleCEPChange}
-                      inputMode="numeric"
-                      disabled={buscandoCEP}
-                      placeholder="00000-000"
-                    />
-                    {buscandoCEP && (
-                      <span className="input-group-text">
-                        <div className="spinner-border spinner-border-sm text-secondary" role="status">
-                          <span className="visually-hidden">Carregando...</span>
-                        </div>
-                      </span>)}
-                    {/* //  o que é isso deepseek? eu nao to vendo nada rodando, era pra ser visivel? */}
-                  </div>
-                </div>
-              )
 
               // SENHA
               if (col.tipo === 'password') {
@@ -447,6 +424,7 @@ export default function AddCrud() {
                       className="form-control"
                       value={formData[col.key] || ''}
                       minLength={6}
+                      maxLength={20}
                       onChange={handleChange}
                       autoComplete="new-password"
                     />
