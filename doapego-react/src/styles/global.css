@@ -112,3 +112,11 @@ h6 {
     left: 1rem;
   }
 }
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .popup-alert {
+    width: 50%;
+    left: auto;
+    right: 2rem;
+  }
+}
