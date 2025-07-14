@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import errorTriangleIcon from "../img/errortriangle-icon.svg";
 import noImageIcon from "../img/noimage-icon.svg";
+import successIcon from "../img/success-icon.svg";
 
-// MOCK
 const mockItemData = {
   id: 1,
   nome: "Tênis esportivo usado",
@@ -26,21 +26,15 @@ const mockItemData = {
 };
 
 export default function Teste() {
-  const userType = 'MASTER'; // Simule o tipo de usuário: 'MASTER', 'FUNCIONARIO', etc.
-  const userOngId = 2; // Simule dados do usuário
-  const userId = 5;
+  const userType = 'MASTER';
+  // const userOngId = 2;
+  // const userId = 5;
 
   const [itemData, setItemData] = useState(mockItemData);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showImageModal, setShowImageModal] = useState(false);
-  const [showRefuseModal, setShowRefuseModal] = useState(false);
   const [error, setError] = useState(null);
-
-  const atualizarStatus = (novoStatus) => {
-    console.log(`Status atualizado para: ${novoStatus}`);
-    setItemData(prev => ({ ...prev, status: novoStatus }));
-    setError("Por favor, tente novamente mais tarde.");
-  };
+  const [success, setSuccess] = useState(null);
 
   const handleNextImage = () => {
     setCurrentImageIndex(prev =>
@@ -54,12 +48,37 @@ export default function Teste() {
     );
   };
 
+  const handleAccept = () => {
+    setError(null);
+    setSuccess("Item aceito com sucesso.");
+  };
+
+  const handleReject = () => {
+    setError("Falha na validação: error.response.");
+    setSuccess(null);
+  };
+
   return (
     <main>
-      <div className="alert alert-danger d-flex popup-alert w-75">
-        <img src={errorTriangleIcon} className="me-2" alt="erro" />
-        <p className="erro">{error}</p>
-      </div>
+      {error &&
+        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+          <img src={errorTriangleIcon} className="me-2" alt="erro" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Erro!</p>
+            <p className="mb-0">{error}</p>
+          </div>
+        </div>}
+
+      {success &&
+        <div className="alert alert-success d-flex align-items-start popup-alert w-25">
+          <img src={successIcon} className="me-2" alt="sucesso" />
+
+          <div className='ms-1'>
+            <p className="fw-semibold alert-heading">Sucesso!</p>
+            <p className="mb-0">{success}</p>
+          </div>
+        </div>}
 
       <div className='container my-5 px-5'>
         <h2 className='titulo-pagina mb-5'>DETALHES DE DOAÇÃO</h2>
@@ -134,38 +153,18 @@ export default function Teste() {
             <section className="mt-4 d-flex gap-2 justify-content-center flex-wrap">
               {(userType === 'MASTER' || userType === 'FUNCIONARIO' || userType === 'STAFF') && (
                 <>
-                  <button className="btn btn-success" onClick={() => atualizarStatus(userType === 'MASTER' ? 'PENDENTE' : 'COLETADA')}>Aceitar</button>
-                  <button className="btn btn-danger" onClick={() => setShowRefuseModal(true)}>Recusar</button>
+                  <button className="btn btn-success"
+                    onClick={handleAccept}
+                  >Aceitar</button>
+                  <button className="btn btn-danger"
+                    onClick={handleReject}
+                  >Recusar</button>
                 </>
               )}
             </section>
           </div>
         </section>
       </div>
-
-      {/* Modal de Recusa */}
-      {showRefuseModal && (
-        <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title fw-semibold">Atenção!</h5>
-                <button type="button" className="btn-close" onClick={() => setShowRefuseModal(false)}></button>
-              </div>
-              <div className="modal-body">
-                <p>Tem certeza que deseja recusar esta doação?</p>
-              </div>
-              <div className="modal-footer">
-                <button className="btn btn-secondary" onClick={() => setShowRefuseModal(false)}>Cancelar</button>
-                <button className="btn btn-danger" onClick={() => {
-                  atualizarStatus('RECUSADA');
-                  setShowRefuseModal(false);
-                }}>Confirmar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Modal de Imagem Ampliada */}
       {showImageModal && (

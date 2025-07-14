@@ -241,7 +241,7 @@ export default function CadastroStaff() {
 
       if (err.response) {
         if (err.response.status === 400) {
-          setError("Erro de validação: " + err.response.data.message);
+          setError("Falha na validação: " + err.response.data.message);
         } else if (err.response.status === 409) {
           setError("E-mail já cadastrado.");
         } else if (err.response.status >= 500) {
