@@ -2,7 +2,7 @@
 
 .react-calendar {
   width: 320px;
-  border-radius: .5rem;
+  border-radius: 8px;
   border: none !important;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   font-family: Arial, sans-serif;
@@ -17,14 +17,18 @@
   font-weight: bold;
   color: var(--color-gray-contrast);
   text-align: center;
-  padding-bottom: 0.5rem;
-  border-bottom: 0.1rem dotted #ccc;
+  padding-bottom: 8px;
+  border-bottom: 1.6px dotted #ccc;
 }
 
-/* Deixar os domingos e feriados em vermelho */
+/* Deixar final de semana destacado */
 .react-calendar__month-view__days__day--weekend {
-  color: var(--color-gray-dark) !important;
-  /*cor decidir*/
+  color: var(--color-tertiary-hover);
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: var(--color-gray-medium);
+  opacity: 0.6;
 }
 
 /* Dias normais */
@@ -48,15 +52,16 @@
 /* Dia atual (hoje) */
 .react-calendar__tile--now {
   background: var(--color-tertiary-active) !important;
+  /* box-shadow: 0 0 0 .15rem rgba(255, 122, 82, 0.5); */
   color: white !important;
-  font-weight: bold;
+  font-weight: 500;
   border-radius: 50%;
 }
 
 /* Dia selecionado */
 .react-calendar__tile--active {
   background: none !important;
-  border: .1rem solid var(--color-tertiary-hover) !important;
+  border: 1.6px solid var(--color-tertiary-hover) !important;
   color: var(--color-tertiary) !important;
   font-weight: bold;
 }
@@ -64,7 +69,7 @@
 /* Tamanho da grade */
 .react-calendar__month-view__days {
   display: grid !important;
-  margin-top: .5rem;
+  margin-top: 8px;
   gap: 2px;
   grid-template-columns: repeat(7, 1fr);
 }
@@ -84,10 +89,6 @@
   border: none !important;
   border-radius: .5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.img-carousel {
-  transition: opacity 0.3s ease-in-out;
 }
 
 button.btn.p-0.rounded-circle.bullet-gallery.bg-secondary:hover {
@@ -114,32 +115,4 @@ button.btn.p-0.rounded-circle.border-0.cbg-gray-dark:hover {
   to {
     transform: scale(1);
   }
-}
-
-/* Animação dos controles */
-.btn-arrow {
-  transition: all 0.3s ease;
-  opacity: 0.7;
-  transform: scale(0.9);
-}
-
-.btn-arrow:hover {
-  opacity: 1;
-  transform: scale(1);
-  background-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-/* Transição de imagens */
-.image-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 232px;
-}
-
-.image-slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s ease-in-out;
 }

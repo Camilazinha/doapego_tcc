@@ -28,7 +28,7 @@ export default function Home() {
         <div className="row row-cols-1 row-cols-md-4 text-center g-4 align-items-start mb-5">
 
           <div className="col d-flex flex-column align-items-center">
-            <div className="rounded-circle cbg-gray-light text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+            <div className="rounded-circle cbg-gray-lightest text-muted d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
               1
             </div>
             <h6 className="fw-bold mt-3">Doação feita</h6>
@@ -36,7 +36,7 @@ export default function Home() {
           </div>
 
           <div className="col d-flex flex-column align-items-center">
-            <div className="rounded-circle cbg-gray-light text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+            <div className="rounded-circle cbg-gray-lightest text-muted d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
               2
             </div>
             <h6 className="fw-bold mt-3">ONG aceita</h6>
@@ -44,7 +44,7 @@ export default function Home() {
           </div>
 
           <div className="col d-flex flex-column align-items-center">
-            <div className="rounded-circle cbg-gray-light text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+            <div className="rounded-circle cbg-gray-lightest text-muted d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
               3
             </div>
             <h6 className="fw-bold mt-3">Entrega combinada</h6>
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
 
           <div className="col d-flex flex-column align-items-center">
-            <div className="rounded-circle cbg-gray-light text-white d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
+            <div className="rounded-circle cbg-gray-lightest text-muted d-flex justify-content-center align-items-center" style={{ width: "50px", height: "50px" }}>
               4
             </div>
             <h6 className="fw-bold mt-3">Alegria compartilhada</h6>

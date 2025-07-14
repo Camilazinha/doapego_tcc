@@ -88,6 +88,10 @@
   color: var(--color-gray-dark) !important;
 }
 
+.cbg-gray-lightest {
+  background-color: var(--color-gray-border) !important;
+}
+
 .cbg-gray-light {
   background-color: var(--color-gray-light) !important;
 }

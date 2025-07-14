@@ -24,7 +24,7 @@ export default function Tutorial() {
                     width: "32px",
                     height: "32px",
                     minWidth: "32px",
-                    fontWeight: "bold",
+                    fontWeight: "500",
                     backgroundColor: "var(--color-secondary)",
                   }}
                 >
