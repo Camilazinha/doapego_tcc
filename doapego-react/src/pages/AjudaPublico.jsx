@@ -18,7 +18,7 @@ export default function AjudaPublico() {
               </h2>
 
               <div id={qa.idTarget} class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
-                <div class="accordion-body">
+                <div class="accordion-body" style={{ boxShadow: "inset 0px 9px 11px -8px rgb(0 0 0 / 40%)" }}>
                   <p>{qa.resposta}</p>
                 </div>
               </div>

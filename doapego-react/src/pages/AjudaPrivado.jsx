@@ -18,7 +18,7 @@ export default function AjudaPrivado() {
               </h2>
 
               <div id={qa.idTarget} class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
-                <div class="accordion-body">
+                <div class="accordion-body" style={{ boxShadow: "inset 0px 9px 11px -8px rgb(0 0 0 / 40%)" }}>
                   <p>{qa.resposta}</p>
                 </div>
               </div>
@@ -34,6 +34,6 @@ export default function AjudaPrivado() {
         <p>Telefone: (11) 92078-7810</p>
         <p>(Funcionamento: segunda à sexta, 08h às 18h)</p>
       </section>
-    </main>
+    </main >
   );
 }
