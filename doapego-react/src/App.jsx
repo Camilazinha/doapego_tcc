@@ -91,9 +91,9 @@ export default function App() {
                                 <Route path="/configuracoes/:entidade/detalhes/:id" element={<ViewCrud />} />
                                 {/* </Route> */}
 
-                                <Route element={<ProtectedRoute allowedRoles={['MASTER']} />}>
-                                        <Route path="/gerenciar-solicitacoes" element={<Solicitacoes />} />
-                                </Route>
+                                {/* <Route element={<ProtectedRoute allowedRoles={['MASTER']} />}> */}
+                                <Route path="/gerenciar-solicitacoes" element={<Solicitacoes />} />
+                                {/* </Route> */}
 
                                 <Route path="*" element={<Navigate to="/pagina-nao-encontrada" replace />} />
                         </Routes>

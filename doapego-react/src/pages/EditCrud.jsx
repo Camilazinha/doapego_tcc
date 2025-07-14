@@ -270,7 +270,7 @@ export default function EditCrud() {
 
     try {
       await axios.put(`http://localhost:8080/${config.apiEndpoint}/${id}`, payload);
-      setSuccess("Salvo com sucesso!");
+      setSuccess("Salvo com sucesso.");
     } catch (err) {
       console.error("Erro ao atualizar:", err);
 
@@ -314,7 +314,7 @@ export default function EditCrud() {
         <h2 className='titulo-pagina mb-5'>EDITAR {config.titulo}</h2>
 
         {error &&
-          <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+          <div className="alert alert-danger d-flex align-items-start popup-alert">
             <img src={errorTriangleIcon} className="me-2" alt="erro" />
 
             <div className='ms-1'>
@@ -324,7 +324,7 @@ export default function EditCrud() {
           </div>}
 
         {success &&
-          <div className="alert alert-success d-flex align-items-start popup-alert w-25">
+          <div className="alert alert-success d-flex align-items-start popup-alert">
             <img src={successIcon} className="me-2" alt="sucesso" />
 
             <div className='ms-1'>

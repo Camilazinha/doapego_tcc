@@ -177,7 +177,7 @@ export default function ListCrud() {
     return (
         <main>
             {error && (
-                <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+                <div className="alert alert-danger d-flex align-items-start popup-alert">
                     <img src={errorTriangleIcon} className="me-2" alt="erro" />
                     <div className='ms-1'>
                         <p className="fw-semibold alert-heading">Erro!</p>
@@ -187,7 +187,7 @@ export default function ListCrud() {
             )}
 
             {success && (
-                <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+                <div className="alert alert-danger d-flex align-items-start popup-alert">
                     <img src={successIcon} className="me-2" alt="sucesso" />
                     <div className='ms-1'>
                         <p className="fw-semibold alert-heading">Sucesso!</p>

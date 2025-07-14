@@ -19,7 +19,7 @@ export default function Solicitacoes() {
 
   const handleCopyEmail = async (email) => {
     await navigator.clipboard.writeText(email);
-    setSuccess("E-mail copiado com sucesso!");
+    setSuccess("E-mail copiado com sucesso.");
   }
 
   useEffect(() => {
@@ -44,9 +44,9 @@ export default function Solicitacoes() {
         console.error("Erro ao buscar ONGs pendentes:", err);
 
         if (err.response) {
-          setError("Erro ao carregar os dados. Tente novamente mais tarde.")
+          setError("Erro ao carregar os dados. Tente novamente.")
         } else if (err.request) {
-          setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+          setError("Não foi possível conectar ao servidor. Tente novamente.")
         } else {
           setError("Ocorreu um erro inesperado.")
         }
@@ -86,7 +86,7 @@ export default function Solicitacoes() {
   return (
     <main>
       {error &&
-        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+        <div className="alert alert-danger d-flex align-items-start popup-alert">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
           <div className='ms-1'>
             <p className="fw-semibold alert-heading">Erro!</p>
@@ -95,7 +95,7 @@ export default function Solicitacoes() {
         </div>}
 
       {success &&
-        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+        <div className="alert alert-danger d-flex align-items-start popup-alert">
           <img src={successIcon} className="me-2" alt="sucesso" />
           <div className='ms-1'>
             <p className="fw-semibold alert-heading">Sucesso!</p>

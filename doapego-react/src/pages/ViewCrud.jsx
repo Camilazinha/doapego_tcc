@@ -82,18 +82,15 @@ export default function ViewCrud() {
         console.error("Erro ao buscar os detalhes:", err);
 
         if (err.message === 'Sem permissão') {
-          setError("Você não tem permissão para visualizar este item.");
+          setError("Você não tem permissão para visualizar este item."); // ver isso com o backend
         }
 
         else if (err.response) {
           setError("Falha ao carregar os dados do servidor. Tente novamente.");
-
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Tente novamente.");
-
         } else {
           setError("Ocorreu um erro inesperado.");
-
         }
       } finally {
         setLoading(false);
@@ -113,12 +110,12 @@ export default function ViewCrud() {
         statusOng: "ATIVO"
       });
 
-      setSuccess('ONG aprovada com sucesso!');
+      setSuccess('ONG aprovada com sucesso.');
       window.location.reload();
 
     } catch (err) {
       console.error('Erro ao aprovar ONG:', err);
-      setError('Erro ao aprovar ONG. Tente novamente!');
+      setError('Erro ao aprovar ONG. Tente novamente.');
     }
   };
 
@@ -135,12 +132,12 @@ export default function ViewCrud() {
 
       await axios.delete(`http://localhost:8080/ongs/${id}`);
 
-      setSuccess('ONG e endereços relacionados excluídos com sucesso!');
+      setSuccess('ONG e endereços relacionados excluídos com sucesso.');
       window.location.href = '/gerenciar-solicitacoes';
 
     } catch (err) {
       console.error('Erro no processo de exclusão:', err);
-      setError(`Erro ao excluir: ${err.response?.data?.message || err.message}`);
+      setError(`Falha ao excluir: ${err.response?.data?.message || err.message}`);
     } finally {
       setShowDeleteModal(false);
     }
@@ -179,7 +176,7 @@ export default function ViewCrud() {
     <main>
 
       {error &&
-        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+        <div className="alert alert-danger d-flex align-items-start popup-alert">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
 
           <div className='ms-1'>
@@ -189,7 +186,7 @@ export default function ViewCrud() {
         </div>}
 
       {success &&
-        <div className="alert alert-success d-flex align-items-start popup-alert w-25">
+        <div className="alert alert-success d-flex align-items-start popup-alert">
           <img src={successIcon} className="me-2" alt="sucesso" />
 
           <div className='ms-1'>

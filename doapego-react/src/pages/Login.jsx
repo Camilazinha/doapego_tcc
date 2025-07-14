@@ -85,7 +85,7 @@ export default function Login() {
   return (
     <main>
       {error &&
-        <div className="alert alert-danger d-flex align-items-start popup-alert w-25">
+        <div className="alert alert-danger d-flex align-items-start popup-alert">
           <img src={errorTriangleIcon} className="me-2" alt="erro" />
 
           <div className='ms-1'>

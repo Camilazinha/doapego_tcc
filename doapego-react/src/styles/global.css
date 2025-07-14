@@ -102,4 +102,13 @@ h6 {
   z-index: 1000;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 25%;
+}
+
+@media (max-width: 575.98px) {
+  .popup-alert {
+    width: calc(100% - 2rem);
+    right: 1rem;
+    left: 1rem;
+  }
 }
