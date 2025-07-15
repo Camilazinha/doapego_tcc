@@ -364,6 +364,13 @@ export default function CadastroStaff() {
               <input type="text" className="form-control" name="complemento" value={endereco.complemento} onChange={handleEnderecoChange} />
             </div>
 
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" id="termosPrivacidade" required />
+              <label className="form-check-label" htmlFor="termosPrivacidade">
+                Eu li e concordo com todos os <a className="form-link" target="_blank" rel="noopener noreferrer" href="/termos-de-uso">Termos de Uso</a> e a <a className="form-link" target="_blank" rel="noopener noreferrer" href="/politica-de-privacidade">Política de Privacidade</a> da plataforma.
+              </label>
+            </div>
+
             <button type="submit" className="btn btn-custom-filled" disabled={loading}>
               {loading ? "Enviando..." : "Enviar solicitação"}
             </button>
