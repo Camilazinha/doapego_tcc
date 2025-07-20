@@ -23,6 +23,17 @@ export default function ViewCrud() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
+  useEffect(() => {
+    let timer;
+    if (error || success) {
+      timer = setTimeout(() => {
+        setError(null);
+        setSuccess('');
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [error, success]);
+
   const getNestedValue = (obj, path) => {
     return path.split('.').reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : null), obj);
   };
@@ -72,7 +83,7 @@ export default function ViewCrud() {
         }
 
         if (!hasPermission) {
-          setError('Sem permissão');
+          setError('Acesso não autorizado.');
           setLoading(false);
           return;
         }
@@ -81,11 +92,7 @@ export default function ViewCrud() {
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
 
-        if (err.message === 'Sem permissão') {
-          setError("Você não tem permissão para visualizar este item."); // ver isso com o backend
-        }
-
-        else if (err.response) {
+        if (err.response) {
           setError("Falha ao carregar os dados do servidor. Tente novamente.");
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Tente novamente.");

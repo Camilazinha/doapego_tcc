@@ -64,7 +64,7 @@ export default function Login() {
             setError('E‑mail ou senha incorretos.');
             break;
           case 403:
-            setError('Você não tem permissão para acessar este recurso.');
+            setError('Sua conta está desativada. Entre em contato com um administrador.');
             break;
           case 500:
             setError('Erro interno no servidor. Tente novamente mais tarde.');

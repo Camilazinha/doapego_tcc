@@ -95,7 +95,7 @@ export default function Solicitacoes() {
         </div>}
 
       {success &&
-        <div className="alert alert-danger d-flex align-items-start popup-alert">
+        <div className="alert alert-success d-flex align-items-start popup-alert">
           <img src={successIcon} className="me-2" alt="sucesso" />
           <div className='ms-1'>
             <p className="fw-semibold alert-heading">Sucesso!</p>

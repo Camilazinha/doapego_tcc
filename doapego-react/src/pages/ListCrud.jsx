@@ -22,6 +22,17 @@ export default function ListCrud() {
     const [showModal, setShowModal] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
 
+    useEffect(() => {
+        let timer;
+        if (error || success) {
+            timer = setTimeout(() => {
+                setError(null);
+                setSuccess('');
+            }, 4000);
+        }
+        return () => clearTimeout(timer);
+    }, [error, success]);
+
     const getNestedValue = (obj, path) => {
         return path.split('.').reduce((o, p) => (o || {})[p], obj);
     };
@@ -187,7 +198,7 @@ export default function ListCrud() {
             )}
 
             {success && (
-                <div className="alert alert-danger d-flex align-items-start popup-alert">
+                <div className="alert alert-success d-flex align-items-start popup-alert">
                     <img src={successIcon} className="me-2" alt="sucesso" />
                     <div className='ms-1'>
                         <p className="fw-semibold alert-heading">Sucesso!</p>
