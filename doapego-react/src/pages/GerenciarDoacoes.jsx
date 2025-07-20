@@ -48,9 +48,9 @@ export default function GerenciarDoacoes() {
         console.error("Erro ao buscar doações:", err)
 
         if (err.response) {
-          setError("Erro ao carregar os dados. Tente novamente mais tarde.")
+          setError("Falha ao carregar os dados. Tente novamente.")
         } else if (err.request) {
-          setError("Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.")
+          setError("Não foi possível conectar ao servidor. Tente novamente.")
         } else {
           setError("Ocorreu um erro inesperado.")
         }

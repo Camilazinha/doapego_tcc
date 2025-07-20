@@ -201,7 +201,7 @@ export default function EditCrud() {
     if (hasCEPField) {
       const cepNumerico = removerMascara(formData.cep);
       if (cepNumerico && cepNumerico.length !== 8) {
-        setError("CEP inválido! Deve conter 8 dígitos");
+        setError("CEP deve ter 8 dígitos.");
         return;
       }
     }

@@ -131,9 +131,9 @@ export default function ListCrud() {
                 return item;
             }));
 
-            setSuccess(`${newStatus ? 'Ativado' : 'Desativado'} com sucesso!`);
+            setSuccess(`${newStatus ? 'Ativado' : 'Desativado'} com sucesso.`);
         } catch (err) {
-            setError('Erro ao alterar status. Tente novamente!');
+            setError('Erro ao alterar status. Tente novamente.');
         }
     };
 
@@ -143,10 +143,10 @@ export default function ListCrud() {
         try {
             await axios.delete(`http://localhost:8080/${config.apiEndpoint}/${itemToDelete}`);
             setDados(dados.filter(item => item.id !== itemToDelete));
-            setSuccess(`Excluído com sucesso!`);
+            setSuccess(`Excluído com sucesso.`);
         } catch (err) {
             console.error('Erro ao excluir:', err);
-            setError('Erro ao excluir. Tente novamente!');
+            setError('Falha ao excluir. Tente novamente.');
         } finally {
             setShowModal(false);
             setItemToDelete(null);

@@ -72,7 +72,7 @@ export default function Doacoes() {
         const isOngRelated = userOngId === data.ongId;
 
         if (!isAdmin && !isOwner && !isOngRelated) {
-          setError('Sem permissão.');
+          setError('Acesso não autorizado.');
           setLoading(false);
           return;
         }
@@ -81,10 +81,7 @@ export default function Doacoes() {
       } catch (err) {
         console.error("Erro ao buscar os detalhes:", err);
 
-        if (err.message === 'Sem permissão.') {
-          setError("Você não tem permissão para visualizar este item."); // ver isso aqui
-        }
-        else if (err.response) {
+        if (err.response) {
           setError("Falha ao carregar os dados do servidor. Tente novamente.");
         } else if (err.request) {
           setError("Não foi possível conectar ao servidor. Tente novamente.");
