@@ -61,7 +61,7 @@ export default function ListCrud() {
 
                 } else if (entidade === "ongs") {
                     if (userType === "MASTER") {
-                        const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?statusOng=ATIVO`);
+                        const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}?sortProperty=statusOng&sortDirection=asc`);
                         setDados(response.data.items);
                     } else {
                         const response = await axios.get(`http://localhost:8080/${config.apiEndpoint}/${userOngId}`);
@@ -108,25 +108,30 @@ export default function ListCrud() {
 
     const toggleStatus = async (itemId, currentStatus) => {
         try {
+            const isOng = entidade === "ongs";
             const newStatus = !currentStatus;
 
-            const isOng = entidade === "ongs";
-            const statusField = isOng ? "statusOng" : "ativo";
-            const statusValue = isOng ? (newStatus ? "ATIVO" : "INATIVO") : newStatus;
+            let endpoint = `http://localhost:8080/${config.apiEndpoint}/${itemId}`;
+            let payload = {};
 
-            await axios.patch(`http://localhost:8080/${config.apiEndpoint}/${itemId}`, {
-                [statusField]: statusValue
-            });
+            if (isOng) {
+                const action = currentStatus ? "desativar" : "reativar";
+
+                endpoint = `http://localhost:8080/ongs/${action}/${itemId}`;
+            } else {
+                payload = { ativo: newStatus };
+            }
+
+            await axios.patch(endpoint, isOng ? {} : payload);
 
             setDados(dados.map(item => {
                 if (item.id === itemId) {
-                    return {
-                        ...item,
-                        ...(isOng
-                            ? { statusOng: statusValue }
-                            : { ativo: newStatus }
-                        )
-                    };
+                    return isOng
+                        ? {
+                            ...item,
+                            statusOng: currentStatus ? "INATIVO" : "ATIVO"
+                        }
+                        : { ...item, ativo: newStatus };
                 }
                 return item;
             }));
@@ -134,6 +139,7 @@ export default function ListCrud() {
             setSuccess(`${newStatus ? 'Ativado' : 'Desativado'} com sucesso.`);
         } catch (err) {
             setError('Erro ao alterar status. Tente novamente.');
+            console.error('Erro detalhado:', err.response?.data || err.message);
         }
     };
 
@@ -263,42 +269,46 @@ export default function ListCrud() {
                                         {config.acoes.map(acao => {
                                             const userType = localStorage.getItem('tipo') || '';
                                             let showAction = false;
+                                            const isPendingOng = entidade === "ongs" && item.statusOng === "PENDENTE";
 
-                                            switch (entidade) {
-                                                case 'administradores':
-                                                    if (acao.type === 'disable') {
-                                                        if (userType === 'MASTER') {
-                                                            showAction = item.tipo === 'STAFF';
-                                                        } else if (userType === 'STAFF') {
-                                                            showAction = item.tipo === 'FUNCIONARIO';
+                                            if (isPendingOng) {
+                                                showAction = acao.type === 'view';
+                                            } else {
+                                                switch (entidade) {
+                                                    case 'administradores':
+                                                        if (acao.type === 'disable') {
+                                                            if (userType === 'MASTER') {
+                                                                showAction = item.tipo === 'STAFF';
+                                                            } else if (userType === 'STAFF') {
+                                                                showAction = item.tipo === 'FUNCIONARIO';
+                                                            }
+                                                        } else {
+                                                            showAction = true;
                                                         }
-                                                    } else {
+                                                        break;
+
+                                                    case 'ongs':
+                                                        showAction = acao.type === 'view' || (acao.type === 'disable' && userType === 'MASTER');
+                                                        break;
+
+                                                    case 'categorias-doacao':
+                                                        showAction = acao.type === 'view' || (['edit', 'delete'].includes(acao.type) && userType === 'MASTER');
+                                                        break;
+
+                                                    case 'enderecos-ong':
+                                                        showAction = acao.type === 'view' ||
+                                                            (['edit', 'delete'].includes(acao.type) &&
+                                                                ['STAFF', 'FUNCIONARIO'].includes(userType));
+                                                        break;
+
+                                                    case 'usuarios':
+                                                        showAction = userType === 'MASTER';
+                                                        break;
+
+                                                    default:
                                                         showAction = true;
-                                                    }
-                                                    break;
-
-                                                case 'ongs':
-                                                    showAction = acao.type === 'view' || (acao.type === 'disable' && userType === 'MASTER');
-                                                    break;
-
-                                                case 'categorias-doacao':
-                                                    showAction = acao.type === 'view' || (['edit', 'delete'].includes(acao.type) && userType === 'MASTER');
-                                                    break;
-
-                                                case 'enderecos-ong':
-                                                    showAction = acao.type === 'view' ||
-                                                        (['edit', 'delete'].includes(acao.type) &&
-                                                            ['STAFF', 'FUNCIONARIO'].includes(userType));
-                                                    break;
-
-                                                case 'usuarios':
-                                                    showAction = userType === 'MASTER';
-                                                    break;
-
-                                                default:
-                                                    showAction = true;
+                                                }
                                             }
-
                                             if (!showAction) return null;
 
                                             if (acao.type === 'delete') {
